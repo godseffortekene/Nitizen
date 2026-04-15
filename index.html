@@ -1,2 +1,812 @@
-# Nitizen
-A civic-tech space.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="NITIZEN is a digital civic intelligence platform equipping Nigerians with tools, knowledge, and voice to engage meaningfully with governance and democratic participation."/>
+  <meta property="og:title" content="NITIZEN — Civic Intelligence for a New Nigeria"/>
+  <meta property="og:description" content="Equipping Nigerians with the knowledge, tools, and voice to engage meaningfully with governance."/>
+  <meta property="og:type" content="website"/>
+  <title>NITIZEN — Civic Intelligence for a New Nigeria</title>
+
+  <!--
+    FONT STRATEGY
+    EB Garamond   → Hero title & section headings: classical editorial authority
+    Average       → Body prose across all sections: warm, legible, human
+    Space Mono    → Nav, labels, tags, buttons: technical precision & civic identity
+    Sakkal Majalla→ Initiative names & impact numerals: distinctive display character
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700&family=Average&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Sakkal+Majalla:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --green-deep:        #1a4d2e;
+      --green-mid:         #2d7a4f;
+      --green-soft:        #4aaf74;
+      --green-light:       #a8d5b5;
+      --green-mist:        #e8f5ee;
+      --white:             #ffffff;
+      --off-white:         #f7faf8;
+      --ink:               #0f1f16;
+      --ink-light:         #2c4033;
+      --muted:             #6b8f76;
+      --accent-gold:       #c8a84b;
+      --accent-gold-light: #f0dfa0;
+      --border:            rgba(45,122,79,0.18);
+
+      --font-display: 'EB Garamond', Georgia, serif;
+      --font-body:    'Average', Georgia, serif;
+      --font-mono:    'Space Mono', 'Courier New', monospace;
+      --font-accent:  'Sakkal Majalla', 'EB Garamond', serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--off-white);
+      color: var(--ink);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* noise overlay */
+    body::before {
+      content: ''; position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.35;
+    }
+
+    /* ── SKIP LINK ── */
+    .skip-link {
+      position: absolute; top: -100px; left: 1rem;
+      background: var(--green-deep); color: var(--white);
+      padding: 0.5rem 1rem; font-family: var(--font-mono); font-size: 0.8rem;
+      border-radius: 2px; z-index: 999; text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── NAV ── */
+    nav#main-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 4rem;
+      background: rgba(247,250,248,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.3s, box-shadow 0.3s;
+    }
+    nav#main-nav.scrolled { padding: 0.7rem 4rem; box-shadow: 0 2px 20px rgba(26,77,46,0.08); }
+
+    .nav-logo {
+      font-family: var(--font-mono); font-weight: 700; font-size: 1.25rem;
+      color: var(--green-deep); letter-spacing: 0.14em; text-decoration: none;
+    }
+    .nav-logo span { color: var(--green-soft); }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-light); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green-mid); }
+    .nav-cta {
+      background: var(--green-deep); color: var(--white) !important;
+      padding: 0.5rem 1.2rem; border-radius: 2px; transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--green-mid) !important; }
+
+    /* mobile toggle */
+    .nav-toggle {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none; padding: 4px;
+    }
+    .nav-toggle span {
+      display: block; width: 22px; height: 2px;
+      background: var(--green-deep); border-radius: 2px;
+      transition: transform 0.25s, opacity 0.25s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 57px; left: 0; right: 0;
+      background: rgba(247,250,248,0.98); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 2rem; z-index: 99;
+      flex-direction: column; gap: 1.1rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-mono); font-size: 0.8rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-light); text-decoration: none;
+      padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; position: relative;
+      padding: 8rem 4rem 5rem; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 50%, rgba(74,175,116,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 10% 80%, rgba(26,77,46,0.08) 0%, transparent 55%),
+        linear-gradient(160deg, var(--off-white) 0%, #edf6f0 100%);
+      z-index: -1;
+    }
+    .hero-bg-circle { position: absolute; border-radius: 50%; border: 1px solid var(--border); }
+    .hero-bg-circle:nth-child(1) { width:600px; height:600px; right:-150px; top:-100px; border-color:rgba(74,175,116,0.15); }
+    .hero-bg-circle:nth-child(2) { width:400px; height:400px; right:50px; top:50px; border-color:rgba(26,77,46,0.10); }
+    .hero-bg-circle:nth-child(3) { width:200px; height:200px; right:150px; top:150px; background:rgba(74,175,116,0.06); border-color:rgba(74,175,116,0.20); }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--green-mist); border: 1px solid var(--green-light);
+      color: var(--green-deep); font-family: var(--font-mono);
+      font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.4rem 0.9rem; border-radius: 2px;
+      margin-bottom: 1.8rem; width: fit-content;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag::before {
+      content: ''; width: 6px; height: 6px;
+      background: var(--green-soft); border-radius: 50%; display: inline-block;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 7vw, 6.2rem);
+      font-weight: 800; line-height: 1.02;
+      color: var(--green-deep); max-width: 740px;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+    .hero-title em { font-style: italic; color: var(--green-mid); }
+
+    .hero-subtitle {
+      font-family: var(--font-body);
+      font-size: 1.12rem; line-height: 1.82;
+      color: var(--ink-light); max-width: 540px; margin-top: 1.6rem;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; margin-top: 2.4rem; flex-wrap: wrap;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--green-deep); color: var(--white);
+      padding: 0.85rem 1.9rem; font-family: var(--font-mono);
+      font-size: 0.76rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      border: none; cursor: pointer; text-decoration: none; display: inline-block;
+      transition: background 0.2s, transform 0.15s; border-radius: 2px;
+    }
+    .btn-primary:hover { background: var(--green-mid); transform: translateY(-1px); }
+
+    .btn-outline {
+      background: transparent; color: var(--green-deep);
+      padding: 0.85rem 1.9rem; font-family: var(--font-mono);
+      font-size: 0.76rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+      border: 1.5px solid var(--green-deep); cursor: pointer;
+      text-decoration: none; display: inline-block;
+      transition: all 0.2s; border-radius: 2px;
+    }
+    .btn-outline:hover { background: var(--green-mist); }
+
+    .hero-stat-strip {
+      display: flex; gap: 3rem; flex-wrap: wrap;
+      margin-top: 3.5rem; padding-top: 2.5rem;
+      border-top: 1px solid var(--border);
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+    .hero-stat h3 {
+      font-family: var(--font-accent);
+      font-size: 2.1rem; font-weight: 700; color: var(--green-deep);
+    }
+    .hero-stat p {
+      font-family: var(--font-mono); font-size: 0.7rem;
+      color: var(--muted); margin-top: 0.2rem;
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+
+    /* ── SECTION BASE ── */
+    section { position: relative; padding: 6rem 4rem; }
+
+    .section-label {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--green-soft); margin-bottom: 0.9rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 700; line-height: 1.18;
+      color: var(--green-deep); max-width: 620px;
+    }
+    .section-title em { font-style: italic; color: var(--green-mid); }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; margin-top: 3rem; align-items: start;
+    }
+    .about-left p {
+      font-family: var(--font-body); font-size: 1.05rem; line-height: 1.9;
+      color: var(--ink-light); margin-bottom: 1.1rem;
+    }
+    .about-left p strong { color: var(--green-deep); font-weight: 600; }
+    .about-right { display: flex; flex-direction: column; gap: 1.3rem; }
+
+    .pillar-card {
+      border: 1px solid var(--border); border-left: 3px solid var(--green-soft);
+      padding: 1.4rem 1.7rem; background: var(--off-white); border-radius: 2px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .pillar-card:hover { transform: translateX(4px); box-shadow: -4px 4px 20px rgba(26,77,46,0.08); }
+    .pillar-card h4 {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--green-deep); margin-bottom: 0.45rem;
+    }
+    .pillar-card p {
+      font-family: var(--font-body); font-size: 0.93rem; line-height: 1.72; color: var(--muted);
+    }
+
+    /* ── INITIATIVES ── */
+    .initiatives { background: var(--green-deep); color: var(--white); }
+    .initiatives .section-label { color: var(--green-light); }
+    .initiatives .section-title { color: var(--white); max-width: 680px; }
+    .initiatives-intro {
+      font-family: var(--font-body); font-size: 1rem; line-height: 1.82;
+      color: var(--green-light); max-width: 620px; margin-top: 0.9rem;
+    }
+    .initiatives-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      margin-top: 3.5rem;
+      border: 1px solid rgba(168,213,181,0.2);
+    }
+    .initiative-card {
+      padding: 2.5rem 2rem; background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(168,213,181,0.12);
+      transition: background 0.3s; position: relative; overflow: hidden;
+    }
+    .initiative-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--green-soft); transform: scaleX(0);
+      transform-origin: left; transition: transform 0.3s;
+    }
+    .initiative-card:hover { background: rgba(255,255,255,0.07); }
+    .initiative-card:hover::before { transform: scaleX(1); }
+    .init-num {
+      font-family: var(--font-mono); font-size: 0.62rem;
+      letter-spacing: 0.16em; color: var(--green-soft); margin-bottom: 1.4rem;
+    }
+    .init-name {
+      font-family: var(--font-accent); font-size: 1.8rem; font-weight: 700;
+      color: var(--white); margin-bottom: 0.9rem; line-height: 1.2;
+    }
+    .init-tag {
+      display: inline-block; background: rgba(74,175,116,0.2); color: var(--green-light);
+      font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.28rem 0.65rem;
+      border-radius: 2px; margin-bottom: 1.1rem;
+    }
+    .init-desc {
+      font-family: var(--font-body); font-size: 0.95rem; line-height: 1.82;
+      color: rgba(168,213,181,0.88);
+    }
+
+    /* ── GOALS ── */
+    .goals { background: var(--off-white); }
+    .goals-layout {
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      gap: 5rem; margin-top: 3rem; align-items: start;
+    }
+    .goals-list { display: flex; flex-direction: column; gap: 0.9rem; }
+    .goal-item {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      padding: 1.4rem; background: var(--white);
+      border: 1px solid var(--border); border-radius: 2px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .goal-item:hover { border-color: var(--green-soft); box-shadow: 0 4px 18px rgba(26,77,46,0.07); }
+    .goal-icon {
+      width: 34px; height: 34px; min-width: 34px;
+      background: var(--green-mist); border: 1px solid var(--green-light);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 0.85rem;
+    }
+    .goal-text h5 {
+      font-family: var(--font-display); font-size: 0.98rem; font-weight: 600;
+      color: var(--green-deep); margin-bottom: 0.25rem;
+    }
+    .goal-text p {
+      font-family: var(--font-body); font-size: 0.88rem; line-height: 1.65; color: var(--muted);
+    }
+
+    .impact-box {
+      background: var(--green-deep); color: var(--white);
+      padding: 2.4rem; border-radius: 2px; position: sticky; top: 6rem;
+    }
+    .impact-box h3 {
+      font-family: var(--font-display); font-size: 1.45rem; font-style: italic;
+      margin-bottom: 1.4rem; color: var(--green-light);
+    }
+    .impact-metric {
+      border-top: 1px solid rgba(168,213,181,0.2); padding: 0.95rem 0;
+    }
+    .impact-metric:last-of-type { border-bottom: 1px solid rgba(168,213,181,0.2); }
+    .impact-metric strong {
+      font-family: var(--font-accent); font-size: 1.75rem; color: var(--white); display: block;
+    }
+    .impact-metric span {
+      font-family: var(--font-body); font-size: 0.82rem;
+      color: rgba(168,213,181,0.78); line-height: 1.5;
+    }
+    .nyff-badge {
+      margin-top: 1.8rem; padding: 1rem 1.1rem;
+      background: rgba(200,168,75,0.12);
+      border: 1px solid rgba(200,168,75,0.3); border-radius: 2px;
+    }
+    .nyff-badge p {
+      font-family: var(--font-body); font-size: 0.8rem;
+      color: var(--accent-gold-light); line-height: 1.62;
+    }
+    .nyff-badge strong { color: var(--accent-gold); }
+
+    /* ── TEAM ── */
+    .team { background: var(--off-white); border-top: 1px solid var(--border); }
+    .team-wrapper { display: flex; justify-content: center; margin-top: 3rem; }
+    .team-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 2px; padding: 3rem 3.5rem;
+      display: flex; gap: 3rem; align-items: center;
+      max-width: 780px; width: 100%;
+    }
+    .team-avatar {
+      width: 110px; height: 110px; min-width: 110px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-deep) 0%, var(--green-mid) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 2.2rem; font-weight: 700;
+      color: var(--white); border: 3px solid var(--green-light);
+    }
+    .team-info h3 {
+      font-family: var(--font-display); font-size: 1.65rem; font-weight: 700; color: var(--green-deep);
+    }
+    .team-role {
+      font-family: var(--font-mono); font-size: 0.68rem;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--green-soft); margin: 0.35rem 0 0.9rem;
+    }
+    .team-bio {
+      font-family: var(--font-body); font-size: 0.95rem; line-height: 1.82; color: var(--ink-light);
+    }
+
+    /* ── CONTACT ── */
+    .contact { background: var(--green-deep); color: var(--white); text-align: center; }
+    .contact .section-label { color: var(--green-light); }
+    .contact .section-title { color: var(--white); margin: 0 auto 0.9rem; text-align: center; max-width: 580px; }
+    .contact-sub {
+      font-family: var(--font-body); font-size: 1rem; line-height: 1.8;
+      color: var(--green-light); max-width: 500px; margin: 0 auto 2.4rem;
+    }
+    .contact-form {
+      max-width: 540px; margin: 0 auto;
+      display: flex; flex-direction: column; gap: 1rem;
+    }
+    .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%; padding: 0.82rem 1rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(168,213,181,0.28);
+      color: var(--white); font-family: var(--font-body); font-size: 0.92rem;
+      border-radius: 2px; outline: none; transition: border-color 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: rgba(168,213,181,0.52); }
+    .contact-form input:focus,
+    .contact-form textarea:focus,
+    .contact-form select:focus { border-color: var(--green-soft); }
+    .contact-form select { cursor: pointer; }
+    .contact-form select option { background: var(--green-deep); color: var(--white); }
+    .contact-form textarea { height: 120px; resize: vertical; }
+    .contact-form button {
+      background: var(--white); color: var(--green-deep); padding: 1rem;
+      font-family: var(--font-mono); font-weight: 700;
+      font-size: 0.76rem; letter-spacing: 0.08em; text-transform: uppercase;
+      border: none; cursor: pointer; border-radius: 2px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .contact-form button:hover { background: var(--green-mist); transform: translateY(-1px); }
+    .contact-form button:disabled { opacity: 0.7; cursor: default; transform: none; }
+    .form-success {
+      display: none; padding: 2rem;
+      font-family: var(--font-display); font-size: 1.1rem; font-style: italic;
+      color: var(--green-light);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink); color: rgba(255,255,255,0.45);
+      padding: 2.4rem 4rem;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--font-mono); font-weight: 700; font-size: 1.05rem;
+      color: var(--white); letter-spacing: 0.12em;
+    }
+    .footer-logo span { color: var(--green-soft); }
+    footer p { font-family: var(--font-mono); font-size: 0.72rem; }
+    .footer-links { display: flex; gap: 1.8rem; }
+    .footer-links a {
+      font-family: var(--font-mono); font-size: 0.72rem;
+      color: rgba(255,255,255,0.4); text-decoration: none;
+      transition: color 0.2s; letter-spacing: 0.06em;
+    }
+    .footer-links a:hover { color: var(--green-light); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav#main-nav { padding: 1rem 1.5rem; }
+      nav#main-nav.scrolled { padding: 0.7rem 1.5rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 4rem; }
+      .hero-stat-strip { gap: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .initiatives-grid { grid-template-columns: 1fr; }
+      .goals-layout { grid-template-columns: 1fr; }
+      .impact-box { position: static; }
+      .team-card { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .contact-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.6rem; }
+      .hero-actions { flex-direction: column; }
+      .btn-primary, .btn-outline { width: 100%; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#about" class="skip-link">Skip to content</a>
+
+  <!-- NAV -->
+  <nav id="main-nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo" aria-label="NITIZEN home">NI<span>T</span>IZEN</a>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">Mission</a></li>
+      <li><a href="#initiatives">Initiatives</a></li>
+      <li><a href="#goals">Impact</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact" class="nav-cta">Get Involved</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+    <a href="#about" onclick="closeMobileMenu()">Mission</a>
+    <a href="#initiatives" onclick="closeMobileMenu()">Initiatives</a>
+    <a href="#goals" onclick="closeMobileMenu()">Impact</a>
+    <a href="#team" onclick="closeMobileMenu()">Team</a>
+    <a href="#contact" onclick="closeMobileMenu()">Get Involved</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home" aria-labelledby="hero-heading">
+    <div class="hero-bg">
+      <div class="hero-bg-circle"></div>
+      <div class="hero-bg-circle"></div>
+      <div class="hero-bg-circle"></div>
+    </div>
+    <div class="hero-tag">Nigeria · Civic Intelligence · Long-Term Impact</div>
+    <h1 class="hero-title" id="hero-heading">Awakening the <em>Active</em> Nigerian Citizen</h1>
+    <p class="hero-subtitle">
+      NITIZEN is a digital civic platform equipping Nigerians with the knowledge, tools, and voice to engage meaningfully with governance — built for the long term, starting now.
+    </p>
+    <div class="hero-actions">
+      <a href="#initiatives" class="btn-primary">Explore the Platform</a>
+      <a href="#contact" class="btn-outline">Join the Movement</a>
+    </div>
+    <div class="hero-stat-strip">
+      <div class="hero-stat"><h3>3</h3><p>Core Initiatives</p></div>
+      <div class="hero-stat"><h3>2027</h3><p>Election Readiness Target</p></div>
+      <div class="hero-stat"><h3>1M+</h3><p>Nigerians to Reach</p></div>
+      <div class="hero-stat"><h3>36+</h3><p>States of Coverage</p></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about" aria-labelledby="about-heading">
+    <div class="section-label">About / Mission</div>
+    <h2 class="section-title" id="about-heading">Built for the Citizen <em>Nigeria Deserves</em></h2>
+    <div class="about-grid reveal">
+      <div class="about-left">
+        <p>Nigeria is at a crossroads. With a median age of under 20, its population is overwhelmingly youthful — yet civic participation, policy literacy, and democratic engagement remain dangerously low. <strong>NITIZEN</strong> is built to change that.</p>
+        <p>The word "Nitizen" fuses "Nigeria" with "citizen" — a deliberate declaration that active, informed citizenship is the foundation of the country we want to build. We are not a passive audience to governance; we are its architects, its critics, its conscience.</p>
+        <p>Through AI-assisted civic learning, political commentary, and community engagement, NITIZEN creates a web environment where citizens don't just consume information — they act on it. Our immediate focus is the <strong>2027 general elections</strong>: preparing citizens not merely to vote, but to vote with clarity, purpose, and accountability.</p>
+      </div>
+      <div class="about-right">
+        <div class="pillar-card">
+          <h4>🎯 Our Mission</h4>
+          <p>To build a technology-powered civic education platform equipping Nigerians — particularly youth — with the knowledge, critical thinking tools, and participatory channels needed for active democratic engagement.</p>
+        </div>
+        <div class="pillar-card">
+          <h4>🌍 Our Vision</h4>
+          <p>A Nigeria where every citizen — regardless of class, geography, or education — can meaningfully engage with political power, hold leadership accountable, and shape national development decisions.</p>
+        </div>
+        <div class="pillar-card">
+          <h4>⚙️ Our Approach</h4>
+          <p>We leverage technology, media, and storytelling as strategic tools — combining AI, multimedia criticism, and long-form civic writing into a single platform accessible to every Nigerian with a smartphone.</p>
+        </div>
+        <div class="pillar-card">
+          <h4>📍 Our Context</h4>
+          <p>Operating at the intersection of Policy & Advocacy, Electoral Engagement, Accountability & Transparency, and Social Inclusion — the exact thematic areas defining good governance for Nigeria's present and future.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INITIATIVES -->
+  <section class="initiatives" id="initiatives" aria-labelledby="initiatives-heading">
+    <div class="section-label">Platform Initiatives</div>
+    <h2 class="section-title" id="initiatives-heading">Three Pillars. One <em>Civic Mission.</em></h2>
+    <p class="initiatives-intro">
+      NITIZEN is structured around three interlocking initiatives — each targeting a different dimension of the civic education gap, designed to scale through technology, community, and creativity.
+    </p>
+    <div class="initiatives-grid reveal">
+
+      <div class="initiative-card">
+        <div class="init-num">01 — Initiative</div>
+        <div class="init-name">Conscience Letters</div>
+        <div class="init-tag">Policy · History · Analysis</div>
+        <p class="init-desc">A curated editorial space where Nigeria is examined unflinchingly — its history, its contradictions, its present actors and the decisions they make. Conscience Letters publishes rigorous, long-form civic writing that holds leaders to the standard of what was promised and what has been delivered. Civic documentation as a living record of conscience.</p>
+      </div>
+
+      <div class="initiative-card">
+        <div class="init-num">02 — Initiative</div>
+        <div class="init-name">AskNaija</div>
+        <div class="init-tag">AI · Civic Tech · Deep Research</div>
+        <p class="init-desc">A deep-tech AI solution integrated into the NITIZEN platform — providing algorithmic, evidence-based responses to citizen questions on the Nigerian polity, economy, and social circumstances. A farmer in Benue, a student in Calabar, a trader in Kano — all deserve clear, trustworthy answers. AskNaija is civic intelligence for everyone.</p>
+      </div>
+
+      <div class="initiative-card">
+        <div class="init-num">03 — Initiative</div>
+        <div class="init-name">Critika</div>
+        <div class="init-tag">Open-Source · Creative Activism · Accountability</div>
+        <p class="init-desc">An open-source platform built for activist creators and concerned citizens to publish productions — graphics, cartoons, videos, music, and more — that critique government performance against its declared manifesto and campaign promises, while proposing actionable solutions. Critika turns civic frustration into creative output, giving every Nigerian a stage to hold power accountable through art.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GOALS / IMPACT -->
+  <section class="goals" id="goals" aria-labelledby="goals-heading">
+    <div class="section-label">Goals & Impact</div>
+    <h2 class="section-title" id="goals-heading">What NITIZEN <em>Sets Out to Change</em></h2>
+    <div class="goals-layout">
+      <div class="goals-list reveal">
+        <div class="goal-item">
+          <div class="goal-icon" aria-hidden="true">🗳️</div>
+          <div class="goal-text">
+            <h5>Raise Electoral Literacy</h5>
+            <p>Equip at least one million Nigerians with structured knowledge on the electoral process, candidate vetting, and civic rights.</p>
+          </div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-icon" aria-hidden="true">🤖</div>
+          <div class="goal-text">
+            <h5>Deploy AI-Powered Civic Access</h5>
+            <p>Through AskNaija, make governance information radically accessible — breaking the barrier between ordinary Nigerians and the policies that shape their lives.</p>
+          </div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-icon" aria-hidden="true">🎨</div>
+          <div class="goal-text">
+            <h5>Build a Culture of Creative Accountability</h5>
+            <p>Through Critika, empower citizens to critique power through art — holding government to its promises through graphics, video, music, and more.</p>
+          </div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-icon" aria-hidden="true">✍️</div>
+          <div class="goal-text">
+            <h5>Create a Civic Documentation Record</h5>
+            <p>Via Conscience Letters, build a living repository of historical-contextual civic analysis for researchers, journalists, and students.</p>
+          </div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-icon" aria-hidden="true">🌐</div>
+          <div class="goal-text">
+            <h5>Achieve Nationwide Reach</h5>
+            <p>Optimise for all 36 states — low-bandwidth environments, multilingual access, and non-elite audiences who civic tech often leaves behind.</p>
+          </div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-icon" aria-hidden="true">🔁</div>
+          <div class="goal-text">
+            <h5>Build a Sustainable Civic Media Model</h5>
+            <p>Establish NITIZEN as self-sustaining beyond the grant period — through community participation, partnerships, and a living content economy.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="impact-box reveal">
+        <h3>Projected Impact</h3>
+        <div class="impact-metric"><strong>1M+</strong><span>Citizens reached through digital civic education campaigns</span></div>
+        <div class="impact-metric"><strong>50K+</strong><span>Active AskNaija users seeking governance clarity monthly</span></div>
+        <div class="impact-metric"><strong>200+</strong><span>Conscience Letters pieces published annually</span></div>
+        <div class="impact-metric"><strong>36</strong><span>States engaged through platform content and outreach</span></div>
+        <div class="impact-metric"><strong>3 yrs</strong><span>Sustainability runway built beyond the grant period</span></div>
+        <div class="nyff-badge">
+          <p><strong>Aligned with NYFF:</strong> NITIZEN directly advances the Nigerian Youth Futures Fund's mandate under Policy & Advocacy, Electoral Engagement, Accountability & Transparency, and the Strategic Use of Technology for youth-led social change.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="team" id="team" aria-labelledby="team-heading">
+    <div class="section-label">Team</div>
+    <h2 class="section-title" id="team-heading">The People <em>Behind the Platform</em></h2>
+    <div class="team-wrapper">
+      <div class="team-card reveal">
+        <div class="team-avatar" aria-hidden="true">EG</div>
+        <div class="team-info">
+          <h3>Ekene Godseffort Chimarin</h3>
+          <div class="team-role">Lead Campaigner · Founder</div>
+          <p class="team-bio">Ekene Godseffort Chimarin is the founding proponent of NITIZEN — a civic initiative born from the conviction that Nigeria's most urgent infrastructure gap is not roads or power, but political consciousness. Drawing on a deep engagement with Nigerian history and the intersection of technology and public life, Ekene drives the vision, strategy, and editorial direction of the platform. His work is guided by a singular belief: that an awakened citizenry is the only sustainable reform Nigeria has.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact" aria-labelledby="contact-heading">
+    <div class="section-label">Contact / Get Involved</div>
+    <h2 class="section-title" id="contact-heading">Join the <em>Civic Conversation</em></h2>
+    <p class="contact-sub">Citizen, creator, journalist, researcher, or partner — if you believe in an accountable Nigeria, there's a place for you here.</p>
+    <form class="contact-form" id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+      <div class="contact-row">
+        <input type="text" name="name" placeholder="Your Full Name" required autocomplete="name" aria-label="Full name"/>
+        <input type="email" name="email" placeholder="Email Address" required autocomplete="email" aria-label="Email address"/>
+      </div>
+      <input type="text" name="state" placeholder="State / Location in Nigeria" autocomplete="address-level2" aria-label="State or location"/>
+      <select name="engagement" aria-label="How would you like to engage?" required>
+        <option value="" disabled selected>How would you like to engage?</option>
+        <option value="conscience-letters">I want to contribute to Conscience Letters</option>
+        <option value="critika">I want to submit a creation to Critika</option>
+        <option value="asknaija">I want to test AskNaija (Beta)</option>
+        <option value="partner">I am a potential partner or funder</option>
+        <option value="press">I am a journalist / researcher</option>
+        <option value="general">General enquiry</option>
+      </select>
+      <textarea name="message" placeholder="Tell us more about how you'd like to engage, or leave a message..." aria-label="Message"></textarea>
+      <button type="submit" id="submitBtn">Send Message →</button>
+    </form>
+    <p class="form-success" id="formSuccess">✓ Thank you — your message has been received. We will be in touch soon.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer role="contentinfo">
+    <div>
+      <div class="footer-logo">NI<span>T</span>IZEN</div>
+      <p style="margin-top:0.3rem;">Civic Intelligence for a New Nigeria · Est. 2025</p>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="#about">Mission</a>
+      <a href="#initiatives">Initiatives</a>
+      <a href="#goals">Impact</a>
+      <a href="#team">Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p>© <span id="footerYear">2025</span> NITIZEN. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Dynamic copyright year
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Nav shrink on scroll
+    const mainNav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      mainNav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    // Nav active state highlight
+    const allSections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      allSections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--green-mid)' : '';
+      });
+    }, { passive: true });
+
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!mainNav.contains(e.target) && !mobileMenu.contains(e.target)) closeMobileMenu();
+    });
+
+    // Form validation + submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+
+      if (!name || !email) {
+        alert('Please fill in your name and email address.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      // Simulated async (swap for Formspree or EmailJS endpoint when ready)
+      setTimeout(() => {
+        form.style.display = 'none';
+        const success = document.getElementById('formSuccess');
+        success.style.display = 'block';
+      }, 800);
+    }
+  </script>
+
+</body>
+</html>
