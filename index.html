@@ -696,7 +696,7 @@
     <div class="section-label">Contact / Get Involved</div>
     <h2 class="section-title" id="contact-heading">Join the <em>Civic Conversation</em></h2>
     <p class="contact-sub">Citizen, creator, journalist, researcher, or partner — if you believe in an accountable Nigeria, there's a place for you here.</p>
- <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleSubmit(event)" novalidate>
+    <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" onsubmit="handleSubmit(event)" novalidate>
       <div class="contact-row">
         <input type="text" name="name" placeholder="Your Full Name" required autocomplete="name" aria-label="Full name"/>
         <input type="email" name="email" placeholder="Email Address" required autocomplete="email" aria-label="Email address"/>
@@ -799,45 +799,26 @@
       btn.textContent = 'Sending…';
       btn.disabled = true;
 
-      // Simulated async (swap for Formspree or EmailJS endpoint when ready)
-     function handleSubmit(e) {
-  e.preventDefault();
-  const form = e.target;
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-
-  if (!name || !email) { alert('Please fill in your name and email.'); return; }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
-
-  const btn = document.getElementById('submitBtn');
-  btn.textContent = 'Sending…';
-  btn.disabled = true;
-
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(res => {
-    if (res.ok) {
-      form.style.display = 'none';
-      document.getElementById('formSuccess').style.display = 'block';
-    } else {
-      btn.textContent = 'Send Message →';
-      btn.disabled = false;
-      alert('Something went wrong. Please try again.');
-    }
-  })
-  .catch(() => {
-    btn.textContent = 'Send Message →';
-    btn.disabled = false;
-    alert('Connection error. Please try again.');
-  });
-}
-        form.style.display = 'none';
-        const success = document.getElementById('formSuccess');
-        success.style.display = 'block';
-      }, 800);
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(res => {
+        if (res.ok) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message →';
+          btn.disabled = false;
+          alert('Something went wrong. Please try again.');
+        }
+      })
+      .catch(() => {
+        btn.textContent = 'Send Message →';
+        btn.disabled = false;
+        alert('Connection error. Please try again.');
+      });
     }
   </script>
 
