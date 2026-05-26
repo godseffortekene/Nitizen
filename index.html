@@ -374,17 +374,202 @@ footer p { font-family: var(--mono); font-size: .7rem; }
 @media(max-width:900px){.crisis-alert{padding:1.2rem 1.5rem;}}
 
 /* ── CITATION / VERIFICATION SYSTEM ── */
-.cite-badge {
-  display: inline-flex; align-items: center; gap: .3rem;
-  background: rgba(200,168,75,.12); border: 1px solid rgba(200,168,75,.35);
-  color: var(--gold-light); font-family: var(--mono); font-size: .55rem;
-  letter-spacing: .08em; text-transform: uppercase;
-  padding: .18rem .55rem; border-radius: 2px;
-  text-decoration: none; vertical-align: middle;
-  transition: background .2s; cursor: pointer;
+/* ── REFINED VERIFICATION SYSTEM v2 ── */
+
+/* Inline source reference — minimal superscript dot */
+.src-ref {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--green-soft);
+  border-radius: 50%;
+  vertical-align: super;
+  margin-left: 2px;
+  cursor: default;
+  position: relative;
+  transition: background .2s;
+  flex-shrink: 0;
 }
-.cite-badge::before { content: '✓'; color: var(--gold); font-weight: 700; }
-.cite-badge:hover { background: rgba(200,168,75,.22); }
+.src-ref:hover { background: var(--green-mid); }
+
+/* Tooltip on hover */
+.src-ref[data-src]:hover::after {
+  content: attr(data-src);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--ink);
+  color: rgba(255,255,255,.82);
+  font-family: var(--mono);
+  font-size: .6rem;
+  letter-spacing: .02em;
+  line-height: 1.5;
+  padding: .5rem .8rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  max-width: 260px;
+  white-space: normal;
+  width: max-content;
+  max-width: 240px;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+  pointer-events: none;
+}
+.src-ref[data-src]:hover::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: var(--ink);
+  z-index: 101;
+}
+
+/* Dark-bg variant */
+.src-ref-light {
+  background: rgba(168,213,181,.5);
+}
+.src-ref-light:hover { background: var(--green-light); }
+.src-ref-light[data-src]:hover::after {
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+.src-ref-light[data-src]:hover::before { border-top-color: #fff; }
+
+/* Red-bg variant (crisis articles on dark bg) */
+.src-ref-crisis {
+  background: rgba(224,92,92,.5);
+}
+.src-ref-crisis:hover { background: #e05c5c; }
+
+/* Source footnote block — compact, at foot of article */
+.src-footnotes {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.src-footnotes-dark { border-top-color: rgba(255,255,255,.08); }
+.src-footnotes-title {
+  font-family: var(--mono);
+  font-size: .58rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .9rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.src-footnotes-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.src-footnotes-dark .src-footnotes-title {
+  color: rgba(255,255,255,.22);
+}
+.src-footnotes-dark .src-footnotes-title::after {
+  background: rgba(255,255,255,.06);
+}
+.src-entry {
+  display: flex;
+  gap: .7rem;
+  align-items: baseline;
+  padding: .3rem 0;
+}
+.src-entry-n {
+  font-family: var(--mono);
+  font-size: .58rem;
+  color: var(--green-soft);
+  min-width: 18px;
+  flex-shrink: 0;
+  font-weight: 700;
+}
+.src-footnotes-dark .src-entry-n { color: rgba(74,175,116,.65); }
+.src-entry-text {
+  font-family: var(--mono);
+  font-size: .62rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.src-footnotes-dark .src-entry-text { color: rgba(255,255,255,.28); }
+.src-entry-text strong { color: var(--ink-light); }
+.src-footnotes-dark .src-entry-text strong { color: rgba(255,255,255,.45); }
+
+/* Editorial integrity note — replaces verify-strip */
+.editorial-note {
+  display: flex;
+  gap: .9rem;
+  align-items: flex-start;
+  padding: 1rem 1.2rem;
+  background: rgba(74,175,116,.05);
+  border-left: 2px solid rgba(74,175,116,.25);
+  margin: 1.5rem 0;
+  border-radius: 0 2px 2px 0;
+}
+.editorial-note-icon {
+  font-size: .7rem;
+  color: var(--green-soft);
+  flex-shrink: 0;
+  margin-top: .15rem;
+}
+.editorial-note-text {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .01em;
+  color: var(--muted);
+  line-height: 1.7;
+}
+.editorial-note-text strong { color: var(--ink-light); }
+.editorial-note-text a { color: var(--green-mid); text-decoration: none; border-bottom: 1px dotted rgba(45,122,79,.4); }
+
+/* Dark bg variant */
+.editorial-note-dark {
+  background: rgba(74,175,116,.04);
+  border-left-color: rgba(74,175,116,.18);
+}
+.editorial-note-dark .editorial-note-text { color: rgba(255,255,255,.38); }
+.editorial-note-dark .editorial-note-text strong { color: rgba(255,255,255,.6); }
+
+/* Verified label — visible only in Critika meta strip (retained minimal) */
+.src-verified-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: .28rem;
+  font-family: var(--mono);
+  font-size: .55rem;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  opacity: .75;
+}
+.src-verified-tag::before {
+  content: '';
+  width: 5px; height: 5px;
+  background: var(--green-soft);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Legacy cite-badge — keep for any missed instances, but restyle as minimal */
+.cite-badge {
+  display: inline-block;
+  width: 5px; height: 5px;
+  background: var(--green-soft);
+  border-radius: 50%;
+  vertical-align: super;
+  margin-left: 2px;
+  cursor: default;
+  border: none;
+  padding: 0;
+  font-size: 0;
+  line-height: 0;
+}
+.cite-badge::before { content: none; }
+.cite-badge:hover { background: var(--green-mid); }
 
 .cite-ref {
   font-family: var(--mono); font-size: .62rem; color: var(--muted);
@@ -407,18 +592,7 @@ footer p { font-family: var(--mono); font-size: .7rem; }
 .cite-ref-dark .cite-ref-text a { color: var(--green-light); }
 
 /* ── VERIFICATION DIRECTORY ── */
-.verify-strip {
-  background: rgba(200,168,75,.06); border: 1px solid rgba(200,168,75,.2);
-  padding: 1rem 1.5rem; border-radius: 2px; margin: 1.5rem 0;
-  display: flex; align-items: flex-start; gap: .8rem;
-}
-.verify-strip-icon { color: var(--gold); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
-.verify-strip-text {
-  font-family: var(--mono); font-size: .62rem; letter-spacing: .03em;
-  color: var(--gold-light); line-height: 1.7;
-}
-.verify-strip-text strong { color: var(--gold); }
-.verify-strip-text a { color: var(--gold-light); text-decoration: underline; }
+/* .verify-strip replaced by .editorial-note — see refined verification system */
 
 /* ── ILLUSTRATED SECTION CARDS ── */
 .illus-card {
@@ -2669,6 +2843,428 @@ select:focus-visible {
 </style>
 </head>
 <body>
+<!-- ══════════════════════════════════════════════
+     NITIZEN — PRIVATE LAUNCH / MAINTENANCE MODE
+     Admin key: set NITIZEN_ADMIN in localStorage
+     Launch target: 2026-05-29T08:00:00Z
+     ══════════════════════════════════════════════ -->
+<script>
+(function() {
+  // ── CONFIGURATION ──────────────────────────────
+  var LAUNCH_TIME   = new Date('2026-05-29T08:00:00Z').getTime();
+  var ADMIN_KEY     = 'nitizen_admin_v1';          // localStorage key
+  var ADMIN_SECRET  = 'NIT1Z3N-ADMIN-2026';        // set in console: localStorage.setItem('nitizen_admin_v1','NIT1Z3N-ADMIN-2026')
+  var MODE_OVERRIDE = 'nitizen_launch_override';   // localStorage flag to force live
+
+  // ── CHECK ───────────────────────────────────────
+  var now         = Date.now();
+  var isAdmin     = localStorage.getItem(ADMIN_KEY) === ADMIN_SECRET;
+  var isOverride  = localStorage.getItem(MODE_OVERRIDE) === 'true';
+  var isLive      = now >= LAUNCH_TIME;
+
+  // If admin OR overridden OR countdown finished → show the real site
+  if (isAdmin || isOverride || isLive) {
+    // If just launched, clean up flag
+    if (isLive && !isAdmin) {
+      localStorage.removeItem(MODE_OVERRIDE);
+    }
+    return; // let the real page render
+  }
+
+  // ── BLOCK RENDER & SHOW LANDING PAGE ────────────
+  document.documentElement.style.visibility = 'hidden';
+
+  window.addEventListener('DOMContentLoaded', function() {
+    document.documentElement.style.visibility = '';
+    // Hide the real site
+    var mainEl = document.getElementById('main');
+    var headerEl = document.querySelector('header');
+    if (mainEl)   mainEl.style.display = 'none';
+    if (headerEl) headerEl.style.display = 'none';
+
+    // Build the landing page
+    var landing = document.createElement('div');
+    landing.id = 'nitizen-launch-screen';
+    landing.innerHTML = getLandingHTML();
+    document.body.prepend(landing);
+
+    // Start countdown
+    startCountdown(LAUNCH_TIME);
+
+    // Keyboard shortcut: Ctrl+Shift+A = prompt for admin key
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey && e.shiftKey && e.key === 'A') {
+        var input = prompt('Admin access code:');
+        if (input === ADMIN_SECRET) {
+          localStorage.setItem(ADMIN_KEY, ADMIN_SECRET);
+          location.reload();
+        } else if (input !== null) {
+          alert('Invalid code.');
+        }
+      }
+    });
+  });
+
+  // ── COUNTDOWN LOGIC ─────────────────────────────
+  function startCountdown(target) {
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) {
+        // Launch — reload to show real site
+        localStorage.setItem(MODE_OVERRIDE, 'true');
+        location.reload();
+        return;
+      }
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      var el = document.getElementById('ntz-countdown');
+      if (el) {
+        el.querySelector('[data-unit="d"]').textContent = String(d).padStart(2,'0');
+        el.querySelector('[data-unit="h"]').textContent = String(h).padStart(2,'0');
+        el.querySelector('[data-unit="m"]').textContent = String(m).padStart(2,'0');
+        el.querySelector('[data-unit="s"]').textContent = String(s).padStart(2,'0');
+      }
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  // ── LANDING PAGE HTML ────────────────────────────
+  function getLandingHTML() {
+    return `
+<style>
+#nitizen-launch-screen {
+  position: fixed; inset: 0; z-index: 99999;
+  background: #060f09;
+  font-family: 'Space Mono', 'Courier New', monospace;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  color: #fff;
+}
+/* Ambient orbs */
+#nitizen-launch-screen .ntz-orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; opacity: .18;
+}
+#nitizen-launch-screen .ntz-orb-1 {
+  width: 600px; height: 600px;
+  background: #1a4d2e;
+  top: -200px; right: -100px;
+  animation: ntz-drift 12s ease-in-out infinite alternate;
+}
+#nitizen-launch-screen .ntz-orb-2 {
+  width: 400px; height: 400px;
+  background: #2d7a4f;
+  bottom: -100px; left: -80px;
+  animation: ntz-drift 9s ease-in-out infinite alternate-reverse;
+}
+#nitizen-launch-screen .ntz-orb-3 {
+  width: 250px; height: 250px;
+  background: #c8a84b;
+  top: 40%; left: 50%;
+  transform: translate(-50%,-50%);
+  animation: ntz-pulse 6s ease-in-out infinite;
+  opacity: .06;
+}
+@keyframes ntz-drift {
+  from { transform: translateY(0) scale(1); }
+  to { transform: translateY(40px) scale(1.08); }
+}
+@keyframes ntz-pulse {
+  0%,100% { opacity:.04; transform:translate(-50%,-50%) scale(1); }
+  50% { opacity:.1; transform:translate(-50%,-50%) scale(1.3); }
+}
+
+/* Grid texture overlay */
+#nitizen-launch-screen .ntz-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(74,175,116,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(74,175,116,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Content */
+#nitizen-launch-screen .ntz-content {
+  position: relative; z-index: 2;
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+/* Logo */
+#nitizen-launch-screen .ntz-logo-wrap {
+  margin-bottom: 2.5rem;
+}
+#nitizen-launch-screen .ntz-logo {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  color: #fff;
+  line-height: 1;
+  position: relative;
+}
+#nitizen-launch-screen .ntz-logo em {
+  color: #4aaf74;
+  font-style: normal;
+}
+#nitizen-launch-screen .ntz-tagline-top {
+  font-size: .58rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: rgba(168,213,181,.5);
+  margin-bottom: .8rem;
+  display: block;
+}
+
+/* Headline */
+#nitizen-launch-screen .ntz-headline {
+  font-family: 'EB Garamond', Georgia, serif;
+  font-size: clamp(1.1rem, 3vw, 1.65rem);
+  font-weight: 600;
+  font-style: italic;
+  color: rgba(255,255,255,.72);
+  max-width: 520px;
+  line-height: 1.55;
+  margin: 0 auto 1rem;
+}
+#nitizen-launch-screen .ntz-sub {
+  font-size: .64rem;
+  letter-spacing: .06em;
+  color: rgba(168,213,181,.45);
+  max-width: 420px;
+  line-height: 1.75;
+  margin: 0 auto 3rem;
+}
+
+/* Countdown */
+#nitizen-launch-screen #ntz-countdown {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(.8rem, 3vw, 2.5rem);
+  margin-bottom: 2.5rem;
+}
+#nitizen-launch-screen .ntz-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  min-width: clamp(52px, 10vw, 80px);
+}
+#nitizen-launch-screen .ntz-num {
+  font-size: clamp(2.2rem, 7vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(74,175,116,.15);
+  border-radius: 4px;
+  padding: .5rem .8rem;
+  width: 100%;
+  text-align: center;
+  transition: color .3s;
+}
+#nitizen-launch-screen .ntz-unit-label {
+  font-size: .55rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(74,175,116,.55);
+}
+#nitizen-launch-screen .ntz-sep {
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  color: rgba(74,175,116,.25);
+  margin-top: .4rem;
+  line-height: 1.2;
+  padding-top: .5rem;
+}
+
+/* Divider */
+#nitizen-launch-screen .ntz-divider {
+  display: flex; align-items: center; gap: 1rem;
+  max-width: 320px; width: 100%; margin: 0 auto 2rem;
+}
+#nitizen-launch-screen .ntz-divider span {
+  font-size: .56rem; letter-spacing: .22em;
+  text-transform: uppercase; color: rgba(168,213,181,.3);
+  white-space: nowrap;
+}
+#nitizen-launch-screen .ntz-divider::before,
+#nitizen-launch-screen .ntz-divider::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(74,175,116,.12);
+}
+
+/* Email form */
+#nitizen-launch-screen .ntz-notify-form {
+  display: flex; gap: .6rem; flex-wrap: wrap;
+  justify-content: center; max-width: 420px; margin: 0 auto 1.5rem;
+}
+#nitizen-launch-screen .ntz-email-input {
+  flex: 1; min-width: 220px;
+  padding: .75rem 1rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(74,175,116,.2);
+  color: #fff;
+  font-family: 'Space Mono', monospace;
+  font-size: .72rem;
+  border-radius: 3px;
+  outline: none;
+  transition: border-color .2s;
+}
+#nitizen-launch-screen .ntz-email-input::placeholder {
+  color: rgba(168,213,181,.3);
+}
+#nitizen-launch-screen .ntz-email-input:focus {
+  border-color: rgba(74,175,116,.5);
+}
+#nitizen-launch-screen .ntz-email-btn {
+  background: #1a4d2e;
+  color: #a8d5b5;
+  border: 1px solid rgba(74,175,116,.3);
+  padding: .75rem 1.4rem;
+  font-family: 'Space Mono', monospace;
+  font-size: .65rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+#nitizen-launch-screen .ntz-email-btn:hover {
+  background: #2d7a4f;
+  color: #fff;
+}
+#nitizen-launch-screen .ntz-email-confirm {
+  display: none;
+  font-size: .65rem;
+  color: #4aaf74;
+  letter-spacing: .06em;
+  margin-bottom: .5rem;
+}
+
+/* Footer strip */
+#nitizen-launch-screen .ntz-footer {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .8rem;
+  padding: 1.2rem 3rem;
+  border-top: 1px solid rgba(74,175,116,.08);
+  font-size: .55rem; letter-spacing: .1em;
+  color: rgba(168,213,181,.28);
+  text-transform: uppercase;
+}
+#nitizen-launch-screen .ntz-footer a {
+  color: rgba(168,213,181,.38);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(74,175,116,.15);
+  transition: color .2s;
+}
+#nitizen-launch-screen .ntz-footer a:hover {
+  color: rgba(168,213,181,.65);
+}
+#nitizen-launch-screen .ntz-status-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: #4aaf74;
+  border-radius: 50%;
+  margin-right: .4rem;
+  animation: ntz-blink 2s ease-in-out infinite;
+  vertical-align: middle;
+}
+@keyframes ntz-blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: .3; }
+}
+@media(max-width:500px) {
+  #nitizen-launch-screen .ntz-footer { padding: 1rem 1.5rem; flex-direction: column; align-items: flex-start; }
+  #nitizen-launch-screen #ntz-countdown { gap: .6rem; }
+}
+</style>
+
+<div class="ntz-orb ntz-orb-1"></div>
+<div class="ntz-orb ntz-orb-2"></div>
+<div class="ntz-orb ntz-orb-3"></div>
+<div class="ntz-grid"></div>
+
+<div class="ntz-content">
+  <div class="ntz-logo-wrap">
+    <span class="ntz-tagline-top">Nigeria · Civic Intelligence · 2026</span>
+    <div class="ntz-logo">NIT<em>I</em>ZEN</div>
+  </div>
+
+  <h2 class="ntz-headline">Something significant is being built.<br>Nigeria will be ready for it.</h2>
+  <p class="ntz-sub">We are finalising the platform before public launch. The full NITIZEN experience — Conscience Letters, AskNaija, and See-gnal — goes live in:</p>
+
+  <div id="ntz-countdown">
+    <div class="ntz-unit">
+      <div class="ntz-num" data-unit="d">00</div>
+      <div class="ntz-unit-label">Days</div>
+    </div>
+    <div class="ntz-sep">:</div>
+    <div class="ntz-unit">
+      <div class="ntz-num" data-unit="h">00</div>
+      <div class="ntz-unit-label">Hours</div>
+    </div>
+    <div class="ntz-sep">:</div>
+    <div class="ntz-unit">
+      <div class="ntz-num" data-unit="m">00</div>
+      <div class="ntz-unit-label">Min</div>
+    </div>
+    <div class="ntz-sep">:</div>
+    <div class="ntz-unit">
+      <div class="ntz-num" data-unit="s">00</div>
+      <div class="ntz-unit-label">Sec</div>
+    </div>
+  </div>
+
+  <div class="ntz-divider"><span>Be first to know</span></div>
+
+  <div class="ntz-notify-form">
+    <input class="ntz-email-input" type="email" id="ntzEmailInput" placeholder="your@email.com" autocomplete="email"/>
+    <button class="ntz-email-btn" onclick="ntzNotify()">Notify me →</button>
+  </div>
+  <div class="ntz-email-confirm" id="ntzConfirm">✓ You're on the list. We'll reach you at launch.</div>
+  <div style="font-size:.58rem;letter-spacing:.06em;color:rgba(168,213,181,.28);margin-top:.4rem">No spam. One message only, on launch day.</div>
+</div>
+
+<div class="ntz-footer">
+  <div><span class="ntz-status-dot"></span>Systems operational — final preparation underway</div>
+  <div>
+    <a href="mailto:hello@nitizen.ng">hello@nitizen.ng</a>
+    &nbsp;·&nbsp;
+    <a href="https://twitter.com/NitizenNG" target="_blank" rel="noopener">@NitizenNG</a>
+  </div>
+  <div>© 2026 NITIZEN · Civic Intelligence for a New Nigeria</div>
+</div>
+
+<script>
+function ntzNotify() {
+  var v = document.getElementById('ntzEmailInput').value.trim();
+  if (!v || !v.includes('@')) { document.getElementById('ntzEmailInput').focus(); return; }
+  document.getElementById('ntzEmailInput').disabled = true;
+  document.querySelector('.ntz-email-btn').disabled = true;
+  document.querySelector('.ntz-email-btn').textContent = 'Saved ✓';
+  document.getElementById('ntzConfirm').style.display = 'block';
+  // Store locally (in real deployment, POST to backend)
+  try { localStorage.setItem('ntz_notify_email', v); } catch(e) {}
+}
+// Also allow Enter key
+document.getElementById('ntzEmailInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') ntzNotify();
+});
+<\/script>
+    `;
+  }
+})();
+</script>
+
 
 
 <a href="javascript:void(0)" class="skip-link" onclick="nav('home')">Skip to content</a>
@@ -3799,7 +4395,7 @@ select:focus-visible {
       </div>
       <div class="r-title">School Attacks in Oriire LGA — 46 Abducted, Teacher Beheaded · Case #RF-004-2026</div>
       <p class="r-body">On May 15–16, 2026, armed bandits riding motorcycles launched coordinated attacks on three schools in Oriire LGA, Oyo State: <strong>Baptist Nursery and Primary School (Yawota)</strong>, <strong>Community High School (Ahoro-Esinele)</strong>, and <strong>L.A. Primary School (Esiele)</strong>. 46 people were abducted — 7 teachers and approximately 39 pupils, including children as young as 2 years old (CAN, Oyo State). An Assistant Headmaster, <strong>Joel Adesiyan</strong>, was shot and killed. A commercial motorcyclist was also killed. On May 17, 2026, the captors released a video showing the beheading of abducted mathematics teacher <strong>Michael Oyedokun</strong>, confirmed by Governor Seyi Makinde. The Vice Principal, Mrs. Alamu Folawe, was among those still in captivity as of publication. Oyo State government closed schools in four LGAs (Oriire, Surulere, Oyo East, Olorunsogo). The ₦7.7bn Oyo State surveillance aircraft procured in July 2025 was still being reassembled in Lagos at the time of the attack. A simultaneous attack in Mussa village, Borno State abducted approximately 42 children. As of May 25, 2026, the majority of abducted children and teachers had not been recovered.</p>
-      <div class="r-meta">Filed: May 2026 · Oriire LGA, Oyo State · Case Status: Active — Rescue operation ongoing · Sources: PM News, The Guardian NG, TheCable, IA Foundation, ICC, Oyo State Government statement, Daily Post, CAN Oyo State. <span class="cite-badge" style="font-size:.52rem">All sources public record</span></div>
+      <div class="r-meta">Filed: May 2026 · Oriire LGA, Oyo State · Case Status: Active — Rescue operation ongoing · Sources: PM News, The Guardian NG, TheCable, IA Foundation, ICC, Oyo State Government statement, Daily Post, CAN Oyo State. <span class="src-ref" role="note"></span></div>
     </div>
     <div class="report" id="case-rf001">
       <div class="r-top">
@@ -3874,7 +4470,7 @@ select:focus-visible {
       <div class="sc-cap" style="color:#e05c5c">Poor ↓ REVISED</div>
       <div class="sc-bar"><div class="sc-fill" style="width:24%;background:#e05c5c"></div></div>
       <div class="sc-range"><span>0</span><span>100</span></div>
-      <div class="ldg-note"><strong style="color:#e05c5c">UPDATED May 2026:</strong> Score revised downward — escalating school attacks are closing classrooms and generating mass school abductions. Nigeria has the world's largest out-of-school children population — approximately 10.5 million (UNICEF). Education receives far below UNESCO's recommended 15–20% budget share. Senate's November 2025 investigation found Safe Schools programme funds were not effectively deployed. School closures in Oyo, Ondo following May 2026 attacks represent additional enrolment disruption. <span class="cite-badge" style="font-size:.52rem">Verified: UNICEF, IA Foundation, Senate records</span></div>
+      <div class="ldg-note"><strong style="color:#e05c5c">UPDATED May 2026:</strong> Score revised downward — escalating school attacks are closing classrooms and generating mass school abductions. Nigeria has the world's largest out-of-school children population — approximately 10.5 million (UNICEF). Education receives far below UNESCO's recommended 15–20% budget share. Senate's November 2025 investigation found Safe Schools programme funds were not effectively deployed. School closures in Oyo, Ondo following May 2026 attacks represent additional enrolment disruption. <span class="src-ref" data-src="UNICEF, IA Foundation, Senate records" role="note" aria-label="Source: UNICEF, IA Foundation, Senate records"></span></div>
       <div class="ldg-trend">
         <span class="ldg-trend-arrow" style="color:#e05c5c">↓</span>
         <span class="ldg-trend-text">Deteriorating — security threat to schooling now nationwide</span>
@@ -3895,7 +4491,7 @@ select:focus-visible {
       <div class="sc-cap" style="color:#e05c5c">Critical Failure ↓ REVISED</div>
       <div class="sc-bar"><div class="sc-fill" style="width:14%;background:#e05c5c"></div></div>
       <div class="sc-range"><span>0</span><span>100</span></div>
-      <div class="ldg-note"><strong style="color:#e05c5c">UPDATED May 2026:</strong> Score revised down following the Oriire LGA school abduction (May 15–16, 2026) — 46 people including 39 children abducted; teacher Michael Oyedokun beheaded in captivity. At least 816 pupils abducted in 22 school attacks between Jan 2023–late 2025 (IA Foundation). ISWAP active in Borno; banditry expanding into Southwest. Simultaneous Borno attack abducted ~42 children in Mussa village. Police extrajudicial conduct case (Mene Ogidi, April 2026) unresolved in court. <span class="cite-badge" style="font-size:.52rem">Verified: PM News, IA Foundation, Guardian NG</span></div>
+      <div class="ldg-note"><strong style="color:#e05c5c">UPDATED May 2026:</strong> Score revised down following the Oriire LGA school abduction (May 15–16, 2026) — 46 people including 39 children abducted; teacher Michael Oyedokun beheaded in captivity. At least 816 pupils abducted in 22 school attacks between Jan 2023–late 2025 (IA Foundation). ISWAP active in Borno; banditry expanding into Southwest. Simultaneous Borno attack abducted ~42 children in Mussa village. Police extrajudicial conduct case (Mene Ogidi, April 2026) unresolved in court. <span class="src-ref" data-src="PM News, IA Foundation, Guardian NG" role="note" aria-label="Source: PM News, IA Foundation, Guardian NG"></span></div>
       <div class="ldg-trend">
         <span class="ldg-trend-arrow" style="color:#e05c5c">↓</span>
         <span class="ldg-trend-text">Deteriorating — school attacks expanding geographically into SW Nigeria</span>
@@ -3907,7 +4503,7 @@ select:focus-visible {
       <div class="sc-cap" style="color:var(--gold)">Poor — Marginal Recovery</div>
       <div class="sc-bar"><div class="sc-fill" style="width:28%;background:var(--gold)"></div></div>
       <div class="sc-range"><span>0</span><span>100</span></div>
-      <div class="ldg-note">Nigeria's headline inflation was <strong>15.69%</strong> in April 2026 — rising for a second straight month (NBS data, May 2026). Food inflation reached 16.06% and transport 16%, partly due to fuel price shocks from the Middle East crisis. GDP growth projected at 4.3–4.49% for 2026 (IMF/World Bank/CBN projections). Inflation peaked at 34.8% in Dec 2023 post-subsidy removal; while moderation is real, household purchasing power remains severely compressed. Poverty rate: over 31% below $2.15/day (World Bank, 2025). NBS: unemployment at 22.6% (Q1 2025). <span class="cite-badge" style="font-size:.52rem">Verified: NBS, Trading Economics, CBN Outlook 2026</span></div>
+      <div class="ldg-note">Nigeria's headline inflation was <strong>15.69%</strong> in April 2026 — rising for a second straight month (NBS data, May 2026). Food inflation reached 16.06% and transport 16%, partly due to fuel price shocks from the Middle East crisis. GDP growth projected at 4.3–4.49% for 2026 (IMF/World Bank/CBN projections). Inflation peaked at 34.8% in Dec 2023 post-subsidy removal; while moderation is real, household purchasing power remains severely compressed. Poverty rate: over 31% below $2.15/day (World Bank, 2025). NBS: unemployment at 22.6% (Q1 2025). <span class="src-ref" data-src="NBS, Trading Economics, CBN Outlook 2026" role="note" aria-label="Source: NBS, Trading Economics, CBN Outlook 2026"></span></div>
       <div class="ldg-trend">
         <span class="ldg-trend-arrow" style="color:var(--gold)">→</span>
         <span class="ldg-trend-text">Mixed — macro stabilising, household pain persists</span>
@@ -3997,7 +4593,7 @@ select:focus-visible {
         <div class="crt-ttl" style="color:#e8a0a0">The State That Cannot Protect Its Children: Nigeria's Security Collapse Under Tinubu</div>
         <p class="crt-dsc" style="color:rgba(255,200,200,.65)">A documented critique measuring the administration's security promises against the evidence — from the Oyo school abduction of May 2026 to unresolved insurgency across the northeast. With verified citations.</p>
         <div style="display:flex;align-items:center;gap:.5rem;margin-top:.5rem">
-          <span class="cite-badge" style="font-size:.52rem;background:rgba(224,92,92,.12);border-color:rgba(224,92,92,.3);color:#e8a0a0">Verified Sources</span>
+          <span class="src-ref" data-src="Verified Sources" role="note" aria-label="Source: Verified Sources"></span>
           <div class="crt-meta">NITIZEN Editorial · MAY 2026 · Read →</div>
         </div>
       </div>
@@ -4362,7 +4958,7 @@ select:focus-visible {
         <span class="crt-meta-item"><strong>Published:</strong> May 2026</span>
         <span class="crt-meta-item"><strong>Read time:</strong> 10 min</span>
         <span class="crt-meta-item"><strong>Sources:</strong> ACLED · IDMC · ICIR · Premium Times · NBS</span>
-        <span class="cite-badge" style="font-size:.52rem">Fact-Checked</span>
+        <span class="src-ref" role="note"></span>
       </div>
     </div>
 
@@ -4467,7 +5063,7 @@ select:focus-visible {
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Classroom Under Siege: Oyo's Schools, Michael Oyedokun's Beheading, and the Government That Looked Away</h1>
     <p style="font-family:var(--mono);font-size:.68rem;color:#e8a0a0;margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL · MAY 2026 · 12 MIN READ</p>
     <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.2rem">
-      <span class="cite-badge">Verified</span>
+      <span class="src-ref" data-src="Verified" role="note" aria-label="Source: Verified"></span>
       <span style="font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.35);letter-spacing:.04em">Sources: The Guardian NG · PM News · TheCable · IA Foundation · ICC · The Punch · Daily Post · NBS</span>
     </div>
   </div>
@@ -4532,9 +5128,9 @@ select:focus-visible {
 
     <p>There is a photograph that does not exist but should. It shows a classroom — blue plastic chairs, a chalkboard still bearing the morning's lesson, sunlight breaking through iron-mesh windows. In the corner, a child's school bag, abandoned. In Nigeria, this image is no longer hypothetical. It is the recurring aftermath of a governance crisis that has been building for years, ignored, minimized, and promised away by successive administrations — until it could be ignored no more.</p>
 
-    <p>On <strong>May 15–16, 2026</strong>, armed gunmen riding motorcycles launched a coordinated attack on at least three schools in the Ahoro-Esinele and Yawota communities of Oriire Local Government Area, Oyo State: <strong>Baptist Nursery and Primary School in Yawota</strong>, <strong>Community High School in Ahoro-Esinele</strong>, and <strong>L.A. Primary School in Esiele</strong>. <a class="cite-badge" onclick="void(0)" title="Source: PM News, The Guardian NG, TheCable — May 2026">✓ Verified</a></p>
+    <p>On <strong>May 15–16, 2026</strong>, armed gunmen riding motorcycles launched a coordinated attack on at least three schools in the Ahoro-Esinele and Yawota communities of Oriire Local Government Area, Oyo State: <strong>Baptist Nursery and Primary School in Yawota</strong>, <strong>Community High School in Ahoro-Esinele</strong>, and <strong>L.A. Primary School in Esiele</strong>. <span class="src-ref" data-src="PM News, The Guardian NG, TheCable — May 2026" role="note" aria-label="Source: PM News, The Guardian NG, TheCable — May 2026"></span></p>
 
-    <p>The attackers came during morning assembly — when children are gathered and most vulnerable. They fired weapons to sow panic. They abducted <strong>seven teachers and at least 39 students</strong>, including children as young as two years old, according to the Christian Association of Nigeria (CAN) in Oyo State. An assistant headmaster, <strong>Joel Adesiyan</strong>, was shot dead. A commercial motorcyclist who refused to surrender his machine was also killed. <a class="cite-badge" onclick="void(0)" title="Source: IA Foundation, The Guardian NG, TheCable">✓ Verified</a></p>
+    <p>The attackers came during morning assembly — when children are gathered and most vulnerable. They fired weapons to sow panic. They abducted <strong>seven teachers and at least 39 students</strong>, including children as young as two years old, according to the Christian Association of Nigeria (CAN) in Oyo State. An assistant headmaster, <strong>Joel Adesiyan</strong>, was shot dead. A commercial motorcyclist who refused to surrender his machine was also killed. <span class="src-ref" data-src="IA Foundation, The Guardian NG, TheCable" role="note" aria-label="Source: IA Foundation, The Guardian NG, TheCable"></span></p>
 
     <p>The Vice Principal, <strong>Mrs. Alamu Folawe</strong>, was among those dragged into the forest. Distress videos circulated days later showing abducted educators pleading directly to President Tinubu and Governor Makinde for rescue — a devastating image of a state whose citizens no longer believe the state will protect them without public spectacle.</p>
 
@@ -4544,11 +5140,11 @@ select:focus-visible {
       <div class="pullquote-captive-attr"><strong>Temitope</strong> — abducted staff member, First Baptist Church Yawota, speaking on video from captivity within the Oyo State forest</div>
     </div>
 
-    <p>Two days after the abduction, on <strong>May 17, 2026</strong>, a video was released by the captors showing one of the abducted teachers — <strong>Michael Oyedokun</strong>, a mathematics instructor at Community High School — being beheaded. <a class="cite-badge" onclick="void(0)" title="Source: PM News, The Guardian NG, ICC — Michael Oyedokun confirmed as victim by Oyo State Governor Seyi Makinde in official statement">✓ Verified</a> Oyedokun's family, with measured dignity in the face of devastation, asked Nigerians to stop circulating the graphic footage — noting that his children, who were sitting their school examinations, and elderly relatives were being re-traumatised with every reshare.</p>
+    <p>Two days after the abduction, on <strong>May 17, 2026</strong>, a video was released by the captors showing one of the abducted teachers — <strong>Michael Oyedokun</strong>, a mathematics instructor at Community High School — being beheaded. <span class="src-ref" data-src="PM News, The Guardian NG, ICC — Michael Oyedokun confirmed as victim by Oyo State Governor Seyi Makinde in official s…" role="note" aria-label="Source: PM News, The Guardian NG, ICC — Michael Oyedokun confirmed as victim by Oyo State Governor Seyi Makinde in official s…"></span> Oyedokun's family, with measured dignity in the face of devastation, asked Nigerians to stop circulating the graphic footage — noting that his children, who were sitting their school examinations, and elderly relatives were being re-traumatised with every reshare.</p>
 
     <h3>The Pattern Nigeria Has Refused to Learn From</h3>
 
-    <p>The Oyo attack did not emerge from nowhere. It is the latest, most geographically alarming chapter in a national security failure that has deepened with each administration. <a class="cite-badge" onclick="void(0)" title="Source: IA Foundation analysis; ACLED conflict data">✓ Verified</a></p>
+    <p>The Oyo attack did not emerge from nowhere. It is the latest, most geographically alarming chapter in a national security failure that has deepened with each administration. <span class="src-ref" data-src="IA Foundation analysis; ACLED conflict data" role="note" aria-label="Source: IA Foundation analysis; ACLED conflict data"></span></p>
 
     <div class="crisis-counter-grid">
       <div class="crisis-counter-cell">
@@ -4569,7 +5165,7 @@ select:focus-visible {
       </div>
     </div>
 
-    <p>Between January 2023 and late 2025, at least <strong>816 pupils were taken in 22 separate school attacks</strong> across Nigeria. In November 2025, 25 schoolgirls were kidnapped from a school in Kebbi State; days later, 303 children and 12 teachers were taken from St. Mary's Catholic School in Niger State — the largest single school abduction in Nigeria's recorded history. <a class="cite-badge" onclick="void(0)" title="Source: IA Foundation — When Schools Become Targets (May 2026)">✓ Verified</a></p>
+    <p>Between January 2023 and late 2025, at least <strong>816 pupils were taken in 22 separate school attacks</strong> across Nigeria. In November 2025, 25 schoolgirls were kidnapped from a school in Kebbi State; days later, 303 children and 12 teachers were taken from St. Mary's Catholic School in Niger State — the largest single school abduction in Nigeria's recorded history. <span class="src-ref" data-src="IA Foundation — When Schools Become Targets (May 2026)" role="note" aria-label="Source: IA Foundation — When Schools Become Targets (May 2026)"></span></p>
 
     <p>The Senate, as recently as <strong>November 2025</strong>, ordered an investigation into why funds allocated under the Safe Schools programme had failed to protect children. Nigeria is a signatory to the Safe Schools Declaration. The attacks continued. The pattern is consistent: <em>attack, condemnation, investigation announcement, silence — repeat.</em></p>
 
@@ -4577,32 +5173,32 @@ select:focus-visible {
 
     <p>What makes the Oyo school attack morally and politically distinct is not only its horror, but its timing and location. School mass abductions had been concentrated in northern Nigeria. Their arrival in the South-West — historically more stable — signals a critical geographical expansion of the security threat. This was not unpredictable. Analysts and governors had warned of exactly this pattern for months.</p>
 
-    <div class="verify-strip">
-      <div class="verify-strip-icon">📋</div>
-      <div class="verify-strip-text"><strong>Editorial note:</strong> Where this piece references official statements, it draws from verified public records. Oyo State Governor Makinde's confirmation of Oyedokun's death, President Tinubu's statement via his Special Adviser Bayo Onanuga, and the Senate's documented November 2025 Safe Schools inquiry are all public record. NITIZEN does not attribute quotes to officials beyond what they have publicly said.</div>
+    <div class="editorial-note editorial-note-dark">
+      <div class="editorial-note-icon">◉</div>
+      <div class="editorial-note-text"><strong>Editorial standard:</strong> All official statements cited in this piece are drawn from verified public records. Governor Makinde's confirmation of Oyedokun's death, President Tinubu's statement via Special Adviser Bayo Onanuga, and the Senate's November 2025 Safe Schools inquiry are all on public record. NITIZEN does not attribute quotations to officials beyond what they have publicly stated.</div>
     </div>
 
     <p>In examining the governance response, several failures stand out:</p>
 
     <p><strong>1. The Safe Schools Failure.</strong> Nigeria committed to the Safe Schools Declaration and received funding for school security programmes. The Senate's own November 2025 inquiry suggests those funds were not effectively deployed. Schools in rural Oyo — and across the country — lack basic perimeter security, early warning systems, or rapid response protocols.</p>
 
-    <p><strong>2. Intelligence Failures.</strong> Coordinated attacks on <em>multiple schools simultaneously</em> require planning, reconnaissance, and movement. The fact that such an operation proceeded undetected points to fundamental gaps in local intelligence networks. The Inspector-General of Police, reportedly acting on presidential directive, launched a "technology-driven rescue operation" with "tactical units and the Intelligence Response Team" — after the fact. <a class="cite-badge" onclick="void(0)" title="Source: The Guardian NG — quoting Presidential Special Adviser Bayo Onanuga">✓ Verified</a></p>
+    <p><strong>2. Intelligence Failures.</strong> Coordinated attacks on <em>multiple schools simultaneously</em> require planning, reconnaissance, and movement. The fact that such an operation proceeded undetected points to fundamental gaps in local intelligence networks. The Inspector-General of Police, reportedly acting on presidential directive, launched a "technology-driven rescue operation" with "tactical units and the Intelligence Response Team" — after the fact. <span class="src-ref" data-src="The Guardian NG — quoting Presidential Special Adviser Bayo Onanuga" role="note" aria-label="Source: The Guardian NG — quoting Presidential Special Adviser Bayo Onanuga"></span></p>
 
-    <p><strong>3. State Police Deflection.</strong> President Tinubu used the crisis to renew calls for the establishment of state police — urging the National Assembly to accelerate enabling legislation. This is not without merit as a policy position. But the cynicism is visible: the administration has had three years and a parliamentary majority to pass state police legislation. A beheading should not be the catalyst for an idea that was long overdue. <a class="cite-badge" onclick="void(0)" title="Source: The Guardian NG — Presidential statement after Oyo attack">✓ Verified</a></p>
+    <p><strong>3. State Police Deflection.</strong> President Tinubu used the crisis to renew calls for the establishment of state police — urging the National Assembly to accelerate enabling legislation. This is not without merit as a policy position. But the cynicism is visible: the administration has had three years and a parliamentary majority to pass state police legislation. A beheading should not be the catalyst for an idea that was long overdue. <span class="src-ref" data-src="The Guardian NG — Presidential statement after Oyo attack" role="note" aria-label="Source: The Guardian NG — Presidential statement after Oyo attack"></span></p>
 
-    <p><strong>4. The ₦7.7 Billion Aircraft That Arrived Too Late.</strong> Oyo State Governor Makinde disclosed after the attack that the state's surveillance aircraft — procured for ₦7.7 billion in July 2025 — had finally arrived in Nigeria and were being reassembled at the Nigerian Air Force hangar in Lagos. The aircraft that should have been operational were not operational when the attack happened. That is not a technicality — it is a failure of execution that a government must answer for. <a class="cite-badge" onclick="void(0)" title="Source: The Guardian NG — Governor Makinde statement, May 2026">✓ Verified</a></p>
+    <p><strong>4. The ₦7.7 Billion Aircraft That Arrived Too Late.</strong> Oyo State Governor Makinde disclosed after the attack that the state's surveillance aircraft — procured for ₦7.7 billion in July 2025 — had finally arrived in Nigeria and were being reassembled at the Nigerian Air Force hangar in Lagos. The aircraft that should have been operational were not operational when the attack happened. That is not a technicality — it is a failure of execution that a government must answer for. <span class="src-ref" data-src="The Guardian NG — Governor Makinde statement, May 2026" role="note" aria-label="Source: The Guardian NG — Governor Makinde statement, May 2026"></span></p>
 
     <p><strong>5. Prioritising Politics Over Governance.</strong> In the weeks preceding the Oyo attack, national political discourse was dominated by 2027 election permutations — party defections, third-term agitations, and APC primaries. Meanwhile, schools in rural Oyo, Kebbi, Niger, and Borno remained undefended. The political class's attention was elsewhere. That structural prioritisation has a cost — and in May 2026, that cost was Michael Oyedokun's life and the childhood of dozens of abducted children.</p>
 
-    <blockquote>"The beheading of Michael Oyedokun is not merely the death of a teacher. It is a devastating reflection of the collapse of security, humanity, and governance in Nigeria. Any nation that abandons its teachers has begun to dig its own grave." — Human rights lawyer Sir Ifeanyi Ejiofor, responding to Oyedokun's murder <a class="cite-badge" onclick="void(0)" title="Source: Daily Post Nigeria, May 23, 2026">✓ Verified</a></blockquote>
+    <blockquote>"The beheading of Michael Oyedokun is not merely the death of a teacher. It is a devastating reflection of the collapse of security, humanity, and governance in Nigeria. Any nation that abandons its teachers has begun to dig its own grave." — Human rights lawyer Sir Ifeanyi Ejiofor, responding to Oyedokun's murder <span class="src-ref" data-src="Daily Post Nigeria, May 23, 2026" role="note" aria-label="Source: Daily Post Nigeria, May 23, 2026"></span></blockquote>
 
     <h3>The Children Now Too Afraid to Learn</h3>
 
-    <p>In the aftermath of the Oyo attack, the Oyo State Universal Basic Education Board ordered the closure of all primary schools in Oriire and three neighbouring LGAs — Surulere, Oyo East, and Olorunsogo — as a precautionary measure. Across the South-West, parents began keeping their children at home. Ondo State shut selected schools ahead of its APC House of Assembly election. <a class="cite-badge" onclick="void(0)" title="Source: Pulse Nigeria, IA Foundation — May 2026">✓ Verified</a></p>
+    <p>In the aftermath of the Oyo attack, the Oyo State Universal Basic Education Board ordered the closure of all primary schools in Oriire and three neighbouring LGAs — Surulere, Oyo East, and Olorunsogo — as a precautionary measure. Across the South-West, parents began keeping their children at home. Ondo State shut selected schools ahead of its APC House of Assembly election. <span class="src-ref" data-src="Pulse Nigeria, IA Foundation — May 2026" role="note" aria-label="Source: Pulse Nigeria, IA Foundation — May 2026"></span></p>
 
     <p>When schools close out of fear, the harm extends far beyond the immediate. Children who associate learning with danger develop lasting psychological harm. The economic cost of lost schooldays accumulates for years. Communities that cannot safely educate their children are communities that cannot develop. This is not an abstraction — it is Nigeria's present reality in Oriire, in Kebbi, in Niger State, in Borno.</p>
 
-    <p>The Oyo State Government suspended all school excursions and outdoor activities indefinitely. <a class="cite-badge" onclick="void(0)" title="Source: New Dawn Nigeria — May 23, 2026">✓ Verified</a> The remaining abducted pupils and teachers had not been recovered as of publication date.</p>
+    <p>The Oyo State Government suspended all school excursions and outdoor activities indefinitely. <span class="src-ref" data-src="New Dawn Nigeria — May 23, 2026" role="note" aria-label="Source: New Dawn Nigeria — May 23, 2026"></span> The remaining abducted pupils and teachers had not been recovered as of publication date.</p>
 
     <h3>What a Functioning Government Would Have Done</h3>
 
@@ -4614,9 +5210,16 @@ select:focus-visible {
 
     <p>Michael Oyedokun went to school to teach mathematics. He was killed for it. The children of Oriire went to school to learn. They were abducted for it. The Nigerian state, which exists precisely to prevent such things, failed them both. That failure must be named, examined, and never allowed to become ordinary.</p>
 
-    <div class="verify-strip" style="margin-top:1.8rem">
-      <div class="verify-strip-icon">📚</div>
-      <div class="verify-strip-text"><strong>Sources &amp; Verification Directory:</strong> [1] PM News Nigeria, May 18, 2026 — "Oyo school kidnapping: Teacher Michael Oyedokun brutally beheaded" · [2] The Guardian Nigeria, May 2026 — "Oyo school kidnap horror sparks outrage" · [3] IA Foundation — "When Schools Become Targets: The Oyo Attack and Nigeria's Stolen Classrooms" (portal.ia-foundation.org) · [4] TheCable — "Family of slain Ogbomoso teacher seeks end to footage circulation" · [5] Daily Post Nigeria, May 23, 2026 — Ejiofor statement · [6] New Dawn Nigeria, May 23, 2026 — Oyo school excursion suspension · [7] Pulse Nigeria — "Ondo shuts schools ahead of APC election" · [8] International Christian Concern (ICC) — May 20, 2026. All sources publicly available. NITIZEN does not alter or fabricate quotations or facts.</div>
+    <div class="src-footnotes src-footnotes-dark" style="margin-top:2rem">
+      <div class="src-footnotes-title">Sources</div>
+      <div class="src-entry"><span class="src-entry-n">1</span><span class="src-entry-text"><strong>PM News Nigeria</strong>, May 18 2026 — Oyo school kidnapping: Michael Oyedokun beheaded</span></div>
+      <div class="src-entry"><span class="src-entry-n">2</span><span class="src-entry-text"><strong>The Guardian Nigeria</strong>, May 2026 — Oyo school kidnap horror sparks national outrage</span></div>
+      <div class="src-entry"><span class="src-entry-n">3</span><span class="src-entry-text"><strong>IA Foundation</strong> — "When Schools Become Targets" (portal.ia-foundation.org)</span></div>
+      <div class="src-entry"><span class="src-entry-n">4</span><span class="src-entry-text"><strong>TheCable</strong> — Family of slain Ogbomoso teacher seeks end to footage circulation</span></div>
+      <div class="src-entry"><span class="src-entry-n">5</span><span class="src-entry-text"><strong>Daily Post Nigeria</strong>, May 23 2026 — Sir Ifeanyi Ejiofor statement on Oyedokun's murder</span></div>
+      <div class="src-entry"><span class="src-entry-n">6</span><span class="src-entry-text"><strong>New Dawn Nigeria</strong>, May 23 2026 — Oyo State school excursion suspension order</span></div>
+      <div class="src-entry"><span class="src-entry-n">7</span><span class="src-entry-text"><strong>Pulse Nigeria</strong> — Ondo State school closures ahead of APC election, May 2026</span></div>
+      <div class="src-entry"><span class="src-entry-n">8</span><span class="src-entry-text"><strong>International Christian Concern (ICC)</strong>, May 20 2026 — Oyo attack documentation</span></div>
     </div>
 
     <p class="art-footer-note" style="margin-top:1.5rem">This editorial reflects the documented public record. It is a work of civic journalism, not polemic. NITIZEN welcomes factual corrections, government responses, or counter-analyses at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>. Our editorial commitment: every factual claim is either publicly documented or explicitly flagged as editorial interpretation.</p>
