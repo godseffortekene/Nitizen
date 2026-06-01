@@ -2213,7 +2213,7 @@ section { padding: 5rem 4rem; }
     <p style="font-family:var(--body);font-size:1.05rem;line-height:1.82;color:var(--ink-light);max-width:580px;margin-top:1rem">A curated editorial space where Nigeria is examined unflinchingly — its history, its contradictions, its present actors and the decisions they make. Civic documentation as a living record of conscience.</p>
   </div>
 
-  <section style="background:#fff;padding:3rem 4rem 5rem;">
+  <section style="background:#fff;padding:5rem 4rem;">
     <div class="section-inner">
     <div class="section-label">Published Articles</div>
 
@@ -2525,9 +2525,6 @@ section { padding: 5rem 4rem; }
             <button type="button" class="pay-method-btn bank-btn" id="btnBank" onclick="selectMethod('bank')">
               🏦 Bank Transfer
             </button>
-            <button type="button" class="pay-method-btn" id="btnOpay" onclick="selectMethod('opay')">
-              📱 OPay / Kuda / PalmPay
-            </button>
           </div>
 
           <!-- Paystack inline -->
@@ -2547,35 +2544,28 @@ section { padding: 5rem 4rem; }
             <h5>Nigerian Bank Account Details</h5>
             <div class="bank-row">
               <span class="bank-label">Bank</span>
-              <span class="bank-value" id="bankName">Zenith Bank Plc</span>
+              <span class="bank-value" id="bankName"><!-- YOUR BANK NAME --></span>
             </div>
             <div class="bank-row">
               <span class="bank-label">Account Name</span>
-              <span class="bank-value">NITIZEN CIVIC INTELLIGENCE</span>
+              <span class="bank-value" id="bankAcctName"><!-- YOUR ACCOUNT NAME --></span>
             </div>
             <div class="bank-row">
               <span class="bank-label">Account Number</span>
-              <span class="bank-value" id="bankAcct">2012345678 <button class="copy-btn" onclick="copyAcct()">Copy</button></span>
+              <span class="bank-value" id="bankAcct"><!-- YOUR ACCOUNT NUMBER --> <button class="copy-btn" onclick="copyAcct()">Copy</button></span>
             </div>
             <div class="bank-row">
               <span class="bank-label">Amount</span>
               <span class="bank-value" id="bankAmt">₦2,500</span>
             </div>
             <div class="bank-note">
-              <strong>After transferring:</strong> Send your name, email, and proof of payment to <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a> or WhatsApp <a href="https://wa.me/2347059929690" target="_blank" rel="noopener" style="color:var(--green-mid)">+234 705 992 9707</a>. Membership activates within 24 hours of confirmation.
+              <strong>After transferring:</strong> Send your name, email, and proof of payment to <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a> or WhatsApp <a href="https://wa.me/2347059929690" target="_blank" rel="noopener" style="color:var(--green-mid)">+234 705 992 9690</a>. Membership activates within 24 hours of confirmation.
             </div>
             <button type="button" class="btn-paystack" style="margin-top:1rem;background:var(--gold);color:var(--ink)" onclick="notifyBankIntent()">
               📧 Notify Us — I Am Paying by Transfer
             </button>
           </div>
 
-          <!-- OPay etc -->
-          <div id="opayDetails" style="display:none;margin-top:.8rem">
-            <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1rem;border-radius:2px">
-              <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-mid);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.4rem">Mobile Money Transfer</p>
-              <p style="font-family:var(--body);font-size:.86rem;color:var(--muted);line-height:1.65">Send your membership fee via OPay, Kuda, PalmPay, or any mobile wallet to: <strong style="color:var(--green-deep)">+234 705 992 9707</strong> (Ekene Chimarin — NITIZEN Founder).<br/>Then send your name, email, and tier to <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
-            </div>
-          </div>
         </div>
 
         <div class="consent-row" style="margin-top:.5rem">
@@ -2616,120 +2606,199 @@ section { padding: 5rem 4rem; }
 </div>
 
 <script id="pscript-membership">
-// ── PAYSTACK public key — replace the value below with your live key from dashboard.paystack.com ──
-// Format: pk_live_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+// ══════════════════════════════════════════════════════════════════════
+// NITIZEN — Membership Payment Controller
+//
+// TO ACTIVATE:
+//   1. Replace PAYSTACK_PUBLIC_KEY value with your live key from
+//      dashboard.paystack.com  (format: pk_live_xxxxxxxxxxxx)
+//   2. In the Bank Transfer panel above, replace the three
+//      <!-- YOUR … --> HTML comments with your real bank details.
+// ══════════════════════════════════════════════════════════════════════
+
 const PAYSTACK_PUBLIC_KEY = 'pk_live_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY';
 
-let selectedTier = 'Supporter';
-let selectedAmount = 250000; // kobo (₦2,500)
+// Tier amounts in kobo (100 kobo = ₦1). Hard lookup — no string parsing.
+const TIER_AMOUNTS = {
+  'Reader':    0,
+  'Supporter': 250000,   // ₦2,500
+  'Patron':    1000000   // ₦10,000
+};
 
-function openPayment(tier, price) {
-  selectedTier = tier;
-  document.getElementById('payTierName').textContent = tier;
-  document.getElementById('payTierPrice').textContent = price;
-  // Parse amount from price string e.g. "₦2,000/month"
-  const match = price.replace(/,/g,'').match(/[\d]+/);
-  selectedAmount = match ? parseInt(match[0]) * 100 : 200000;
-  document.getElementById('bankAmt').textContent = price.replace('/month','');
-  document.getElementById('paymentCard').classList.add('active');
-  document.getElementById('paymentSection').scrollIntoView({ behavior:'smooth', block:'center' });
+// Tier display amounts for bank panel
+const TIER_DISPLAY = {
+  'Reader':    '₦0',
+  'Supporter': '₦2,500',
+  'Patron':    '₦10,000'
+};
+
+var selectedTier   = 'Supporter';
+var selectedAmount = TIER_AMOUNTS['Supporter'];
+
+// ── Open payment card ─────────────────────────────────────────────────
+function openPayment(tier, priceLabel) {
+  selectedTier   = tier;
+  selectedAmount = TIER_AMOUNTS[tier] !== undefined ? TIER_AMOUNTS[tier] : 250000;
+
+  document.getElementById('payTierName').textContent  = tier;
+  document.getElementById('payTierPrice').textContent = priceLabel;
+  document.getElementById('bankAmt').textContent      = TIER_DISPLAY[tier] || priceLabel.replace('/month','').trim();
+
+  // Reset form to clean state on every open
+  var form = document.getElementById('payForm');
+  if (form) {
+    form.style.display = '';
+    document.getElementById('payName').value  = '';
+    document.getElementById('payEmail').value = '';
+    document.getElementById('payPhone').value = '';
+    document.getElementById('pay_consent').checked = false;
+  }
+  document.getElementById('paySuccess').style.display = 'none';
   resetPaymentMethod();
+
+  document.getElementById('paymentCard').classList.add('active');
+  document.getElementById('paymentSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+// ── Close payment card ────────────────────────────────────────────────
 function closePayment() {
   document.getElementById('paymentCard').classList.remove('active');
 }
 
+// ── Reset method panels ───────────────────────────────────────────────
 function resetPaymentMethod() {
-  ['paystackForm','bankDetails','opayDetails'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.style.display = 'none';
+  ['paystackForm', 'bankDetails'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = 'none';
   });
-  ['btnPaystack','btnBank','btnOpay'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.classList.remove('active');
+  ['btnPaystack', 'btnBank'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.classList.remove('active');
   });
 }
 
+// ── Select method ─────────────────────────────────────────────────────
 function selectMethod(method) {
   resetPaymentMethod();
-  if(method === 'paystack') {
+  if (method === 'paystack') {
     document.getElementById('paystackForm').style.display = 'flex';
     document.getElementById('btnPaystack').classList.add('active');
-  } else if(method === 'bank') {
+  } else if (method === 'bank') {
     document.getElementById('bankDetails').style.display = 'block';
     document.getElementById('btnBank').classList.add('active');
-  } else if(method === 'opay') {
-    document.getElementById('opayDetails').style.display = 'block';
-    document.getElementById('btnOpay').classList.add('active');
   }
 }
 
-function initiatePaystack() {
-  const name  = document.getElementById('payName').value.trim();
-  const email = document.getElementById('payEmail').value.trim();
-  const consent = document.getElementById('pay_consent').checked;
-  if(!name) { alert('Please enter your full name.'); return; }
-  if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
-  if(!consent) { alert('Please agree to the privacy policy to proceed.'); return; }
-
-  // Check if key is still the placeholder
-  if(!PAYSTACK_PUBLIC_KEY || PAYSTACK_PUBLIC_KEY.indexOf('REPLACE') !== -1) {
-    alert('Card payment is not yet activated. Please use Bank Transfer or OPay/Kuda/PalmPay to support us, or contact hello@nitizen.ng. Thank you!');
-    selectMethod('bank');
-    return;
+// ── Shared field validation (name + email + consent) ──────────────────
+function validateFields() {
+  var name    = document.getElementById('payName').value.trim();
+  var email   = document.getElementById('payEmail').value.trim();
+  var consent = document.getElementById('pay_consent').checked;
+  if (!name)  { alert('Please enter your full name.'); return false; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    alert('Please enter a valid email address.'); return false;
   }
+  if (!consent) { alert('Please tick the privacy agreement checkbox to proceed.'); return false; }
+  return true;
+}
 
-  // If Paystack script not yet loaded, load it first
-  if(typeof PaystackPop === 'undefined') {
-    const s = document.createElement('script');
-    s.src = 'https://js.paystack.co/v1/inline.js';
-    s.onload = () => launchPaystack(name, email);
-    s.onerror = () => alert('Could not load Paystack. Please use Bank Transfer instead.');
+// ── Initiate Paystack ─────────────────────────────────────────────────
+function initiatePaystack() {
+  if (!validateFields()) return;
+  var name  = document.getElementById('payName').value.trim();
+  var email = document.getElementById('payEmail').value.trim();
+
+  if (typeof PaystackPop === 'undefined') {
+    var s = document.createElement('script');
+    s.src    = 'https://js.paystack.co/v1/inline.js';
+    s.onload = function() { launchPaystack(name, email); };
+    s.onerror = function() {
+      alert('Paystack could not be loaded. Please use Bank Transfer or try again.');
+    };
     document.head.appendChild(s);
   } else {
     launchPaystack(name, email);
   }
 }
 
+// ── Launch Paystack popup ─────────────────────────────────────────────
 function launchPaystack(name, email) {
-  const handler = PaystackPop.setup({
-    key: PAYSTACK_PUBLIC_KEY,
-    email: email,
-    amount: selectedAmount,
+  var handler = PaystackPop.setup({
+    key:      PAYSTACK_PUBLIC_KEY,
+    email:    email,
+    amount:   selectedAmount,
     currency: 'NGN',
-    ref: 'NITIZEN_CL_' + Date.now(),
+    ref:      'NITIZEN_' + selectedTier.toUpperCase() + '_' + Date.now(),
     metadata: {
       custom_fields: [
-        { display_name: 'Name', variable_name: 'name', value: name },
-        { display_name: 'Tier', variable_name: 'tier', value: selectedTier },
-        { display_name: 'Platform', variable_name: 'platform', value: 'NITIZEN Conscience Letters' }
+        { display_name: 'Full Name',  variable_name: 'name',  value: name         },
+        { display_name: 'Tier',       variable_name: 'tier',  value: selectedTier }
       ]
     },
-    callback: function(response) {
-      document.getElementById('payForm').style.display = 'none';
+    callback: function() {
+      document.getElementById('payForm').style.display    = 'none';
       document.getElementById('paySuccess').style.display = 'block';
     },
-    onClose: function() {
-      // User closed modal — no action needed
-    }
+    onClose: function() {}
   });
   handler.openIframe();
 }
 
+// ── Copy account number ───────────────────────────────────────────────
 function copyAcct() {
-  const acct = document.getElementById('bankAcct').textContent.replace('Copy','').trim();
-  navigator.clipboard.writeText(acct).then(() => {
-    const btn = document.querySelector('.copy-btn');
-    if(btn) { btn.textContent = 'Copied!'; setTimeout(() => btn.textContent = 'Copy', 2000); }
+  var acctEl = document.getElementById('bankAcct');
+  // Collect only text nodes (excludes the Copy button text)
+  var acct = '';
+  acctEl.childNodes.forEach(function(node) {
+    if (node.nodeType === 3) acct += node.textContent;
   });
+  acct = acct.trim();
+
+  if (!acct || acct.indexOf('YOUR ACCOUNT') !== -1 || acct.indexOf('<!--') !== -1) {
+    alert('Bank account details have not been added yet. Please fill them in before publishing.'); return;
+  }
+  navigator.clipboard.writeText(acct).then(function() {
+    var btn = acctEl.querySelector('.copy-btn');
+    if (btn) { btn.textContent = 'Copied!'; setTimeout(function() { btn.textContent = 'Copy'; }, 2000); }
+  }).catch(function() { alert('Could not copy automatically. Please copy the number manually.'); });
 }
 
+// ── Notify bank transfer intent (posts to Formspree + opens mailto) ───
 function notifyBankIntent() {
-  const name  = document.getElementById('payName').value.trim();
-  const email = document.getElementById('payEmail').value.trim();
-  if(!name || !email) { alert('Please fill in your name and email first.'); return; }
-  window.location.href = 'mailto:hello@nitizen.ng?subject=Bank%20Transfer%20Intent%20—%20' + encodeURIComponent(selectedTier) + '&body=Name%3A%20' + encodeURIComponent(name) + '%0AEmail%3A%20' + encodeURIComponent(email) + '%0ATier%3A%20' + encodeURIComponent(selectedTier) + '%0A%0AI%20am%20making%20a%20bank%20transfer%20for%20my%20NITIZEN%20Conscience%20Letters%20membership.';
+  if (!validateFields()) return;
+  var name  = document.getElementById('payName').value.trim();
+  var email = document.getElementById('payEmail').value.trim();
+  var phone = document.getElementById('payPhone').value.trim();
+  var amt   = TIER_DISPLAY[selectedTier] || '';
+
+  // Post to Formspree so the intent is logged in your dashboard
+  fetch('https://formspree.io/f/mojyjgvz', {
+    method:  'POST',
+    headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      type:    'Bank Transfer Intent',
+      tier:    selectedTier,
+      amount:  amt,
+      name:    name,
+      email:   email,
+      phone:   phone || 'Not provided'
+    })
+  }).catch(function() {}); // Silent fail — mailto below is the backup
+
+  // Open pre-filled email for member's own records
+  var subject = 'Bank Transfer — ' + selectedTier + ' — NITIZEN';
+  var body    =
+    'Tier: '   + selectedTier + '\n' +
+    'Amount: ' + amt          + '/month\n' +
+    'Name: '   + name         + '\n' +
+    'Email: '  + email        + '\n' +
+    (phone ? 'Phone: ' + phone + '\n' : '') +
+    '\nI am making a bank transfer for my NITIZEN Conscience Letters membership.';
+
+  window.location.href =
+    'mailto:hello@nitizen.ng' +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body='    + encodeURIComponent(body);
 }
 </script>
 
@@ -4048,7 +4117,7 @@ function handleCRT(e){
             <div>
               <div class="info-label">Mobile / WhatsApp</div>
               <div class="info-val">
-                <a href="tel:+2347059929690">+234 705 992 9707</a><br/>
+                <a href="tel:+2347059929690">+234 705 992 9690</a><br/>
                 <a href="https://wa.me/2347059929690?text=Hello%20NITIZEN%2C%20I%20would%20like%20to%20get%20involved." target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:.3rem;margin-top:.4rem;background:#25D366;color:#fff;padding:.3rem .8rem;border-radius:2px;font-size:.72rem;font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                   Chat on WhatsApp
