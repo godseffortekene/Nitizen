@@ -1182,8 +1182,8 @@ section { padding: 5rem 4rem; }
 .p-form{display:flex;flex-direction:column;gap:1rem;}
 .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .p-label{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-mid);display:block;margin-bottom:.35rem;}
-.p-form input,.p-form select{width:100%;padding:.82rem 1rem;background:var(--off-white);border:1px solid var(--border);color:var(--ink);font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
-.p-form input:focus,.p-form select:focus{border-color:var(--green-soft);}
+.p-form input:not([type="checkbox"]),.p-form select{width:100%;padding:.82rem 1rem;background:var(--off-white);border:1px solid var(--border);color:var(--ink);font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.p-form input:not([type="checkbox"]):focus,.p-form select:focus{border-color:var(--green-soft);}
 .p-form .note{font-family:var(--body);font-size:.8rem;color:var(--muted);line-height:1.65;padding:.8rem 1rem;background:var(--green-mist);border-left:2px solid var(--green-soft);border-radius:0 2px 2px 0;}
 .btn-pay{width:100%;padding:1rem;background:var(--green-deep);color:#fff;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .2s;}
 .btn-pay:hover{background:var(--green-mid);}
@@ -1219,9 +1219,9 @@ section { padding: 5rem 4rem; }
 .cl-form{max-width:680px;display:flex;flex-direction:column;gap:1.2rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-mid);display:block;margin-bottom:.4rem;}
-.cl-form input,.cl-form select,.cl-form textarea{width:100%;padding:.85rem 1rem;background:var(--off-white);border:1px solid var(--border);color:var(--ink);font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.cl-form input:not([type="checkbox"]),.cl-form select,.cl-form textarea{width:100%;padding:.85rem 1rem;background:var(--off-white);border:1px solid var(--border);color:var(--ink);font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .cl-form input::placeholder,.cl-form textarea::placeholder{color:var(--muted);}
-.cl-form input:focus,.cl-form select:focus,.cl-form textarea:focus{border-color:var(--green-soft);}
+.cl-form input:not([type="checkbox"]):focus,.cl-form select:focus,.cl-form textarea:focus{border-color:var(--green-soft);}
 .cl-form textarea{height:180px;resize:vertical;}
 .cl-form .note{font-family:var(--body);font-size:.82rem;color:var(--muted);line-height:1.65;padding:.8rem 1rem;background:var(--green-mist);border-left:2px solid var(--green-soft);border-radius:0 2px 2px 0;}
 .btn-cl{background:var(--green-deep);color:#fff;padding:.9rem 2rem;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .2s,transform .15s;width:100%;}
@@ -1493,9 +1493,9 @@ section { padding: 5rem 4rem; }
 .rf-form{max-width:680px;display:flex;flex-direction:column;gap:1.2rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#e8a0a0;display:block;margin-bottom:.4rem;}
-.rf-form input,.rf-form select,.rf-form textarea{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(224,92,92,.25);color:#fff;font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.rf-form input:not([type="checkbox"]),.rf-form select,.rf-form textarea{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(224,92,92,.25);color:#fff;font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .rf-form input::placeholder,.rf-form textarea::placeholder{color:rgba(255,255,255,.3);}
-.rf-form input:focus,.rf-form select:focus,.rf-form textarea:focus{border-color:#e05c5c;}
+.rf-form input:not([type="checkbox"]):focus,.rf-form select:focus,.rf-form textarea:focus{border-color:#e05c5c;}
 .rf-form select option{background:#0f0808;color:#fff;}
 .rf-form textarea{height:150px;resize:vertical;}
 .rf-form .note{font-family:var(--body);font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;padding:.8rem 1rem;background:rgba(224,92,92,.06);border-left:2px solid rgba(224,92,92,.4);border-radius:0 2px 2px 0;}
@@ -1516,9 +1516,9 @@ section { padding: 5rem 4rem; }
 .ldg-form{max-width:680px;display:flex;flex-direction:column;gap:1.2rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.4rem;}
-.ldg-form input,.ldg-form select,.ldg-form textarea{width:100%;padding:.85rem 1rem;background:#fff;border:1px solid var(--border);color:var(--ink);font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.ldg-form input:not([type="checkbox"]),.ldg-form select,.ldg-form textarea{width:100%;padding:.85rem 1rem;background:#fff;border:1px solid var(--border);color:var(--ink);font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .ldg-form input::placeholder,.ldg-form textarea::placeholder{color:var(--muted);}
-.ldg-form input:focus,.ldg-form select:focus,.ldg-form textarea:focus{border-color:var(--gold);}
+.ldg-form input:not([type="checkbox"]):focus,.ldg-form select:focus,.ldg-form textarea:focus{border-color:var(--gold);}
 .ldg-form textarea{height:150px;resize:vertical;}
 .ldg-form .note{font-family:var(--body);font-size:.82rem;color:var(--muted);line-height:1.65;padding:.8rem 1rem;background:rgba(200,168,75,.06);border-left:2px solid rgba(200,168,75,.4);border-radius:0 2px 2px 0;}
 .btn-ldg{background:var(--gold);color:var(--ink);padding:.9rem 2rem;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .2s,transform .15s;width:100%;}
@@ -1538,9 +1538,9 @@ section { padding: 5rem 4rem; }
 .om-form{max-width:680px;display:flex;flex-direction:column;gap:1.2rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-soft);display:block;margin-bottom:.4rem;}
-.om-form input,.om-form select,.om-form textarea{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(74,175,116,.2);color:#fff;font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.om-form input:not([type="checkbox"]),.om-form select,.om-form textarea{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(74,175,116,.2);color:#fff;font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .om-form input::placeholder,.om-form textarea::placeholder{color:rgba(255,255,255,.3);}
-.om-form input:focus,.om-form select:focus,.om-form textarea:focus{border-color:var(--green-soft);}
+.om-form input:not([type="checkbox"]):focus,.om-form select:focus,.om-form textarea:focus{border-color:var(--green-soft);}
 .om-form select option{background:#080d06;color:#fff;}
 .om-form textarea{height:300px;resize:vertical;}
 .om-form .note{font-family:var(--body);font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;padding:.8rem 1rem;background:rgba(74,175,116,.06);border-left:2px solid rgba(74,175,116,.4);border-radius:0 2px 2px 0;}
@@ -1561,9 +1561,9 @@ section { padding: 5rem 4rem; }
 .crt-form{max-width:680px;display:flex;flex-direction:column;gap:1.2rem;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .form-label{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#a78bfa;display:block;margin-bottom:.4rem;}
-.crt-form input,.crt-form select,.crt-form textarea{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(167,139,250,.2);color:#fff;font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.crt-form input:not([type="checkbox"]),.crt-form select,.crt-form textarea{width:100%;padding:.85rem 1rem;background:rgba(255,255,255,.05);border:1px solid rgba(167,139,250,.2);color:#fff;font-family:var(--body);font-size:.95rem;border-radius:2px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
 .crt-form input::placeholder,.crt-form textarea::placeholder{color:rgba(255,255,255,.3);}
-.crt-form input:focus,.crt-form select:focus,.crt-form textarea:focus{border-color:#a78bfa;}
+.crt-form input:not([type="checkbox"]):focus,.crt-form select:focus,.crt-form textarea:focus{border-color:#a78bfa;}
 .crt-form select option{background:#0a0c14;color:#fff;}
 .crt-form textarea{height:130px;resize:vertical;}
 .crt-form .note{font-family:var(--body);font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;padding:.8rem 1rem;background:rgba(167,139,250,.06);border-left:2px solid rgba(167,139,250,.4);border-radius:0 2px 2px 0;}
@@ -1603,7 +1603,7 @@ section { padding: 5rem 4rem; }
 .contact-grid { display: grid; grid-template-columns: 1.3fr 1fr; gap: 5rem; }
 .contact-form { display: flex; flex-direction: column; gap: 1rem; }
 .contact-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-.contact-form input,
+.contact-form input:not([type="checkbox"]),
 .contact-form textarea,
 .contact-form select {
   width: 100%; padding: .85rem 1rem;
@@ -1612,7 +1612,7 @@ section { padding: 5rem 4rem; }
   border-radius: 2px; outline: none; transition: border-color .2s;
   -webkit-appearance: none;
 }
-.contact-form input:focus,
+.contact-form input:not([type="checkbox"]):focus,
 .contact-form textarea:focus,
 .contact-form select:focus { border-color: var(--green-soft); background: #fff; }
 .contact-form textarea { height: 130px; resize: vertical; }
@@ -2214,6 +2214,7 @@ section { padding: 5rem 4rem; }
   </div>
 
   <section style="background:#fff;padding:3rem 4rem 5rem;">
+    <div class="section-inner">
     <div class="section-label">Published Articles</div>
 
     <a href="#article-1" class="archive-row">
@@ -2257,6 +2258,7 @@ section { padding: 5rem 4rem; }
       </div>
     </a>
 
+    </div>
   </section>
 
   <div class="pitch-bar">
@@ -2309,7 +2311,7 @@ section { padding: 5rem 4rem; }
 
     <p class="art-footer-note">This piece represents the editorial position of NITIZEN's Conscience Letters initiative. We welcome responses and counter-arguments at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>. Conscience Letters is committed to evidence-based civic analysis and welcomes diverse perspectives.</p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,000/mo →</a></div><div class="art-nav">
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
       <a href="#cl" class="btn-outline">← All Articles</a>
       <a href="#article-2" class="btn-primary">Next Article →</a>
     </div>
@@ -2358,7 +2360,7 @@ section { padding: 5rem 4rem; }
 
     <p class="art-footer-note">This piece represents the editorial position of NITIZEN's Conscience Letters initiative. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,000/mo →</a></div><div class="art-nav">
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
       <a href="#article-1" class="btn-outline">← Previous Article</a>
       <a href="#article-3" class="btn-primary">Next Article →</a>
     </div>
@@ -2404,7 +2406,7 @@ section { padding: 5rem 4rem; }
 
     <p class="art-footer-note">Conscience Letters No. 003. NITIZEN Editorial, May 2026. Contact: <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a></p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,000/mo →</a></div><div class="art-nav">
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
       <a href="#article-2" class="btn-outline">← Previous Article</a>
       <a href="#cl" class="btn-primary">All Articles →</a>
     </div>
@@ -2458,7 +2460,7 @@ section { padding: 5rem 4rem; }
     <div class="tier-badge">Most Popular — Founding Reader</div>
     <div class="tier-body">
       <div class="tier-name">Supporter</div>
-      <div class="tier-price">₦2,000 <span>/ month</span></div>
+      <div class="tier-price">₦2,500 <span>/ month</span></div>
       <p class="tier-desc">Sustain independent civic journalism and receive exclusive benefits that deepen your engagement with Nigerian public affairs.</p>
       <ul class="tier-perks">
         <li>Everything in Reader</li>
@@ -2469,7 +2471,7 @@ section { padding: 5rem 4rem; }
       </ul>
     </div>
     <div class="tier-cta">
-      <button class="btn-tier btn-tier-fill" onclick="openPayment('Supporter','₦2,000/month')">Become a Supporter →</button>
+      <button class="btn-tier btn-tier-fill" onclick="openPayment('Supporter','₦2,500/month')">Become a Supporter →</button>
     </div>
   </div>
 
@@ -2500,7 +2502,7 @@ section { padding: 5rem 4rem; }
     <div class="payment-header">
       <div>
         <h3 id="payTierName">Supporter</h3>
-        <p id="payTierPrice">₦2,000/month</p>
+        <p id="payTierPrice">₦2,500/month</p>
       </div>
       <button class="close-btn" onclick="closePayment()">✕</button>
     </div>
@@ -2557,7 +2559,7 @@ section { padding: 5rem 4rem; }
             </div>
             <div class="bank-row">
               <span class="bank-label">Amount</span>
-              <span class="bank-value" id="bankAmt">₦2,000</span>
+              <span class="bank-value" id="bankAmt">₦2,500</span>
             </div>
             <div class="bank-note">
               <strong>After transferring:</strong> Send your name, email, and proof of payment to <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a> or WhatsApp <a href="https://wa.me/2347059929690" target="_blank" rel="noopener" style="color:var(--green-mid)">+234 705 992 9707</a>. Membership activates within 24 hours of confirmation.
@@ -2619,7 +2621,7 @@ section { padding: 5rem 4rem; }
 const PAYSTACK_PUBLIC_KEY = 'pk_live_REPLACE_WITH_YOUR_PAYSTACK_PUBLIC_KEY';
 
 let selectedTier = 'Supporter';
-let selectedAmount = 200000; // kobo (₦2,000)
+let selectedAmount = 250000; // kobo (₦2,500)
 
 function openPayment(tier, price) {
   selectedTier = tier;
@@ -3990,7 +3992,7 @@ function handleCRT(e){
         <div>
           <div class="section-label">Send a Message</div>
           <h2 class="section-title" style="margin-bottom:2rem">Let&rsquo;s <em>Connect</em></h2>
-          <form class="contact-form" id="contactForm" novalidate>
+          <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojyjgvz" method="POST" novalidate>
             <div class="contact-row">
               <input type="text" name="name" placeholder="Your Full Name" required autocomplete="name" aria-label="Full name"/>
               <input type="email" name="email" placeholder="Email Address" required autocomplete="email" aria-label="Email"/>
