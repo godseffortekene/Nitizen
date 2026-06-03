@@ -2169,6 +2169,132 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 .ref-n-rf  { color: #e05c5c;    font-weight: 600; flex-shrink: 0; min-width: 1.5rem; }
 .ref-n-ldg { color: var(--gold); font-weight: 600; flex-shrink: 0; min-width: 1.5rem; }
 
+
+/* ── HERO VISUAL ENHANCEMENTS ── */
+.hero-layout { display: grid; grid-template-columns: 1fr 480px; gap: 3rem; align-items: center; }
+.hero-visual { position: relative; display: flex; align-items: center; justify-content: center; }
+.hero-visual svg { width: 100%; max-width: 480px; height: auto; }
+@media(max-width:1100px){ .hero-layout { grid-template-columns: 1fr; } .hero-visual { display: none; } }
+
+/* ── CIVIC GAP INFOGRAPHIC ── */
+.civic-gap-infographic { 
+  background: linear-gradient(135deg, #f7faf8 0%, #e8f5ee 100%);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3rem 4rem;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+.civic-gap-infographic::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--green-soft), var(--gold), #e05c5c, #a78bfa);
+}
+.gap-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 2rem; }
+.gap-cell { background: #fff; padding: 1.5rem; text-align: center; }
+.gap-cell .gap-icon { font-size: 2rem; margin-bottom: .7rem; display: block; }
+.gap-cell .gap-num { font-family: var(--accent); font-size: 2.2rem; font-weight: 700; color: var(--green-deep); line-height: 1; }
+.gap-cell .gap-label { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+@media(max-width:700px){ .gap-grid { grid-template-columns: repeat(2,1fr); } }
+
+/* ── THREE PILLARS VISUAL ── */
+.pillars-visual-wrap { margin: 3rem 0; }
+.pillars-flow { display: flex; align-items: center; gap: 0; }
+.pillar-vis { flex: 1; padding: 2rem 1.5rem; text-align: center; position: relative; }
+.pillar-vis-icon { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.6rem; }
+.pillar-vis-num { font-family: var(--mono); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; margin-bottom: .4rem; }
+.pillar-vis-name { font-family: var(--display); font-size: 1.1rem; font-weight: 700; line-height: 1.2; margin-bottom: .4rem; }
+.pillar-vis-desc { font-family: var(--body); font-size: .78rem; line-height: 1.6; }
+.pillar-connector { width: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.pillar-connector svg { width: 40px; height: 20px; }
+@media(max-width:700px){ .pillars-flow { flex-direction: column; } .pillar-connector { transform: rotate(90deg); } }
+
+/* ── HOW IT WORKS STEPS ── */
+.how-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 2rem; background: var(--border); border: 1px solid var(--border); }
+.how-step { background: var(--off-white); padding: 2rem; position: relative; }
+.how-step-num { font-family: var(--mono); font-size: 3rem; font-weight: 700; color: var(--green-mist); line-height: 1; margin-bottom: .5rem; }
+.how-step h4 { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--green-deep); margin-bottom: .5rem; }
+.how-step p { font-family: var(--body); font-size: .85rem; line-height: 1.65; color: var(--muted); }
+@media(max-width:700px){ .how-steps { grid-template-columns: 1fr; } }
+
+/* ── NIGERIA MAP INFOGRAPHIC ── */
+.nigeria-reach { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding: 3rem 0; }
+.nigeria-reach svg { width: 100%; height: auto; }
+.reach-stats { display: flex; flex-direction: column; gap: 1.2rem; }
+.reach-stat-row { display: flex; align-items: center; gap: 1rem; }
+.reach-bar-wrap { flex: 1; height: 6px; background: rgba(168,213,181,.25); border-radius: 3px; overflow: hidden; }
+.reach-bar-fill { height: 100%; border-radius: 3px; background: var(--green-soft); }
+.reach-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .07em; color: var(--green-light); width: 80px; flex-shrink: 0; }
+.reach-val { font-family: var(--mono); font-size: .62rem; color: rgba(168,213,181,.6); width: 36px; text-align: right; flex-shrink: 0; }
+@media(max-width:700px){ .nigeria-reach { grid-template-columns: 1fr; } }
+
+/* ── INITIATIVE ICON BADGES ── */
+.init-badge-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem; margin-bottom: 2rem; }
+.init-badge { display: flex; align-items: center; gap: .6rem; background: rgba(255,255,255,.07); border: 1px solid rgba(168,213,181,.18); padding: .6rem 1rem; border-radius: 2px; font-family: var(--mono); font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--green-light); }
+.init-badge-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* ── TIMELINE VISUALIZATION ── */
+.timeline-visual { position: relative; padding: 2rem 0; }
+.timeline-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(180deg, var(--green-deep) 0%, var(--green-soft) 50%, var(--gold) 100%); transform: translateX(-50%); }
+.timeline-events { display: flex; flex-direction: column; gap: 2.5rem; position: relative; }
+.tl-event { display: grid; grid-template-columns: 1fr 40px 1fr; gap: 0; align-items: start; }
+.tl-event-left { padding-right: 2rem; text-align: right; }
+.tl-event-right { padding-left: 2rem; }
+.tl-dot { width: 14px; height: 14px; background: var(--green-soft); border: 2px solid var(--off-white); border-radius: 50%; margin: .3rem auto; box-shadow: 0 0 0 3px rgba(74,175,116,.25); position: relative; z-index: 1; }
+.tl-year { font-family: var(--mono); font-size: .65rem; letter-spacing: .12em; color: var(--green-soft); }
+.tl-title { font-family: var(--display); font-size: 1rem; font-weight: 700; color: var(--green-deep); line-height: 1.2; margin-top: .2rem; }
+.tl-desc { font-family: var(--body); font-size: .82rem; line-height: 1.6; color: var(--muted); margin-top: .3rem; }
+@media(max-width:700px){ .timeline-line{display:none;} .tl-event{grid-template-columns:1fr;} .tl-event-left{text-align:left;padding:0;} .tl-event-right{padding:0;} .tl-dot{display:none;} }
+
+/* ── SENAL SECTION VISUAL ── */
+.senal-channels-visual { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(224,92,92,.12); border: 1px solid rgba(224,92,92,.12); margin: 2rem 4rem; }
+.senal-ch { padding: 2rem 1.5rem; text-align: center; transition: background .2s; }
+.senal-ch:hover { background: rgba(255,255,255,.04); }
+.senal-ch-circle { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; }
+.senal-ch-name { font-family: var(--display); font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+.senal-ch-desc { font-family: var(--body); font-size: .78rem; line-height: 1.6; }
+@media(max-width:700px){ .senal-channels-visual { grid-template-columns: repeat(2,1fr); margin: 2rem 1.5rem; } }
+
+/* ── DATA BARS (LEDGER) ── */
+.data-bar-chart { padding: 1.5rem 0; }
+.bar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: .8rem; }
+.bar-label { font-family: var(--mono); font-size: .62rem; letter-spacing: .06em; color: var(--muted); width: 100px; flex-shrink: 0; }
+.bar-track { flex: 1; height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+.bar-fill-red { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #c0392b, #e05c5c); }
+.bar-fill-amber { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #c8a84b, #f0dfa0); }
+.bar-fill-green { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #2d7a4f, #4aaf74); }
+.bar-val { font-family: var(--mono); font-size: .62rem; color: var(--muted); width: 36px; text-align: right; flex-shrink: 0; }
+
+/* ── CIVIC PROCESS DIAGRAM ── */
+.process-diagram { display: flex; align-items: stretch; gap: 0; background: var(--border); border: 1px solid var(--border); overflow: hidden; border-radius: 2px; margin: 2rem 0; }
+.process-step { flex: 1; padding: 2rem 1.2rem; background: var(--off-white); text-align: center; position: relative; }
+.process-step::after { content: '→'; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); font-family: var(--mono); font-size: .9rem; color: var(--muted); z-index: 1; }
+.process-step:last-child::after { display: none; }
+.process-num { font-family: var(--mono); font-size: 1.8rem; color: var(--green-mist); font-weight: 700; line-height: 1; }
+.process-icon { font-size: 1.4rem; margin: .3rem 0; }
+.process-label { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--green-deep); margin-top: .3rem; }
+
+/* ── QUOTE CARDS ── */
+.civic-quote { border-left: 3px solid var(--green-soft); padding: 1.5rem 2rem; background: var(--green-mist); margin: 2rem 0; border-radius: 0 2px 2px 0; }
+.civic-quote blockquote { font-family: var(--display); font-size: 1.3rem; font-style: italic; color: var(--green-deep); line-height: 1.5; }
+.civic-quote cite { display: block; font-family: var(--mono); font-size: .62rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-top: .7rem; }
+
+/* ── ELECTORAL CALENDAR ── */
+.electoral-cal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); margin: 1.5rem 0; }
+.cal-item { background: #fff; padding: 1rem .8rem; text-align: center; }
+.cal-item.milestone { background: var(--green-mist); }
+.cal-item.urgent { background: rgba(224,92,92,.06); }
+.cal-date { font-family: var(--mono); font-size: .6rem; letter-spacing: .07em; color: var(--muted); margin-bottom: .3rem; }
+.cal-label { font-family: var(--display); font-size: .82rem; font-weight: 700; color: var(--green-deep); line-height: 1.2; }
+@media(max-width:700px){ .electoral-cal { grid-template-columns: repeat(2,1fr); } }
+
+/* ── ANIMATED ILLUSTRATIONS ── */
+@keyframes float-civic { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes pulse-ring { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.15;transform:scale(1.08)} }
+.float-anim { animation: float-civic 4s ease-in-out infinite; }
+.pulse-ring { animation: pulse-ring 3s ease-in-out infinite; }
+
 </style>
 </head>
 <body>
@@ -2251,6 +2377,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <div class="hero-bg">
       <div class="hero-orb"></div><div class="hero-orb"></div><div class="hero-orb"></div>
     </div>
+  <div class="hero-layout">
+  <div class="hero-layout-text">
     <div class="hero-eyebrow">Nigeria · Civic Intelligence · Long-Term Impact</div>
     <h1 class="hero-title">Awakening the <em>Active</em><br>Nigerian Citizen</h1>
     <p class="hero-sub">NITIZEN equips Nigerians with the knowledge, tools, and voice to engage meaningfully with governance — built for the long term, starting now.</p>
@@ -2264,6 +2392,135 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <div class="stat"><h3>1M+</h3><p>Citizens to Reach</p></div>
       <div class="stat"><h3>36+</h3><p>States of Coverage</p></div>
     </div>
+    </div><!-- /hero-layout-text -->
+
+    <div class="hero-visual">
+      <svg viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nigerian civic engagement illustration — citizens raising their voices">
+        <defs>
+          <linearGradient id="heroGreen" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2d7a4f"/>
+            <stop offset="100%" stop-color="#1a4d2e"/>
+          </linearGradient>
+          <linearGradient id="heroGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#c8a84b"/>
+            <stop offset="100%" stop-color="#a08030"/>
+          </linearGradient>
+          <radialGradient id="heroBg" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#d4eedc" stop-opacity=".4"/>
+            <stop offset="100%" stop-color="transparent"/>
+          </radialGradient>
+          <filter id="shadow1"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1a4d2e" flood-opacity=".15"/></filter>
+        </defs>
+        <!-- Background circle pulse -->
+        <circle cx="240" cy="240" r="200" fill="url(#heroBg)" class="pulse-ring"/>
+        <circle cx="240" cy="240" r="160" fill="none" stroke="rgba(74,175,116,.1)" stroke-width="1"/>
+        <circle cx="240" cy="240" r="120" fill="none" stroke="rgba(74,175,116,.08)" stroke-width="1"/>
+        <!-- Ground line -->
+        <ellipse cx="240" cy="430" rx="160" ry="12" fill="rgba(74,175,116,.12)"/>
+        <!-- Central tall figure (holding torch/light) -->
+        <g class="float-anim" style="animation-delay:0s">
+          <!-- Body -->
+          <ellipse cx="240" cy="190" rx="24" ry="26" fill="url(#heroGreen)" filter="url(#shadow1)"/>
+          <!-- Head -->
+          <circle cx="240" cy="155" r="22" fill="url(#heroGreen)" filter="url(#shadow1)"/>
+          <!-- Nigerian flag colors as scarf -->
+          <rect x="228" y="172" width="8" height="18" rx="2" fill="#008751"/>
+          <rect x="236" y="172" width="8" height="18" rx="2" fill="#ffffff"/>
+          <rect x="244" y="172" width="8" height="18" rx="2" fill="#008751"/>
+          <!-- Raised arm holding light -->
+          <rect x="215" y="160" width="10" height="40" rx="5" fill="url(#heroGreen)" transform="rotate(-30 220 180)"/>
+          <!-- Torch flame -->
+          <ellipse cx="196" cy="130" rx="9" ry="13" fill="#f0a830" opacity=".9"/>
+          <ellipse cx="196" cy="125" rx="6" ry="9" fill="#ffd060" opacity=".85"/>
+          <ellipse cx="196" cy="122" rx="3" ry="5" fill="#fff7d4" opacity=".7"/>
+          <!-- Glow rings -->
+          <circle cx="196" cy="128" r="18" fill="none" stroke="#f0a830" stroke-width="1" opacity=".4"/>
+          <circle cx="196" cy="128" r="28" fill="none" stroke="#f0a830" stroke-width=".5" opacity=".2"/>
+          <!-- Other arm - document/newspaper -->
+          <rect x="252" y="165" width="10" height="35" rx="5" fill="url(#heroGreen)" transform="rotate(25 262 182)"/>
+          <rect x="258" y="180" width="22" height="28" rx="2" fill="#fff" stroke="rgba(74,175,116,.3)" stroke-width="1"/>
+          <line x1="261" y1="186" x2="278" y2="186" stroke="rgba(45,122,79,.3)" stroke-width="1.5"/>
+          <line x1="261" y1="191" x2="278" y2="191" stroke="rgba(45,122,79,.2)" stroke-width="1"/>
+          <line x1="261" y1="196" x2="272" y2="196" stroke="rgba(45,122,79,.2)" stroke-width="1"/>
+          <!-- Legs -->
+          <rect x="228" y="210" width="12" height="55" rx="6" fill="url(#heroGreen)"/>
+          <rect x="244" y="210" width="12" height="55" rx="6" fill="url(#heroGreen)"/>
+          <!-- Feet -->
+          <ellipse cx="234" cy="264" rx="10" ry="5" fill="#0f1f16"/>
+          <ellipse cx="250" cy="264" rx="10" ry="5" fill="#0f1f16"/>
+        </g>
+        <!-- Left figure (with fist raised) -->
+        <g class="float-anim" style="animation-delay:.8s">
+          <circle cx="148" cy="230" r="16" fill="url(#heroGreen)" opacity=".85"/>
+          <rect x="136" y="244" width="24" height="40" rx="5" fill="url(#heroGreen)" opacity=".85"/>
+          <!-- Raised fist -->
+          <rect x="122" y="218" width="9" height="30" rx="4" fill="url(#heroGreen)" opacity=".8" transform="rotate(-20 126 233)"/>
+          <rect x="112" y="205" width="16" height="14" rx="3" fill="#2d7a4f" opacity=".85"/>
+          <rect x="134" y="246" width="10" height="48" rx="5" fill="url(#heroGreen)" opacity=".8"/>
+          <rect x="148" y="246" width="10" height="48" rx="5" fill="url(#heroGreen)" opacity=".8"/>
+          <ellipse cx="139" cy="294" rx="9" ry="4" fill="#0f1f16" opacity=".7"/>
+          <ellipse cx="158" cy="294" rx="9" ry="4" fill="#0f1f16" opacity=".7"/>
+        </g>
+        <!-- Right figure (with phone/voting) -->
+        <g class="float-anim" style="animation-delay:1.4s">
+          <circle cx="332" cy="222" r="16" fill="url(#heroGreen)" opacity=".8"/>
+          <rect x="320" y="236" width="24" height="42" rx="5" fill="url(#heroGreen)" opacity=".8"/>
+          <!-- Phone with ballot -->
+          <rect x="340" y="208" width="9" height="32" rx="4" fill="url(#heroGreen)" opacity=".75" transform="rotate(15 345 224)"/>
+          <rect x="344" y="200" width="24" height="18" rx="3" fill="#1a4d2e" stroke="rgba(74,175,116,.4)" stroke-width="1"/>
+          <rect x="348" y="204" width="16" height="10" rx="1" fill="#2d7a4f"/>
+          <line x1="349" y1="207" x2="362" y2="207" stroke="#4aaf74" stroke-width="1"/>
+          <line x1="349" y1="210" x2="362" y2="210" stroke="#4aaf74" stroke-width=".7"/>
+          <circle cx="356" cy="213" r="2" fill="#4aaf74"/>
+          <!-- Green checkmark on phone -->
+          <polyline points="350,213 353,216 360,208" stroke="#4aaf74" stroke-width="1.5" fill="none"/>
+          <rect x="320" y="238" width="10" height="50" rx="5" fill="url(#heroGreen)" opacity=".75"/>
+          <rect x="334" y="238" width="10" height="50" rx="5" fill="url(#heroGreen)" opacity=".75"/>
+          <ellipse cx="325" cy="288" rx="9" ry="4" fill="#0f1f16" opacity=".6"/>
+          <ellipse cx="344" cy="288" rx="9" ry="4" fill="#0f1f16" opacity=".6"/>
+        </g>
+        <!-- Smaller background figures -->
+        <g opacity=".45">
+          <circle cx="90" cy="290" r="12" fill="#4aaf74"/>
+          <rect x="80" y="300" width="20" height="38" rx="5" fill="#4aaf74"/>
+          <rect x="80" y="302" width="8" height="36" rx="4" fill="#4aaf74"/>
+          <rect x="92" y="302" width="8" height="36" rx="4" fill="#4aaf74"/>
+        </g>
+        <g opacity=".4">
+          <circle cx="390" cy="278" r="13" fill="#2d7a4f"/>
+          <rect x="379" y="289" width="22" height="42" rx="5" fill="#2d7a4f"/>
+          <rect x="379" y="291" width="9" height="40" rx="4" fill="#2d7a4f"/>
+          <rect x="392" y="291" width="9" height="40" rx="4" fill="#2d7a4f"/>
+        </g>
+        <!-- Speech bubbles rising -->
+        <g>
+          <rect x="56" y="230" width="56" height="26" rx="8" fill="#fff" stroke="rgba(74,175,116,.3)" stroke-width="1"/>
+          <path d="M68 256 l-4 8 l10 -4 z" fill="#fff" stroke="rgba(74,175,116,.3)" stroke-width="1"/>
+          <text x="84" y="248" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#2d7a4f" font-weight="700">VOTE!</text>
+        </g>
+        <g>
+          <rect x="360" y="175" width="72" height="26" rx="8" fill="#fff" stroke="rgba(200,168,75,.35)" stroke-width="1"/>
+          <path d="M372 201 l-4 8 l10 -4 z" fill="#fff" stroke="rgba(200,168,75,.35)" stroke-width="1"/>
+          <text x="396" y="191" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#a08030">MY RIGHTS</text>
+          <text x="396" y="198" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6" fill="#c8a84b">GET PVC</text>
+        </g>
+        <!-- Data rings around torch -->
+        <circle cx="196" cy="128" r="45" fill="none" stroke="rgba(240,168,48,.15)" stroke-width="1" stroke-dasharray="4 4"/>
+        <circle cx="196" cy="128" r="60" fill="none" stroke="rgba(240,168,48,.08)" stroke-width="1" stroke-dasharray="2 6"/>
+        <!-- Bottom label -->
+        <text x="240" y="490" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" letter-spacing="5" fill="#1a4d2e" opacity=".22" font-weight="700">NITIZEN</text>
+        <text x="240" y="503" text-anchor="middle" font-family="Georgia,serif" font-size="8" font-style="italic" fill="#2d7a4f" opacity=".3">Awakening the Active Nigerian Citizen</text>
+        <!-- Nigerian flag mini at top right -->
+        <g transform="translate(390,30)">
+          <rect x="0" y="0" width="10" height="18" fill="#008751"/>
+          <rect x="10" y="0" width="10" height="18" fill="#ffffff"/>
+          <rect x="20" y="0" width="10" height="18" fill="#008751"/>
+          <rect x="0" y="0" width="30" height="18" fill="none" stroke="rgba(0,0,0,.1)" stroke-width=".5"/>
+          <line x1="15" y1="18" x2="15" y2="30" stroke="rgba(0,0,0,.2)" stroke-width=".8"/>
+        </g>
+      </svg>
+    </div>
+  </div><!-- /hero-layout -->
   </section>
 
   <div id="ticker-placeholder"></div>
@@ -2291,6 +2548,14 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <div class="section-label" style="color:var(--green-light)">Platform Initiatives</div>
     <h2 class="section-title reveal" style="color:#fff;max-width:680px">Three Pillars. One <em>Civic Mission.</em></h2>
     <p class="reveal" style="font-family:var(--body);font-size:1rem;line-height:1.82;color:var(--green-light);max-width:580px;margin-top:.8rem;margin-bottom:2.5rem">Each initiative targets a distinct dimension of Nigeria's civic engagement gap — together forming a complete platform for democratic participation.</p>
+
+    <div class="init-badge-row reveal">
+      <div class="init-badge"><span class="init-badge-icon">📰</span>Conscience Letters</div>
+      <div class="init-badge"><span class="init-badge-icon">🤖</span>AskNaija AI</div>
+      <div class="init-badge"><span class="init-badge-icon">🔦</span>See-gnal</div>
+      <div class="init-badge"><span class="init-badge-icon">🗳️</span>2027 Elections</div>
+      <div class="init-badge"><span class="init-badge-icon">⚖️</span>Civic Rights</div>
+    </div>
     <div class="init-grid reveal">
       <a href="#cl" class="init-card">
         <div class="init-num">01 — Initiative</div>
@@ -2374,6 +2639,67 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
   </section>
 
+
+  <!-- ELECTORAL CALENDAR SECTION -->
+  <section style="background:var(--off-white);padding:4rem;border-top:1px solid var(--border)">
+    <div class="section-label">Critical Dates</div>
+    <h2 class="section-title reveal">2027 Electoral <em>Countdown</em></h2>
+    <p style="font-family:var(--body);font-size:.95rem;line-height:1.75;color:var(--ink-light);max-width:560px;margin:1rem 0 2rem">Every registered voter is a voice. Every collected PVC is power. The 2027 elections are the most important civic event of our generation — here are the key milestones.</p>
+    <div class="electoral-cal reveal">
+      <div class="cal-item milestone">
+        <div class="cal-date">May 2026</div>
+        <div class="cal-label">NITIZEN<br>Launches</div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-date">Q3 2026</div>
+        <div class="cal-label">Voter Reg<br>Opens</div>
+      </div>
+      <div class="cal-item urgent">
+        <div class="cal-date">Dec 2026</div>
+        <div class="cal-label">PVC Collection<br>Deadline</div>
+      </div>
+      <div class="cal-item urgent">
+        <div class="cal-date">Jan 2027</div>
+        <div class="cal-label">Campaign<br>Season</div>
+      </div>
+      <div class="cal-item milestone">
+        <div class="cal-date">Feb 2027</div>
+        <div class="cal-label">Presidential<br>Election</div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-date">Mar 2027</div>
+        <div class="cal-label">Gov &amp; House<br>Elections</div>
+      </div>
+    </div>
+    <div class="process-diagram reveal" style="margin-top:2rem">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div class="process-icon">📋</div>
+        <div class="process-label">Register</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div class="process-icon">🪪</div>
+        <div class="process-label">Get PVC</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div class="process-icon">📖</div>
+        <div class="process-label">Get Informed</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">04</div>
+        <div class="process-icon">🗳️</div>
+        <div class="process-label">Vote</div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">05</div>
+        <div class="process-icon">👁️</div>
+        <div class="process-label">Hold Account</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ASKNAIJA TEASER -->
   <div class="wa-banner">
     <div class="wa-banner-text">
@@ -2436,20 +2762,125 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
       </div><!-- /about-grid -->
 
-      <!-- Civic illustration strip -->
+      <!-- Civic illustration strip — ENHANCED -->
       <div style="margin-top:4rem" class="reveal">
         <div class="about-illustration">
-          <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" class="civic-illustration" role="img" aria-label="Abstract illustration of civic voices rising upward">
+          <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" class="civic-illustration" role="img" aria-label="Nigerian citizens using digital tools for civic engagement — laptop, phone, books, voting">
             <defs>
-              <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+              <linearGradient id="bgGrad2" x1="0" y1="0" x2="1" y2="1">
                 <stop offset="0%" stop-color="#e8f5ee"/>
                 <stop offset="100%" stop-color="#f7faf8"/>
               </linearGradient>
-              <linearGradient id="figGrad" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="figGrad2" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#2d7a4f"/>
                 <stop offset="100%" stop-color="#1a4d2e"/>
               </linearGradient>
+              <linearGradient id="screenGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1a4d2e"/>
+                <stop offset="100%" stop-color="#0f1f16"/>
+              </linearGradient>
             </defs>
+            <rect width="800" height="450" fill="url(#bgGrad2)"/>
+            <!-- Decorative grid lines -->
+            <line x1="0" y1="150" x2="800" y2="150" stroke="rgba(74,175,116,.08)" stroke-width="1"/>
+            <line x1="0" y1="300" x2="800" y2="300" stroke="rgba(74,175,116,.08)" stroke-width="1"/>
+            <line x1="200" y1="0" x2="200" y2="450" stroke="rgba(74,175,116,.05)" stroke-width="1"/>
+            <line x1="400" y1="0" x2="400" y2="450" stroke="rgba(74,175,116,.05)" stroke-width="1"/>
+            <line x1="600" y1="0" x2="600" y2="450" stroke="rgba(74,175,116,.05)" stroke-width="1"/>
+            <!-- Laptop (left) -->
+            <g transform="translate(80,100)">
+              <rect x="0" y="40" width="170" height="110" rx="6" fill="url(#screenGrad)" stroke="rgba(74,175,116,.4)" stroke-width="1.5"/>
+              <rect x="8" y="48" width="154" height="94" rx="2" fill="#0f2a1a"/>
+              <!-- Screen content — civic app -->
+              <rect x="12" y="52" width="60" height="5" rx="2" fill="rgba(74,175,116,.5)"/>
+              <rect x="12" y="61" width="146" height="3" rx="1" fill="rgba(74,175,116,.2)"/>
+              <rect x="12" y="68" width="130" height="3" rx="1" fill="rgba(74,175,116,.15)"/>
+              <rect x="12" y="75" width="140" height="3" rx="1" fill="rgba(74,175,116,.15)"/>
+              <!-- Bar chart on screen -->
+              <rect x="12" y="90" width="12" height="30" rx="1" fill="rgba(74,175,116,.6)"/>
+              <rect x="28" y="100" width="12" height="20" rx="1" fill="rgba(200,168,75,.6)"/>
+              <rect x="44" y="95" width="12" height="25" rx="1" fill="rgba(224,92,92,.5)"/>
+              <rect x="60" y="85" width="12" height="35" rx="1" fill="rgba(74,175,116,.4)"/>
+              <rect x="76" y="105" width="12" height="15" rx="1" fill="rgba(200,168,75,.4)"/>
+              <!-- NITIZEN brand on screen -->
+              <text x="100" y="108" font-family="monospace" font-size="7" fill="rgba(74,175,116,.7)" font-weight="700" letter-spacing="2">NITIZEN</text>
+              <text x="100" y="117" font-family="monospace" font-size="5" fill="rgba(168,213,181,.4)">Civic Intelligence</text>
+              <rect x="0" y="150" width="170" height="10" rx="2" fill="#1a4d2e"/>
+              <rect x="-15" y="160" width="200" height="8" rx="2" fill="#2d7a4f"/>
+            </g>
+            <!-- Figure sitting at laptop -->
+            <g transform="translate(195,200)">
+              <circle cx="0" cy="-50" r="22" fill="url(#figGrad2)"/>
+              <rect x="-15" y="-28" width="30" height="50" rx="5" fill="url(#figGrad2)"/>
+              <!-- Arms reaching forward -->
+              <rect x="-30" y="-15" width="35" height="8" rx="4" fill="url(#figGrad2)"/>
+              <rect x="-5" y="-15" width="35" height="8" rx="4" fill="url(#figGrad2)"/>
+              <!-- Legs seated -->
+              <rect x="-14" y="20" width="12" height="30" rx="5" fill="url(#figGrad2)"/>
+              <rect x="2" y="20" width="12" height="30" rx="5" fill="url(#figGrad2)"/>
+            </g>
+            <!-- Central figure standing with newspaper/book -->
+            <g transform="translate(380,130)">
+              <circle cx="0" cy="0" r="25" fill="url(#figGrad2)"/>
+              <rect x="-16" y="22" width="32" height="60" rx="5" fill="url(#figGrad2)"/>
+              <!-- Holding book -->
+              <rect x="-40" y="25" width="12" height="55" rx="4" fill="url(#figGrad2)"/>
+              <rect x="-56" y="20" width="32" height="44" rx="3" fill="#fff" stroke="rgba(26,77,46,.2)" stroke-width="1"/>
+              <line x1="-53" y1="28" x2="-27" y2="28" stroke="#2d7a4f" stroke-width="1.2" opacity=".4"/>
+              <line x1="-53" y1="33" x2="-27" y2="33" stroke="#2d7a4f" stroke-width="1" opacity=".3"/>
+              <line x1="-53" y1="38" x2="-34" y2="38" stroke="#2d7a4f" stroke-width="1" opacity=".3"/>
+              <line x1="-53" y1="43" x2="-27" y2="43" stroke="#2d7a4f" stroke-width="1" opacity=".25"/>
+              <text x="-40" y="56" text-anchor="middle" font-family="Georgia,serif" font-size="6" font-style="italic" fill="#1a4d2e" opacity=".6">Conscience</text>
+              <text x="-40" y="63" text-anchor="middle" font-family="Georgia,serif" font-size="6" font-style="italic" fill="#1a4d2e" opacity=".6">Letters</text>
+              <!-- Other arm raised with fist -->
+              <rect x="17" y="22" width="12" height="45" rx="4" fill="url(#figGrad2)"/>
+              <rect x="22" y="12" width="18" height="16" rx="3" fill="#1a4d2e"/>
+              <!-- Legs -->
+              <rect x="-14" y="80" width="12" height="60" rx="5" fill="url(#figGrad2)"/>
+              <rect x="2" y="80" width="12" height="60" rx="5" fill="url(#figGrad2)"/>
+              <ellipse cx="-8" cy="140" rx="10" ry="5" fill="#0f1f16"/>
+              <ellipse cx="8" cy="140" rx="10" ry="5" fill="#0f1f16"/>
+            </g>
+            <!-- Right figure with phone (AskNaija) -->
+            <g transform="translate(580,160)">
+              <circle cx="0" cy="0" r="22" fill="url(#figGrad2)" opacity=".85"/>
+              <rect x="-14" y="20" width="28" height="52" rx="5" fill="url(#figGrad2)" opacity=".85"/>
+              <!-- Phone in hand -->
+              <rect x="14" y="18" width="12" height="48" rx="4" fill="url(#figGrad2)" opacity=".8"/>
+              <rect x="22" y="5" width="28" height="48" rx="4" fill="#1a4d2e" stroke="rgba(74,175,116,.4)" stroke-width="1"/>
+              <rect x="25" y="10" width="22" height="36" rx="2" fill="#0f2a1a"/>
+              <text x="36" y="23" text-anchor="middle" font-family="monospace" font-size="5" fill="#4aaf74" font-weight="700">ASK</text>
+              <text x="36" y="30" text-anchor="middle" font-family="monospace" font-size="5" fill="#4aaf74">NAIJA</text>
+              <rect x="28" y="34" width="16" height="2" rx="1" fill="rgba(74,175,116,.3)"/>
+              <rect x="28" y="38" width="14" height="2" rx="1" fill="rgba(74,175,116,.2)"/>
+              <rect x="28" y="42" width="15" height="2" rx="1" fill="rgba(74,175,116,.2)"/>
+              <!-- Other arm -->
+              <rect x="-26" y="22" width="12" height="44" rx="4" fill="url(#figGrad2)" opacity=".8"/>
+              <rect x="-14" y="72" width="12" height="48" rx="5" fill="url(#figGrad2)" opacity=".85"/>
+              <rect x="0" y="72" width="12" height="48" rx="5" fill="url(#figGrad2)" opacity=".85"/>
+              <ellipse cx="-8" cy="120" rx="9" ry="4" fill="#0f1f16" opacity=".6"/>
+              <ellipse cx="6" cy="120" rx="9" ry="4" fill="#0f1f16" opacity=".6"/>
+            </g>
+            <!-- Nigerian flag small detail top-right -->
+            <g transform="translate(730,20)">
+              <rect x="0" y="0" width="12" height="20" fill="#008751"/>
+              <rect x="12" y="0" width="12" height="20" fill="#ffffff"/>
+              <rect x="24" y="0" width="12" height="20" fill="#008751"/>
+              <line x1="18" y1="20" x2="18" y2="35" stroke="#1a4d2e" stroke-width="1"/>
+            </g>
+            <!-- Connecting dotted lines between figures -->
+            <line x1="250" y1="240" x2="340" y2="240" stroke="rgba(74,175,116,.2)" stroke-width="1" stroke-dasharray="4 4"/>
+            <line x1="430" y1="240" x2="530" y2="260" stroke="rgba(74,175,116,.2)" stroke-width="1" stroke-dasharray="4 4"/>
+            <!-- Rising data points -->
+            <circle cx="300" cy="180" r="4" fill="#4aaf74" opacity=".5"/>
+            <circle cx="320" cy="155" r="3" fill="#4aaf74" opacity=".35"/>
+            <circle cx="308" cy="130" r="2" fill="#4aaf74" opacity=".2"/>
+            <circle cx="500" cy="150" r="4" fill="#c8a84b" opacity=".45"/>
+            <circle cx="520" cy="120" r="2.5" fill="#c8a84b" opacity=".3"/>
+            <!-- Ground shadow -->
+            <rect x="0" y="390" width="800" height="60" fill="rgba(74,175,116,.05)"/>
+            <!-- Bottom label -->
+            <text x="400" y="440" text-anchor="middle" font-family="'Space Mono',monospace" font-size="11" letter-spacing="8" fill="#1a4d2e" opacity=".15" font-weight="700">NITIZEN</text>
             <rect width="800" height="450" fill="url(#bgGrad)"/>
             <!-- Ground -->
             <rect x="0" y="380" width="800" height="70" fill="#d0e8d8" opacity=".5"/>
@@ -2523,6 +2954,114 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <h3>Reaching Every <em>Nigerian Corner</em></h3>
         <p>NITIZEN is designed for scale — from urban Lagos to rural Yobe, every Nigerian with a smartphone is our audience. The 2027 elections are the first major milestone. The mission is generational.</p>
       </div>
+
+    <!-- Nigeria Coverage SVG -->
+    <div class="nigeria-reach">
+      <div>
+        <svg viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stylized map of Nigeria showing NITIZEN's reach across all 36 states">
+          <!-- Simplified Nigeria silhouette as abstract shape -->
+          <defs>
+            <radialGradient id="mapGlow" cx="50%" cy="50%" r="60%">
+              <stop offset="0%" stop-color="rgba(74,175,116,.3)"/>
+              <stop offset="100%" stop-color="transparent"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="160" cy="180" rx="140" ry="160" fill="url(#mapGlow)"/>
+          <!-- Abstract Nigeria shape - simplified polygon -->
+          <path d="M60,80 L90,50 L140,45 L190,48 L240,60 L275,90 L285,130 L290,170 L280,210 L265,245 L250,275 L230,295 L200,310 L175,320 L150,315 L125,305 L100,285 L80,260 L65,230 L50,195 L45,155 L50,115 Z" 
+                fill="rgba(74,175,116,.12)" stroke="rgba(74,175,116,.35)" stroke-width="2"/>
+          <!-- State grid dots representing 36 states -->
+          <!-- North: Kebbi, Sokoto, Zamfara, Katsina, Kano, Jigawa, Yobe, Borno -->
+          <circle cx="75" cy="100" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="100" cy="80" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="130" cy="72" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="160" cy="70" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="190" cy="72" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="220" cy="78" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="245" cy="90" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="260" cy="110" r="5" fill="#4aaf74" opacity=".7"/>
+          <!-- Middle Belt -->
+          <circle cx="80" cy="135" r="5" fill="#2d7a4f" opacity=".8"/>
+          <circle cx="110" cy="120" r="5" fill="#2d7a4f" opacity=".8"/>
+          <circle cx="140" cy="115" r="5" fill="#2d7a4f" opacity=".8"/>
+          <circle cx="170" cy="112" r="5" fill="#2d7a4f" opacity=".8"/>
+          <circle cx="200" cy="118" r="5" fill="#2d7a4f" opacity=".8"/>
+          <circle cx="230" cy="130" r="5" fill="#2d7a4f" opacity=".8"/>
+          <circle cx="258" cy="145" r="5" fill="#2d7a4f" opacity=".8"/>
+          <!-- FCT area highlighted -->
+          <circle cx="160" cy="160" r="9" fill="#c8a84b" opacity=".85"/>
+          <circle cx="160" cy="160" r="14" fill="none" stroke="#c8a84b" stroke-width="1.5" opacity=".4"/>
+          <text x="172" y="157" font-family="'Space Mono',monospace" font-size="7" fill="#c8a84b" opacity=".7">FCT</text>
+          <!-- South West and South South -->
+          <circle cx="80" cy="175" r="5" fill="#1a4d2e" opacity=".9"/>
+          <circle cx="108" cy="185" r="5" fill="#1a4d2e" opacity=".9"/>
+          <circle cx="130" cy="180" r="5" fill="#1a4d2e" opacity=".9"/>
+          <circle cx="195" cy="168" r="5" fill="#1a4d2e" opacity=".9"/>
+          <circle cx="225" cy="175" r="5" fill="#1a4d2e" opacity=".9"/>
+          <circle cx="250" cy="185" r="5" fill="#1a4d2e" opacity=".9"/>
+          <circle cx="270" cy="175" r="5" fill="#1a4d2e" opacity=".9"/>
+          <!-- South row -->
+          <circle cx="85" cy="215" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="110" cy="230" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="135" cy="240" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="160" cy="240" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="185" cy="235" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="210" cy="220" r="5" fill="#4aaf74" opacity=".7"/>
+          <circle cx="235" cy="210" r="5" fill="#4aaf74" opacity=".7"/>
+          <!-- Lagos highlighted -->
+          <circle cx="80" cy="260" r="8" fill="#4aaf74" opacity=".9"/>
+          <circle cx="80" cy="260" r="14" fill="none" stroke="#4aaf74" stroke-width="1.5" opacity=".35"/>
+          <text x="92" y="257" font-family="'Space Mono',monospace" font-size="6.5" fill="#4aaf74" opacity=".75">Lagos</text>
+          <!-- Count -->
+          <text x="160" y="310" text-anchor="middle" font-family="'EB Garamond',serif" font-size="32" font-weight="700" fill="rgba(74,175,116,.25)">36+</text>
+          <text x="160" y="325" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="rgba(74,175,116,.4)" letter-spacing="2">STATES</text>
+          <!-- Connecting lines (network effect) -->
+          <line x1="80" y1="260" x2="160" y2="160" stroke="rgba(74,175,116,.15)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="160" y1="160" x2="260" y2="110" stroke="rgba(74,175,116,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="160" y1="160" x2="100" y2="80" stroke="rgba(74,175,116,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+          <line x1="160" y1="160" x2="200" y2="235" stroke="rgba(74,175,116,.12)" stroke-width="1" stroke-dasharray="3 4"/>
+        </svg>
+      </div>
+      <div class="reach-stats">
+        <div class="section-label" style="color:var(--green-light)">Geographic Reach</div>
+        <h3 style="font-family:var(--display);font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:1.5rem">Coverage Across <em style="font-style:italic;color:var(--green-light)">Every Zone</em></h3>
+        <div class="reach-stat-row">
+          <div class="reach-label">North West</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%"></div></div>
+          <div class="reach-val">7 States</div>
+        </div>
+        <div class="reach-stat-row">
+          <div class="reach-label">North East</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%"></div></div>
+          <div class="reach-val">6 States</div>
+        </div>
+        <div class="reach-stat-row">
+          <div class="reach-label">North Central</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%"></div></div>
+          <div class="reach-val">7 States</div>
+        </div>
+        <div class="reach-stat-row">
+          <div class="reach-label">South West</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%"></div></div>
+          <div class="reach-val">6 States</div>
+        </div>
+        <div class="reach-stat-row">
+          <div class="reach-label">South South</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%"></div></div>
+          <div class="reach-val">6 States</div>
+        </div>
+        <div class="reach-stat-row">
+          <div class="reach-label">South East</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%"></div></div>
+          <div class="reach-val">5 States</div>
+        </div>
+        <div class="reach-stat-row">
+          <div class="reach-label">FCT</div>
+          <div class="reach-bar-wrap"><div class="reach-bar-fill" style="width:100%;background:linear-gradient(90deg,#c8a84b,#f0dfa0)"></div></div>
+          <div class="reach-val" style="color:var(--gold-light)">Abuja</div>
+        </div>
+      </div>
+    </div>
       <div class="vision-numbers">
         <div class="vision-stat"><div class="num">36+</div><div class="lbl">States Covered</div></div>
         <div class="vision-stat"><div class="num">1M+</div><div class="lbl">Citizens to Reach</div></div>
@@ -2715,6 +3254,86 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <div class="metric-card"><p class="label">Sustainability</p><p class="val">Self-sustaining civic media model beyond grant funding</p></div>
       </div>
     </div>
+
+  <!-- CIVIC GAP INFOGRAPHIC -->
+  <div class="civic-gap-infographic reveal">
+    <div class="section-label">By the Numbers</div>
+    <h3 style="font-family:var(--display);font-size:1.4rem;font-weight:700;color:var(--green-deep)">Nigeria's Civic Engagement Gap — <em style="font-style:italic;color:var(--green-mid)">Why NITIZEN Exists</em></h3>
+    <div class="gap-grid">
+      <div class="gap-cell">
+        <span class="gap-icon">🧑‍🤝‍🧑</span>
+        <div class="gap-num">100M+</div>
+        <div class="gap-label">Young Nigerians</div>
+      </div>
+      <div class="gap-cell">
+        <span class="gap-icon">📊</span>
+        <div class="gap-num">28%</div>
+        <div class="gap-label">Youth Voter Turnout</div>
+      </div>
+      <div class="gap-cell">
+        <span class="gap-icon">⚡</span>
+        <div class="gap-num">4hrs</div>
+        <div class="gap-label">Daily Power Supply</div>
+      </div>
+      <div class="gap-cell">
+        <span class="gap-icon">🎓</span>
+        <div class="gap-num">67M</div>
+        <div class="gap-label">Out-of-School Children</div>
+      </div>
+    </div>
+    <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:200px">
+        <div class="data-bar-chart">
+          <div class="bar-row">
+            <div class="bar-label">Power</div>
+            <div class="bar-track"><div class="bar-fill-red" style="width:18%"></div></div>
+            <div class="bar-val">18/100</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Education</div>
+            <div class="bar-track"><div class="bar-fill-amber" style="width:34%"></div></div>
+            <div class="bar-val">34/100</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Healthcare</div>
+            <div class="bar-track"><div class="bar-fill-red" style="width:22%"></div></div>
+            <div class="bar-val">22/100</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Security</div>
+            <div class="bar-track"><div class="bar-fill-amber" style="width:38%"></div></div>
+            <div class="bar-val">38/100</div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">Civic Eng.</div>
+            <div class="bar-track"><div class="bar-fill-green" style="width:55%"></div></div>
+            <div class="bar-val">Target</div>
+          </div>
+        </div>
+        <p style="font-family:var(--mono);font-size:.58rem;color:var(--muted);margin-top:.5rem;letter-spacing:.05em">Sector performance scores — The Ledger Q1 2025</p>
+      </div>
+      <div style="flex:1;min-width:200px;display:flex;align-items:center;justify-content:center">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="max-width:180px;width:100%">
+          <!-- Civic participation donut chart -->
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#e8f5ee" stroke-width="22"/>
+          <!-- 28% engaged = 100 degrees; rest = not engaged -->
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#4aaf74" stroke-width="22"
+            stroke-dasharray="125 314" stroke-dashoffset="78" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="70" fill="none" stroke="#c8a84b" stroke-width="22"
+            stroke-dasharray="50 314" stroke-dashoffset="-47" stroke-linecap="round"/>
+          <text x="100" y="94" text-anchor="middle" font-family="'EB Garamond',serif" font-size="28" font-weight="700" fill="#1a4d2e">28%</text>
+          <text x="100" y="112" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#6b8f76" letter-spacing="1">Engaged</text>
+          <text x="100" y="123" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#6b8f76">Citizens</text>
+          <!-- Legend -->
+          <rect x="28" y="178" width="10" height="8" rx="1" fill="#4aaf74"/>
+          <text x="41" y="186" font-family="'Space Mono',monospace" font-size="7" fill="#6b8f76">Engaged</text>
+          <rect x="100" y="178" width="10" height="8" rx="1" fill="#c8a84b"/>
+          <text x="113" y="186" font-family="'Space Mono',monospace" font-size="7" fill="#6b8f76">Voting</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
   </section>
 
   <section style="background:var(--green-deep);padding:4rem;">
@@ -3634,6 +4253,42 @@ function handleNotify(e) {
 </div>
 
 <!-- TRANSPARENCY NOTICE -->
+
+  <!-- AskNaija Visual Banner -->
+  <div style="background:linear-gradient(135deg,#1a4d2e 0%,#0f2a1a 100%);padding:3rem 4rem;border-bottom:1px solid rgba(74,175,116,.15);position:relative;overflow:hidden">
+    <div style="position:absolute;right:0;top:0;bottom:0;width:40%;display:flex;align-items:center;justify-content:center;opacity:.12;pointer-events:none" aria-hidden="true">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <circle cx="150" cy="150" r="120" fill="none" stroke="#4aaf74" stroke-width="1"/>
+        <circle cx="150" cy="150" r="90" fill="none" stroke="#4aaf74" stroke-width="1"/>
+        <circle cx="150" cy="150" r="60" fill="none" stroke="#4aaf74" stroke-width="1"/>
+        <circle cx="150" cy="150" r="30" fill="rgba(74,175,116,.2)"/>
+        <!-- Radial lines -->
+        <line x1="150" y1="30" x2="150" y2="270" stroke="#4aaf74" stroke-width=".5" opacity=".5"/>
+        <line x1="30" y1="150" x2="270" y2="150" stroke="#4aaf74" stroke-width=".5" opacity=".5"/>
+        <line x1="65" y1="65" x2="235" y2="235" stroke="#4aaf74" stroke-width=".5" opacity=".3"/>
+        <line x1="235" y1="65" x2="65" y2="235" stroke="#4aaf74" stroke-width=".5" opacity=".3"/>
+        <text x="150" y="155" text-anchor="middle" font-family="'Space Mono',monospace" font-size="14" font-weight="700" fill="#4aaf74">AI</text>
+      </svg>
+    </div>
+    <div style="position:relative;z-index:1;max-width:600px">
+      <div class="section-label" style="color:var(--green-light)">Knowledge Architecture</div>
+      <h3 style="font-family:var(--display);font-size:1.4rem;font-weight:700;color:#fff;margin-bottom:.8rem">AskNaija answers from <em style="font-style:italic;color:var(--green-light)">17 Civic Categories</em></h3>
+      <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem">
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🗳️ Elections</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">⚖️ Rights</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🏛️ Government</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">📊 Economy</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🔒 Security</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🏥 Health</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">📚 Education</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🔍 Anti-Corruption</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🇳🇬 History</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">💰 Finance</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🌿 Climate</span>
+        <span style="background:rgba(74,175,116,.15);border:1px solid rgba(74,175,116,.25);color:var(--green-light);font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px">🛡️ Privacy</span>
+      </div>
+    </div>
+  </div>
 <div class="transparency-bar">
   <p>&#9881;&#65039; <strong>Transparency:</strong> AskNaija uses a hybrid intelligence system: verified, sourced responses for known civic topics come directly from NITIZEN&#8217;s curated knowledge base (flagged <strong>VERIFIED KB</strong>); for broader or follow-up questions, it draws on a large language model (Claude, by Anthropic) operating under a civic-only system prompt. Both modes will always flag uncertainty and direct you to official sources for verification. &nbsp;|&nbsp; <a href="#kb-info">About the system &#8595;</a> &nbsp;|&nbsp; <a href="#privacy">Data Privacy &#8595;</a></p>
 </div>
@@ -4079,6 +4734,32 @@ function handleKey(e) {
   </div>
 </div>
 
+
+<!-- SENAL 4 CHANNELS VISUAL -->
+<div style="background:var(--ink);padding-bottom:2rem">
+  <div class="senal-channels-visual">
+    <div class="senal-ch" style="background:#0f0808">
+      <div class="senal-ch-circle" style="background:rgba(224,92,92,.15)">🚨</div>
+      <div class="senal-ch-name" style="color:#e8a0a0">RedFlag</div>
+      <div class="senal-ch-desc" style="color:rgba(255,255,255,.4)">Report police brutality, government abuse, corruption, and rights violations — building a permanent civic evidence archive.</div>
+    </div>
+    <div class="senal-ch" style="background:#0c0c08">
+      <div class="senal-ch-circle" style="background:rgba(200,168,75,.15)">📊</div>
+      <div class="senal-ch-name" style="color:var(--gold-light)">The Ledger</div>
+      <div class="senal-ch-desc" style="color:rgba(255,255,255,.4)">Track sector performance with real data — from power to education, security to healthcare. Scores updated quarterly.</div>
+    </div>
+    <div class="senal-ch" style="background:#080d06">
+      <div class="senal-ch-circle" style="background:rgba(74,175,116,.12)">🎙️</div>
+      <div class="senal-ch-name" style="color:var(--green-light)">OpenMic</div>
+      <div class="senal-ch-desc" style="color:rgba(255,255,255,.4)">Testimonies, civil discourse, and community voices — every Nigerian's story matters and deserves to be heard.</div>
+    </div>
+    <div class="senal-ch" style="background:#0a0c14">
+      <div class="senal-ch-circle" style="background:rgba(167,139,250,.12)">🎨</div>
+      <div class="senal-ch-name" style="color:#c4b5fd">Critika</div>
+      <div class="senal-ch-desc" style="color:rgba(255,255,255,.4)">Accountability through art — poetry, satire, essays, visual art and creative commentary holding power to account.</div>
+    </div>
+  </div>
+</div>
 <div class="ch-nav-wrap">
   <div class="ch-nav">
     <a href="#redflag" class="ch-tab tab-rf">🚨 RedFlag</a>
