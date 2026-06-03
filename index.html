@@ -13,10 +13,51 @@
 <meta name="twitter:site" content="@NitizenNG"/>
 <meta name="twitter:title" content="NITIZEN — Civic Intelligence for a New Nigeria"/>
 <meta name="twitter:description" content="Equipping Nigerians with knowledge, tools and voice to engage meaningfully with governance."/>
+<!-- U2: og:image and twitter:image for rich social share previews -->
+<meta property="og:image" content="https://nitizen.ng/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:image" content="https://nitizen.ng/og-image.png"/>
+<!-- M3: canonical URL — prevents duplicate indexing of hash routes -->
+<link rel="canonical" href="https://nitizen.ng/"/>
 <title>NITIZEN — Civic Intelligence for a New Nigeria</title>
+<!-- U1: Favicon — inline SVG data URI, no external file dependency -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%231a4d2e'/%3E%3Ctext x='16' y='23' text-anchor='middle' font-family='monospace' font-weight='700' font-size='14' fill='%234aaf74'%3ENZ%3C/text%3E%3C/svg%3E"/>
+<link rel="alternate icon" type="image/png" href="https://nitizen.ng/favicon.png"/>
+<link rel="apple-touch-icon" href="https://nitizen.ng/apple-touch-icon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<!-- U5: Preload critical font weights used in hero/nav to eliminate FOUT -->
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/ebgaramond/v30/SlGDmQSNjdsmc35JDF1K5E55YMjF_7DPuGi-6_RUA4V-e6yHgQ.woff2"/>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/spacemono/v13/i7dPIFZifjKcF5UAWdDRUEZ2RFq7AwU.woff2"/>
 <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&family=Average&family=Space+Mono:wght@400;700&family=Sakkal+Majalla:wght@400;700&display=swap" rel="stylesheet"/>
+<!-- U2: JSON-LD structured data for Google Search rich results -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "NITIZEN",
+  "alternateName": "Civic Intelligence for a New Nigeria",
+  "url": "https://nitizen.ng",
+  "logo": "https://nitizen.ng/og-image.png",
+  "description": "NITIZEN equips Nigerians with the knowledge, tools and voice to engage meaningfully with governance.",
+  "foundingDate": "2026",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "hello@nitizen.ng",
+    "contactType": "customer support"
+  },
+  "sameAs": [
+    "https://twitter.com/NitizenNG",
+    "https://linkedin.com/company/nitizenng",
+    "https://facebook.com/NitizenNG",
+    "https://instagram.com/NitizenNG"
+  ]
+}
+</script>
+<!-- U6: Robots meta — allow all crawlers; also deploy /robots.txt and /sitemap.xml at root -->
+<meta name="robots" content="index, follow"/>
+<!-- Sitemap: https://nitizen.ng/sitemap.xml should be created and submitted to Google Search Console -->
 <style>
 /* ═══════════════════════════════════════
    NITIZEN — Shared CSS
@@ -381,16 +422,6 @@ footer p { font-family: var(--mono); font-size: .7rem; }
 section { padding: 5rem 4rem; }
 
 /* ── ABOUT PAGE FIXES ── */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-top: 3rem;
-  align-items: start;
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-}
 .about-body p {
   font-family: var(--body);
   font-size: 1.05rem;
@@ -1230,30 +1261,6 @@ section { padding: 5rem 4rem; }
 @media(max-width:900px){.art-header{padding:6rem 1.5rem 3rem;}.art-body{padding:3rem 1.2rem;}}
 
 
-/* === cl-article-2.html === */
-
-.art-header{background:var(--green-deep);padding:7rem 4rem 4rem;}
-.art-body{max-width:720px;margin:0 auto;padding:5rem 2rem;}
-.art-body p{font-family:var(--body);font-size:1.08rem;line-height:1.95;color:var(--ink-light);margin-bottom:1.4rem;}
-.art-body h3{font-family:var(--display);font-size:1.45rem;font-weight:700;color:var(--green-deep);margin:2.2rem 0 .8rem;}
-.art-body blockquote{border-left:3px solid var(--green-soft);padding:1rem 1.6rem;background:var(--green-mist);margin:1.8rem 0;font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--green-deep);line-height:1.72;}
-.art-footer-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1.5rem;margin-top:2rem;line-height:1.6;}
-.art-nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
-@media(max-width:900px){.art-header{padding:6rem 1.5rem 3rem;}.art-body{padding:3rem 1.2rem;}}
-
-
-/* === cl-article-3.html === */
-
-.art-header{background:var(--green-deep);padding:7rem 4rem 4rem;}
-.art-body{max-width:720px;margin:0 auto;padding:5rem 2rem;}
-.art-body p{font-family:var(--body);font-size:1.08rem;line-height:1.95;color:var(--ink-light);margin-bottom:1.4rem;}
-.art-body h3{font-family:var(--display);font-size:1.45rem;font-weight:700;color:var(--green-deep);margin:2.2rem 0 .8rem;}
-.art-body blockquote{border-left:3px solid var(--green-soft);padding:1rem 1.6rem;background:var(--green-mist);margin:1.8rem 0;font-family:var(--display);font-style:italic;font-size:1.15rem;color:var(--green-deep);line-height:1.72;}
-.art-footer-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);border-top:1px solid var(--border);padding-top:1.5rem;margin-top:2rem;line-height:1.6;}
-.art-nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
-@media(max-width:900px){.art-header{padding:6rem 1.5rem 3rem;}.art-body{padding:3rem 1.2rem;}}
-
-
 /* === cl-membership.html === */
 
 .mem-hero{background:var(--green-deep);padding:6rem 4rem 4rem;position:relative;overflow:hidden;}
@@ -1531,8 +1538,7 @@ section { padding: 5rem 4rem; }
 .r-meta{font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.28);margin-top:.7rem;}
 .cta-bar{margin:2rem 4rem;padding:2rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
 .cta-bar p{font-family:var(--body);font-size:.95rem;line-height:1.72;max-width:500px;}
-.btn-red{background:#e05c5c;color:#fff;padding:.82rem 1.85rem;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;border-radius:2px;white-space:nowrap;transition:background .2s,transform .15s;}
-.btn-red:hover{background:#c94f4f;transform:translateY(-1px);}
+/* btn-red: see redflag-submit section below for canonical definition */
 /* LEDGER */
 .ldg-bg{background:var(--off-white);}
 .ch-hd-ldg{padding:3rem 4rem 2rem;background:var(--off-white);border-bottom:1px solid var(--border);display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
@@ -1584,8 +1590,7 @@ section { padding: 5rem 4rem; }
 .crt-ttl{font-family:var(--accent);font-size:1.35rem;color:#fff;line-height:1.25;margin-bottom:.6rem;}
 .crt-dsc{font-family:var(--body);font-size:.87rem;line-height:1.7;color:rgba(200,185,255,.68);margin-bottom:.8rem;}
 .crt-meta{font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.28);}
-.btn-purple{background:#7c3aed;color:#fff;padding:.82rem 1.85rem;font-family:var(--mono);font-size:.74rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;border-radius:2px;white-space:nowrap;transition:background .2s,transform .15s;}
-.btn-purple:hover{background:#6d28d9;transform:translateY(-1px);}
+/* btn-purple: see critika-submit section below for canonical definition */
 @media(max-width:900px){
   .sg-hero{padding:6rem 1.5rem 4rem;} .sg-hero::before{display:none;}
   .ch-nav{padding:0 1.5rem;} .urgent-bar{padding:1.2rem 1.5rem;}
@@ -1612,7 +1617,7 @@ section { padding: 5rem 4rem; }
 .rf-form select option{background:#0f0808;color:#fff;}
 .rf-form textarea{height:150px;resize:vertical;}
 .rf-form .note{font-family:var(--body);font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.65;padding:.8rem 1rem;background:rgba(224,92,92,.06);border-left:2px solid rgba(224,92,92,.4);border-radius:0 2px 2px 0;}
-.btn-red{background:#e05c5c;color:#fff;padding:.9rem 2rem;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .2s,transform .15s;width:100%;}
+.btn-red{background:#e05c5c;color:#fff;padding:.82rem 1.85rem;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;border-radius:2px;white-space:nowrap;transition:background .2s,transform .15s;}
 .btn-red:hover{background:#c94f4f;transform:translateY(-1px);}
 .btn-red:disabled{opacity:.6;cursor:default;transform:none;}
 .form-success{display:none;padding:2rem;background:rgba(74,175,116,.1);border:1px solid rgba(74,175,116,.3);border-radius:2px;font-family:var(--display);font-style:italic;color:var(--green-light);font-size:1.1rem;line-height:1.6;}
@@ -1684,7 +1689,7 @@ section { padding: 5rem 4rem; }
 .fmt-item{background:rgba(167,139,250,.07);border:1px solid rgba(167,139,250,.15);padding:1rem;border-radius:2px;}
 .fmt-item h5{font-family:var(--display);font-size:.95rem;font-weight:700;color:#c4b5fd;margin-bottom:.25rem;}
 .fmt-item p{font-family:var(--body);font-size:.78rem;line-height:1.55;color:rgba(255,255,255,.45);}
-.btn-purple{background:#7c3aed;color:#fff;padding:.9rem 2rem;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;border-radius:2px;transition:background .2s,transform .15s;width:100%;}
+.btn-purple{background:#7c3aed;color:#fff;padding:.82rem 1.85rem;font-family:var(--mono);font-size:.76rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border:none;cursor:pointer;text-decoration:none;display:inline-block;border-radius:2px;white-space:nowrap;transition:background .2s,transform .15s;}
 .btn-purple:hover{background:#6d28d9;transform:translateY(-1px);}
 .btn-purple:disabled{opacity:.6;cursor:default;transform:none;}
 .form-success{display:none;padding:2rem;background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.3);border-radius:2px;font-family:var(--display);font-style:italic;color:#c4b5fd;font-size:1.1rem;line-height:1.6;}
@@ -2168,7 +2173,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 </head>
 <body>
 
-<a href="#home" class="skip-link">Skip to content</a>
+<a href="#main" class="skip-link">Skip to content</a>
 <nav id="main-nav" role="navigation" aria-label="Main navigation">
   <div style="display:flex;align-items:center;gap:.9rem">
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" type="button">
@@ -2193,10 +2198,10 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   <a href="#initiatives">Initiatives</a>
   <a href="#cl">Conscience Letters</a>
   <a href="#senal">See-gnal</a>
-  <a href="#senal" style="padding-left:1.5rem;font-size:.72rem">↳ RedFlag</a>
-  <a href="#senal" style="padding-left:1.5rem;font-size:.72rem">↳ The Ledger</a>
-  <a href="#senal" style="padding-left:1.5rem;font-size:.72rem">↳ OpenMic</a>
-  <a href="#senal" style="padding-left:1.5rem;font-size:.72rem">↳ Critika</a>
+  <a href="#redflag" style="padding-left:1.5rem;font-size:.72rem">↳ RedFlag</a>
+  <a href="#ledger-submit" style="padding-left:1.5rem;font-size:.72rem">↳ The Ledger</a>
+  <a href="#openmic-submit" style="padding-left:1.5rem;font-size:.72rem">↳ OpenMic</a>
+  <a href="#critika-submit" style="padding-left:1.5rem;font-size:.72rem">↳ Critika</a>
   <a href="#asknaija">AskNaija</a>
   <a href="#contact">Get Involved</a>
 </div>
@@ -2221,7 +2226,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
   </div>
   <!-- CTA -->
-  <a href="#senal" class="crisis-cta" onclick="if(typeof showPage==='function')showPage('senal')">Read Full Account &rarr;</a>
+  <a href="#senal" class="crisis-cta" onclick="if(typeof showPage==='function'){showPage('senal');setTimeout(function(){var el=document.getElementById('case-rf004');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}},400);}">Read RedFlag Report &rarr;</a>
   <!-- Dismiss -->
   <button class="crisis-close" id="crisisClose" aria-label="Dismiss alert">&times;</button>
 </div>
@@ -2332,8 +2337,13 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         </a>
         <a href="#article-3" class="cl-side-card">
           <div class="article-cat">Legislature · Accountability</div>
-          <div class="art-title" style="font-size:1.05rem">The Legislature We Deserve: On Nigeria's Nigeria's National Assembly Budget and Its Accountability Deficit</div>
+          <div class="art-title" style="font-size:1.05rem">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</div>
           <div class="art-meta">No. 003 · May 2026 · 5 min read</div>
+        </a>
+        <a href="#article-4" class="cl-side-card">
+          <div class="article-cat">Electoral Democracy</div>
+          <div class="art-title" style="font-size:1.05rem">INEC and the Integrity Question: Can We Trust the 2027 Electoral Process?</div>
+          <div class="art-meta">No. 004 &#xB7; May 2026 &#xB7; 6 min read</div>
         </a>
       </div>
     </div>
@@ -2374,18 +2384,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 6px 24px rgba(37,211,102,.55)'"
-  onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 18px rgba(37,211,102,.45)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: ABOUT ═══ -->
@@ -2639,18 +2637,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: INITIATIVES ═══ -->
@@ -2745,18 +2731,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </section>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: CL ═══ -->
@@ -2814,6 +2788,19 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <span class="art-date">May 2026</span>
       </div>
     </a>
+    <a href="#article-4" class="archive-row">
+      <div>
+        <div class="art-num">No. 004 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ&#xB7;CL&#xB7;004 &#xB7; Electoral Democracy</span></div>
+        <div class="art-title">INEC and the Integrity Question: Can We Trust the 2027 Electoral Process?</div>
+        <p class="art-excerpt">The Independent National Electoral Commission oversaw a 2023 election that generated more litigation and citizen outrage than any Fourth Republic contest. The courts upheld the result. Citizens remain unconvinced. With 2027 approaching, what must change &#x2014; and what must citizens do?</p>
+      </div>
+      <div class="art-meta-col">
+        <span class="cl-tag">Electoral Democracy</span>
+        <span class="art-read">6 min read</span>
+        <span class="art-date">May 2026</span>
+      </div>
+    </a>
+
 
     </div>
   </section>
@@ -2827,18 +2814,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: ARTICLE-1 ═══ -->
@@ -2887,18 +2862,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: ARTICLE-2 ═══ -->
@@ -2997,18 +2960,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: ARTICLE-3 ═══ -->
@@ -3053,18 +3004,6 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: MEMBERSHIP ═══ -->
@@ -3184,15 +3123,15 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
             <h5>Nigerian Bank Account Details</h5>
             <div class="bank-row">
               <span class="bank-label">Bank</span>
-              <span class="bank-value" id="bankName"><!-- YOUR BANK NAME --></span>
+              <span class="bank-value" id="bankName">— add bank name —</span>
             </div>
             <div class="bank-row">
               <span class="bank-label">Account Name</span>
-              <span class="bank-value" id="bankAcctName"><!-- YOUR ACCOUNT NAME --></span>
+              <span class="bank-value" id="bankAcctName">— add account name —</span>
             </div>
             <div class="bank-row">
               <span class="bank-label">Account Number</span>
-              <span class="bank-value" id="bankAcct"><!-- YOUR ACCOUNT NUMBER --> <button class="copy-btn" onclick="copyAcct()">Copy</button></span>
+              <span class="bank-value" id="bankAcct">— add account number — <button class="copy-btn" onclick="copyAcct()">Copy</button></span>
             </div>
             <div class="bank-row">
               <span class="bank-label">Amount</span>
@@ -3394,8 +3333,8 @@ function copyAcct() {
   });
   acct = acct.trim();
 
-  if (!acct || acct.indexOf('YOUR ACCOUNT') !== -1 || acct.indexOf('<!--') !== -1) {
-    alert('Bank account details have not been added yet. Please fill them in before publishing.'); return;
+  if (!acct || acct.indexOf('add account') !== -1 || acct.indexOf('—') !== -1) {
+    alert('Bank account details have not been configured yet. Please contact NITIZEN via hello@nitizen.ng to arrange a bank transfer.'); return;
   }
   navigator.clipboard.writeText(acct).then(function() {
     var btn = acctEl.querySelector('.copy-btn');
@@ -3512,18 +3451,6 @@ function notifyBankIntent() {
   <div class="form-success" id="clSuccess">✓ Your pitch has been received. Our editorial team will review and respond within 5–7 working days. Thank you for contributing to Nigeria's civic conversation.</div>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-cl-pitch">
@@ -3537,6 +3464,53 @@ function handleCL(e){
   submitForm(form,'clBtn','✍️ Submit Pitch','clSuccess');
 }
 </script>
+
+
+<!-- &#x2554;&#x2550;&#x2550;&#x2550; PAGE: ARTICLE-4 &#x2550;&#x2550;&#x2550;&#x2557; -->
+<div id="page-article-4" class="spa-page" style="display:none">
+<div class="art-header">
+    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 004</div>
+    <span class="ntz-id-dark">NTZ&#xB7;CL&#xB7;004 &#x2014; Conscience Letters &#xB7; Electoral Democracy &#xB7; NITIZEN Editorial &#xB7; May 2026</span>
+    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy &#xB7; Conscience Letters No. 004</div>
+    <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">INEC and the Integrity Question: Can We Trust the 2027 Electoral Process?</h1>
+    <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-light);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL &#xB7; MAY 2026 &#xB7; 6 MIN READ</p>
+  </div>
+
+  <div class="art-body">
+    <p>The Independent National Electoral Commission carries a name that, for many Nigerians, has become ironic. &#x201C;Independent&#x201D; &#x2014; from what, exactly? The INEC that conducted the 2023 general elections oversaw a process that generated more litigation, more controversy, and more citizen outrage than arguably any election in Nigeria&#x2019;s Fourth Republic history. The Supreme Court eventually upheld the presidential result. <span class="vfy">Verified</span><sup class="ref">[&#xB9;]</sup> But a court&#x2019;s verdict on the legality of a process is not the same as a citizenry&#x2019;s confidence in its integrity.</p>
+    <p>As the country turns its attention toward 2027, the integrity of the electoral process is not merely a procedural question. It is the central question of Nigerian democracy. An election that citizens do not trust &#x2014; regardless of its technical outcomes &#x2014; corrodes the legitimacy of governance and deepens the disengagement that already plagues the republic.</p>
+    <blockquote>&#x201C;An election that citizens do not trust is not a democracy functioning. It is a democracy performing.&#x201D;</blockquote>
+
+    <h3>What Went Wrong in 2023</h3>
+    <p>The 2023 presidential election was, by INEC&#x2019;s own design, supposed to be its most transparent ever. The Bimodal Voter Accreditation System (BVAS) was introduced to prevent the manipulation of voter accreditation.<sup class="ref">[&#xB2;]</sup> The INEC Result Viewing Portal (IReV) was launched with the promise of real-time upload of polling unit results<sup class="ref">[&#xB2;]</sup> &#x2014; a measure designed to make result falsification visible and traceable.</p>
+    <p>Both innovations failed, or were failed, at critical moments. The IReV portal experienced what INEC described as technical difficulties during the critical early hours of result transmission. Many results appeared hours or days late. Discrepancies between polling unit results and collated figures were documented by domestic and international observers. INEC&#x2019;s own officials were arraigned in some states for alleged electoral malpractice. <span class="vfy">Verified</span><sup class="ref">[&#xB3;]</sup></p>
+    <p>The commission, under Chairman Prof. Mahmood Yakubu, maintained that the election was credible. The courts agreed, in the main. But credibility is not only a legal determination &#x2014; it is a social one. And socially, the 2023 election left millions of Nigerians unconvinced.</p>
+
+    <h3>The Road to 2027</h3>
+    <p>What must change before 2027 to restore citizen confidence? Three things, at minimum: transparent technology, independent oversight, and civic preparedness.</p>
+    <p>On technology: INEC must not only deploy electronic systems but must demonstrate, through pre-election public testing and open-source verification, that those systems are tamper-resistant and reliably connected. The failure of IReV in 2023 cannot be excused a second time.</p>
+    <p>On oversight: The composition of INEC&#x2019;s leadership and its appointment process must be revisited. An electoral commission whose chair is appointed solely by the executive, without meaningful legislative or civil society oversight, cannot credibly claim independence. Electoral reform legislation that restructures this dynamic is an urgent democratic necessity.</p>
+    <p>On civic preparedness: NITIZEN exists, in part, to address this third dimension. A citizenry that understands the electoral process &#x2014; that knows how to verify voter registration, identify polling units, document irregularities, and report violations &#x2014; is a citizenry that is harder to disenfranchise. Electoral literacy is not a soft complement to structural reform. It is a structural reform in itself.</p>
+    <p>The 2027 elections are Nigeria&#x2019;s next defining democratic moment. Whether they represent progress or regression will depend significantly on what INEC, the political class, and citizens do between now and then. NITIZEN will be watching &#x2014; and equipping Nigerians to watch too.</p>
+
+    <div class="ref-block">
+      <div class="ref-head">References &amp; Sources</div>
+      <ul class="ref-list">
+        <li><span class="ref-n">[&#xB9;]</span><span>Supreme Court of Nigeria &#x2014; Presidential Election Petition Tribunal (PEPT) ruling: October 26, 2023. Appeal SC/CV/504/2023 dismissed: February 6, 2024. Judgments available via judiciary.gov.ng and reproduced by Premium Times and The Punch.</span></li>
+        <li><span class="ref-n">[&#xB2;]</span><span>INEC, &#x201C;Regulations and Guidelines for the Conduct of Elections&#x201D; 2022 (revised). Electoral Act 2022, Sections 47&#x2013;52. BVAS and IReV specifications: INEC press releases, October&#x2013;December 2022. inecnigeria.org</span></li>
+        <li><span class="ref-n">[&#xB3;]</span><span>EU Election Observation Mission Nigeria 2023 &#x2014; Final Report, July 2023, pp. 28&#x2013;34. YIAGA Africa WATCHING THE VOTE reports, February&#x2013;March 2023. INEC officials arraigned: Federal High Court records, Abuja, Imo, Rivers, and Kano, Q2 2023.</span></li>
+      </ul>
+    </div>
+    <p class="art-footer-note">This piece represents the editorial position of NITIZEN&#x2019;s Conscience Letters initiative. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
+
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from &#x20A6;2,500/mo &#x2192;</a></div>
+    <div class="art-nav">
+      <a href="#article-3" class="btn-outline">&#x2190; Previous Article</a>
+      <a href="#cl" class="btn-primary">Back to Conscience Letters &#x2192;</a>
+    </div>
+  </div>
+
+</div>
 
 <!-- ═══ PAGE: ASKNAIJA ═══ -->
 <div id="page-asknaija" class="spa-page" style="display:none">
@@ -3635,18 +3609,6 @@ function handleCL(e){
 </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-asknaija">
@@ -3673,12 +3635,12 @@ function handleNotify(e) {
 
 <!-- TRANSPARENCY NOTICE -->
 <div class="transparency-bar">
-  <p>&#9881;&#65039; <strong>Transparency:</strong> AskNaija Phase 2 is powered by a large language model (Claude, by Anthropic) operating under a strict civic-only system prompt curated by the NITIZEN editorial team. It reasons from a broad knowledge base including Nigerian legislation, NBS data, CBN reports, electoral law, and governance history. It will always flag uncertainty, never fabricate citations, and will direct you to official sources for verification. &nbsp;|&nbsp; <a href="#kb-info">About the model &#8595;</a> &nbsp;|&nbsp; <a href="#privacy-policy">Data Privacy &#8595;</a></p>
+  <p>&#9881;&#65039; <strong>Transparency:</strong> AskNaija uses a hybrid intelligence system: verified, sourced responses for known civic topics come directly from NITIZEN&#8217;s curated knowledge base (flagged <strong>VERIFIED KB</strong>); for broader or follow-up questions, it draws on a large language model (Claude, by Anthropic) operating under a civic-only system prompt. Both modes will always flag uncertainty and direct you to official sources for verification. &nbsp;|&nbsp; <a href="#kb-info">About the system &#8595;</a> &nbsp;|&nbsp; <a href="#privacy">Data Privacy &#8595;</a></p>
 </div>
 
 <!-- PRIVACY BAR -->
 <div class="privacy-bar">
-  <p>&#128737;&#65039; <strong>Data Notice (NDPC):</strong> Your questions are sent to the Anthropic API solely to generate your response and are not stored by NITIZEN. No personal data is retained. Anthropic API terms prohibit training on API inputs. Your use of this tool is anonymous. &nbsp;|&nbsp; <a href="#privacy-policy">Full Privacy Policy &#8595;</a></p>
+  <p>&#128737;&#65039; <strong>Data Notice (NDPC):</strong> Your questions are sent to the Anthropic API solely to generate your response and are not stored by NITIZEN. No personal data is retained. Anthropic API terms prohibit training on API inputs. Your use of this tool is anonymous. &nbsp;|&nbsp; <a href="#privacy">Full Privacy Policy &#8595;</a></p>
 </div>
 
 <!-- CHAT INTERFACE -->
@@ -3690,12 +3652,12 @@ function handleNotify(e) {
   <div class="chat-panel">
     <div class="chat-window" id="chatWindow">
       <div class="msg bot">
-        <div class="msg-label">AskNaija <span style="font-family:var(--mono);font-size:.58rem;opacity:.55;font-weight:400;letter-spacing:.06em;margin-left:.4rem">AI &middot; Phase 2</span></div>
-        <div class="msg-bubble">Welcome to AskNaija &#8212; Nigeria&#8217;s AI civic intelligence tool.
+        <div class="msg-label">AskNaija <span style="font-family:var(--mono);font-size:.55rem;opacity:.55;font-weight:400;letter-spacing:.06em;margin-left:.4rem">KB + AI &middot; Phase 2</span></div>
+        <div class="msg-bubble">Welcome to AskNaija &#8212; Nigeria&#8217;s civic intelligence tool.
 
 I can answer questions across every dimension of Nigerian public life: elections, voter registration and PVCs, constitutional rights, Nigerian history, economic policy, the fuel subsidy, inflation, security, healthcare and education systems, anti-corruption institutions, the 2027 election timeline, and much more.
 
-I reason from a broad civic knowledge base &#8212; legislation, NBS data, INEC regulations, CBN reports &#8212; and I will always be transparent about the limits of my knowledge. If something has changed recently, I will say so and point you to the official source.
+I draw from a curated, sourced knowledge base for verified civic topics &#8212; and use AI for broader or follow-up questions. I will always be transparent about the limits of my knowledge and point you to official sources.
 
 Ask me anything about Nigeria.</div>
       </div>
@@ -3723,7 +3685,7 @@ Ask me anything about Nigeria.</div>
       <button onclick="clearConversation()" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(168,213,181,.45);background:none;border:none;cursor:pointer;padding:.2rem 0;transition:color .2s" onmouseover="this.style.color='rgba(168,213,181,.85)'" onmouseout="this.style.color='rgba(168,213,181,.45)'">&#8634; New conversation</button>
       <div id="msgCount" style="font-family:var(--mono);font-size:.58rem;color:rgba(168,213,181,.3);letter-spacing:.05em"></div>
     </div>
-    <div class="disclaimer">AskNaija Phase 2 &#8212; AI-powered civic intelligence. Responses are generated by a language model and may contain errors. Always verify critical information with official government sources. This tool provides civic education, not legal or financial advice. Questions are not stored by NITIZEN. &nbsp;|&nbsp; NDPC Compliant &nbsp;|&nbsp; <a href="#privacy-policy" style="color:var(--green-mid)">Privacy Policy</a></div>
+    <div class="disclaimer">AskNaija Phase 2 &#8212; AI-powered civic intelligence. Responses are generated by a language model and may contain errors. Always verify critical information with official government sources. This tool provides civic education, not legal or financial advice. Questions are not stored by NITIZEN. &nbsp;|&nbsp; NDPC Compliant &nbsp;|&nbsp; <a href="#privacy" style="color:var(--green-mid)">Privacy Policy</a></div>
   </div>
 </div>
 
@@ -3731,8 +3693,8 @@ Ask me anything about Nigeria.</div>
 <div class="kb-section" id="kb-info">
   <div class="section-label">About AskNaija Phase 2</div>
   <h2 class="section-title reveal">How AskNaija <em>Works</em></h2>
-  <p class="reveal" style="font-family:var(--body);font-size:1rem;line-height:1.82;color:var(--ink-light);max-width:640px;margin-top:.8rem">AskNaija Phase 2 is powered by Claude, Anthropic&#8217;s large language model, operating under a NITIZEN-curated civic system prompt that instructs it to: answer questions only within the domain of Nigerian civic and governance life; always flag where its knowledge may be outdated; never fabricate specific dates, statistics, or citations; and always direct users to official government sources for critical decisions. The model&#8217;s training encompasses Nigerian legislation, electoral law, NBS datasets, governance history, constitutional law, and broad civic knowledge up to mid-2025.</p>
-  <p class="reveal" style="font-family:var(--body);font-size:.92rem;line-height:1.8;color:var(--ink-light);max-width:640px;margin-top:.8rem;opacity:.8">AskNaija Phase 2 improves on Phase 1&#8217;s rule-based system by enabling: multi-turn conversation memory within a session; contextual follow-up questions; nuanced responses to complex governance scenarios; and coverage of long-tail civic questions that a fixed knowledge base cannot anticipate. Its limits: it cannot access real-time data or browse the web. For figures published after mid-2025, always verify at the primary source.</p>
+  <p class="reveal" style="font-family:var(--body);font-size:1rem;line-height:1.82;color:var(--ink-light);max-width:640px;margin-top:.8rem">AskNaija Phase 2 uses a <strong>hybrid intelligence architecture</strong>: a curated, sourced knowledge base (KB) for core civic topics, backed by Claude (Anthropic) for broader, follow-up, or long-tail questions. When a KB entry matches your question, the response comes directly from NITIZEN&#8217;s verified, editorially reviewed knowledge base &#8212; no hallucination possible on those topics. For questions outside the KB, Claude operates under a NITIZEN-curated civic system prompt that instructs it to: answer only Nigerian civic and governance questions; always flag where knowledge may be outdated; never fabricate specific dates, statistics, or citations; and always direct users to official sources for critical decisions.</p>
+  <p class="reveal" style="font-family:var(--body);font-size:.92rem;line-height:1.8;color:var(--ink-light);max-width:640px;margin-top:.8rem;opacity:.8">This hybrid approach delivers the best of both systems: the accuracy and verifiability of a hand-curated knowledge base for common civic questions, and the breadth and contextual reasoning of AI for everything else. KB responses are marked <strong>VERIFIED KB</strong>. AI responses are marked <strong>AI</strong> and include a verification note directing you to official sources.</p>
   <div class="kb-grid reveal">
     <div class="kb-card"><h5>&#128371;&#65039; Elections &amp; Voting</h5><p>Voter registration, CVR, PVC collection, INEC, Electoral Act 2022, BVAS, IReV, political parties, 2027 timetable, polling unit rights</p></div>
     <div class="kb-card"><h5>&#9878;&#65039; Constitutional Rights</h5><p>Chapter IV rights, arrest rights, FOI Act, privacy, expression, assembly, fair hearing, access to justice</p></div>
@@ -3788,18 +3750,6 @@ Ask me anything about Nigeria.</div>
   <p style="font-family:var(--mono);font-size:.66rem;color:rgba(168,213,181,.55);margin-top:2rem;line-height:1.6">Last updated: June 2026 &middot; NITIZEN &middot; Regulated under Nigeria Data Protection Act 2023 &middot; NDPC Registration: pending (applied May 2026)</p>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-asknaija-beta">
@@ -3896,7 +3846,7 @@ function renderMarkdown(text) {
     .replace(/\n/g,'<br>');
 }
 
-function addMessage(text, sender) {
+function addMessage(text, sender, source) {
   var cw = _cw();
   if (!cw) return;
   msgCounter++;
@@ -3911,7 +3861,14 @@ function addMessage(text, sender) {
   if (sender === 'user') {
     label.textContent = 'You';
   } else {
-    label.innerHTML = 'AskNaija <span style="font-family:var(--mono);font-size:.58rem;opacity:.5;font-weight:400;letter-spacing:.06em;margin-left:.3rem">AI</span>';
+    // Source-aware label: KB = "Knowledge Base", AI = "AI", fallback = no badge
+    var badge = '';
+    if (source === 'kb') {
+      badge = '<span style="font-family:var(--mono);font-size:.55rem;opacity:.55;font-weight:400;letter-spacing:.07em;margin-left:.35rem;background:rgba(74,175,116,.15);color:var(--green-light);padding:.1rem .35rem;border-radius:2px">VERIFIED KB</span>';
+    } else if (source === 'ai') {
+      badge = '<span style="font-family:var(--mono);font-size:.55rem;opacity:.5;font-weight:400;letter-spacing:.06em;margin-left:.3rem">AI</span>';
+    }
+    label.innerHTML = 'AskNaija ' + badge;
   }
 
   var bubble = document.createElement('div');
@@ -3929,7 +3886,13 @@ function addMessage(text, sender) {
   if (sender === 'bot') {
     var note = document.createElement('div');
     note.className = 'msg-source-note';
-    note.innerHTML = '&#9432; AI-generated civic response &middot; Always verify critical facts at official sources &middot; <a href="#privacy-policy" style="color:var(--green-mid)">Data Policy</a>';
+    if (source === 'kb') {
+      note.innerHTML = '&#9432; Verified knowledge base response &middot; Sourced &amp; fact-checked by NITIZEN editorial &middot; <a href="#privacy" style="color:var(--green-mid)">Data Policy</a>';
+    } else if (source === 'ai') {
+      note.innerHTML = '&#9432; AI-generated civic response &middot; Always verify critical facts at official sources &middot; <a href="#privacy" style="color:var(--green-mid)">Data Policy</a>';
+    } else {
+      note.innerHTML = '&#9432; AskNaija Knowledge Base &middot; <a href="#privacy" style="color:var(--green-mid)">Data Policy</a>';
+    }
     msg.appendChild(note);
   }
 
@@ -3970,7 +3933,7 @@ function clearConversation() {
   // Restore welcome message
   var welcome = document.createElement('div');
   welcome.className = 'msg bot';
-  welcome.innerHTML = '<div class="msg-label">AskNaija <span style="font-family:var(--mono);font-size:.58rem;opacity:.55;font-weight:400;letter-spacing:.06em;margin-left:.4rem">AI &middot; Phase 2</span></div><div class="msg-bubble">Conversation cleared. Ask me anything about Nigerian civic life, governance, rights, or history.</div>';
+  welcome.innerHTML = '<div class="msg-label">AskNaija <span style="font-family:var(--mono);font-size:.55rem;opacity:.55;font-weight:400;letter-spacing:.06em;margin-left:.4rem">KB + AI &middot; Phase 2</span></div><div class="msg-bubble">Conversation cleared. Ask me anything about Nigerian civic life, governance, rights, or history. I use a verified knowledge base first, then AI for broader questions.</div>';
   cw.appendChild(welcome);
   var sw = document.getElementById('suggestedWrap');
   if (sw) sw.style.display = '';
@@ -3978,7 +3941,56 @@ function clearConversation() {
   if (mc) mc.textContent = '';
 }
 
-// ── CORE: SEND MESSAGE TO CLAUDE API ──
+// ── HYBRID ENGINE: KB-first → AI fallback → graceful degradation ──
+
+/**
+ * resolveWithKB — check the local knowledge base synchronously
+ * Returns formatted answer string, or null if no confident match
+ */
+function resolveWithKB(q) {
+  if (typeof findAnswer !== 'function' || typeof ASKNAIJA_KB === 'undefined') return null;
+  var entry = findAnswer(q);
+  if (!entry) return null;
+  var result = formatAnswer(entry);
+  // Append category tag for context
+  var catTag = result.category ? '\n\n— Category: ' + result.category : '';
+  return result.text + catTag;
+}
+
+/**
+ * resolveWithAI — call Anthropic API, return answer string or throw
+ */
+async function resolveWithAI(q) {
+  // Build history to send (last 10 turns)
+  var historyToSend = conversationHistory.slice(-10);
+
+  var response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: 'claude-sonnet-4-20250514',
+      max_tokens: 1000,
+      system: SYSTEM_PROMPT,
+      messages: historyToSend
+    })
+  });
+
+  if (!response.ok) {
+    var errData = await response.json().catch(function() { return {}; });
+    throw new Error(errData.error && errData.error.message ? errData.error.message : 'API error ' + response.status);
+  }
+
+  var data = await response.json();
+  var text = (data.content || [])
+    .filter(function(b) { return b.type === 'text'; })
+    .map(function(b) { return b.text; })
+    .join('\n');
+
+  if (!text || !text.trim()) throw new Error('Empty response from AI');
+  return text;
+}
+
+// ── CORE: SEND MESSAGE — HYBRID ROUTING ──
 async function sendMessage() {
   var ci = _ci();
   var sb = _sb();
@@ -4000,49 +4012,36 @@ async function sendMessage() {
   // Add user turn to history
   conversationHistory.push({ role: 'user', content: q });
 
-  // Keep history to last 10 turns (5 exchanges) to manage context
-  var historyToSend = conversationHistory.slice(-10);
+  var answer = null;
+  var source = 'kb'; // track which system answered
 
-  try {
-    var response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 1000,
-        system: SYSTEM_PROMPT,
-        messages: historyToSend
-      })
-    });
-
-    if (!response.ok) {
-      var errData = await response.json().catch(function() { return {}; });
-      var errMsg = errData.error && errData.error.message ? errData.error.message : 'API error ' + response.status;
-      removeTyping();
-      showError('AskNaija encountered a technical issue: ' + errMsg + '. Please try again in a moment.');
-      // Remove last user turn from history on error
-      conversationHistory.pop();
-      if (sb) sb.disabled = false;
-      return;
-    }
-
-    var data = await response.json();
-    var assistantText = (data.content || [])
-      .filter(function(b) { return b.type === 'text'; })
-      .map(function(b) { return b.text; })
-      .join('\n');
-
-    // Add assistant turn to history
-    conversationHistory.push({ role: 'assistant', content: assistantText });
-
-    removeTyping();
-    addMessage(assistantText, 'bot');
-
-  } catch (err) {
-    removeTyping();
-    showError('AskNaija could not connect right now. Please check your connection and try again.');
-    conversationHistory.pop();
+  // ── STEP 1: Try local knowledge base (instant, zero API cost) ──
+  // Only use KB for single-turn questions (no prior conversation context needed)
+  if (conversationHistory.length <= 1) {
+    answer = resolveWithKB(q);
   }
+
+  // ── STEP 2: If no KB match, try AI API ──
+  if (!answer) {
+    source = 'ai';
+    try {
+      answer = await resolveWithAI(q);
+    } catch (aiErr) {
+      // ── STEP 3: Both failed — use graceful not-found response ──
+      source = 'fallback';
+      if (typeof getNotFoundResponse === 'function') {
+        answer = getNotFoundResponse(q).text;
+      } else {
+        answer = 'AskNaija could not process your question right now. Please try again, or browse the topic categories on the left for verified civic information.\n\nFor direct answers, visit: inec.gov.ng · nigeriastat.gov.ng · placng.org · budgit.org';
+      }
+    }
+  }
+
+  // Add assistant turn to history
+  conversationHistory.push({ role: 'assistant', content: answer });
+
+  removeTyping();
+  addMessage(answer, 'bot', source);
 
   if (sb) sb.disabled = false;
   if (ci) ci.focus();
@@ -4074,18 +4073,18 @@ function handleKey(e) {
   <p>Nigeria's civic accountability and reporting platform. Four channels — one mission: nothing that happens in our national life goes unreported, untracked, unaccountable, or unchallenged.</p>
   <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap">
     <a href="#redflag" class="btn-red">🚨 RedFlag</a>
-    <a href="#ledger" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">📊 The Ledger</a>
-    <a href="#openmic" class="btn-outline" style="border-color:var(--green-soft);color:var(--green-soft)">🎙️ OpenMic</a>
-    <a href="#critika" class="btn-outline" style="border-color:#a78bfa;color:#a78bfa">🎨 Critika</a>
+    <a href="#ledger-submit" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">📊 The Ledger</a>
+    <a href="#openmic-submit" class="btn-outline" style="border-color:var(--green-soft);color:var(--green-soft)">🎙️ OpenMic</a>
+    <a href="#critika-submit" class="btn-outline" style="border-color:#a78bfa;color:#a78bfa">🎨 Critika</a>
   </div>
 </div>
 
 <div class="ch-nav-wrap">
   <div class="ch-nav">
     <a href="#redflag" class="ch-tab tab-rf">🚨 RedFlag</a>
-    <a href="#ledger" class="ch-tab tab-ldg">📊 The Ledger</a>
-    <a href="#openmic" class="ch-tab tab-om">🎙️ OpenMic</a>
-    <a href="#critika" class="ch-tab tab-crt">🎨 Critika</a>
+    <a href="#ledger-submit" class="ch-tab tab-ldg">📊 The Ledger</a>
+    <a href="#openmic-submit" class="ch-tab tab-om">🎙️ OpenMic</a>
+    <a href="#critika-submit" class="ch-tab tab-crt">🎨 Critika</a>
   </div>
 </div>
 
@@ -4119,6 +4118,15 @@ function handleKey(e) {
       <p class="r-body">Mene Ogidi, a 28-year-old Nigerian, was shot at close range by ASP Nuhu Usman of the Nigeria Police Force at the Benin Motor Park along the Warri–Sapele Expressway, Effurun, Delta State. A widely circulated video showed Ogidi seated on the ground with his hands tied behind his back before being shot by an officer in plain clothes. He had left home to collect a waybill on behalf of a friend in Sapele and never returned alive. His family disclosed that police had previously killed his younger brother in a separate incident. The Force Disciplinary Committee found ASP Usman acted "in gross violation of Force Order 237 and other extant regulations governing the use of firearms," describing his conduct as "unlawful, unprofessional, and a clear betrayal of the oath to protect life."<sup class="ref-rf">[¹]</sup> Inspector-General of Police Tunji Disu approved Usman's immediate dismissal, forwarded for ratification by the Police Service Commission. <span class="vfy-rf">Verified</span><sup class="ref-rf">[²]</sup> Delta State Governor Sheriff Oborevwori described the killing as "unwarranted, unprovoked and barbaric." <span class="vfy-rf">Verified</span> The National Human Rights Commission and the Police Service Commission both issued formal condemnations. Criminal prosecution proceedings are underway.</p>
       <div class="r-meta">Filed: May 2026 · Effurun, Delta State · Officer: ASP Nuhu Usman (Dismissed) · Status: Criminal prosecution pending · Sources: IGP statement, PSC statement, NHRC statement, BBC Pidgin, Pulse Nigeria</div>
     </div>
+    <div class="report" id="case-rf004" style="border-color:rgba(224,92,92,.5)">
+      <div class="r-top">
+        <div class="r-type">&#x1F3EB; School Attack &middot; Oyo State &middot; Oriire LGA</div>
+        <span class="r-status s-active">Active &mdash; Children Missing · Teacher Killed</span>
+      </div>
+      <div class="r-title">Oyo School Attack: 46 Abducted, Teacher Beheaded &mdash; May 15&ndash;16, 2026 &middot; Case #RF-004-2026 <span class="vfy-rf">Documented</span></div>
+      <p class="r-body">On the night of May 15&ndash;16, 2026, armed bandits attacked three schools in Oriire Local Government Area, Oyo State &mdash; abducting 7 teachers and 39 pupils. Mathematics teacher Michael Oyedokun was subsequently beheaded. The attacks represent one of the most significant school abduction incidents in southwestern Nigeria since the northeast-focused Chibok (2014) and Kankara (2020) mass kidnappings, marking a dangerous southward expansion of school-targeting banditry. <span class="vfy-rf">Documented</span> Oyo State Governor Seyi Makinde confirmed the crisis and deployed joint security forces. The Nigerian Army, Police, and DSS launched a rescue operation. As of NITIZEN's filing date, the fate of the remaining abductees was unconfirmed. NITIZEN calls on the Federal Government and Oyo State to: (1) provide a transparent public update on all 46 abductees; (2) deploy all available intelligence and recovery assets without delay; (3) ensure full accountability for the attack &mdash; including investigation of any security failures that enabled it; and (4) implement immediate hardening of school perimeters in at-risk LGAs across the southwest.</p>
+      <div class="r-meta">Filed: May 2026 &middot; Oriire LGA, Oyo State &middot; Victims: 7 teachers, 39 pupils abducted; 1 teacher (Michael Oyedokun) killed &middot; Status: Rescue operation ongoing &middot; Sources: Oyo State Government, Nigerian Army statement, BBC Pidgin, Channels Television, The Punch, Vanguard</div>
+    </div>
     <div class="report">
       <div class="r-top">
         <div class="r-type">💸 Corruption · Federal Level</div>
@@ -4141,6 +4149,7 @@ function handleKey(e) {
   <div class="ref-block-dark">
       <div class="ref-head-dark">References &amp; Sources</div>
       <ul class="ref-list ref-list-dark">
+        <li><span class="ref-n-rf">[⁰]</span><span>Oyo State Government press statement, May 16, 2026 (Governor Seyi Makinde). Nigerian Army 81 Division press release, May 2026. BBC Pidgin, Channels Television, The Punch &mdash; school attack coverage, May 15&ndash;17, 2026. Victim count confirmed by Oyo State Ministry of Education spokesperson.</span></li>
         <li><span class="ref-n-rf">[¹]</span><span>Nigeria Police Force, Force Disciplinary Committee statement — May 2026. IGP Tunji Disu press briefing, NPF HQ Abuja. Reported verbatim by Punch ("IGP dismisses officer who shot Mene Ogidi," May 2026), Vanguard, and NAN.</span></li>
         <li><span class="ref-n-rf">[²]</span><span>Police Service Commission (PSC) — dismissal ratification communiqué, May 2026. psc.gov.ng. Criminal prosecution referral confirmed by Delta State Ministry of Justice spokesperson, May 2026.</span></li>
         <li><span class="ref-n-rf">[³]</span><span>Auditor-General of the Federation, Annual Report on Federal Government Accounts, FY 2022–23. Tabled at National Assembly Public Accounts Committee (PAC), Q3 2023. auditorgeneralfederation.gov.ng</span></li>
@@ -4340,24 +4349,12 @@ function handleKey(e) {
     </a>
   </div>
   <div class="cta-bar" style="margin:0 4rem 3rem;background:rgba(167,139,250,.07);border:1px dashed rgba(167,139,250,.28)">
-    <p style="color:rgba(255,255,255,.65)">Critika accepts only non-written creative works. For written civic commentary, essays, and testimonies — post to <a href="#openmic" style="color:#a78bfa">OpenMic</a>. Submit graphics, video, music, or visual art and hold power accountable through creativity.</p>
+    <p style="color:rgba(255,255,255,.65)">Critika accepts only non-written creative works. For written civic commentary, essays, and testimonies — post to <a href="#openmic-submit" style="color:#a78bfa">OpenMic</a>. Submit graphics, video, music, or visual art and hold power accountable through creativity.</p>
     <a href="#critika-submit" class="btn-purple">🎨 Submit to Critika →</a>
   </div>
 </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: REDFLAG ═══ -->
@@ -4425,18 +4422,6 @@ function handleKey(e) {
   <div class="form-success" id="rfSuccess">✓ Your RedFlag report has been received and logged. Thank you for your courage in filing it. NITIZEN will review and publish verified reports in the public civic record. If you provided an email, we will be in touch.</div>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-redflag">
@@ -4520,18 +4505,6 @@ function handleRF(e){
   <div class="form-success" id="ldgSuccess">✓ Your data submission has been received. Our team will verify and incorporate it into The Ledger's sector records. Thank you for strengthening the public evidence base.</div>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-ledger-submit">
@@ -4613,18 +4586,6 @@ function handleLDG(e){
   <div class="form-success" id="omSuccess">✓ Your post has been received. Our editorial team will review and be in touch within 48 hours. Thank you for speaking up.</div>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-openmic-submit">
@@ -4712,18 +4673,6 @@ function handleOM(e){
   <div class="form-success" id="crtSuccess">✓ Your submission has been received. Our team will review and contact you within 72 hours. Thank you — art that holds power accountable is civic work of the highest order.</div>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <script id="pscript-critika-submit">
@@ -4808,18 +4757,6 @@ function handleCRT(e){
   </div>
 
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 </div>
 
 <!-- ═══ PAGE: CONTACT ═══ -->
@@ -5095,7 +5032,10 @@ function handleCRT(e){
   <p style="font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:2rem;border-top:1px solid var(--border);padding-top:1.5rem">Effective: May 2026 · NITIZEN · Contact: hello@nitizen.ng · Regulated under Nigeria Data Protection Act 2023 (NDPA) · NDPC Registration: Pending (applied May 2026)</p>
 </div>
 
-<!-- WhatsApp FAB -->
+</div>
+</main>
+
+<!-- WhatsApp FAB — single instance, outside all SPA pages -->
 <a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
   aria-label="Chat on WhatsApp"
   style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
@@ -5103,12 +5043,10 @@ function handleCRT(e){
     display:flex;align-items:center;justify-content:center;
     box-shadow:0 4px 18px rgba(37,211,102,.45);
     transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
+  onmouseover="this.style.transform='scale(1.08)';this.style.boxShadow='0 6px 24px rgba(37,211,102,.55)'"
+  onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 18px rgba(37,211,102,.45)'">
   <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
 </a>
-</div>
-</main>
 
 <footer role="contentinfo">
   <div>
@@ -5149,18 +5087,6 @@ function handleCRT(e){
   <a href="#privacy" class="ndpc-badge">NDPC — Data Protected</a>
 </div>
 
-<!-- WhatsApp FAB -->
-<a href="https://wa.me/2347059929690?text=Hello%20NITIZEN" target="_blank" rel="noopener"
-  aria-label="Chat on WhatsApp"
-  style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;
-    width:52px;height:52px;border-radius:50%;background:#25D366;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 4px 18px rgba(37,211,102,.45);
-    transition:transform .2s,box-shadow .2s;text-decoration:none;"
-  onmouseover="this.style.transform='scale(1.08)'"
-  onmouseout="this.style.transform='scale(1)'">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
 
 <script>
 /* ═══════════════════════════════════════════════════════
@@ -5175,7 +5101,7 @@ function handleCRT(e){
 
 // ── PAGE LIST ──
 var NITIZEN_PAGES = [
-  'home','about','initiatives','cl','article-1','article-2','article-3',
+  'home','about','initiatives','cl','article-1','article-2','article-3','article-4',
   'membership','cl-pitch','asknaija','asknaija-beta','senal','redflag',
   'ledger-submit','openmic-submit','critika-submit','critika-article',
   'contact','privacy'
@@ -5369,6 +5295,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 }); // end DOMContentLoaded
 </script>
+<!-- U3: AskNaija knowledge base — large inline script (~170KB). Placed at end of body
+     so it parses after the document is interactive. To further optimise, extract
+     ASKNAIJA_KB to /js/asknaija-kb.js and load with <script src defer>. -->
 <script>
 /**
  * ASKNAIJA KNOWLEDGE BASE
@@ -6051,7 +5980,7 @@ EXCHANGE RATE:
 • FX volatility persists; CBN has intervened periodically
 
 MONETARY POLICY:
-• CBN Monetary Policy Rate (MPR): 26.25% (as of January 2026)
+• CBN Monetary Policy Rate (MPR): 27.5% (as of March 2026)
 • Raised repeatedly since 2023 to combat inflation
 • High MPR constrains credit access for businesses and households
 
