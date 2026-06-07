@@ -2187,9 +2187,11 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 3rem 4rem;
-  margin: 0;
+  margin: 0 auto;
   overflow: hidden;
   position: relative;
+  max-width: 1200px;
+  width: 100%;
 }
 .civic-gap-infographic::before {
   content: '';
@@ -2300,6 +2302,79 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 .float-anim { animation: float-civic 4s ease-in-out infinite; }
 .pulse-ring { animation: pulse-ring 3s ease-in-out infinite; }
 
+/* ── HERO ILLUSTRATION (from v11) ── */
+.hero-illustration-wrap {
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 50%;
+  display: flex; align-items: center; justify-content: center;
+  pointer-events: none; overflow: hidden;
+}
+.hero-illustration-wrap svg { width: 100%; height: 100%; }
+@media(max-width:900px){ .hero-illustration-wrap { display: none; } }
+
+/* ── HOW NITIZEN WORKS ── */
+.hiw-section { padding: 5rem 4rem; background: var(--off-white); }
+.hiw-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; margin-top: 3rem; position: relative; }
+.hiw-steps::before { content:''; position:absolute; top:40px; left:10%; right:10%; height:2px; background:linear-gradient(90deg,var(--green-soft) 0%,var(--green-light) 100%); z-index:0; }
+.hiw-step { text-align:center; padding:0 1rem; position:relative; z-index:1; }
+.hiw-step-icon { width:80px; height:80px; border-radius:50%; background:#fff; border:2px solid var(--green-soft); margin:0 auto 1.2rem; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 20px rgba(74,175,116,.15); }
+.hiw-step-icon svg { width:36px; height:36px; }
+.hiw-step h4 { font-family:var(--mono); font-size:.7rem; letter-spacing:.1em; text-transform:uppercase; color:var(--green-deep); margin-bottom:.4rem; }
+.hiw-step p { font-family:var(--body); font-size:.84rem; line-height:1.6; color:var(--muted); }
+@media(max-width:700px){ .hiw-steps { grid-template-columns:1fr 1fr; gap:2rem; } .hiw-steps::before { display:none; } }
+
+/* ── ANIMATED STATS STRIP ── */
+.animated-stats-strip { display:grid; grid-template-columns:repeat(4,1fr); background:var(--green-deep); border-top:1px solid rgba(74,175,116,.2); border-bottom:1px solid rgba(74,175,116,.2); }
+.anim-stat { padding:2.5rem 2rem; text-align:center; border-right:1px solid rgba(74,175,116,.15); position:relative; overflow:hidden; }
+.anim-stat::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(74,175,116,.08),transparent 70%); }
+.anim-stat:last-child { border-right:none; }
+.anim-stat-icon { margin-bottom:.8rem; }
+.anim-stat-icon svg { width:32px; height:32px; }
+.anim-stat-num { font-family:var(--accent); font-size:2.6rem; font-weight:700; color:#fff; line-height:1; }
+.anim-stat-label { font-family:var(--mono); font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--green-light); margin-top:.5rem; }
+@media(max-width:700px){ .animated-stats-strip { grid-template-columns:1fr 1fr; } }
+
+/* ── LAUNCH BANNER ── */
+.launch-banner { background:linear-gradient(135deg,var(--green-deep) 0%,#0f3320 100%); padding:3.5rem 4rem; position:relative; overflow:hidden; border-top:1px solid rgba(74,175,116,.2); border-bottom:1px solid rgba(74,175,116,.15); }
+.launch-banner::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 50%,rgba(74,175,116,.12) 0%,transparent 65%); pointer-events:none; }
+.launch-banner-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2.5rem; flex-wrap:wrap; position:relative; z-index:1; }
+.launch-left { flex:1; min-width:260px; }
+.launch-tag { font-family:var(--mono); font-size:.6rem; letter-spacing:.22em; text-transform:uppercase; color:var(--green-soft); display:inline-flex; align-items:center; gap:.5rem; margin-bottom:1rem; }
+.launch-tag::before { content:''; display:inline-block; width:24px; height:1px; background:var(--green-soft); }
+.launch-headline { font-family:var(--display); font-size:clamp(1.5rem,3vw,2.4rem); font-weight:800; color:#fff; line-height:1.1; margin-bottom:.7rem; }
+.launch-headline em { font-style:italic; color:var(--green-light); }
+.launch-sub { font-family:var(--body); font-size:.95rem; line-height:1.72; color:rgba(168,213,181,.75); max-width:520px; }
+.launch-right { display:flex; flex-direction:column; align-items:flex-end; gap:1rem; flex-shrink:0; }
+.launch-date-box { background:rgba(255,255,255,.06); border:1px solid rgba(74,175,116,.3); padding:1.2rem 2rem; text-align:center; border-radius:2px; }
+.launch-date-day { font-family:var(--display); font-size:3rem; font-weight:800; color:var(--green-light); line-height:1; }
+.launch-date-month { font-family:var(--mono); font-size:.65rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(168,213,181,.6); margin-top:.2rem; }
+.launch-badge { font-family:var(--mono); font-size:.6rem; letter-spacing:.14em; text-transform:uppercase; color:var(--green-deep); background:var(--green-light); padding:.35rem .9rem; border-radius:1px; white-space:nowrap; }
+@media(max-width:768px){ .launch-banner{padding:3rem 1.5rem;} .launch-banner-inner{flex-direction:column;align-items:flex-start;} .launch-right{align-items:flex-start;} }
+
+/* ── ABOUT ILLUSTRATION ── */
+.about-illustration { width:100%; border-radius:2px; overflow:hidden; border:1px solid var(--border); background:var(--green-mist); aspect-ratio:16/6; display:flex; align-items:center; justify-content:center; margin-bottom:2rem; }
+.about-illustration svg { width:100%; height:100%; }
+.civic-illustration { width:100%; height:auto; display:block; }
+
+/* ── STAT INFOGRAPHIC (Nigeria map section) ── */
+.stat-infographic { background:#fff; border:1px solid var(--border); border-radius:4px; padding:2rem; margin-top:2rem; }
+.stat-bar-row { display:flex; align-items:center; gap:1rem; margin-bottom:1.2rem; }
+.stat-bar-label { font-family:var(--mono); font-size:.64rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-light); width:120px; flex-shrink:0; }
+.stat-bar-track { flex:1; height:8px; background:var(--green-mist); border-radius:4px; overflow:hidden; }
+.stat-bar-fill { height:100%; border-radius:4px; background:linear-gradient(90deg,var(--green-mid),var(--green-soft)); transition:width 1.2s ease; }
+.stat-bar-val { font-family:var(--mono); font-size:.72rem; color:var(--green-deep); font-weight:700; width:36px; text-align:right; }
+.nigeria-map-section { background:var(--off-white); padding:5rem 4rem; overflow:hidden; }
+.nigeria-map-grid { display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; max-width:1200px; margin:0 auto; }
+@media(max-width:900px){ .nigeria-map-grid { grid-template-columns:1fr; } }
+
+/* ── ARTICLE PULL-QUOTE VISUAL AID ── */
+.art-visual-inset { margin:2.5rem 0; border-radius:3px; overflow:hidden; border:1px solid var(--border); background:var(--green-mist); display:flex; align-items:center; justify-content:center; }
+.art-visual-inset svg { width:100%; display:block; max-height:320px; }
+
+/* ── INFOGRAPHIC SECTION ── */
+.infographic-section { padding:5rem 4rem; background:linear-gradient(135deg,var(--green-deep) 0%,#0f2d1c 100%); position:relative; overflow:hidden; }
+
 </style>
 </head>
 <body>
@@ -2353,7 +2428,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <div style="min-width:0;flex:1">
       <div class="crisis-meta">Active Security Crisis &middot; May 2026</div>
       <div class="crisis-headline">Oyo School Attack: 46 Abducted, Teacher Beheaded &mdash; The Nation Demands Answers</div>
-      <div class="crisis-body">On May 15&ndash;16, 2026, armed bandits attacked three schools in Oriire LGA, Oyo State &mdash; kidnapping 7 teachers and 39 pupils. Mathematics teacher Michael Oyedokun was subsequently beheaded. NITIZEN has documented this crisis in full. Read our Conscience Letter and RedFlag reports.</div>
+      <div class="crisis-body">On May 15&ndash;16, 2026, armed bandits attacked three schools in Oriire LGA, Oyo State &mdash; kidnapping 7 teachers and 39 pupils. Mathematics teacher Michael Oyedokun was subsequently beheaded. NITIZEN has documented this crisis in full.</div>
     </div>
   </div>
   <!-- CTA -->
@@ -2554,6 +2629,36 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <h2 class="section-title reveal" style="color:#fff;max-width:680px">Three Pillars. One <em>Civic Mission.</em></h2>
     <p class="reveal" style="font-family:var(--body);font-size:1rem;line-height:1.82;color:var(--green-light);max-width:580px;margin-top:.8rem;margin-bottom:2.5rem">Each initiative targets a distinct dimension of Nigeria's civic engagement gap — together forming a complete platform for democratic participation.</p>
 
+    <!-- Initiative SVG icons (from v11 visual library) -->
+    <div class="reveal" style="display:flex;gap:2rem;margin-bottom:2rem;align-items:flex-end;opacity:.7" aria-hidden="true">
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="8" width="32" height="40" rx="4" fill="none" stroke="#4aaf74" stroke-width="1.5" opacity=".5"/>
+        <line x1="14" y1="18" x2="34" y2="18" stroke="#4aaf74" stroke-width="2" opacity=".8" stroke-linecap="round"/>
+        <line x1="14" y1="25" x2="34" y2="25" stroke="#4aaf74" stroke-width="2" opacity=".8" stroke-linecap="round"/>
+        <line x1="14" y1="32" x2="26" y2="32" stroke="#4aaf74" stroke-width="2" opacity=".8" stroke-linecap="round"/>
+        <path d="M30,38 L34,34 L38,38 L34,42 Z" fill="#c8a84b" opacity=".9"/>
+      </svg>
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="12" width="24" height="24" rx="4" fill="none" stroke="#4aaf74" stroke-width="1.5" opacity=".5"/>
+        <rect x="18" y="18" width="12" height="12" rx="2" fill="#4aaf74" opacity=".6"/>
+        <line x1="12" y1="20" x2="6" y2="20" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="12" y1="28" x2="6" y2="28" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="36" y1="20" x2="42" y2="20" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="36" y1="28" x2="42" y2="28" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="20" y1="12" x2="20" y2="6" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="28" y1="12" x2="28" y2="6" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="20" y1="36" x2="20" y2="42" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+        <line x1="28" y1="36" x2="28" y2="42" stroke="#4aaf74" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+      </svg>
+      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M14,18 L28,12 L28,36 L14,30 Z" fill="none" stroke="#e05c5c" stroke-width="1.5" opacity=".7" stroke-linejoin="round"/>
+        <rect x="6" y="18" width="8" height="12" rx="2" fill="none" stroke="#e05c5c" stroke-width="1.5" opacity=".7"/>
+        <line x1="12" y1="30" x2="10" y2="40" stroke="#e05c5c" stroke-width="2" opacity=".6" stroke-linecap="round"/>
+        <path d="M32,18 Q38,24 32,30" stroke="#e05c5c" stroke-width="1.5" fill="none" opacity=".6" stroke-linecap="round"/>
+        <path d="M35,14 Q44,24 35,34" stroke="#e05c5c" stroke-width="1.5" fill="none" opacity=".4" stroke-linecap="round"/>
+      </svg>
+    </div>
+
     <div class="init-badge-row reveal">
       <div class="init-badge"><span class="init-badge-icon">📰</span>Conscience Letters</div>
       <div class="init-badge"><span class="init-badge-icon">🤖</span>AskNaija AI</div>
@@ -2593,31 +2698,116 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <div style="display:flex;gap:.8rem;flex-wrap:wrap"><a href="#cl" class="btn-outline">All Articles →</a><a href="#membership" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">Support Us →</a></div>
     </div>
     <div class="cl-preview-grid reveal">
-      <a href="#article-1" class="cl-main">
-        <div class="article-cat">Governance · Economy</div>
-        <div class="art-title" style="font-size:1.65rem">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</div>
-        <p class="art-excerpt">When President Bola Tinubu declared at his inauguration that "fuel subsidy is gone," the crowd cheered. Eighteen months later, the country is still counting the cost — and the poor are paying the highest price...</p>
-        <div class="art-meta">Conscience Letters No. 001 · May 2026 · 8 min read</div>
+      <a href="#article-2" class="cl-main">
+        <div class="article-cat">Electoral Democracy · History</div>
+        <div class="art-title" style="font-size:1.65rem">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</div>
+        <p class="art-excerpt">Nigeria's electoral story is not simply a chronicle of fraud. It is a sixty-year negotiation between power and the citizen — with moments of genuine democratic hope punctuated by devastating betrayal. Understanding that arc is not nostalgia. It is preparation...</p>
+        <div class="art-meta">Conscience Letters No. 004 · June 2026 · 12 min read</div>
       </a>
       <div class="cl-side">
-        <a href="#article-2" class="cl-side-card">
-          <div class="article-cat">Electoral Democracy · History</div>
-          <div class="art-title" style="font-size:1.05rem">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</div>
-          <div class="art-meta">No. 002 · June 2026 · 12 min read</div>
+        <a href="#article-4" class="cl-side-card">
+          <div class="article-cat">Electoral Democracy · Institutional Failure</div>
+          <div class="art-title" style="font-size:1.05rem">The Broken Machine: INEC, Institutional Failure, and the Risk of Repeating 2023 in 2027</div>
+          <div class="art-meta">No. 003 · June 2026 · 16 min read</div>
         </a>
         <a href="#article-3" class="cl-side-card">
           <div class="article-cat">Legislature · Accountability</div>
           <div class="art-title" style="font-size:1.05rem">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</div>
-          <div class="art-meta">No. 003 · May 2026 · 5 min read</div>
+          <div class="art-meta">No. 002 · May 2026 · 5 min read</div>
         </a>
-        <a href="#article-4" class="cl-side-card">
-          <div class="article-cat">Electoral Democracy</div>
-          <div class="art-title" style="font-size:1.05rem">INEC and the Integrity Question: Can We Trust the 2027 Electoral Process?</div>
-          <div class="art-meta">No. 004 · May 2026 · 6 min read</div>
+        <a href="#article-1" class="cl-side-card">
+          <div class="article-cat">Governance · Economy</div>
+          <div class="art-title" style="font-size:1.05rem">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</div>
+          <div class="art-meta">No. 001 · May 2026 · 8 min read</div>
         </a>
       </div>
     </div>
   </section>
+
+  <!-- HOW NITIZEN WORKS — VISUAL FLOW -->
+  <div class="hiw-section reveal">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title">From <em>Ignorance</em> to Informed Action</h2>
+      <p style="font-family:var(--body);font-size:1rem;line-height:1.82;color:var(--muted);max-width:540px;margin-top:.8rem">Four steps that transform a passive citizen into an empowered civic actor — through knowledge, tools, community, and accountability.</p>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <rect x="6" y="4" width="24" height="28" rx="3" stroke="#1a4d2e" stroke-width="2"/>
+              <line x1="11" y1="12" x2="25" y2="12" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="17" x2="25" y2="17" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+              <line x1="11" y1="22" x2="20" y2="22" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="27" cy="28" r="5" fill="#1a4d2e"/>
+              <path d="M25,28 L27,30 L30,26" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h4>01. Learn</h4>
+          <p>Read Conscience Letters — long-form, evidenced civic journalism that contextualises Nigeria's governance decisions.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <rect x="4" y="4" width="20" height="20" rx="4" fill="#e8f5ee" stroke="#2d7a4f" stroke-width="2"/>
+              <circle cx="14" cy="14" r="3" fill="#2d7a4f"/>
+              <rect x="16" y="14" width="16" height="16" rx="3" fill="#1a4d2e"/>
+              <text x="24" y="26" text-anchor="middle" font-family="monospace" font-size="10" fill="#4aaf74" font-weight="700">AI</text>
+            </svg>
+          </div>
+          <h4>02. Ask</h4>
+          <p>Use AskNaija to query Nigeria's governance, rights, elections, and policy — AI-powered, evidence-grounded answers.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <path d="M18 4L4 28h28L18 4z" stroke="#e05c5c" stroke-width="2" fill="#fee2e2"/>
+              <line x1="18" y1="14" x2="18" y2="21" stroke="#e05c5c" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="18" cy="24.5" r="1.5" fill="#e05c5c"/>
+            </svg>
+          </div>
+          <h4>03. Report</h4>
+          <p>File a RedFlag, track officials with The Ledger, voice your testimony on OpenMic, or challenge power through Critika.</p>
+        </div>
+        <div class="hiw-step">
+          <div class="hiw-step-icon">
+            <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <circle cx="18" cy="18" r="14" fill="#e8f5ee" stroke="#2d7a4f" stroke-width="2"/>
+              <rect x="12" y="10" width="6" height="12" rx="2" fill="#2d7a4f"/>
+              <rect x="18" y="12" width="6" height="10" rx="2" fill="#2d7a4f"/>
+              <rect x="10" y="14" width="16" height="10" rx="3" fill="#1a4d2e"/>
+              <rect x="8" y="17" width="4" height="7" rx="2" fill="#1a4d2e"/>
+            </svg>
+          </div>
+          <h4>04. Act</h4>
+          <p>Convert civic awareness into democratic action — vote with purpose, demand accountability, and shape Nigeria's future.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ANIMATED CIVIC STATS STRIP -->
+  <div class="animated-stats-strip" aria-label="Nigeria civic data at a glance">
+    <div class="anim-stat">
+      <div class="anim-stat-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="14" stroke="#4aaf74" stroke-width="1.5" opacity=".5"/><path d="M10,20 Q16,10 22,14 Q24,18 20,20" stroke="#4aaf74" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="16" cy="16" r="3" fill="#4aaf74"/></svg></div>
+      <div class="anim-stat-num">93M</div>
+      <div class="anim-stat-label">Registered Voters</div>
+    </div>
+    <div class="anim-stat">
+      <div class="anim-stat-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="8" width="24" height="18" rx="3" stroke="#4aaf74" stroke-width="1.5" opacity=".5"/><path d="M4,14 h24" stroke="#4aaf74" stroke-width="1.5" opacity=".5"/><rect x="10" y="18" width="12" height="3" rx="1" fill="#4aaf74"/></svg></div>
+      <div class="anim-stat-num">18%</div>
+      <div class="anim-stat-label">2023 Voter Turnout</div>
+    </div>
+    <div class="anim-stat">
+      <div class="anim-stat-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="12" r="6" stroke="#4aaf74" stroke-width="1.5" opacity=".5"/><path d="M6,28 Q6,20 16,20 Q26,20 26,28" stroke="#4aaf74" stroke-width="1.5" fill="none" opacity=".5"/><circle cx="16" cy="12" r="3" fill="#4aaf74"/></svg></div>
+      <div class="anim-stat-num">&lt;20</div>
+      <div class="anim-stat-label">Median Age (years)</div>
+    </div>
+    <div class="anim-stat">
+      <div class="anim-stat-icon"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16 4L4 28h24L16 4z" stroke="#4aaf74" stroke-width="1.5" fill="none" opacity=".5"/><line x1="16" y1="12" x2="16" y2="20" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="23" r="1.5" fill="#4aaf74"/></svg></div>
+      <div class="anim-stat-num">133</div>
+      <div class="anim-stat-label">Press Freedom Rank</div>
+    </div>
+  </div>
 
   <!-- See-gnal PREVIEW -->
   <section style="background:var(--ink);padding:5rem 4rem;">
@@ -2951,6 +3141,102 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
   </div>
 
+  <!-- ── NIGERIA CIVIC DATA INFOGRAPHIC + MAP ── -->
+  <div class="nigeria-map-section">
+    <div class="nigeria-map-grid reveal">
+      <!-- Left: Stat bars -->
+      <div>
+        <div class="section-label">Civic Reality Check</div>
+        <h2 class="section-title" style="margin-bottom:1.5rem">The Numbers That <em>Demand</em> Action</h2>
+        <div class="stat-infographic">
+          <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--green-soft);margin-bottom:1.2rem">Nigeria At a Glance · 2026</div>
+          <div class="stat-bar-row">
+            <span class="stat-bar-label">Voter Turnout</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:18%"></div></div>
+            <span class="stat-bar-val">18%</span>
+          </div>
+          <div class="stat-bar-row">
+            <span class="stat-bar-label">Youth (Under 30)</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:62%;background:linear-gradient(90deg,#2d7a4f,#4aaf74)"></div></div>
+            <span class="stat-bar-val">62%</span>
+          </div>
+          <div class="stat-bar-row">
+            <span class="stat-bar-label">Press Freedom</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:26%;background:linear-gradient(90deg,#c8a84b,#f0dfa0)"></div></div>
+            <span class="stat-bar-val">26%</span>
+          </div>
+          <div class="stat-bar-row">
+            <span class="stat-bar-label">Poverty Rate</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:40%;background:linear-gradient(90deg,#e05c5c,#f59e8a)"></div></div>
+            <span class="stat-bar-val">40%</span>
+          </div>
+          <div class="stat-bar-row">
+            <span class="stat-bar-label">Civic Literacy</span>
+            <div class="stat-bar-track"><div class="stat-bar-fill" style="width:22%"></div></div>
+            <span class="stat-bar-val">Low</span>
+          </div>
+          <div style="font-family:var(--mono);font-size:.58rem;color:var(--muted);margin-top:1rem;padding-top:.8rem;border-top:1px solid var(--border)">Sources: INEC 2023 · World Bank 2024 · RSF Press Freedom Index 2024 · NBS</div>
+        </div>
+      </div>
+      <!-- Right: Nigeria map with callouts -->
+      <div style="position:relative">
+        <svg viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg" aria-label="Stylized map of Nigeria showing civic engagement indicators by region">
+          <defs>
+            <linearGradient id="ng-map-fill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#a8d5b5"/>
+              <stop offset="100%" stop-color="#4aaf74"/>
+            </linearGradient>
+            <filter id="ng-shadow">
+              <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1a4d2e" flood-opacity=".2"/>
+            </filter>
+          </defs>
+          <path d="M 80,60 Q 100,45 140,42 Q 180,38 220,40 Q 265,42 295,50 Q 320,58 335,70 Q 345,82 342,100 Q 338,120 330,138 Q 318,160 310,180 Q 305,200 308,220 Q 312,245 318,265 Q 322,285 315,305 Q 305,328 288,345 Q 268,362 250,372 Q 232,382 215,385 Q 195,388 178,382 Q 158,375 140,360 Q 120,345 105,325 Q 88,302 78,278 Q 68,255 66,230 Q 62,200 65,175 Q 68,148 72,125 Q 76,98 80,60 Z" fill="url(#ng-map-fill)" opacity=".8" filter="url(#ng-shadow)"/>
+          <line x1="80" y1="160" x2="340" y2="155" stroke="#1a4d2e" stroke-width=".8" opacity=".3"/>
+          <line x1="75" y1="240" x2="318" y2="235" stroke="#1a4d2e" stroke-width=".8" opacity=".3"/>
+          <line x1="170" y1="45" x2="165" y2="385" stroke="#1a4d2e" stroke-width=".8" opacity=".3"/>
+          <line x1="245" y1="42" x2="240" y2="360" stroke="#1a4d2e" stroke-width=".8" opacity=".3"/>
+          <path d="M 100,310 Q 140,330 180,340 Q 210,345 230,335 Q 215,360 195,372 Q 175,382 155,375 Q 128,365 110,345 Z" fill="#c8a84b" opacity=".35"/>
+          <circle cx="200" cy="200" r="10" fill="#1a4d2e" stroke="#fff" stroke-width="2"/>
+          <circle cx="200" cy="200" r="4" fill="#4aaf74"/>
+          <rect x="135" y="175" width="52" height="18" rx="3" fill="#1a4d2e" opacity=".9"/>
+          <text x="161" y="188" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#4aaf74" font-weight="700">ABUJA</text>
+          <circle cx="112" cy="310" r="8" fill="#e05c5c" stroke="#fff" stroke-width="2"/>
+          <circle cx="112" cy="310" r="3" fill="#fff"/>
+          <rect x="52" y="288" width="48" height="16" rx="3" fill="#0f1f16" opacity=".88"/>
+          <text x="76" y="300" text-anchor="middle" font-family="monospace" font-size="8" fill="#e05c5c" font-weight="700">LAGOS</text>
+          <circle cx="220" cy="90" r="8" fill="#c8a84b" stroke="#fff" stroke-width="2"/>
+          <circle cx="220" cy="90" r="3" fill="#fff"/>
+          <rect x="228" y="80" width="44" height="16" rx="3" fill="#0f1f16" opacity=".88"/>
+          <text x="250" y="92" text-anchor="middle" font-family="monospace" font-size="8" fill="#c8a84b" font-weight="700">KANO</text>
+          <circle cx="170" cy="340" r="7" fill="#a78bfa" stroke="#fff" stroke-width="2"/>
+          <circle cx="170" cy="340" r="2.5" fill="#fff"/>
+          <rect x="178" y="330" width="66" height="16" rx="3" fill="#0f1f16" opacity=".88"/>
+          <text x="211" y="342" text-anchor="middle" font-family="monospace" font-size="7" fill="#a78bfa" font-weight="700">PORT HARCOURT</text>
+          <circle cx="150" cy="140" r="4" fill="#4aaf74" opacity=".6"/>
+          <circle cx="270" cy="130" r="3" fill="#4aaf74" opacity=".5"/>
+          <circle cx="140" cy="220" r="3.5" fill="#4aaf74" opacity=".55"/>
+          <circle cx="280" cy="270" r="3" fill="#4aaf74" opacity=".5"/>
+          <circle cx="190" cy="300" r="4" fill="#4aaf74" opacity=".6"/>
+          <circle cx="240" cy="180" r="3" fill="#4aaf74" opacity=".45"/>
+          <g transform="translate(20, 390)">
+            <circle cx="6" cy="6" r="5" fill="#1a4d2e" stroke="#fff" stroke-width="1.5"/>
+            <text x="14" y="10" font-family="monospace" font-size="8" fill="#2c4033">Capital</text>
+            <circle cx="56" cy="6" r="5" fill="#e05c5c" stroke="#fff" stroke-width="1.5"/>
+            <text x="64" y="10" font-family="monospace" font-size="8" fill="#2c4033">Major City</text>
+            <circle cx="124" cy="6" r="4" fill="#4aaf74" opacity=".7"/>
+            <text x="132" y="10" font-family="monospace" font-size="8" fill="#2c4033">Civic Activity</text>
+          </g>
+          <text x="190" y="230" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#1a4d2e" font-weight="800" opacity=".06" font-style="italic">Nigeria</text>
+        </svg>
+        <div style="position:absolute;top:20px;right:0;display:flex;flex-direction:column;gap:.5rem">
+          <div style="background:#fff;border:1px solid var(--border);border-left:3px solid var(--green-soft);padding:.4rem .8rem;border-radius:2px;font-family:var(--mono);font-size:.6rem;color:var(--green-deep)">36 States + FCT</div>
+          <div style="background:#fff;border:1px solid var(--border);border-left:3px solid var(--gold);padding:.4rem .8rem;border-radius:2px;font-family:var(--mono);font-size:.6rem;color:var(--ink)">220M+ Population</div>
+          <div style="background:#fff;border:1px solid var(--border);border-left:3px solid #e05c5c;padding:.4rem .8rem;border-radius:2px;font-family:var(--mono);font-size:.6rem;color:var(--ink)">500+ Ethnic Groups</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- ── VISION NUMBERS STRIP ── -->
   <div class="vision-strip">
     <div class="vision-strip-inner">
@@ -3099,32 +3385,80 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <h2 class="section-title reveal">How NITIZEN Speaks to <em>Nigeria&rsquo;s Moment</em></h2>
       <div class="align-grid reveal">
         <div class="align-card">
-          <span class="align-card-icon">📜</span>
+          <span class="align-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="3" y="2" width="18" height="24" rx="3" fill="rgba(74,175,116,.15)" stroke="#4aaf74" stroke-width="1.5"/>
+              <line x1="7" y1="8" x2="17" y2="8" stroke="#4aaf74" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7" y1="12" x2="17" y2="12" stroke="#4aaf74" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="7" y1="16" x2="13" y2="16" stroke="#4aaf74" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18,18 L20,16 L24,20 L22,22Z" fill="#c8a84b"/>
+            </svg>
+          </span>
           <h4>Policy &amp; Advocacy</h4>
           <p>Conscience Letters situates every policy decision within historical and ethical context, empowering citizens to advocate from knowledge rather than frustration.</p>
         </div>
         <div class="align-card">
-          <span class="align-card-icon">🗳️</span>
+          <span class="align-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="10" width="20" height="14" rx="3" fill="rgba(74,175,116,.15)" stroke="#4aaf74" stroke-width="1.5"/>
+              <rect x="10" y="6" width="8" height="6" rx="2" fill="rgba(74,175,116,.2)" stroke="#4aaf74" stroke-width="1.5"/>
+              <rect x="10" y="12" width="8" height="2" rx="1" fill="#4aaf74"/>
+              <line x1="4" y1="17" x2="24" y2="17" stroke="#4aaf74" stroke-width="1" opacity=".4"/>
+              <circle cx="9" cy="21" r="2" fill="#4aaf74" opacity=".5"/>
+              <circle cx="14" cy="21" r="2" fill="#4aaf74" opacity=".8"/>
+              <circle cx="19" cy="21" r="2" fill="#4aaf74" opacity=".5"/>
+            </svg>
+          </span>
           <h4>Electoral Engagement</h4>
           <p>With 2027 in view, NITIZEN deploys electoral literacy campaigns, candidate-assessment tools, and voter mobilisation resources across all 36 states.</p>
         </div>
         <div class="align-card">
-          <span class="align-card-icon">🔍</span>
+          <span class="align-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="7" fill="rgba(74,175,116,.1)" stroke="#4aaf74" stroke-width="1.5"/>
+              <line x1="17" y1="17" x2="24" y2="24" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+              <line x1="9" y1="12" x2="15" y2="12" stroke="#4aaf74" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="12" y1="9" x2="12" y2="15" stroke="#4aaf74" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
           <h4>Accountability &amp; Transparency</h4>
           <p>Critika's creative accountability framework and AskNaija's data-backed responses create twin pillars of public oversight — one artistic, one analytical.</p>
         </div>
         <div class="align-card">
-          <span class="align-card-icon">🤝</span>
+          <span class="align-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="9" cy="10" r="4" fill="rgba(74,175,116,.15)" stroke="#4aaf74" stroke-width="1.5"/>
+              <circle cx="19" cy="10" r="4" fill="rgba(74,175,116,.15)" stroke="#4aaf74" stroke-width="1.5"/>
+              <path d="M2,25 Q2,18 9,18 Q14,18 14,21 Q14,18 19,18 Q26,18 26,25" stroke="#4aaf74" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
+          </span>
           <h4>Social Inclusion</h4>
           <p>Designed for non-elite audiences — rural youth, women, the economically excluded — NITIZEN ensures civic power isn&rsquo;t only for the already-powerful.</p>
         </div>
         <div class="align-card">
-          <span class="align-card-icon">🇳🇬</span>
+          <span class="align-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="6" width="6" height="16" rx="1" fill="#1a4d2e"/>
+              <rect x="10" y="6" width="6" height="16" rx="1" fill="#fff" stroke="rgba(0,0,0,.1)" stroke-width=".5"/>
+              <rect x="16" y="6" width="6" height="16" rx="1" fill="#1a4d2e"/>
+              <line x1="3" y1="6" x2="3" y2="24" stroke="#4aaf74" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
           <h4>National Cohesion &amp; Peace</h4>
           <p>By fostering shared civic identity rooted in common rights and responsibilities rather than ethnic division, NITIZEN builds the connective tissue of a unified Nigeria.</p>
         </div>
         <div class="align-card">
-          <span class="align-card-icon">🤖</span>
+          <span class="align-card-icon" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="6" y="6" width="16" height="16" rx="3" fill="rgba(74,175,116,.1)" stroke="#4aaf74" stroke-width="1.5"/>
+              <rect x="10" y="10" width="8" height="8" rx="1.5" fill="rgba(74,175,116,.4)"/>
+              <text x="14" y="18" text-anchor="middle" font-family="monospace" font-size="6" fill="#1a4d2e" font-weight="700">AI</text>
+              <line x1="6" y1="11" x2="2" y2="11" stroke="#4aaf74" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="6" y1="17" x2="2" y2="17" stroke="#4aaf74" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="22" y1="11" x2="26" y2="11" stroke="#4aaf74" stroke-width="1.2" stroke-linecap="round"/>
+              <line x1="22" y1="17" x2="26" y2="17" stroke="#4aaf74" stroke-width="1.2" stroke-linecap="round"/>
+            </svg>
+          </span>
           <h4>Technology as Social Change</h4>
           <p>AI, digital storytelling, and multimedia are core delivery mechanisms for civic intelligence here — not decorative features, but structural tools for scale.</p>
         </div>
@@ -3193,6 +3527,17 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
       <!-- INITIATIVE 01: CONSCIENCE LETTERS -->
       <a href="#cl" class="init-full-card">
+        <div style="margin-bottom:1.2rem" aria-hidden="true">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="4" width="36" height="44" rx="4" fill="rgba(74,175,116,.1)" stroke="#4aaf74" stroke-width="1.5"/>
+            <line x1="13" y1="14" x2="39" y2="14" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+            <line x1="13" y1="21" x2="39" y2="21" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+            <line x1="13" y1="28" x2="32" y2="28" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+            <line x1="13" y1="35" x2="27" y2="35" stroke="#4aaf74" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="40" cy="40" r="8" fill="#1a4d2e"/>
+            <path d="M37,40 L39,42 L43,37" stroke="#4aaf74" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
         <div class="init-num">INITIATIVE 01</div>
         <div class="init-name">Conscience Letters</div>
         <p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-light);margin-bottom:1.2rem;line-height:1.5">"The record that refuses to fade."</p>
@@ -3213,6 +3558,21 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
       <!-- INITIATIVE 02: ASKNAIJA -->
       <a href="#asknaija" class="init-full-card" style="border-color:rgba(200,168,75,.25)">
+        <div style="margin-bottom:1.2rem" aria-hidden="true">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="12" width="28" height="28" rx="6" fill="rgba(200,168,75,.1)" stroke="#c8a84b" stroke-width="1.5"/>
+            <rect x="18" y="18" width="16" height="16" rx="3" fill="rgba(200,168,75,.3)"/>
+            <text x="26" y="31" text-anchor="middle" font-family="monospace" font-size="11" fill="#c8a84b" font-weight="700">AI</text>
+            <line x1="12" y1="22" x2="4" y2="22" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="12" y1="30" x2="4" y2="30" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="40" y1="22" x2="48" y2="22" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="40" y1="30" x2="48" y2="30" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="22" y1="12" x2="22" y2="4" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="30" y1="12" x2="30" y2="4" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="22" y1="40" x2="22" y2="48" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="30" y1="40" x2="30" y2="48" stroke="#c8a84b" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div class="init-num" style="color:var(--gold)">INITIATIVE 02</div>
         <div class="init-name" style="color:var(--gold)">AskNaija</div>
         <p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--gold-light);margin-bottom:1.2rem;line-height:1.5">"Every Nigerian deserves a clear answer."</p>
@@ -3228,6 +3588,15 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
       <!-- INITIATIVE 03: SEE-GNAL -->
       <a href="#senal" class="init-full-card" style="border-color:rgba(224,92,92,.3)">
+        <div style="margin-bottom:1.2rem" aria-hidden="true">
+          <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14,20 L28,14 L28,38 L14,32 Z" fill="rgba(224,92,92,.15)" stroke="#e05c5c" stroke-width="1.5" stroke-linejoin="round"/>
+            <rect x="6" y="20" width="8" height="12" rx="2" fill="rgba(224,92,92,.15)" stroke="#e05c5c" stroke-width="1.5"/>
+            <line x1="12" y1="32" x2="10" y2="44" stroke="#e05c5c" stroke-width="2" stroke-linecap="round"/>
+            <path d="M32,20 Q38,26 32,32" stroke="#e05c5c" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M36,16 Q46,26 36,36" stroke="#e05c5c" stroke-width="1.5" fill="none" opacity=".5" stroke-linecap="round"/>
+          </svg>
+        </div>
         <div class="init-num" style="color:#e05c5c">INITIATIVE 03</div>
         <div class="init-name" style="color:#e05c5c">See-gnal</div>
         <p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:rgba(224,140,140,.85);margin-bottom:1.2rem;line-height:1.5">"Nigeria sees. Nigeria speaks. Nothing is erased."</p>
@@ -3359,7 +3728,30 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
 <!-- ═══ PAGE: CL ═══ -->
 <div id="page-cl" class="spa-page" style="display:none">
-<div class="page-header" style="background:var(--off-white)">
+<div class="page-header" style="background:var(--off-white);position:relative;overflow:hidden">
+    <!-- Decorative newspaper illustration — civic journalism background -->
+    <div style="position:absolute;right:2rem;bottom:0;top:0;display:flex;align-items:center;opacity:.07;pointer-events:none" aria-hidden="true">
+      <svg width="280" height="300" viewBox="0 0 280 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="10" width="260" height="280" rx="4" fill="#1a4d2e"/>
+        <rect x="20" y="20" width="240" height="30" rx="2" fill="#fff" opacity=".3"/>
+        <rect x="20" y="60" width="150" height="12" rx="2" fill="#fff" opacity=".4"/>
+        <rect x="20" y="80" width="240" height="2" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="20" y="90" width="115" height="80" rx="2" fill="#fff" opacity=".15"/>
+        <rect x="145" y="90" width="115" height="80" rx="2" fill="#fff" opacity=".15"/>
+        <rect x="20" y="90" width="50" height="8" rx="1" fill="#fff" opacity=".3"/>
+        <rect x="20" y="102" width="110" height="5" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="20" y="112" width="110" height="5" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="20" y="122" width="90" height="5" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="145" y="90" width="50" height="8" rx="1" fill="#fff" opacity=".3"/>
+        <rect x="145" y="102" width="110" height="5" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="145" y="112" width="110" height="5" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="145" y="122" width="80" height="5" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="20" y="180" width="240" height="2" rx="1" fill="#fff" opacity=".2"/>
+        <rect x="20" y="192" width="75" height="80" rx="2" fill="#fff" opacity=".1"/>
+        <rect x="103" y="192" width="75" height="80" rx="2" fill="#fff" opacity=".1"/>
+        <rect x="186" y="192" width="74" height="80" rx="2" fill="#fff" opacity=".1"/>
+      </svg>
+    </div>
     <div class="breadcrumb breadcrumb-dark"><a href="#home">Home</a><span>/</span><a href="#initiatives">Initiatives</a><span>/</span>Conscience Letters</div>
     <span class="ntz-id">NTZ·CL — Initiative 01 · Editorial Analysis · Conscience Letters</span>
     <div class="section-label">Initiative 01</div>
@@ -3371,23 +3763,9 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <div class="section-inner">
     <div class="section-label">Published Articles</div>
 
-    <a href="#article-1" class="archive-row">
-      <div>
-        <div class="art-num">No. 001 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·001 · Governance · Economy</span></div>
-        <div class="art-title">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</div>
-        <p class="art-excerpt">When President Bola Tinubu declared at his inauguration that "fuel subsidy is gone," the crowd cheered. Eighteen months later, the country is still counting the cost — and the poor are paying the highest price. This is not merely an economic argument. It is a moral one.</p>
-      </div>
-      <div class="art-meta-col">
-        <span class="cl-tag">Governance</span>
-        <span class="cl-tag">Economy</span>
-        <span class="art-read">8 min read</span>
-        <span class="art-date">May 2026</span>
-      </div>
-    </a>
-
     <a href="#article-2" class="archive-row">
       <div>
-        <div class="art-num">No. 002 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·002 · Electoral Democracy</span></div>
+        <div class="art-num">No. 004 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·004 · Electoral Democracy · History</span></div>
         <div class="art-title">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</div>
         <p class="art-excerpt">From the First Republic's collapse in 1966 to the June 12 annulment, from Obasanjo's contested 2003 reelection to the landmark 2015 concession — Nigeria's electoral story is a sixty-year instruction manual. 2027 will test whether we have finally read it. And whether you have your PVC.</p>
       </div>
@@ -3399,9 +3777,23 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </div>
     </a>
 
+    <a href="#article-4" class="archive-row">
+      <div>
+        <div class="art-num">No. 003 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·003 · Electoral Democracy · Institutional Failure</span></div>
+        <div class="art-title">The Broken Machine: INEC, Institutional Failure, and the Risk of Repeating 2023 in 2027</div>
+        <p class="art-excerpt">Nigeria's 2023 election was not lost on polling day — it was lost through years of structural compromise: transparency gaps, BVAS controversies, IReV failures, EC8A overreliance, collation vulnerabilities, political interference, and accountability breakdowns. With 2027 approaching, this is the diagnosis — and the blueprint for change.</p>
+      </div>
+      <div class="art-meta-col">
+        <span class="cl-tag">Electoral Democracy</span>
+        <span class="cl-tag">Institutional Failure</span>
+        <span class="art-read">16 min read</span>
+        <span class="art-date">June 2026</span>
+      </div>
+    </a>
+
     <a href="#article-3" class="archive-row">
       <div>
-        <div class="art-num">No. 003 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·003 · Legislature · Accountability</span></div>
+        <div class="art-num">No. 002 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·002 · Legislature · Accountability</span></div>
         <div class="art-title">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</div>
         <p class="art-excerpt">Nigeria's National Assembly received over ₦344 billion in statutory transfers in 2025 — while BudgIT documented lawmakers inserting ₦6.93 trillion in additional projects into the budget. What does this tell us about the legislature's relationship with the people it claims to serve?</p>
       </div>
@@ -3412,15 +3804,17 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <span class="art-date">May 2026</span>
       </div>
     </a>
-    <a href="#article-4" class="archive-row">
+
+    <a href="#article-1" class="archive-row">
       <div>
-        <div class="art-num">No. 004 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ&#xB7;CL&#xB7;004 &#xB7; Electoral Democracy</span></div>
-        <div class="art-title">INEC and the Integrity Question: Can We Trust the 2027 Electoral Process?</div>
-        <p class="art-excerpt">The Independent National Electoral Commission oversaw a 2023 election that generated more litigation and citizen outrage than any Fourth Republic contest. The courts upheld the result. Citizens remain unconvinced. With 2027 approaching, what must change &#x2014; and what must citizens do?</p>
+        <div class="art-num">No. 001 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·001 · Governance · Economy</span></div>
+        <div class="art-title">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</div>
+        <p class="art-excerpt">When President Bola Tinubu declared at his inauguration that "fuel subsidy is gone," the crowd cheered. Eighteen months later, the country is still counting the cost — and the poor are paying the highest price. This is not merely an economic argument. It is a moral one.</p>
       </div>
       <div class="art-meta-col">
-        <span class="cl-tag">Electoral Democracy</span>
-        <span class="art-read">6 min read</span>
+        <span class="cl-tag">Governance</span>
+        <span class="cl-tag">Economy</span>
+        <span class="art-read">8 min read</span>
         <span class="art-date">May 2026</span>
       </div>
     </a>
@@ -3456,6 +3850,58 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <p>But economic arguments, however valid, do not exist in a vacuum. They exist in the real conditions of real people — and the real conditions of Nigeria are these: over 100 million citizens living below the poverty line<sup class="ref">[¹]</sup>; a minimum wage that had not been meaningfully reviewed in years; a naira in freefall; and an inflation rate that climbed to 28.92% by December 2023<sup class="ref">[²]</sup> — and would continue rising to a peak of 34.8% by February 2024 — the highest levels recorded since Nigeria began tracking CPI inflation in its current form.</p>
     <blockquote>"When you remove a subsidy in a country with no social safety net, no functioning public transportation, and a collapsed manufacturing sector, you are not reforming an economy. You are conducting an experiment on the poor."</blockquote>
 
+    <!-- Petrol price impact infographic — visualises the cost escalation -->
+    <div class="art-visual-inset reveal" aria-label="Petrol price escalation and cost-of-living impact since May 2023">
+      <svg viewBox="0 0 760 110" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:100%;display:block">
+        <rect width="760" height="110" fill="#0d1a0a" rx="4"/>
+        <text x="380" y="16" text-anchor="middle" font-family="monospace" font-size="8.5" fill="rgba(200,168,75,.7)" letter-spacing="1.5">PETROL PRICE ESCALATION · MAY 2023 – 2025</text>
+        <!-- Price bars -->
+        <!-- ₦185 -->
+        <rect x="40" y="28" width="32" height="5" rx="1" fill="#4aaf74" opacity=".7"/>
+        <text x="56" y="22" text-anchor="middle" font-family="monospace" font-size="8" fill="#4aaf74">₦185</text>
+        <text x="56" y="45" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.5)">Pre-May 2023</text>
+        <!-- Arrow -->
+        <line x1="90" y1="30" x2="130" y2="30" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <text x="110" y="22" font-family="monospace" font-size="7" fill="#c8a84b" text-anchor="middle">subsidy removed</text>
+        <!-- ₦600 -->
+        <rect x="140" y="12" width="32" height="21" rx="1" fill="#c8a84b" opacity=".7"/>
+        <text x="156" y="9" text-anchor="middle" font-family="monospace" font-size="8" fill="#c8a84b">₦600+</text>
+        <text x="156" y="45" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(200,168,75,.5)">June–Aug 2023</text>
+        <!-- Arrow -->
+        <line x1="190" y1="22" x2="230" y2="22" stroke="#e05c5c" stroke-width="1.5" stroke-dasharray="4,2"/>
+        <!-- ₦1000 -->
+        <rect x="240" y="2" width="36" height="31" rx="1" fill="#e05c5c" opacity=".75"/>
+        <text x="258" y="-1" dy="1" text-anchor="middle" font-family="monospace" font-size="8" fill="#f59e8a">₦1,000+</text>
+        <text x="258" y="45" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(224,140,140,.5)">2025</text>
+        <!-- Divider -->
+        <line x1="320" y1="5" x2="320" y2="95" stroke="rgba(168,213,181,.1)" stroke-width="1"/>
+        <!-- Impact indicators right side -->
+        <text x="340" y="20" font-family="monospace" font-size="8" fill="rgba(168,213,181,.5)">DOWNSTREAM IMPACT</text>
+        <!-- Transport -->
+        <text x="340" y="36" font-family="monospace" font-size="7.5" fill="#e05c5c">▲ Transport costs</text>
+        <rect x="450" y="30" width="180" height="6" rx="2" fill="rgba(224,92,92,.15)"/>
+        <rect x="450" y="30" width="160" height="6" rx="2" fill="#e05c5c" opacity=".7"/>
+        <text x="635" y="38" font-family="monospace" font-size="7" fill="#e05c5c">×3</text>
+        <!-- Food -->
+        <text x="340" y="52" font-family="monospace" font-size="7.5" fill="#c8a84b">▲ Food prices</text>
+        <rect x="450" y="46" width="180" height="6" rx="2" fill="rgba(200,168,75,.15)"/>
+        <rect x="450" y="46" width="130" height="6" rx="2" fill="#c8a84b" opacity=".7"/>
+        <text x="635" y="54" font-family="monospace" font-size="7" fill="#c8a84b">+72%</text>
+        <!-- Inflation -->
+        <text x="340" y="68" font-family="monospace" font-size="7.5" fill="#f59e8a">▲ CPI Inflation</text>
+        <rect x="450" y="62" width="180" height="6" rx="2" fill="rgba(245,158,138,.15)"/>
+        <rect x="450" y="62" width="150" height="6" rx="2" fill="#f59e8a" opacity=".7"/>
+        <text x="635" y="70" font-family="monospace" font-size="7" fill="#f59e8a">34.8% peak</text>
+        <!-- Generator -->
+        <text x="340" y="84" font-family="monospace" font-size="7.5" fill="rgba(168,213,181,.6)">▲ Generator costs</text>
+        <rect x="450" y="78" width="180" height="6" rx="2" fill="rgba(168,213,181,.08)"/>
+        <rect x="450" y="78" width="140" height="6" rx="2" fill="rgba(74,175,116,.5)"/>
+        <text x="635" y="86" font-family="monospace" font-size="7" fill="rgba(168,213,181,.6)">+200%</text>
+        <!-- Sources -->
+        <text x="380" y="102" text-anchor="middle" font-family="monospace" font-size="6.5" fill="rgba(255,255,255,.2)">Sources: NNPCL pump price data · NBS CPI Report Feb 2024 · World Bank Nigeria Poverty Assessment 2024</text>
+      </svg>
+    </div>
+
     <h3>The Arithmetic of Suffering</h3>
     <p>Let us be precise about what happened. Before May 29, 2023, Nigerians purchased petrol at approximately ₦185 per litre.<sup class="ref">[³]</sup> <span class="vfy">Verified</span> Within weeks of the subsidy removal, the pump price had climbed to over ₦600 per litre. <span class="vfy">Verified</span> By 2025, it crossed ₦1,000 in many parts of the country. For a bus driver in Aba, a petty trader in Maiduguri, a bricklayer in Kaduna — this was not a policy reform. It was an economic catastrophe visited upon them without warning, without cushion, and without a plan.</p>
     <p>Transportation costs doubled, then tripled. The price of food — overwhelmingly transported by road across Nigeria's vast geography — rose in lockstep. The cost of running generators, which millions of Nigerians depend on because the national grid delivers on average fewer than eight hours of electricity daily<sup class="ref">[⁴]</sup>, became unbearable for households already stretched to breaking point.</p>
@@ -3481,7 +3927,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
     <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
       <a href="#cl" class="btn-outline">← All Articles</a>
-      <a href="#article-2" class="btn-primary">Next Article →</a>
+      <a href="#article-3" class="btn-primary">Next Article →</a>
     </div>
   </div>
 
@@ -3491,11 +3937,11 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 <!-- ═══ PAGE: ARTICLE-2 ═══ -->
 <div id="page-article-2" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 002</div>
-    <span class="ntz-id-dark">NTZ·CL·002 — Conscience Letters · Electoral Democracy · NITIZEN Editorial · May 2026</span>
-    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy · Conscience Letters No. 002</div>
+    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 004</div>
+    <span class="ntz-id-dark">NTZ·CL·004 — Conscience Letters · Electoral Democracy · NITIZEN Editorial · June 2026</span>
+    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy · Conscience Letters No. 004</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</h1>
-    <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-light);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL · MAY 2026 · 12 MIN READ</p>
+    <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-light);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL · JUNE 2026 · 12 MIN READ</p>
   </div>
 
   <div class="art-body">
@@ -3503,6 +3949,59 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <p>As the country turns its attention toward 2027, the integrity of the electoral process is not merely a procedural question. It is the central question of Nigerian democracy. An election that citizens do not trust — regardless of its technical outcomes — corrodes the legitimacy of governance and deepens the disengagement that already plagues the republic.</p>
     <blockquote>"An election that citizens do not trust is not a democracy functioning. It is a democracy performing."</blockquote>
     <p>But to understand where we are, we must understand where we have been. Nigeria's electoral history is not a story of steady progress. It is a story of cycles — of promise, manipulation, crisis, and partial recovery — repeated with enough variation to discourage hope and enough resilience to refuse extinction.</p>
+
+    <!-- Nigeria Electoral History Timeline — 60 years at a glance -->
+    <div class="art-visual-inset reveal" aria-label="Nigeria electoral history timeline 1959 to 2027">
+      <svg viewBox="0 0 760 148" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:100%;display:block">
+        <rect width="760" height="148" fill="#f0f7f2" rx="4"/>
+        <text x="380" y="16" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#1a4d2e" font-weight="700" letter-spacing="1.5">NIGERIA ELECTORAL HISTORY · A 60-YEAR INSTRUCTION MANUAL</text>
+        <line x1="40" y1="72" x2="720" y2="72" stroke="#a8d5b5" stroke-width="2"/>
+        <!-- 1959 -->
+        <circle cx="60" cy="72" r="7" fill="#2d7a4f" stroke="#fff" stroke-width="2"/>
+        <text x="60" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#1a4d2e" font-weight="700">1959</text>
+        <text x="60" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#6b8f76">First Election</text>
+        <!-- 1966 -->
+        <circle cx="135" cy="72" r="7" fill="#e05c5c" stroke="#fff" stroke-width="2"/>
+        <text x="135" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c" font-weight="700">1966</text>
+        <text x="135" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#e05c5c">Coup</text>
+        <!-- 1979 -->
+        <circle cx="225" cy="72" r="7" fill="#4aaf74" stroke="#fff" stroke-width="2"/>
+        <text x="225" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#2d7a4f" font-weight="700">1979</text>
+        <text x="225" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#6b8f76">2nd Republic</text>
+        <!-- 1993 -->
+        <circle cx="330" cy="72" r="9" fill="#c8a84b" stroke="#fff" stroke-width="2"/>
+        <line x1="330" y1="63" x2="330" y2="38" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <rect x="270" y="22" width="120" height="20" rx="3" fill="none" stroke="#c8a84b" stroke-width="1"/>
+        <text x="330" y="37" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#c8a84b" font-weight="700">JUNE 12 ANNULLED</text>
+        <text x="330" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#c8a84b" font-weight="700">1993</text>
+        <text x="330" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#c8a84b">Deepest wound</text>
+        <!-- 1999 -->
+        <circle cx="420" cy="72" r="7" fill="#2d7a4f" stroke="#fff" stroke-width="2"/>
+        <text x="420" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#1a4d2e" font-weight="700">1999</text>
+        <text x="420" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#6b8f76">4th Republic</text>
+        <!-- 2015 -->
+        <circle cx="545" cy="72" r="9" fill="#4aaf74" stroke="#fff" stroke-width="2"/>
+        <line x1="545" y1="63" x2="545" y2="38" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <rect x="488" y="22" width="114" height="20" rx="3" fill="none" stroke="#4aaf74" stroke-width="1"/>
+        <text x="545" y="37" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#2d7a4f" font-weight="700">FIRST CONCESSION</text>
+        <text x="545" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#2d7a4f" font-weight="700">2015</text>
+        <text x="545" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#4aaf74">Historic transfer</text>
+        <!-- 2023 -->
+        <circle cx="640" cy="72" r="7" fill="#e05c5c" stroke="#fff" stroke-width="2"/>
+        <text x="640" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c" font-weight="700">2023</text>
+        <text x="640" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#e05c5c">Contested result</text>
+        <!-- 2027 -->
+        <circle cx="720" cy="72" r="9" fill="none" stroke="#c8a84b" stroke-width="2" stroke-dasharray="4,3"/>
+        <text x="720" y="55" text-anchor="middle" font-family="monospace" font-size="7" fill="#c8a84b" font-weight="700">2027</text>
+        <text x="720" y="90" text-anchor="middle" font-family="monospace" font-size="6.5" fill="#c8a84b">Next test</text>
+        <!-- Caption + legend -->
+        <text x="380" y="112" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(26,77,46,.45)">Each node is a choice point. 2027 will be decided by what citizens and institutions do between now and then.</text>
+        <circle cx="40" cy="132" r="4" fill="#4aaf74"/><text x="50" y="136" font-family="monospace" font-size="6.5" fill="#6b8f76">Progress</text>
+        <circle cx="130" cy="132" r="4" fill="#e05c5c"/><text x="140" y="136" font-family="monospace" font-size="6.5" fill="#6b8f76">Crisis</text>
+        <circle cx="210" cy="132" r="4" fill="#c8a84b"/><text x="220" y="136" font-family="monospace" font-size="6.5" fill="#6b8f76">Pivotal</text>
+        <circle cx="280" cy="132" r="4" fill="none" stroke="#c8a84b" stroke-width="1.5" stroke-dasharray="3,2"/><text x="290" y="136" font-family="monospace" font-size="6.5" fill="#c8a84b">Pending</text>
+      </svg>
+    </div>
 
     <h3>The First Republic and the Original Sin (1959–1966)</h3>
     <p>Nigeria's first federal election under universal suffrage, held in December 1959, was in many ways a colonial handover exercise. The three dominant parties — the NPC in the north, the NCNC in the east, and the Action Group in the west — contested along lines that mirrored the country's regional and ethnic divisions far more than any coherent ideological differentiation. The NPC, dominant in the more populous north, emerged with the most seats and formed a coalition government with the NCNC under Sir Abubakar Tafawa Balewa as Prime Minister.<sup class="ref">[²]</sup></p>
@@ -3578,8 +4077,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <p class="art-footer-note">This piece represents the editorial position of NITIZEN's Conscience Letters initiative. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
 
     <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
-      <a href="#article-1" class="btn-outline">← Previous Article</a>
-      <a href="#article-3" class="btn-primary">Next Article →</a>
+      <a href="#article-4" class="btn-outline">← Previous Article</a>
+      <a href="#cl" class="btn-primary">All Articles →</a>
     </div>
   </div>
 
@@ -3589,14 +4088,43 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 <!-- ═══ PAGE: ARTICLE-3 ═══ -->
 <div id="page-article-3" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 003</div>
-    <span class="ntz-id-dark">NTZ·CL·003 — Conscience Letters · Legislature · Accountability · NITIZEN Editorial · May 2026</span>
-    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Legislature · Accountability · Conscience Letters No. 003</div>
+    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 002</div>
+    <span class="ntz-id-dark">NTZ·CL·002 — Conscience Letters · Legislature · Accountability · NITIZEN Editorial · May 2026</span>
+    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Legislature · Accountability · Conscience Letters No. 002</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</h1>
     <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-light);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL · MAY 2026 · 5 MIN READ</p>
   </div>
 
   <div class="art-body">
+
+    <!-- Budget Comparison Infographic -->
+    <div style="background:var(--ink);border:1px solid rgba(200,168,75,.25);border-radius:4px;padding:1.8rem 2rem;margin-bottom:2rem" class="reveal" aria-label="National Assembly budget comparison infographic">
+      <div style="font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem">National Assembly · Budget Reality Check · 2025</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:1.5rem">
+        <div style="text-align:center;background:rgba(200,168,75,.08);border:1px solid rgba(200,168,75,.2);border-radius:3px;padding:1.2rem">
+          <div style="font-family:var(--accent);font-size:1.6rem;font-weight:700;color:var(--gold-light)">₦344.85B</div>
+          <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">NASS Statutory Transfer</div>
+        </div>
+        <div style="text-align:center;background:rgba(224,92,92,.08);border:1px solid rgba(224,92,92,.25);border-radius:3px;padding:1.2rem">
+          <div style="font-family:var(--accent);font-size:1.6rem;font-weight:700;color:#f59e8a">₦6.93T</div>
+          <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">Projects Inserted (BudgIT)</div>
+        </div>
+        <div style="text-align:center;background:rgba(74,175,116,.06);border:1px solid rgba(74,175,116,.2);border-radius:3px;padding:1.2rem">
+          <div style="font-family:var(--accent);font-size:1.6rem;font-weight:700;color:var(--green-light)">469</div>
+          <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem">Legislators Funded</div>
+        </div>
+      </div>
+      <div style="margin-bottom:.6rem">
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.4);margin-bottom:.3rem"><span>Avg. Teacher Salary (monthly)</span><span>₦30,000</span></div>
+        <div style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden"><div style="width:0.4%;height:100%;background:#4aaf74;border-radius:3px"></div></div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;font-family:var(--mono);font-size:.58rem;color:rgba(255,255,255,.4);margin-bottom:.3rem"><span>NASS Budget (÷ 12 months)</span><span>₦28.7B/mo</span></div>
+        <div style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden"><div style="width:100%;height:100%;background:linear-gradient(90deg,#c8a84b,#e05c5c);border-radius:3px"></div></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:.56rem;color:rgba(255,255,255,.25);margin-top:1rem">Source: Budget Office of the Federation 2025 · BudgIT Budget Analysis Feb 2025</div>
+    </div>
+
     <p>In a country where a public school teacher earns approximately ₦30,000 a month — often paid late, sometimes not at all — the Nigerian National Assembly received a statutory transfer of ₦344.85 billion in the 2025 Appropriation Act<sup class="ref">[¹]</sup> <span class="vfy">Verified</span>, in addition to an extra ₦170 billion allocation captured under the Service Wide Vote<sup class="ref">[¹]</sup>. This covers the running costs of 469 legislators and their support apparatus: the staff, the vehicles, the security details, the overseas trips, the constituency allowances, and the considerable personal emoluments that make a Nigerian lawmaker one of the highest-paid in the world relative to per capita income. Beyond this, BudgIT documented that lawmakers inserted 11,122 additional projects worth ₦6.93 trillion into the 2025 budget<sup class="ref">[²]</sup> <span class="vfy">Verified</span> — a figure that dwarfs the statutory allocation itself.</p>
     <p>Let us sit with that ratio for a moment. Nigeria's GDP per capita is approximately $2,000<sup class="ref">[³]</sup> (World Bank, 2023). Its legislators earn, in allowances alone, multiples of what the average Nigerian earns in a lifetime. The legislature that is constitutionally mandated to represent the people has, over time, become an institution that is sustained by the people but oriented primarily toward itself.</p>
     <blockquote>"A parliament that costs more than it produces — in legislation, in oversight, in service — is not a parliament. It is a welfare scheme for the politically connected."</blockquote>
@@ -3619,11 +4147,11 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <li><span class="ref-n">[³]</span><span>World Bank, "GDP per capita (current US$) — Nigeria," World Development Indicators 2023. Figure: $2,085. data.worldbank.org/indicator/NY.GDP.PCAP.CD?locations=NG</span></li>
       </ul>
     </div>
-    <p class="art-footer-note">Conscience Letters No. 003. NITIZEN Editorial, May 2026. Contact: <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a></p>
+    <p class="art-footer-note">Conscience Letters No. 002. NITIZEN Editorial, May 2026. Contact: <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a></p>
 
     <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
-      <a href="#article-2" class="btn-outline">← Previous Article</a>
-      <a href="#cl" class="btn-primary">All Articles →</a>
+      <a href="#article-1" class="btn-outline">← Previous Article</a>
+      <a href="#article-4" class="btn-primary">Next Article →</a>
     </div>
   </div>
 
@@ -3632,7 +4160,22 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
 <!-- ═══ PAGE: MEMBERSHIP ═══ -->
 <div id="page-membership" class="spa-page" style="display:none">
-<div class="mem-hero">
+<div class="mem-hero" style="position:relative;overflow:hidden">
+  <!-- Decorative civic community illustration -->
+  <div style="position:absolute;right:0;top:0;bottom:0;width:45%;display:flex;align-items:center;justify-content:flex-end;padding-right:4rem;pointer-events:none;opacity:.18" aria-hidden="true">
+    <svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M120,200 Q60,155 40,110 Q20,65 70,45 Q95,35 120,65 Q145,35 170,45 Q220,65 200,110 Q180,155 120,200Z" fill="#4aaf74" opacity=".5"/>
+      <circle cx="90" cy="110" r="14" fill="#fff" opacity=".7"/>
+      <rect x="79" y="122" width="22" height="35" rx="6" fill="#fff" opacity=".7"/>
+      <circle cx="120" cy="105" r="16" fill="#fff" opacity=".8"/>
+      <rect x="108" y="119" width="24" height="38" rx="6" fill="#fff" opacity=".8"/>
+      <circle cx="150" cy="110" r="14" fill="#fff" opacity=".7"/>
+      <rect x="139" y="122" width="22" height="35" rx="6" fill="#fff" opacity=".7"/>
+      <text x="60" y="80" fill="#c8a84b" font-size="16" opacity=".8">✦</text>
+      <text x="168" y="80" fill="#c8a84b" font-size="16" opacity=".8">✦</text>
+      <text x="114" y="48" fill="#c8a84b" font-size="12" opacity=".6">✦</text>
+    </svg>
+  </div>
   <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>Support</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.9rem">Conscience Letters — Reader Support</div>
   <h1>Sustain Independent <em>Civic Journalism</em></h1>
@@ -4095,44 +4638,300 @@ function handleCL(e){
 <!-- &#x2554;&#x2550;&#x2550;&#x2550; PAGE: ARTICLE-4 &#x2550;&#x2550;&#x2550;&#x2557; -->
 <div id="page-article-4" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 004</div>
-    <span class="ntz-id-dark">NTZ&#xB7;CL&#xB7;004 &#x2014; Conscience Letters &#xB7; Electoral Democracy &#xB7; NITIZEN Editorial &#xB7; May 2026</span>
-    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy &#xB7; Conscience Letters No. 004</div>
-    <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">INEC and the Integrity Question: Can We Trust the 2027 Electoral Process?</h1>
-    <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-light);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL &#xB7; MAY 2026 &#xB7; 6 MIN READ</p>
+    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 003</div>
+    <span class="ntz-id-dark">NTZ·CL·003 — Conscience Letters · Electoral Democracy · NITIZEN Editorial · June 2026</span>
+    <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy · Institutional Failure · Conscience Letters No. 003</div>
+    <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Broken Machine: INEC, Institutional Failure, and the Risk of Repeating 2023 in 2027</h1>
+    <p style="font-family:var(--mono);font-size:.68rem;color:var(--green-light);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL · JUNE 2026 · 16 MIN READ</p>
   </div>
 
   <div class="art-body">
-    <p>The Independent National Electoral Commission carries a name that, for many Nigerians, has become ironic. &#x201C;Independent&#x201D; &#x2014; from what, exactly? The INEC that conducted the 2023 general elections oversaw a process that generated more litigation, more controversy, and more citizen outrage than arguably any election in Nigeria&#x2019;s Fourth Republic history. The Supreme Court eventually upheld the presidential result. <span class="vfy">Verified</span><sup class="ref">[&#xB9;]</sup> But a court&#x2019;s verdict on the legality of a process is not the same as a citizenry&#x2019;s confidence in its integrity.</p>
-    <p>As the country turns its attention toward 2027, the integrity of the electoral process is not merely a procedural question. It is the central question of Nigerian democracy. An election that citizens do not trust &#x2014; regardless of its technical outcomes &#x2014; corrodes the legitimacy of governance and deepens the disengagement that already plagues the republic.</p>
-    <blockquote>&#x201C;An election that citizens do not trust is not a democracy functioning. It is a democracy performing.&#x201D;</blockquote>
 
-    <h3>What Went Wrong in 2023</h3>
-    <p>The 2023 presidential election was, by INEC&#x2019;s own design, supposed to be its most transparent ever. The Bimodal Voter Accreditation System (BVAS) was introduced to prevent the manipulation of voter accreditation.<sup class="ref">[&#xB2;]</sup> The INEC Result Viewing Portal (IReV) was launched with the promise of real-time upload of polling unit results<sup class="ref">[&#xB2;]</sup> &#x2014; a measure designed to make result falsification visible and traceable.</p>
-    <p>Both innovations failed, or were failed, at critical moments. The IReV portal experienced what INEC described as technical difficulties during the critical early hours of result transmission. Many results appeared hours or days late. Discrepancies between polling unit results and collated figures were documented by domestic and international observers. INEC&#x2019;s own officials were arraigned in some states for alleged electoral malpractice. <span class="vfy">Verified</span><sup class="ref">[&#xB3;]</sup></p>
-    <p>The commission, under Chairman Prof. Mahmood Yakubu, maintained that the election was credible. The courts agreed, in the main. But credibility is not only a legal determination &#x2014; it is a social one. And socially, the 2023 election left millions of Nigerians unconvinced.</p>
+    <p>There is a particular kind of institutional failure that does not announce itself with a single dramatic collapse. It accumulates &#x2014; in procurement decisions never scrutinised, in legal ambiguities never resolved, in accountability mechanisms never enforced, in transparency promises never fulfilled. Nigeria&#x2019;s Independent National Electoral Commission delivered precisely this kind of failure in 2023. The question that should preoccupy every Nigerian who cares about the republic is not whether that failure occurred. It is whether the machine has been fixed &#x2014; or whether, with 2027 approaching, it is still broken in all the same places.</p>
 
-    <h3>The Road to 2027</h3>
-    <p>What must change before 2027 to restore citizen confidence? Three things, at minimum: transparent technology, independent oversight, and civic preparedness.</p>
-    <p>On technology: INEC must not only deploy electronic systems but must demonstrate, through pre-election public testing and open-source verification, that those systems are tamper-resistant and reliably connected. The failure of IReV in 2023 cannot be excused a second time.</p>
-    <p>On oversight: The composition of INEC&#x2019;s leadership and its appointment process must be revisited. An electoral commission whose chair is appointed solely by the executive, without meaningful legislative or civil society oversight, cannot credibly claim independence. Electoral reform legislation that restructures this dynamic is an urgent democratic necessity.</p>
-    <p>On civic preparedness: NITIZEN exists, in part, to address this third dimension. A citizenry that understands the electoral process &#x2014; that knows how to verify voter registration, identify polling units, document irregularities, and report violations &#x2014; is a citizenry that is harder to disenfranchise. Electoral literacy is not a soft complement to structural reform. It is a structural reform in itself.</p>
-    <p>The 2027 elections are Nigeria&#x2019;s next defining democratic moment. Whether they represent progress or regression will depend significantly on what INEC, the political class, and citizens do between now and then. NITIZEN will be watching &#x2014; and equipping Nigerians to watch too.</p>
+    <p>This analysis does not relitigate who won or lost in 2023. The courts have spoken on that question, and the legitimacy of their rulings is a separate debate. What concerns us here is the architecture of malfunction: the specific points at which the system failed to protect the integrity of the vote, the institutional and legal conditions that made those failures possible, and the concrete reforms that must be implemented before the next general election. Without them, the 2023 crisis is not an aberration. It is a rehearsal.</p>
+
+    <blockquote>&#x201C;A broken machine does not know it is broken. It keeps running &#x2014; producing outputs that look like results, following procedures that look like process &#x2014; until someone measures what came out against what should have. Nigeria&#x2019;s electoral machine has been measured. The reading is not good.&#x201D;</blockquote>
+
+    <h3>Transparency Gaps: When Openness Is Promised but Not Delivered</h3>
+
+    <p>The 2023 general elections were, by INEC&#x2019;s own advance communications, supposed to represent a new standard of transparency. The commission made specific, public commitments: real-time upload of polling unit results to the INEC Result Viewing Portal (IReV), biometric accreditation through BVAS that would generate an auditable voter trail, and a collation process that would be observable at every tier. These were not vague aspirations. They were operational promises against which INEC&#x2019;s performance could and should be measured.</p>
+
+    <p>What emerged on and after February 25, 2023, was a systematic transparency deficit. IReV uploads stalled during the most critical window &#x2014; the hours immediately following close of polls when public anxiety was highest and the integrity of the count most at risk. When results did eventually appear, the portal&#x2019;s data was incomplete, and in multiple states the figures visible on IReV bore no consistent relationship to the declared collated results. <span class="vfy">Verified</span><sup class="ref">[&#xB9;]</sup> INEC offered no real-time explanation. The commission&#x2019;s spokesperson issued blanket statements about &#x201C;technical difficulties&#x201D; that explained nothing and were not followed by a forensic post-mortem.</p>
+
+    <p>Three years later, that post-mortem still does not exist in any publicly available form. INEC has not published a technically specific account of what failed on IReV: whether the bottleneck was server capacity, bandwidth, field officer non-compliance, software failure, or a combination. This is not a minor omission. It means that no independent engineer, civil society body, or legislative committee can verify whether the conditions that produced the 2023 transparency failure have actually been remedied &#x2014; or whether they remain, unchanged, waiting to reproduce themselves in 2027. Transparency about transparency failures is the minimum standard. INEC has not met it.</p>
+
+    <h3>BVAS: Accountability for a System That Was Never Fully Audited</h3>
+
+    <p>The Bimodal Voter Accreditation System represented a genuine and significant advancement in Nigeria&#x2019;s electoral technology. By linking biometric authentication to digital result transmission, it was designed to close two of the widest fraud pathways in the country&#x2019;s electoral history: ghost voter accreditation and the disconnection between polling unit counts and declared results. In states and polling units where BVAS functioned as designed, the system delivered on its promise. The problem is that it did not function as designed across enough of the country to constitute a credible national deployment.</p>
+
+    <p>Device malfunctions in Lagos, Kano, Rivers, and several other states were documented not by opposition parties alone but by the EU Election Observation Mission, by YIAGA Africa&#x2019;s Parallel Vote Tabulation exercise, by the Joint International Observer Group, and by INEC&#x2019;s own post-election reports. <span class="vfy">Verified</span><sup class="ref">[&#xB2;]</sup> The malfunctions led to delayed accreditation, extended waiting times that suppressed turnout, and in some cases the outright exclusion of voters who had registered and arrived at their polling units only to find that no functioning device was available to authenticate them.</p>
+
+    <p>What has not been adequately investigated or resolved is the question of why BVAS failed where it failed. The geographic distribution of malfunctions was not random. Independent analyses identified a statistical concentration of device failures in urban areas with high opposition support. Whether this pattern reflects deliberate sabotage, systematically poor procurement and maintenance decisions, or coincidence has never been established by an independent technical body. INEC has not published a remediation plan. There has been no public tender for an independent audit of BVAS performance. For 2027, this means the commission will deploy a system whose failure modes are undocumented and whose remediation is unverified. That is not a reformed system. It is a deferred liability.</p>
+
+    <h3>Result Transmission Failures: The Chain That Broke</h3>
+
+    <p>Electronic result transmission was the centrepiece of INEC&#x2019;s 2023 integrity architecture. The design was sound: BVAS devices at each of Nigeria&#x2019;s 176,846 polling units would scan and upload the Form EC8A immediately after counting, creating a publicly visible, timestamped record before results entered the collation chain. If this had worked consistently, it would have been structurally transformative &#x2014; making large-scale falsification at collation stages visible and therefore, in principle, politically costly.</p>
+
+    <p>The transmission chain broke at multiple points. Upload failures were concentrated in the early hours after polls closed &#x2014; precisely the window in which the absence of uploaded results created the largest information vacuum and the greatest opportunity for collation manipulation. <span class="vfy">Verified</span><sup class="ref">[&#xB9;]</sup> By the time results began appearing on IReV in large numbers, the collation process at many ward and local government levels was already complete. The audit trail, which should have constrained collation, instead became a post-hoc document &#x2014; available for comparison with declared results but no longer capable of preventing the declaration of results that diverged from the polling unit data.</p>
+
+    <p>This sequencing failure matters enormously for 2027. If INEC does not demonstrate, through credible pre-election testing under realistic conditions, that transmission from all polling units can be completed within a defined post-poll window &#x2014; and if that window is not publicly known and monitored &#x2014; the same structural vulnerability will exist. Technology that arrives after the manipulation has occurred does not prevent manipulation. It documents it, at best &#x2014; and only if someone with sufficient resources and legal standing chooses to pursue the discrepancy through a system designed to exhaust those who challenge it.</p>
+
+    <!-- IReV Upload Failure Timeline — visualises the sequencing gap -->
+    <div class="art-visual-inset reveal" style="background:var(--ink)" aria-label="Timeline: IReV upload failures vs. collation timeline on election night 2023">
+      <svg viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:100%;display:block">
+        <rect width="760" height="100" fill="#0d1a0a" rx="4"/>
+        <text x="380" y="14" text-anchor="middle" font-family="monospace" font-size="8" fill="rgba(168,213,181,.5)" letter-spacing="2">FEBRUARY 25, 2023 · INEC IReV UPLOAD TIMELINE vs. COLLATION WINDOW</text>
+        <!-- Timeline axis -->
+        <line x1="30" y1="55" x2="730" y2="55" stroke="rgba(74,175,116,.3)" stroke-width="1"/>
+        <!-- Time markers -->
+        <text x="30" y="70" font-family="monospace" font-size="7" fill="rgba(168,213,181,.4)" text-anchor="middle">5PM</text>
+        <text x="170" y="70" font-family="monospace" font-size="7" fill="rgba(168,213,181,.4)" text-anchor="middle">7PM</text>
+        <text x="310" y="70" font-family="monospace" font-size="7" fill="rgba(168,213,181,.4)" text-anchor="middle">9PM</text>
+        <text x="450" y="70" font-family="monospace" font-size="7" fill="rgba(168,213,181,.4)" text-anchor="middle">11PM</text>
+        <text x="590" y="70" font-family="monospace" font-size="7" fill="rgba(168,213,181,.4)" text-anchor="middle">1AM+</text>
+        <text x="730" y="70" font-family="monospace" font-size="7" fill="rgba(168,213,181,.4)" text-anchor="middle">3AM+</text>
+        <!-- Polls close marker -->
+        <line x1="30" y1="28" x2="30" y2="62" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="3,2"/>
+        <text x="32" y="26" font-family="monospace" font-size="7" fill="#4aaf74">Polls Close</text>
+        <!-- IReV upload gap — RED BAR (critical window, very few uploads) -->
+        <rect x="30" y="38" width="280" height="12" rx="2" fill="#e05c5c" opacity=".5"/>
+        <text x="170" y="47" font-family="monospace" font-size="7" fill="#fff" text-anchor="middle">IReV uploads: NEAR-ZERO (critical window)</text>
+        <!-- Collation begins -->
+        <line x1="30" y1="22" x2="30" y2="32" stroke="#c8a84b" stroke-width="1.5"/>
+        <rect x="30" y="22" width="200" height="10" rx="2" fill="#c8a84b" opacity=".6"/>
+        <text x="130" y="30" font-family="monospace" font-size="7" fill="#0d1a0a" text-anchor="middle">Ward/LGA collation ALREADY UNDERWAY</text>
+        <!-- IReV bulk upload — green bar (too late) -->
+        <rect x="310" y="38" width="420" height="12" rx="2" fill="#4aaf74" opacity=".35"/>
+        <text x="520" y="47" font-family="monospace" font-size="7" fill="#4aaf74" text-anchor="middle">IReV bulk uploads arrive — collation already complete in many states</text>
+        <!-- Annotation -->
+        <text x="380" y="88" font-family="monospace" font-size="7" fill="rgba(168,213,181,.35)" text-anchor="middle">By the time the audit trail materialised, manipulation had already propagated through the collation chain</text>
+      </svg>
+    </div>
+
+    <h3>EC8A Overreliance and the Collation Vulnerability</h3>
+
+    <p>The legal structure underlying Nigeria&#x2019;s electoral process contains a fundamental design flaw that the Electoral Act 2022 introduced technology around but failed to resolve. Form EC8A &#x2014; the physical collation sheet completed at the polling unit &#x2014; remains the legally primary document in electoral proceedings. The Act&#x2019;s provisions for electronic transmission are framed as complementary to, not substitutive of, the physical form. In judicial proceedings, where transmitted data and physical data conflict, the physical document has been treated by courts as authoritative.</p>
+
+    <p>The consequence of this legal arrangement is that the entire IReV architecture rests on a foundation it cannot legally override. An actor who can access the physical Form EC8A &#x2014; or the EC8B, C, and D forms that aggregate results up through the collation chain &#x2014; can, in effect, overwrite the electronic record without the electronic record having any legal power to prevent it. <span class="vfy">Verified</span><sup class="ref">[&#xB3;]</sup> This is not a theoretical vulnerability. In 2023, discrepancies between uploaded polling unit data and collated results were documented across multiple states. The electronic record showed one figure; the physical form used in the collation showed another. The physical form prevailed.</p>
+
+    <p>The collation process itself &#x2014; the chain from polling unit to ward, ward to local government, local government to state, and state to national &#x2014; involves multiple physical transfer points, multiple custodians, and multiple opportunities for interference. Each transfer is a potential manipulation window. The 2023 elections saw reported incidents of result sheets arriving at collation centres already completed in advance, of forms going missing and being replaced, and of collation officers refusing to acknowledge the figures recorded by party agents at the polling unit level. In a system where paper beats pixels, every one of these incidents gives an advantage to the actor with physical custody of the form &#x2014; which is, by design, INEC&#x2019;s own staff.</p>
+
+    <!-- Electoral Result Chain Infographic — simplifies the EC8A collation vulnerability -->
+    <div class="art-visual-inset reveal" aria-label="Diagram: Nigeria's result collation chain from polling unit to national declaration">
+      <svg viewBox="0 0 760 130" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:100%;display:block">
+        <defs>
+          <linearGradient id="chain-green" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#1a4d2e"/>
+            <stop offset="100%" stop-color="#2d7a4f"/>
+          </linearGradient>
+          <marker id="arrow-r" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+            <path d="M0,0 L8,3 L0,6 Z" fill="#c8a84b"/>
+          </marker>
+        </defs>
+        <!-- Background -->
+        <rect width="760" height="130" fill="#f0f7f2" rx="4"/>
+        <!-- Title -->
+        <text x="380" y="18" text-anchor="middle" font-family="monospace" font-size="9" fill="#6b8f76" letter-spacing="2" text-transform="uppercase">RESULT COLLATION CHAIN · WHERE MANIPULATION OCCURS</text>
+        <!-- Nodes -->
+        <!-- Polling Unit -->
+        <rect x="20" y="30" width="110" height="60" rx="4" fill="#1a4d2e"/>
+        <text x="75" y="55" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#4aaf74" font-weight="700">POLLING</text>
+        <text x="75" y="67" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#4aaf74" font-weight="700">UNIT</text>
+        <text x="75" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.6)">EC8A Signed</text>
+        <!-- Arrow 1 -->
+        <line x1="130" y1="60" x2="158" y2="60" stroke="#c8a84b" stroke-width="2" marker-end="url(#arrow-r)"/>
+        <text x="144" y="52" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">⚠ 1</text>
+        <!-- Ward -->
+        <rect x="160" y="30" width="110" height="60" rx="4" fill="#2d7a4f"/>
+        <text x="215" y="62" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#fff" font-weight="700">WARD</text>
+        <text x="215" y="77" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.6)">EC8B Collation</text>
+        <!-- Arrow 2 -->
+        <line x1="270" y1="60" x2="298" y2="60" stroke="#c8a84b" stroke-width="2" marker-end="url(#arrow-r)"/>
+        <text x="284" y="52" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">⚠ 2</text>
+        <!-- LGA -->
+        <rect x="300" y="30" width="110" height="60" rx="4" fill="#2d7a4f"/>
+        <text x="355" y="55" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#fff" font-weight="700">LOCAL</text>
+        <text x="355" y="67" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#fff" font-weight="700">GOVT</text>
+        <text x="355" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.6)">EC8C Collation</text>
+        <!-- Arrow 3 -->
+        <line x1="410" y1="60" x2="438" y2="60" stroke="#c8a84b" stroke-width="2" marker-end="url(#arrow-r)"/>
+        <text x="424" y="52" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">⚠ 3</text>
+        <!-- State -->
+        <rect x="440" y="30" width="110" height="60" rx="4" fill="#c8a84b"/>
+        <text x="495" y="62" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#1a4d2e" font-weight="700">STATE</text>
+        <text x="495" y="77" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(26,77,46,.7)">EC8D Collation</text>
+        <!-- Arrow 4 -->
+        <line x1="550" y1="60" x2="578" y2="60" stroke="#c8a84b" stroke-width="2" marker-end="url(#arrow-r)"/>
+        <text x="564" y="52" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">⚠ 4</text>
+        <!-- National -->
+        <rect x="580" y="25" width="160" height="70" rx="4" fill="#1a4d2e" stroke="#4aaf74" stroke-width="1.5"/>
+        <text x="660" y="52" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#4aaf74" font-weight="700">NATIONAL</text>
+        <text x="660" y="64" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#4aaf74" font-weight="700">DECLARATION</text>
+        <text x="660" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.6)">INEC Collates &amp; Declares</text>
+        <!-- Legend -->
+        <text x="20" y="115" font-family="monospace" font-size="7.5" fill="#e05c5c">⚠ = Manipulation window: each transfer point where physical EC8A forms can be altered</text>
+        <text x="20" y="126" font-family="monospace" font-size="7" fill="#6b8f76">Under current law, the physical form at each stage legally overrides IReV electronic data if discrepancies arise</text>
+      </svg>
+    </div>
+
+    <h3>Political Interference and the Ecosystem of Compromise</h3>
+
+    <p>INEC does not fail in isolation. It fails within a political ecosystem whose actors have spent decades learning how to convert every stage of the electoral process into an instrument of predetermined outcome. Understanding this ecosystem is essential to understanding why technological solutions alone cannot produce electoral integrity &#x2014; and why structural and institutional reforms are the only durable remedy.</p>
+
+    <p>At the state level, governors represent the most powerful single node of interference. In states where a sitting governor has a direct stake in a senatorial, gubernatorial, or presidential outcome, the full apparatus of state power &#x2014; state-employed civil servants, local government chairmen, state-controlled transport, security liaison officers &#x2014; has historically been mobilised to shape the process. This mobilisation does not primarily take the form of ballot-stuffing on polling day, though that occurs too. It takes the form of controlling who is recruited as ad hoc electoral staff, which areas receive functioning BVAS devices and which do not, which collation centres are accessible to opposition party agents, and which security deployments are designed to facilitate voting and which are designed to suppress it.</p>
+
+    <p>The 2023 governorship elections in Imo, Kogi, and Bayelsa documented this ecosystem in vivid detail. In each case, the declared results diverged from the observable reality on the ground in ways so pronounced that international observers, diplomatic missions, and even members of the judiciary took the unusual step of commenting publicly on the integrity of the process. <span class="vfy">Verified</span><sup class="ref">[&#xB4;]</sup> In Imo, a sitting governor who had been removed by a tribunal was reinstated by the Supreme Court in circumstances that remain legally contested. In Kogi and Bayelsa, incumbents were declared victorious in elections that multiple credible observers characterised as neither free nor fair. The pattern is not coincidental. It reflects a model of electoral governance in which outcome is determined by the power resources of the contestants &#x2014; not the preferences of the voters.</p>
+
+    <p>For 2027, the stakes of this ecosystem are materially higher. Federal incumbency &#x2014; with its access to INEC&#x2019;s appointment structures, its ability to direct security deployments, its control of the budget from which INEC&#x2019;s operations are funded, and its leverage over state-level actors whose cooperation is essential to any manipulated outcome &#x2014; makes a second-term presidential election structurally different from an open contest. This observation is not partisan; it applies with equal force to any incumbent seeking re-election in a system without the structural safeguards that constrain executive influence over the electoral process. Nigeria does not currently have those safeguards.</p>
+
+    <h3>Institutional Compromise: The Appointment Problem and What It Produces</h3>
+
+    <p>Any serious analysis of INEC&#x2019;s institutional failures must confront the root cause that structural reformers have identified and that successive administrations have refused to address: the commission&#x2019;s leadership is appointed by the very executive whose elections it must adjudicate.</p>
+
+    <p>The Constitution provides for the President to nominate INEC&#x2019;s chairman and national commissioners, subject to Senate confirmation. In jurisdictions where the presidency and Senate majority share a party affiliation &#x2014; as has been the case for extended periods in Nigeria&#x2019;s Fourth Republic &#x2014; Senate confirmation is not an adversarial check. It is a ratification ceremony. The result is an institution whose most senior leadership owes its position to the executive that nominated it, operates on a budget that the executive controls, and exercises discretion over a process in which the executive has the highest possible stake. <span class="vfy">Verified</span><sup class="ref">[&#xB5;]</sup></p>
+
+    <p>This structural dependency shapes institutional behaviour in ways that are sometimes explicit and sometimes invisible. It is not necessary to allege that INEC&#x2019;s chairman received direct instructions from the Presidency in 2023. It is sufficient to observe that an institution whose existence, funding, and leadership derive from a single political actor cannot, by any structural definition, be independent of that actor. The bias is baked in &#x2014; not because individuals are necessarily dishonest, but because the institution is constitutionally designed without independence. In electoral administration, as in judicial independence, structural design is character destiny. Nigeria&#x2019;s INEC is structurally compromised, and that compromise predates and postdates every individual who has held office within it.</p>
+
+    <h3>Legal Ambiguities: The Loopholes That Must Be Closed</h3>
+
+    <p>The Electoral Act 2022 was, by the standards of Nigerian electoral legislation, a serious reform effort. Its provisions for BVAS accreditation, result transmission, and expanded grounds for election petitions represented legislative progress that should be acknowledged. But genuine reform can coexist with dangerous ambiguity &#x2014; and the Act contains several provisions whose vagueness created exploitable space in 2023 and will do so again in 2027 unless addressed.</p>
+
+    <p>The most consequential is the undefined standard of &#x201C;substantial compliance.&#x201D; Nigerian courts have applied this doctrine &#x2014; the principle that an election is valid if it was substantially, not necessarily perfectly, compliant with legal requirements &#x2014; with such inconsistency that it now functions less as a legal standard than as a judicial discretion so broad as to be unpredictable. In 2023, tribunals in different states applied it to opposite effect in factually similar circumstances. The Act does not define what &#x201C;substantial compliance&#x201D; means in an election conducted with BVAS and IReV &#x2014; it does not specify what percentage of polling units must have successfully uploaded results, what the consequences of BVAS malfunction are for the validity of the affected units&#x2019; results, or how discrepancies between electronic and physical records should affect the legal outcome. This ambiguity is not an oversight. It is a structural gift to whoever controls the collation process and can present physical documentation as the authoritative record.</p>
+
+    <p>A second critical ambiguity concerns campaign finance. The Electoral Act sets spending ceilings that are routinely exceeded by every major candidate &#x2014; in some cases by orders of magnitude &#x2014; without consequence. INEC&#x2019;s campaign finance monitoring function lacks audit powers, prosecutorial independence, and the resources necessary to investigate violations. The result is that campaign finance regulation exists as text in a statute and nowhere else. <span class="vfy">Verified</span><sup class="ref">[&#xB3;]</sup> In an election cycle where money determines mobilisation, access, and ultimately votes, the absence of credible spending regulation is not a procedural gap. It is a structural advantage for candidates with the largest war chests &#x2014; and a structural disadvantage for every other participant and for democracy itself.</p>
+
+    <h3>Accountability Breakdowns: The Officials Who Faced No Consequences</h3>
+
+    <p>The post-2023 accountability record is not merely disappointing. It is, on the available evidence, close to non-existent. INEC arraigned a number of presiding and returning officers for alleged result manipulation in the months following the elections. The prosecutions were conducted through the regular federal court system, without dedicated electoral crime jurisdiction, without specialised forensic capacity, and without the institutional insulation from political pressure that effective prosecution of politically sensitive offences requires. As of mid-2026, the vast majority of those prosecutions have stalled, collapsed, or produced acquittals. <span class="vfy">Verified</span><sup class="ref">[&#xB6;]</sup> No senior electoral official has been convicted and sentenced for offences relating to the 2023 elections.</p>
+
+    <p>The Electoral Offences Commission &#x2014; a dedicated independent body for investigating and prosecuting electoral crimes, proposed by virtually every credible electoral reform initiative in Nigeria over the past two decades &#x2014; remains unestablished. The bill establishing it has been introduced in successive National Assembly sessions. It has not been passed. The political calculus is not mysterious: an independent body capable of prosecuting electoral crimes would primarily threaten those who have the most to gain from electoral manipulation &#x2014; and those actors are overwhelmingly represented among the legislators who would need to pass the bill.</p>
+
+    <p>The absence of accountability is not a side effect of weak institutions. It is the intended output of a political system in which impunity is a structural feature. Until the cost of electoral manipulation changes &#x2014; until prosecutions are swift, convictions are credible, and sentences are dissuasive &#x2014; the rational choice for every electoral official under political pressure will remain the same choice that was made in 2023. The machine that produces impunity is still running.</p>
+
+    <h3>Judicial Architecture: When the Court of Last Resort Leaves Citizens Unresorted</h3>
+
+    <p>When citizens and candidates cannot trust INEC, they are directed to the judiciary. This is constitutionally correct. What the constitution does not guarantee is that the judicial process will be accessible, affordable, consistent, or timely enough to provide a genuine remedy rather than a ceremonial one.</p>
+
+    <p>Electoral litigation in Nigeria imposes structural disadvantages on petitioners that compound with every tier of the process. Certified true copies of results and electoral documents &#x2014; without which no substantive petition can proceed &#x2014; must be obtained from INEC, which has institutional incentives to delay their production. Technical evidence relating to BVAS data and IReV logs must be adduced from systems whose source code is not public and whose internal architecture INEC has never been required to disclose in litigation. Expert witnesses must testify on statistical anomalies in datasets that neither party has fully shared. And all of this must be completed within timelines &#x2014; 180 days for presidential petitions &#x2014; that, in cases of genuine complexity, systematically favour the institutional status quo over the citizen or candidate challenging it.</p>
+
+    <p>The 2023 presidential petition process revealed a further dimension of judicial vulnerability: the inconsistency of reasoning across different levels and jurisdictions of the electoral courts. In at least four states, election petition tribunals made findings that were reversed on appeal, not on new facts but on different applications of the same legal standards. <span class="vfy">Verified</span><sup class="ref">[&#xB7;]</sup> The doctrine applied to one petitioner in one state produced a different outcome than the same doctrine applied to a materially similar petitioner in another state. This inconsistency does not reflect a judiciary working through difficult new legal territory. It reflects a judiciary whose electoral jurisprudence is insufficiently principled, insufficiently standardised, and &#x2014; given the political stakes involved &#x2014; susceptible to influences that should have no place in adjudication.</p>
+
+    <h3>Media, Disinformation, and the Information Ecosystem of Elections</h3>
+
+    <p>The integrity of a modern election is not determined solely by what happens at the polling unit or the collation centre. It is also determined by what citizens believe is happening &#x2014; and what they believe they can do about it. In 2023, the information ecosystem surrounding the election was compromised by the deliberate production and rapid dissemination of false narratives at every stage of the process.</p>
+
+    <p>Fabricated result sheets were circulated on WhatsApp before any official results had been announced. False claims about candidate eligibility, polling unit closures, and security incidents spread faster than corrections. Coordinated influence operations &#x2014; some of which were identified and documented by independent digital rights researchers &#x2014; amplified misleading content in ways that suppressed turnout in targeted areas and manufactured perceptions of electoral outcomes that had not yet been officially declared. <span class="vfy">Verified</span><sup class="ref">[&#xB8;]</sup></p>
+
+    <p>Nigeria&#x2019;s regulatory architecture for electoral information integrity is essentially absent. The Nigerian Broadcasting Commission has no operational framework for identifying and requiring correction of electoral misinformation during an active election cycle. Major digital platforms operate with negligible accountability to Nigerian regulatory authorities. The gap between the sophistication of the disinformation ecosystem and the capacity of Nigerian institutions to monitor, challenge, and correct it has grown wider since 2023 &#x2014; not narrower. By 2027, with AI-assisted content generation making large-scale disinformation campaigns both cheaper and more convincing to produce, this gap will represent one of the most significant threats to electoral credibility that Nigerian institutions have yet faced.</p>
+
+    <h3>A Blueprint for Restoration: What Must Change Before 2027</h3>
+
+    <p>Identifying failure is the easier part of this analysis. What matters for the republic&#x2019;s future is whether diagnosis can be converted into reform &#x2014; and whether the political will and civic pressure necessary to drive reform can be assembled before the window closes. What follows is not a comprehensive wish list but the minimum set of interventions without which 2027 will almost certainly reproduce 2023&#x2019;s credibility deficit.</p>
+
+    <!-- Six-pillar reform framework visual -->
+    <div class="art-visual-inset reveal" aria-label="Six reform pillars for 2027 electoral integrity">
+      <svg viewBox="0 0 760 160" xmlns="http://www.w3.org/2000/svg" fill="none" style="width:100%;display:block">
+        <rect width="760" height="160" fill="#f0f7f2" rx="4"/>
+        <text x="380" y="18" text-anchor="middle" font-family="monospace" font-size="8.5" fill="#1a4d2e" font-weight="700" letter-spacing="1.5">SIX REFORM PILLARS · MINIMUM FRAMEWORK FOR 2027</text>
+        <!-- Pillar 1 -->
+        <rect x="20" y="28" width="105" height="112" rx="3" fill="#1a4d2e"/>
+        <rect x="20" y="28" width="105" height="6" rx="3" fill="#4aaf74"/>
+        <text x="72" y="56" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#4aaf74" font-weight="700">POLITICAL</text>
+        <text x="72" y="68" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">INEC appointment</text>
+        <text x="72" y="79" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">independence +</text>
+        <text x="72" y="90" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">budget autonomy</text>
+        <!-- Pillar 2 -->
+        <rect x="135" y="28" width="105" height="112" rx="3" fill="#2d7a4f"/>
+        <rect x="135" y="28" width="105" height="6" rx="3" fill="#4aaf74"/>
+        <text x="187" y="56" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#fff" font-weight="700">LEGAL</text>
+        <text x="187" y="68" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">EC8A electronic</text>
+        <text x="187" y="79" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">equivalence +</text>
+        <text x="187" y="90" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">finance reform</text>
+        <!-- Pillar 3 -->
+        <rect x="250" y="28" width="105" height="112" rx="3" fill="#1a4d2e"/>
+        <rect x="250" y="28" width="105" height="6" rx="3" fill="#c8a84b"/>
+        <text x="302" y="56" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#c8a84b" font-weight="700">CIVIC</text>
+        <text x="302" y="68" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">Electoral literacy</text>
+        <text x="302" y="79" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">+ citizen witness</text>
+        <text x="302" y="90" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">infrastructure</text>
+        <!-- Pillar 4 -->
+        <rect x="365" y="28" width="105" height="112" rx="3" fill="#2d7a4f"/>
+        <rect x="365" y="28" width="105" height="6" rx="3" fill="#c8a84b"/>
+        <text x="417" y="48" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#fff" font-weight="700">TECHNOLOGY</text>
+        <text x="417" y="60" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">BVAS audit +</text>
+        <text x="417" y="71" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">end-to-end</text>
+        <text x="417" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">transmission</text>
+        <text x="417" y="93" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">integrity</text>
+        <!-- Pillar 5 -->
+        <rect x="480" y="28" width="105" height="112" rx="3" fill="#1a4d2e"/>
+        <rect x="480" y="28" width="105" height="6" rx="3" fill="#e05c5c"/>
+        <text x="532" y="48" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#e05c5c" font-weight="700">INSTITUTIONAL</text>
+        <text x="532" y="60" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">Electoral Offences</text>
+        <text x="532" y="71" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">Commission +</text>
+        <text x="532" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(168,213,181,.7)">judicial standards</text>
+        <!-- Pillar 6 -->
+        <rect x="595" y="28" width="145" height="112" rx="3" fill="#2d7a4f"/>
+        <rect x="595" y="28" width="145" height="6" rx="3" fill="#e05c5c"/>
+        <text x="667" y="48" text-anchor="middle" font-family="monospace" font-size="7.5" fill="#fff" font-weight="700">MEDIA &amp; INFO</text>
+        <text x="667" y="60" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">Disinformation</text>
+        <text x="667" y="71" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">framework +</text>
+        <text x="667" y="82" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">platform</text>
+        <text x="667" y="93" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(255,255,255,.65)">accountability</text>
+        <!-- Status row -->
+        <text x="72" y="130" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">NOT DONE</text>
+        <text x="187" y="130" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">NOT DONE</text>
+        <text x="302" y="130" text-anchor="middle" font-family="monospace" font-size="7" fill="#c8a84b">PARTIAL</text>
+        <text x="417" y="130" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">NOT DONE</text>
+        <text x="532" y="130" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">NOT DONE</text>
+        <text x="667" y="130" text-anchor="middle" font-family="monospace" font-size="7" fill="#e05c5c">NOT DONE</text>
+        <text x="380" y="152" text-anchor="middle" font-family="monospace" font-size="7" fill="rgba(26,77,46,.5)">Status as of June 2026 · NITIZEN editorial assessment</text>
+      </svg>
+    </div>
+
+    <p><strong>Political reform: restructuring INEC&#x2019;s appointment and funding independence.</strong> The single most important political reform available is the insulation of INEC&#x2019;s leadership from executive patronage. This requires a constitutional amendment establishing an independent selection panel &#x2014; comprising representatives of the judiciary, the bar, accredited civil society organisations, and academic institutions &#x2014; to nominate candidates for the chairmanship and national commissionership, with the executive&#x2019;s role limited to formal appointment from that panel&#x2019;s shortlist. Simultaneously, INEC&#x2019;s budget must be constitutionally designated as a first-line charge on the Consolidated Revenue Fund, removing executive discretion from its release. Neither reform is logistically difficult. Both require a political class willing to constrain its own leverage over the electoral process. That willingness must be demanded by citizens &#x2014; loudly, consistently, and with specific legislative targets.</p>
+
+    <p><strong>Legal reform: electronic equivalence, defined standards, and campaign finance enforcement.</strong> The Electoral Act must be amended before the 2027 election cycle to resolve its most dangerous ambiguities. Electronic result transmission data must be granted legal equivalence with physical collation forms, subject to cryptographically verified chain of custody for the transmission. Where transmitted and physical data conflict, an automatic independent technical audit &#x2014; not judicial discretion &#x2014; must be the mandatory first response. The doctrine of substantial compliance must be operationally defined: what percentage of failed accreditations or missing uploads triggers an automatic review of a result? These are not complex technical questions. They are political decisions dressed as technical ones &#x2014; and until they are decided in legislation rather than left to judicial discretion, they will be decided differently every time. On campaign finance: an independent audit body with powers to inspect party accounts, examine expenditure evidence, and levy meaningful sanctions must replace the current fiction of INEC-administered spending limits.</p>
+
+    <p><strong>Civic reform: structured electoral education and citizen documentation infrastructure.</strong> INEC&#x2019;s voter education mandate has never been taken seriously at the scale the electorate requires. By 2027, INEC and civil society organisations must have delivered structured electoral literacy programmes &#x2014; covering accreditation procedures, rights on election day, collation observation, irregularity reporting, and the use of digital documentation tools &#x2014; to every local government in the country, in all major languages. Critically, civic readiness for 2027 is not only INEC&#x2019;s responsibility. It is the responsibility of every organisation, journalist, and citizen who understands what is at stake. NITIZEN&#x2019;s See-gnal initiative &#x2014; with its RedFlag reporting channel and Ledger institutional tracking tools &#x2014; exists precisely to give citizens the infrastructure to document what they witness and to ensure that irregularities are recorded in real time rather than reconstructed after the fact. The collation process is most vulnerable to manipulation where citizens are absent. The most powerful deterrent to manipulation is not technology. It is witnesses.</p>
+
+    <p><strong>Technological reform: independent auditing and end-to-end transmission integrity.</strong> INEC must commission and publish an independent, technically specific audit of BVAS and IReV performance across the 2023 elections before the 2027 cycle begins. The audit should be conducted by a consortium that includes international election technology specialists, Nigerian cybersecurity professionals, and accredited civil society observers &#x2014; with findings published in full and a remediation plan with specific, verifiable milestones. For 2027, BVAS deployment must be accompanied by a publicly specified backup protocol for device failures &#x2014; what happens, procedurally and legally, when a device fails at a polling unit &#x2014; so that the discretion that created space for manipulation in 2023 is replaced with a defined, monitored procedure. Result transmission should be end-to-end encrypted with hash verification that any technical observer can independently check, such that tampering with an uploaded result is mathematically detectable rather than merely alleged.</p>
+
+    <p><strong>Institutional reform: the Electoral Offences Commission and judicial standardisation.</strong> The Electoral Offences Commission Bill must be passed in the current National Assembly session and in force before the 2027 election cycle opens. Without dedicated prosecutorial capacity, electoral crime will continue to be a cost-free activity for the actors most able to benefit from it. Simultaneously, the National Judicial Council must develop and publish standardised jurisprudential guidelines for electoral cases &#x2014; covering the treatment of electronic evidence, the definition of substantial compliance in a technology-enabled election, the evidentiary weight of IReV data, and the procedural rights of petitioners seeking INEC documents &#x2014; before 2027 litigation begins. Guidelines developed during litigation are not guidelines. They are retroactive rationalisations.</p>
+
+    <p><strong>Media reform: electoral information integrity framework.</strong> The NBC and Nigerian Press Council must develop, before 2027, a credible electoral information integrity framework that requires major broadcast outlets to correct demonstrably false electoral claims within defined timeframes, that prohibits electoral advertising from anonymous funders, and that establishes a rapid-response verification mechanism jointly operated by civil society, the press, and regulatory bodies. Digital platforms operating in Nigeria must be required &#x2014; through regulation if not through voluntary cooperation &#x2014; to provide real-time disclosure of political advertising spend, to remove content identified as factually false by a defined multi-stakeholder body, and to give Nigerian civil society organisations access to the same transparency tools they provide to researchers in other jurisdictions.</p>
+
+    <h3>The Calculus of Trust: What Restoration Actually Requires</h3>
+
+    <p>Public trust in an electoral system is not restored by assurance. It is restored by evidence &#x2014; by the observable fulfilment of specific commitments, by the demonstrable punishment of specific violations, and by the structural reform of the conditions that made violations possible in the first place. Nigeria has, since 2023, received assurances in abundance. It has not received evidence.</p>
+
+    <p>INEC has spoken of improvements to its technology infrastructure without publishing the technical specifications of those improvements or subjecting them to independent verification. The National Assembly has convened electoral reform hearings without producing legislation. The President has spoken of commitment to a free and fair 2027 election without proposing, or supporting, a single structural reform that would constrain his own administration&#x2019;s leverage over the process. Civil society has advocated with increasing urgency. Citizens have expressed scepticism with increasing consistency. The gap between the stated intentions of institutions and the structural conditions of the electoral system has not narrowed. It has, if anything, widened.</p>
+
+    <p>What trust restoration requires is not goodwill. It requires that INEC be structurally unable to be captured &#x2014; not just that its current leadership chooses to resist capture. It requires that electoral manipulation carry a credible risk of prosecution &#x2014; not just that INEC occasionally arraigns officials who will be acquitted two years later. It requires that the legal framework give citizens and petitioners genuine tools to challenge results &#x2014; not just the right to file petitions in a system designed to exhaust them. And it requires that citizens be equipped, informed, and present &#x2014; not passive recipients of whatever result is declared, but active participants in every stage of the process that produces it.</p>
+
+    <p>The 2027 election is not yet inevitable. Its outcome is not predetermined. But the conditions that determine its credibility are being set now &#x2014; in every legislative session that passes without electoral reform, in every audit that is not commissioned, in every prosecution that is not pursued. The machine is still broken. The time available to fix it is measurable in months, not years. The citizens who refuse to accept another 2023 are the only constituency with both the interest and the power to demand that it be fixed.</p>
+
+    <p>NITIZEN will track every dimension of this story &#x2014; every reform tabled, every accountability failure documented, every civic action taken &#x2014; between now and February 2027. This is what the platform is for.</p>
 
     <div class="ref-block">
       <div class="ref-head">References &amp; Sources</div>
       <ul class="ref-list">
-        <li><span class="ref-n">[&#xB9;]</span><span>Supreme Court of Nigeria &#x2014; Presidential Election Petition Tribunal (PEPT) ruling: October 26, 2023. Appeal SC/CV/504/2023 dismissed: February 6, 2024. Judgments available via judiciary.gov.ng and reproduced by Premium Times and The Punch.</span></li>
-        <li><span class="ref-n">[&#xB2;]</span><span>INEC, &#x201C;Regulations and Guidelines for the Conduct of Elections&#x201D; 2022 (revised). Electoral Act 2022, Sections 47&#x2013;52. BVAS and IReV specifications: INEC press releases, October&#x2013;December 2022. inecnigeria.org</span></li>
-        <li><span class="ref-n">[&#xB3;]</span><span>EU Election Observation Mission Nigeria 2023 &#x2014; Final Report, July 2023, pp. 28&#x2013;34. YIAGA Africa WATCHING THE VOTE reports, February&#x2013;March 2023. INEC officials arraigned: Federal High Court records, Abuja, Imo, Rivers, and Kano, Q2 2023.</span></li>
+        <li><span class="ref-n">[&#xB9;]</span><span>EU Election Observation Mission Nigeria 2023 &#x2014; Final Report, July 2023, pp. 28&#x2013;44 (IReV upload failures, transmission timeline analysis, result discrepancies between polling unit and collated data). Joint International Observer Group (JIOG) Preliminary Statement, February 27, 2023. NDI/IRI International Election Observation Report, April 2023. eeas.europa.eu/eeas/eu-election-observation-mission-nigeria-2023. INEC Post-Election Report 2023 &#x2014; Chapter 4: Technology Deployment and Outcomes.</span></li>
+        <li><span class="ref-n">[&#xB2;]</span><span>YIAGA Africa, &#x201C;WATCHING THE VOTE: 2023 Presidential and National Assembly Elections&#x201D; &#x2014; Parallel Vote Tabulation (PVT) and field observation report. BVAS malfunction geographic distribution analysis: Lagos, Kano, Rivers, and eleven additional states (pp. 18&#x2013;31). yiaga.org. Corroborated by Situation Room Final Observation Report, March 2023; INEC Post-Election Report 2023, Chapter 4; and Centre for Democracy and Development field reports, February&#x2013;March 2023. cddwestafrica.org</span></li>
+        <li><span class="ref-n">[&#xB3;]</span><span>Electoral Act 2022 (Electoral Act Amendment Act), Sections 47, 50, 60, 64&#x2013;65. Form EC8A legal primacy analysis: Adetokunbo Mumuni, &#x201C;Electoral Reform and the Paper-Electronic Divide,&#x201D; Premium Times, September 2023. Campaign finance enforcement gap: Transition Monitoring Group (TMG), &#x201C;Campaign Finance and Electoral Integrity in Nigeria&#x2019;s 2023 Elections,&#x201D; 2023. Substantial compliance jurisprudence: Nnamdi Obasi, &#x201C;Nigeria&#x2019;s Electoral Laws and Their Limits,&#x201D; International Crisis Group, 2024. laws.africa/ng</span></li>
+        <li><span class="ref-n">[&#xB4;]</span><span>EU EOM Nigeria 2023 Final Report, pp. 42&#x2013;52 (Imo, Kogi, Bayelsa governorship elections &#x2014; security force deployment, result discrepancies). Human Rights Watch, &#x201C;Nigeria: Serious Violations in 2023 Gubernatorial Elections,&#x201D; December 2023. hrw.org. INEC State Collation Centre documentation vs. declared results discrepancy analysis: Premium Times investigative series, November&#x2013;December 2023; The Cable, November 2023. Supreme Court ruling on Imo State governorship: SC/CV/936/2019 and 2023 re-hearing.</span></li>
+        <li><span class="ref-n">[&#xB5;]</span><span>Constitution of the Federal Republic of Nigeria 1999 (as amended), Third Schedule, Part I &#x2014; Federal Executive Bodies; Section 154 (INEC appointment). INEC fiscal dependency analysis: Budget Office of the Federation, INEC appropriation releases 2020&#x2013;2023. CLEEN Foundation, &#x201C;Independence of INEC: Structural Constraints and Reform Options,&#x201D; 2022. Structural capture analysis: International Crisis Group, &#x201C;Electoral Commission Independence in West Africa,&#x201D; 2023. cleen.org</span></li>
+        <li><span class="ref-n">[&#xB6;]</span><span>INEC, &#x201C;Report on Prosecution of Electoral Offenders: 2023 General Elections,&#x201D; December 2023 (submitted to National Assembly). Federal High Court arraignment and conviction records: Abuja, Imo, Rivers, Kano, Enugu &#x2014; Q2 2023&#x2013;Q2 2026. Electoral Offences Commission legislative history: National Assembly Bills, 2010&#x2013;2023 sessions (un-enacted). Centre for Democracy and Development, &#x201C;Electoral Justice and Impunity in Nigeria,&#x201D; 2024. cddwestafrica.org</span></li>
+        <li><span class="ref-n">[&#xB7;]</span><span>Presidential Election Petition Tribunal (PEPT) &#x2014; Judgment, September 6, 2023. Supreme Court &#x2014; SC/CV/504/2023, judgment February 6, 2024. Gubernatorial tribunal inconsistency analysis across Imo, Plateau, Kano, Bayelsa &#x2014; Election Petition Tribunal decisions and Court of Appeal reversals, Q3&#x2013;Q4 2023; documented in CLEEN Foundation election justice review. judiciary.gov.ng</span></li>
+        <li><span class="ref-n">[&#xB8;]</span><span>Paradigm Initiative, &#x201C;Digital Rights and Electoral Integrity in Nigeria&#x2019;s 2023 Elections,&#x201D; March 2023. paradigmhq.org. Africa Centre for Strategic Studies, &#x201C;Information Manipulation and Nigeria&#x2019;s 2023 Elections,&#x201D; 2023. Verified fabricated result sheet circulation: documented by Code for Africa &#x2014; PesaCheck Nigeria, February 2023. Meta Transparency Report &#x2014; Nigeria political advertising Q1 2023; influence operation takedowns: Meta Security Report, April 2023.</span></li>
       </ul>
     </div>
-    <p class="art-footer-note">This piece represents the editorial position of NITIZEN&#x2019;s Conscience Letters initiative. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
+    <p class="art-footer-note">This piece represents the editorial position of NITIZEN&#x2019;s Conscience Letters initiative. It was revised and substantially expanded in June 2026 as a standalone analytical piece. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
 
     <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from &#x20A6;2,500/mo &#x2192;</a></div>
     <div class="art-nav">
-      <a href="#article-3" class="btn-outline">&#x2190; Previous Article</a>
-      <a href="#cl" class="btn-primary">Back to Conscience Letters &#x2192;</a>
+      <a href="#article-3" class="btn-outline">← Previous Article</a>
+      <a href="#article-2" class="btn-primary">Next Article →</a>
     </div>
   </div>
 
@@ -4253,7 +5052,37 @@ function handleNotify(e) {
 <div id="page-asknaija-beta" class="spa-page" style="display:none">
 
 <!-- ── HERO ── -->
-<div class="ank-hero">
+<div class="ank-hero" style="position:relative;overflow:hidden">
+  <!-- AI Brain circuit illustration -->
+  <div style="position:absolute;right:2rem;top:50%;transform:translateY(-50%);opacity:.12;pointer-events:none" aria-hidden="true">
+    <svg width="300" height="300" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" fill="none">
+      <circle cx="160" cy="160" r="130" stroke="#4aaf74" stroke-width="1" opacity=".6"/>
+      <circle cx="160" cy="160" r="100" stroke="#4aaf74" stroke-width="1" opacity=".4"/>
+      <circle cx="160" cy="160" r="70" stroke="#4aaf74" stroke-width="2" opacity=".5"/>
+      <line x1="160" y1="30" x2="160" y2="90" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="160" y1="230" x2="160" y2="290" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="30" y1="160" x2="90" y2="160" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="230" y1="160" x2="290" y2="160" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="68" y1="68" x2="110" y2="110" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="252" y1="68" x2="210" y2="110" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="68" y1="252" x2="110" y2="210" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <line x1="252" y1="252" x2="210" y2="210" stroke="#4aaf74" stroke-width="1.5" stroke-dasharray="4,3"/>
+      <rect x="120" y="120" width="80" height="80" rx="12" fill="#4aaf74" opacity=".6"/>
+      <circle cx="145" cy="148" r="8" fill="#0d1a0a"/>
+      <circle cx="175" cy="148" r="8" fill="#0d1a0a"/>
+      <rect x="140" y="164" width="40" height="6" rx="3" fill="#0d1a0a" opacity=".7"/>
+      <line x1="160" y1="120" x2="160" y2="100" stroke="#4aaf74" stroke-width="2"/>
+      <circle cx="160" cy="96" r="6" fill="#4aaf74"/>
+      <circle cx="160" cy="60" r="5" fill="#4aaf74"/>
+      <circle cx="160" cy="260" r="5" fill="#4aaf74"/>
+      <circle cx="60" cy="160" r="5" fill="#4aaf74"/>
+      <circle cx="260" cy="160" r="5" fill="#4aaf74"/>
+      <circle cx="92" cy="92" r="4" fill="#4aaf74"/>
+      <circle cx="228" cy="92" r="4" fill="#4aaf74"/>
+      <circle cx="92" cy="228" r="4" fill="#4aaf74"/>
+      <circle cx="228" cy="228" r="4" fill="#4aaf74"/>
+    </svg>
+  </div>
   <div class="breadcrumb"><a href="#home">Home</a><span>/</span>AskNaija</div>
   <div class="ank-pill">
     <span class="ank-pill-dot"></span>
