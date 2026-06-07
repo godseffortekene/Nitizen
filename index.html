@@ -1720,6 +1720,535 @@ section { padding: 5rem 4rem; }
 @media(max-width:900px){.art-header{padding:6rem 1.5rem 3rem;}.art-body{padding:3rem 1.2rem;}.promise-table{font-size:.78rem;}}
 
 
+/* === programs.html + fellowship.html === */
+
+/* ── PROGRAMS HUB PAGE ── */
+.prog-hero {
+  min-height: 72vh; display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 9rem 4rem 5rem; position: relative; overflow: hidden;
+  background: var(--ink);
+}
+.prog-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 30% 50%, rgba(26,77,46,.22) 0%, transparent 65%),
+    radial-gradient(ellipse 50% 50% at 85% 20%, rgba(200,168,75,.07) 0%, transparent 55%),
+    linear-gradient(165deg, var(--ink) 0%, #0e1a13 100%);
+}
+.prog-hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 80% at 30% 60%, black 30%, transparent 75%);
+}
+.prog-hero-content { position: relative; z-index: 2; max-width: 840px; }
+.prog-eyebrow {
+  display: inline-flex; align-items: center; gap: .7rem; margin-bottom: 1.6rem;
+}
+.prog-eyebrow-line { width: 28px; height: 1px; background: var(--green-soft); }
+.prog-eyebrow-text {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--green-soft);
+}
+.prog-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(2.8rem, 6.5vw, 5.8rem);
+  font-weight: 800; line-height: 1.02; color: #fff; margin-bottom: 1rem;
+}
+.prog-hero h1 em { font-style: italic; color: var(--green-light); display: block; }
+.prog-hero-sub {
+  font-family: var(--body); font-size: 1.05rem; line-height: 1.85;
+  color: rgba(168,213,181,.82); max-width: 520px; margin-bottom: 2.4rem;
+}
+
+/* ── PROGRAMS CATALOGUE ── */
+.prog-catalogue { background: var(--off-white); padding: 5rem 4rem; }
+.prog-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem; margin-top: 3rem;
+}
+.prog-card {
+  background: #fff; border: 1px solid var(--border);
+  border-top: 3px solid var(--green-soft);
+  padding: 2rem 1.8rem; border-radius: 2px;
+  text-decoration: none; display: block;
+  transition: box-shadow .25s, transform .2s;
+  cursor: pointer; color: inherit;
+}
+.prog-card:hover { box-shadow: 0 8px 32px rgba(26,77,46,.11); transform: translateY(-3px); }
+.prog-card.active-program { border-top-color: var(--gold); }
+.prog-card.coming-soon { opacity: .72; cursor: default; }
+.prog-card.coming-soon:hover { transform: none; box-shadow: none; }
+.prog-card-num {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .18em;
+  color: var(--green-soft); text-transform: uppercase; margin-bottom: 1rem;
+}
+.prog-card-icon { font-size: 1.5rem; margin-bottom: .8rem; display: block; }
+.prog-card h3 {
+  font-family: var(--display); font-size: 1.15rem; font-weight: 700;
+  color: var(--green-deep); line-height: 1.25; margin-bottom: .5rem;
+}
+.prog-card p {
+  font-family: var(--body); font-size: .87rem; line-height: 1.7; color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+.prog-card-status {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.prog-card-status.open { color: var(--green-mid); }
+.prog-card-status.open::before { content: ''; width: 6px; height: 6px; background: var(--green-soft); border-radius: 50%; animation: progPulse 1.8s ease-in-out infinite; }
+.prog-card-status.coming { color: var(--muted); }
+.prog-card-status.coming::before { content: ''; width: 6px; height: 6px; background: var(--muted); border-radius: 50%; }
+@keyframes progPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.7)} }
+
+/* ── PROGRAMS VISION STRIP ── */
+.prog-vision {
+  background: var(--green-deep); padding: 4rem;
+  border-top: 1px solid rgba(168,213,181,.1);
+  border-bottom: 1px solid rgba(168,213,181,.1);
+}
+.prog-vision-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.prog-vision h2 {
+  font-family: var(--display); font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; color: #fff; line-height: 1.12; margin-bottom: 1rem;
+}
+.prog-vision h2 em { font-style: italic; color: var(--green-light); }
+.prog-vision p {
+  font-family: var(--body); font-size: 1rem; line-height: 1.85;
+  color: rgba(168,213,181,.82); max-width: 500px;
+}
+.prog-vision-stats {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+}
+.prog-vs {
+  background: rgba(255,255,255,.06); border: 1px solid rgba(168,213,181,.15);
+  padding: 1.4rem; border-radius: 2px; text-align: center;
+}
+.prog-vs-num {
+  font-family: var(--accent); font-size: 2.2rem; font-weight: 700;
+  color: var(--green-light); line-height: 1;
+}
+.prog-vs-lbl {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(168,213,181,.55); margin-top: .35rem;
+}
+
+/* ── PROGRAMS RESPONSIVE ── */
+@media(max-width:900px) {
+  .prog-hero { padding: 7rem 1.5rem 4rem; }
+  .prog-catalogue { padding: 4rem 1.5rem; }
+  .prog-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .prog-vision { padding: 3rem 1.5rem; }
+  .prog-vision-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .prog-vision-stats { grid-template-columns: 1fr 1fr; }
+}
+
+/* ════════════════════════════════════════
+   FELLOWSHIP PAGE — v25 INTEGRATION
+════════════════════════════════════════ */
+
+/* ── FELLOWSHIP HERO ── */
+.flp-hero {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 8rem 4rem 5rem; position: relative; overflow: hidden;
+  background: var(--ink);
+}
+.flp-hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(ellipse 65% 70% at 55% 35%, rgba(26,77,46,.2) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 45% at 10% 80%, rgba(200,168,75,.07) 0%, transparent 55%),
+    radial-gradient(ellipse 35% 40% at 88% 85%, rgba(74,175,116,.05) 0%, transparent 60%),
+    linear-gradient(180deg, var(--ink) 0%, #0b1410 100%);
+}
+.flp-hero-grid {
+  position: absolute; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 70% at 55% 40%, black 25%, transparent 75%);
+}
+.flp-hero-content { position: relative; z-index: 2; max-width: 820px; }
+.flp-eyebrow {
+  display: inline-flex; align-items: center; gap: .7rem; margin-bottom: 1.4rem;
+}
+.flp-eyebrow-line { width: 28px; height: 1px; background: var(--green-soft); }
+.flp-eyebrow-text {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--green-soft);
+}
+.flp-reg-badge {
+  display: inline-flex; align-items: center; gap: .8rem;
+  background: rgba(200,168,75,.12); border: 1px solid rgba(200,168,75,.38);
+  padding: .55rem 1.2rem; border-radius: 2px; margin-bottom: 1.6rem;
+}
+.flp-reg-badge-label {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted);
+}
+.flp-reg-badge-date {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 700; color: var(--gold);
+}
+.flp-hero h1 {
+  font-family: var(--display); font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 400; line-height: 1.04; letter-spacing: -.02em; color: #fff; margin-bottom: 1rem;
+}
+.flp-hero h1 em { font-style: italic; color: var(--gold); display: block; }
+.flp-hero h1 strong { font-weight: 800; color: #fff; }
+.flp-hero-sub {
+  font-family: var(--body); font-size: 1.05rem; line-height: 1.85;
+  color: rgba(248,246,242,.75); max-width: 540px; margin-bottom: 2.4rem;
+}
+.flp-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Floating stats (desktop) */
+.flp-stats-float {
+  position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+  z-index: 2; display: flex; flex-direction: column; gap: 2rem; align-items: flex-end;
+}
+.flp-stat-item { text-align: right; }
+.flp-stat-num {
+  font-family: var(--display); font-size: 2.8rem; font-weight: 700;
+  color: #fff; line-height: 1;
+}
+.flp-stat-num span { color: var(--gold); }
+.flp-stat-label {
+  font-family: var(--mono); font-size: .52rem; letter-spacing: .16em;
+  text-transform: uppercase; color: rgba(248,246,242,.38); margin-top: .3rem;
+}
+.flp-stat-sep { width: 1px; height: 32px; background: rgba(255,255,255,.1); margin-left: auto; }
+
+/* ── MANIFESTO BAND ── */
+.flp-manifesto {
+  background: var(--green-deep); padding: 3.5rem 4rem;
+  border-top: 1px solid rgba(74,175,116,.2); border-bottom: 1px solid rgba(74,175,116,.2);
+}
+.flp-manifesto-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+.flp-manifesto p {
+  font-family: var(--display); font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  font-style: italic; font-weight: 400; line-height: 1.55; color: rgba(168,213,181,.9);
+}
+.flp-manifesto cite {
+  display: block; font-family: var(--mono); font-size: .6rem; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(168,213,181,.5); margin-top: 1rem;
+  font-style: normal;
+}
+
+/* ── FELLOWSHIP SECTIONS COMMON ── */
+.flp-section { padding: 5.5rem 4rem; }
+.flp-section.dark { background: var(--ink); }
+.flp-section.alt { background: var(--off-white); }
+.flp-sec-label {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .7rem;
+  display: flex; align-items: center; gap: .7rem;
+}
+.flp-sec-label::after { content: ''; flex: 0 0 20px; height: 1px; background: var(--gold); }
+.flp-sec-label.green { color: var(--green-soft); }
+.flp-sec-label.green::after { background: var(--green-soft); }
+.flp-sec-title {
+  font-family: var(--display); font-size: clamp(1.85rem, 3.8vw, 2.9rem);
+  font-weight: 400; line-height: 1.1; color: #fff; margin-bottom: .9rem;
+}
+.flp-sec-title.light { color: var(--green-deep); }
+.flp-sec-title em { font-style: italic; color: var(--gold); }
+.flp-sec-title em.green { color: var(--green-light); }
+.flp-sec-body {
+  font-family: var(--body); font-size: 1rem; line-height: 1.85;
+  color: rgba(248,246,242,.72); max-width: 600px; margin-bottom: 2.5rem;
+}
+.flp-sec-body.light { color: var(--muted); }
+
+/* ── ABOUT GRID ── */
+.flp-about-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  border: 1px solid rgba(255,255,255,.07); margin-top: 2.5rem;
+}
+.flp-about-item {
+  padding: 2.2rem 2rem; background: rgba(255,255,255,.025);
+  border-right: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .2s;
+}
+.flp-about-item:nth-child(2n) { border-right: none; }
+.flp-about-item:nth-last-child(-n+2) { border-bottom: none; }
+.flp-about-item:hover { background: rgba(255,255,255,.05); }
+.flp-about-num {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .2em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: .7rem;
+}
+.flp-about-title {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+  color: #fff; margin-bottom: .5rem; line-height: 1.3;
+}
+.flp-about-body {
+  font-family: var(--body); font-size: .87rem; line-height: 1.72;
+  color: rgba(248,246,242,.55);
+}
+
+/* ── PILLARS GRID ── */
+.flp-pillars-grid {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 1px; background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.06); margin-top: 2.5rem;
+}
+.flp-pillar {
+  padding: 1.8rem 1.4rem; background: var(--ink);
+  transition: background .2s; text-align: center;
+}
+.flp-pillar:hover { background: rgba(26,77,46,.18); }
+.flp-pillar-icon { font-size: 1.4rem; display: block; margin-bottom: .8rem; }
+.flp-pillar-title {
+  font-family: var(--display); font-size: .92rem; font-weight: 700;
+  color: #fff; margin-bottom: .45rem; line-height: 1.3;
+}
+.flp-pillar-body {
+  font-family: var(--body); font-size: .78rem; line-height: 1.65;
+  color: rgba(168,213,181,.55);
+}
+
+/* ── ELIGIBILITY ── */
+.flp-elig-wrap {
+  display: grid; grid-template-columns: 1fr 340px; gap: 3rem; margin-top: 2.5rem; align-items: start;
+}
+.flp-elig-list { display: flex; flex-direction: column; gap: 0; }
+.flp-elig-item {
+  display: flex; gap: 1.4rem; align-items: flex-start;
+  padding: 1.4rem 0; border-bottom: 1px solid var(--border);
+}
+.flp-elig-item:first-child { padding-top: 0; }
+.flp-elig-mark {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--green-mid); background: var(--green-mist);
+  border: 1px solid rgba(74,175,116,.25); padding: .24rem .6rem; border-radius: 2px;
+  white-space: nowrap; flex-shrink: 0; line-height: 1.6;
+}
+.flp-elig-text {
+  font-family: var(--body); font-size: .92rem; line-height: 1.75; color: var(--muted);
+}
+.flp-elig-panel {
+  background: var(--ink); border: 1px solid rgba(255,255,255,.08);
+  border-top: 3px solid var(--gold); padding: 2rem;
+  position: sticky; top: 80px; border-radius: 2px;
+}
+.flp-elig-panel-hdr {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 1.4rem;
+}
+.flp-elig-stat {
+  padding: .9rem 0; border-bottom: 1px solid rgba(255,255,255,.06);
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+}
+.flp-elig-stat:last-child { border-bottom: none; }
+.flp-elig-key {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(248,246,242,.38);
+}
+.flp-elig-val {
+  font-family: var(--display); font-size: 1.4rem; font-weight: 700; color: #fff; line-height: 1;
+}
+.flp-elig-val span { font-size: .72rem; color: rgba(248,246,242,.45); font-weight: 400; }
+.flp-elig-val.small { font-size: .9rem; color: var(--gold); }
+
+/* ── TRACKS ── */
+.flp-tracks-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem; margin-top: 2.5rem;
+}
+.flp-track {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(168,213,181,.1);
+  border-top: 2px solid var(--green-soft); padding: 1.6rem 1.4rem;
+  border-radius: 2px; transition: background .25s, border-top-color .25s;
+}
+.flp-track:hover { background: rgba(26,77,46,.12); border-top-color: var(--gold); }
+.flp-track-tag {
+  font-family: var(--mono); font-size: .56rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--green-soft); margin-bottom: .6rem; display: block;
+}
+.flp-track-title {
+  font-family: var(--display); font-size: 1rem; font-weight: 700;
+  color: #fff; margin-bottom: .5rem; line-height: 1.3;
+}
+.flp-track-body {
+  font-family: var(--body); font-size: .82rem; line-height: 1.68;
+  color: rgba(168,213,181,.55);
+}
+
+/* ── IMPACT NUMBERS ── */
+.flp-impact-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem; margin-top: 2.5rem;
+}
+.flp-impact-item {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.07);
+  padding: 2rem 1.5rem; text-align: center; border-radius: 2px;
+}
+.flp-impact-num {
+  font-family: var(--accent); font-size: 2.4rem; font-weight: 700;
+  color: var(--green-light); line-height: 1; margin-bottom: .4rem;
+}
+.flp-impact-label {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(248,246,242,.35); line-height: 1.5;
+}
+
+/* ── TIMELINE ── */
+.flp-timeline-wrap {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2.5rem; align-items: start;
+}
+.flp-timeline { position: relative; padding-left: 2rem; }
+.flp-timeline::before {
+  content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px;
+  background: linear-gradient(180deg, var(--gold), rgba(200,168,75,.1));
+}
+.flp-tl-item { padding-bottom: 2.4rem; position: relative; padding-left: 2.4rem; }
+.flp-tl-dot {
+  position: absolute; left: -5px; top: 6px; width: 11px; height: 11px;
+  border-radius: 50%; background: var(--gold); border: 2px solid var(--ink);
+}
+.flp-tl-month {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .18em;
+  color: var(--gold); text-transform: uppercase; margin-bottom: .35rem;
+}
+.flp-tl-title {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: .35rem;
+}
+.flp-tl-body {
+  font-family: var(--body); font-size: .85rem; line-height: 1.72; color: rgba(248,246,242,.45);
+}
+.flp-cohort-panel {
+  background: rgba(26,77,46,.15); border: 1px solid rgba(74,175,116,.2);
+  border-left: 3px solid var(--green-soft); padding: 2rem; border-radius: 0 2px 2px 0;
+}
+.flp-cohort-title {
+  font-family: var(--display); font-size: 1.3rem; font-weight: 700;
+  color: var(--green-light); margin-bottom: 1rem; line-height: 1.2;
+}
+.flp-cohort-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.flp-cohort-list li {
+  font-family: var(--body); font-size: .88rem; line-height: 1.65;
+  color: rgba(168,213,181,.78); display: flex; align-items: flex-start; gap: .6rem;
+}
+.flp-cohort-list li::before { content: '→'; color: var(--green-soft); flex-shrink: 0; }
+
+/* ── APPLICATION SECTION ── */
+.flp-apply-section {
+  background: var(--ink); padding: 7rem 4rem; text-align: center;
+  position: relative; overflow: hidden;
+}
+.flp-apply-section::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(26,77,46,.2) 0%, transparent 60%);
+}
+.flp-apply-inner { position: relative; z-index: 2; max-width: 520px; margin: 0 auto; }
+.flp-apply-title {
+  font-family: var(--display); font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 400; line-height: 1.1; color: #fff; margin-bottom: 1rem;
+}
+.flp-apply-title em { font-style: italic; color: var(--gold); }
+.flp-apply-sub {
+  font-family: var(--body); font-size: 1rem; line-height: 1.85;
+  color: rgba(248,246,242,.7); margin-bottom: 1.8rem;
+}
+.flp-june12-badge {
+  display: inline-flex; align-items: center; gap: 1rem;
+  background: rgba(200,168,75,.12); border: 1px solid rgba(200,168,75,.38);
+  padding: .75rem 1.8rem; border-radius: 2px; margin-bottom: 2.2rem;
+}
+.flp-june12-label {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--muted);
+}
+.flp-june12-date {
+  font-family: var(--display); font-size: 1.2rem; font-weight: 700; color: var(--gold);
+}
+
+/* ── APPLICATION FORM ── */
+.flp-form {
+  display: flex; flex-direction: column; gap: .85rem;
+  max-width: 440px; margin: 2rem auto; text-align: left;
+}
+.flp-form input, .flp-form select {
+  font-family: var(--mono); font-size: .78rem; background: transparent;
+  border: 1px solid rgba(255,255,255,.12); color: #fff; padding: .85rem 1.2rem;
+  border-radius: 2px; outline: none; letter-spacing: .04em;
+  transition: border-color .3s; -webkit-appearance: none;
+}
+.flp-form input::placeholder { color: rgba(248,246,242,.35); }
+.flp-form input:focus, .flp-form select:focus { border-color: var(--gold); }
+.flp-form select option { background: var(--ink); color: #fff; }
+.flp-form-btn {
+  font-family: var(--mono); font-size: .74rem; letter-spacing: .16em;
+  background: var(--gold); color: var(--ink); font-weight: 700;
+  padding: .95rem 2rem; border: none; border-radius: 2px; cursor: pointer;
+  transition: background .3s; text-transform: uppercase;
+  width: 100%;
+}
+.flp-form-btn:hover { background: var(--gold-light); }
+.flp-form-success {
+  display: none; background: rgba(45,122,79,.12); border: 1px solid rgba(74,175,116,.3);
+  padding: 2rem; border-radius: 2px; text-align: center; margin-top: 1.2rem;
+}
+.flp-form-success h4 {
+  font-family: var(--display); font-size: 1.35rem; font-weight: 700;
+  color: var(--green-light); margin-bottom: .5rem;
+}
+.flp-form-success p {
+  font-family: var(--body); font-size: .9rem; color: rgba(168,213,181,.8); line-height: 1.7;
+}
+.flp-deadline {
+  font-family: var(--mono); font-size: .66rem; letter-spacing: .18em;
+  color: var(--gold); text-transform: uppercase; margin-top: 1.6rem; display: block;
+}
+.flp-note {
+  font-family: var(--mono); font-size: .6rem; color: rgba(248,246,242,.3);
+  letter-spacing: .06em; margin-top: .5rem;
+}
+
+/* ── FELLOWSHIP RESPONSIVE ── */
+@media(max-width:1100px) {
+  .flp-tracks-grid { grid-template-columns: repeat(2, 1fr); }
+  .flp-pillars-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width:900px) {
+  .flp-hero { padding: 7rem 1.5rem 4rem; }
+  .flp-section { padding: 4rem 1.5rem; }
+  .flp-manifesto { padding: 3rem 1.5rem; }
+  .flp-stats-float { display: none; }
+  .flp-about-grid { grid-template-columns: 1fr; }
+  .flp-about-item:nth-child(2n) { border-right: none; }
+  .flp-pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .flp-elig-wrap { grid-template-columns: 1fr; }
+  .flp-tracks-grid { grid-template-columns: 1fr 1fr; }
+  .flp-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .flp-timeline-wrap { grid-template-columns: 1fr; }
+  .flp-apply-section { padding: 5rem 1.5rem; }
+}
+@media(max-width:600px) {
+  .flp-tracks-grid { grid-template-columns: 1fr; }
+  .flp-pillars-grid { grid-template-columns: 1fr; }
+  .flp-impact-grid { grid-template-columns: 1fr 1fr; }
+  .flp-about-grid { grid-template-columns: 1fr; }
+}
+
+/* ── GOLD BUTTON ── */
+.btn-gold {
+  background: var(--gold); color: var(--ink);
+  padding: .82rem 1.85rem; font-family: var(--mono); font-size: .74rem;
+  font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  border: none; cursor: pointer; text-decoration: none;
+  display: inline-block; border-radius: 2px; transition: background .2s, transform .15s;
+}
+.btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
 /* === contact.html === */
 
 .contact-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; }
@@ -2391,6 +2920,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <li><a href="#home"         data-navpage="home">Home</a></li>
     <li><a href="#about"        data-navpage="about">About</a></li>
     <li><a href="#initiatives"  data-navpage="initiatives">Initiatives</a></li>
+    <li><a href="#programs"     data-navpage="programs">Programs</a></li>
     <li><a href="#cl"           data-navpage="cl">Conscience Letters</a></li>
     <li><a href="#senal"        data-navpage="senal">See-gnal</a></li>
     <li><a href="#asknaija"     data-navpage="asknaija">AskNaija</a></li>
@@ -2402,6 +2932,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   <a href="#home">Home</a>
   <a href="#about">About</a>
   <a href="#initiatives">Initiatives</a>
+  <a href="#programs">Programs</a>
+  <a href="#programs" style="padding-left:1.5rem;font-size:.72rem">↳ Leadership Fellowship</a>
   <a href="#cl">Conscience Letters</a>
   <a href="#senal">See-gnal</a>
   <a href="#redflag" style="padding-left:1.5rem;font-size:.72rem">↳ RedFlag</a>
@@ -2443,10 +2975,12 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <span>RedFlag</span><span>The Ledger</span><span>OpenMic</span><span>Critika</span>
     <span>Civic Education</span><span>Electoral Literacy</span><span>Justice</span>
     <span>Accountability</span><span>2027 Elections</span><span>Active Citizenship</span>
+    <span>🏛️ Fellowship Opens 12 June 2026</span><span>Programs</span><span>30 Fellows</span>
     <span>🎉 Launched 29 May 2026</span><span>Conscience Letters</span><span>AskNaija</span><span>See-gnal</span>
     <span>RedFlag</span><span>The Ledger</span><span>OpenMic</span><span>Critika</span>
     <span>Civic Education</span><span>Electoral Literacy</span><span>Justice</span>
     <span>Accountability</span><span>2027 Elections</span><span>Active Citizenship</span>
+    <span>🏛️ Fellowship Opens 12 June 2026</span><span>Programs</span><span>30 Fellows</span>
   </div>
 </div>
 
@@ -2894,6 +3428,52 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </div>
     </div>
   </section>
+
+  <!-- FELLOWSHIP / PROGRAMS PROMO -->
+  <div style="background:var(--ink);padding:5rem 4rem;border-top:1px solid rgba(255,255,255,.06)">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center">
+      <div class="reveal">
+        <div style="display:inline-flex;align-items:center;gap:.6rem;background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.35);padding:.3rem .85rem;border-radius:2px;margin-bottom:1.2rem">
+          <span style="width:6px;height:6px;background:var(--gold);border-radius:50%;animation:progPulse 1.8s ease-in-out infinite;display:inline-block"></span>
+          <span style="font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)">Now Open · Fellowship Registration 12 June 2026</span>
+        </div>
+        <h2 style="font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;line-height:1.1;color:#fff;margin-bottom:.9rem">
+          NITIZEN Leadership<br><em style="font-style:italic;color:var(--gold)">Fellowship 2026.</em>
+        </h2>
+        <p style="font-family:var(--body);font-size:1rem;line-height:1.85;color:rgba(248,246,242,.65);max-width:500px;margin-bottom:2rem">
+          We are selecting thirty exceptional Nigerians — under 30, intellectually driven, civic-minded — 
+          for Nigeria's most rigorous civic leadership programme. Six months. Eight tracks. 
+          Full membership. Registration opens 12 June — Democracy Day.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap">
+          <button class="btn-gold" onclick="showPage('fellowship')">VIEW THE FELLOWSHIP →</button>
+          <button class="btn-ghost" onclick="showPage('programs')">ALL PROGRAMS</button>
+        </div>
+      </div>
+      <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.2);border-top:3px solid var(--gold);padding:2rem;border-radius:2px">
+        <div style="font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem">Fellowship at a Glance</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.4rem">
+          <div style="text-align:center;padding:.8rem;background:rgba(255,255,255,.04);border-radius:2px">
+            <div style="font-family:var(--accent);font-size:2.2rem;font-weight:700;color:#fff;line-height:1">30</div>
+            <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,246,242,.35);margin-top:.25rem">Fellows</div>
+          </div>
+          <div style="text-align:center;padding:.8rem;background:rgba(255,255,255,.04);border-radius:2px">
+            <div style="font-family:var(--accent);font-size:2.2rem;font-weight:700;color:#fff;line-height:1">6</div>
+            <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,246,242,.35);margin-top:.25rem">Months</div>
+          </div>
+          <div style="text-align:center;padding:.8rem;background:rgba(255,255,255,.04);border-radius:2px">
+            <div style="font-family:var(--accent);font-size:2.2rem;font-weight:700;color:#fff;line-height:1">8</div>
+            <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,246,242,.35);margin-top:.25rem">Tracks</div>
+          </div>
+          <div style="text-align:center;padding:.8rem;background:rgba(255,255,255,.04);border-radius:2px">
+            <div style="font-family:var(--accent);font-size:2.2rem;font-weight:700;color:#fff;line-height:1">≤30</div>
+            <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,246,242,.35);margin-top:.25rem">Age Limit</div>
+          </div>
+        </div>
+        <button class="btn-gold" style="width:100%;text-align:center" onclick="showPage('fellowship')">REGISTER INTEREST →</button>
+      </div>
+    </div>
+  </div>
 
   <!-- ASKNAIJA TEASER -->
   <div class="wa-banner">
@@ -4520,7 +5100,7 @@ function notifyBankIntent() {
   var amt   = TIER_DISPLAY[selectedTier] || '';
 
   // Post to Formspree so the intent is logged in your dashboard
-  fetch('https://formspree.io/f/mojyjgvz', {
+  fetch('https://formspree.io/f/meewabjv', {
     method:  'POST',
     headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -4567,7 +5147,7 @@ function notifyBankIntent() {
       <div class="want-card"><h5>Accountability Writing</h5><p>Evidence-based assessment of institutional performance — legislature, judiciary, executive, security agencies, and local government.</p></div>
     </div>
   </div>
-  <form class="cl-form" id="clForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleCL(event)" novalidate>
+  <form class="cl-form" id="clForm" action="https://formspree.io/f/mdaveraa" method="POST" onsubmit="handleCL(event)" novalidate>
     <input type="hidden" name="_subject" value="✍️ Conscience Letters Pitch — NITIZEN"/>
     <input type="hidden" name="form_type" value="Conscience Letters Pitch"/>
     <div class="form-row">
@@ -5024,7 +5604,7 @@ function handleCL(e){
 <div class="notify-section">
   <h2>Be the First to Use AskNaija</h2>
   <p>Leave your email and we will notify you the moment AskNaija goes live. No spam — one notification, when it matters.</p>
-  <form class="notify-form" id="notifyForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleNotify(event)" novalidate>
+  <form class="notify-form" id="notifyForm" action="https://formspree.io/f/xbdegvjl" method="POST" onsubmit="handleNotify(event)" novalidate>
     <input type="hidden" name="type" value="AskNaija Launch Notification"/>
     <input type="email" name="email" placeholder="Your email address" required autocomplete="email"/>
     <button type="submit" id="notifyBtn">Notify Me →</button>
@@ -6723,7 +7303,7 @@ if (document.readyState === 'loading') {
   <p>Use this form to report an act of police brutality, corruption, bad governance, or injustice in Nigeria. Your report becomes part of the permanent civic record — documented, timestamped, and publicly accessible. You may submit anonymously.</p>
 </div>
 <div class="form-section">
-  <form class="rf-form" id="rfForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleRF(event)" novalidate>
+  <form class="rf-form" id="rfForm" action="https://formspree.io/f/xykaeqkp" method="POST" onsubmit="handleRF(event)" novalidate>
     <input type="hidden" name="_subject" value="🚨 New RedFlag Report — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="RedFlag Report"/>
     <div class="form-row">
@@ -6801,7 +7381,7 @@ function handleRF(e){
   <p>Contribute verified data, official documents, or first-hand evidence of institutional performance or failure in any sector. The Ledger is citizen-powered — every data point strengthens the public record.</p>
 </div>
 <div class="form-section">
-  <form class="ldg-form" id="ldgForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleLDG(event)" novalidate>
+  <form class="ldg-form" id="ldgForm" action="https://formspree.io/f/mbdegvar" method="POST" onsubmit="handleLDG(event)" novalidate>
     <input type="hidden" name="_subject" value="📊 New Ledger Data Submission — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="Ledger Data Submission"/>
     <div class="form-row">
@@ -6885,7 +7465,7 @@ function handleLDG(e){
   <p>Share your civic essay, community report, personal testimony, policy analysis, or any truthful observation about Nigerian national life. No credentials required — only accuracy and courage.</p>
 </div>
 <div class="form-section">
-  <form class="om-form" id="omForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleOM(event)" novalidate>
+  <form class="om-form" id="omForm" action="https://formspree.io/f/xgobajor" method="POST" onsubmit="handleOM(event)" novalidate>
     <input type="hidden" name="_subject" value="🎙️ New OpenMic Post — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="OpenMic Submission"/>
     <div>
@@ -6975,7 +7555,7 @@ function handleOM(e){
       <div class="fmt-item"><h5>🖼️ Visual Art</h5><p>PNG, JPG — high resolution. Photography, digital art, murals, conceptual works. Include caption.</p></div>
     </div>
   </div>
-  <form class="crt-form" id="crtForm" action="https://formspree.io/f/mojyjgvz" method="POST" onsubmit="handleCRT(event)" novalidate>
+  <form class="crt-form" id="crtForm" action="https://formspree.io/f/xvznkjzn" method="POST" onsubmit="handleCRT(event)" novalidate>
     <input type="hidden" name="_subject" value="🎨 New Critika Submission — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="Critika Art Submission"/>
     <div class="form-row">
@@ -7137,6 +7717,16 @@ function handleCRT(e){
       <div class="section-label">Ways to Engage</div>
       <h2 class="section-title reveal">Six Ways to Be <em>Part of This</em></h2>
       <div class="ways-grid reveal">
+        <a href="#fellowship" class="way-card" style="border-color:rgba(200,168,75,.3)" onclick="showPage('fellowship')">
+          <span class="way-icon">🏛️</span>
+          <div class="way-title">Apply to the Leadership Fellowship</div>
+          <p class="way-desc">Thirty seats. Class of 2026. Six months of rigorous civic formation with full NITIZEN membership on completion. Registration opens 12 June 2026 — Democracy Day.</p>
+        </a>
+        <a href="#programs" class="way-card" onclick="showPage('programs')">
+          <span class="way-icon">📋</span>
+          <div class="way-title">Explore NITIZEN Programs</div>
+          <p class="way-desc">Fellowships, memberships, civic labs, leadership tracks and institutional partnerships — every structured path to meaningful civic contribution in Nigeria.</p>
+        </a>
         <a href="#cl-pitch" class="way-card">
           <span class="way-icon">✍️</span>
           <div class="way-title">Write for Conscience Letters</div>
@@ -7189,6 +7779,7 @@ function handleCRT(e){
             <input type="text" name="state" placeholder="State / Location in Nigeria" autocomplete="address-level2" aria-label="State"/>
             <select name="engagement" required aria-label="Engagement type">
               <option value="" disabled selected>How would you like to engage?</option>
+              <option value="fellowship">Apply to the Leadership Fellowship</option>
               <option value="conscience-letters">Write for Conscience Letters</option>
               <option value="redflag">File a RedFlag Report (See-gnal)</option>
               <option value="ledger">Submit sector data to The Ledger</option>
@@ -7284,6 +7875,550 @@ function handleCRT(e){
     </div>
   </div>
 </div>
+
+<!-- ═══ PAGE: PROGRAMS ═══ -->
+<div id="page-programs" class="spa-page" style="display:none">
+
+  <!-- HERO -->
+  <div class="prog-hero">
+    <div class="prog-hero-bg"></div>
+    <div class="prog-hero-grid"></div>
+    <div class="prog-hero-content">
+      <div class="breadcrumb">
+        <a href="#home">Home</a><span>/</span><span>Programs</span>
+      </div>
+      <div class="prog-eyebrow">
+        <div class="prog-eyebrow-line"></div>
+        <div class="prog-eyebrow-text">NITIZEN Programs — Civic Formation at Scale</div>
+      </div>
+      <h1 class="prog-hero">
+        Civic Formation.<br>
+        <em>At Every Level.</em>
+      </h1>
+      <p class="prog-hero-sub">
+        NITIZEN Programs is the structured arm of Nigeria's civic intelligence platform — 
+        fellowships, memberships, leadership tracks, civic labs, and institutional 
+        partnerships that transform engaged Nigerians into formidable civic actors.
+      </p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <a href="#fellowship" class="btn-gold" onclick="showPage('fellowship')">LEADERSHIP FELLOWSHIP →</a>
+        <button class="btn-ghost" onclick="document.getElementById('prog-catalogue-anchor').scrollIntoView({behavior:'smooth',block:'start'})">VIEW ALL PROGRAMS ↓</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS VISION -->
+  <div class="prog-vision">
+    <div class="prog-vision-inner">
+      <div>
+        <div class="section-label" style="color:var(--green-light);margin-bottom:.8rem">The Programs Vision</div>
+        <h2>Building Nigeria&rsquo;s next generation of <em>civic leaders.</em></h2>
+        <p style="margin-top:1rem">
+          Informed citizens are necessary. Organised, trained, mission-aligned civic actors 
+          are transformative. NITIZEN Programs exists at that frontier — structured 
+          initiatives that take exceptional Nigerians from awareness to active leadership 
+          in the country's democratic life.
+        </p>
+        <p style="margin-top:1rem">
+          Every program is anchored in NITIZEN's three founding commitments: 
+          evidence-based analysis, accountable civic action, and the long-term 
+          institutional transformation of Nigeria's public life.
+        </p>
+      </div>
+      <div class="prog-vision-stats reveal">
+        <div class="prog-vs">
+          <div class="prog-vs-num">30</div>
+          <div class="prog-vs-lbl">Fellows · Class of 2026</div>
+        </div>
+        <div class="prog-vs">
+          <div class="prog-vs-num">6</div>
+          <div class="prog-vs-lbl">Months per Cohort</div>
+        </div>
+        <div class="prog-vs">
+          <div class="prog-vs-num">8</div>
+          <div class="prog-vs-lbl">Specialisation Tracks</div>
+        </div>
+        <div class="prog-vs">
+          <div class="prog-vs-num">36</div>
+          <div class="prog-vs-lbl">States — Nationwide</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROGRAMS CATALOGUE -->
+  <div class="prog-catalogue" id="prog-catalogue-anchor">
+    <div class="section-inner">
+      <div class="section-label">Programs Portfolio</div>
+      <h2 class="section-title reveal">Every path to <em>civic impact.</em></h2>
+      <p style="font-family:var(--body);font-size:1rem;line-height:1.82;color:var(--muted);max-width:580px;margin-top:.6rem">
+        NITIZEN Programs is designed as a modular ecosystem — each initiative is distinct, 
+        but all are unified by the same mission: producing the informed, capable, 
+        civic-minded Nigerians this republic needs.
+      </p>
+      <div class="prog-grid reveal">
+
+        <!-- FELLOWSHIP — Active -->
+        <div class="prog-card active-program" onclick="showPage('fellowship')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showPage('fellowship')">
+          <div class="prog-card-num">Program 01 · Active</div>
+          <span class="prog-card-icon">🏛️</span>
+          <h3>Leadership Fellowship</h3>
+          <p>Six months. Thirty fellows. Nigeria's most rigorous civic leadership programme — eight tracks, full NITIZEN membership, and real civic work that reaches millions.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">
+            <div class="prog-card-status open">Registration 12 June 2026</div>
+            <span style="font-family:var(--mono);font-size:.62rem;color:var(--green-mid);letter-spacing:.06em">VIEW →</span>
+          </div>
+        </div>
+
+        <!-- MEMBERSHIP — Coming -->
+        <div class="prog-card coming-soon" onclick="showPage('membership')">
+          <div class="prog-card-num">Program 02 · Open</div>
+          <span class="prog-card-icon">🤝</span>
+          <h3>NITIZEN Membership</h3>
+          <p>Sustaining members who believe in independent civic infrastructure for Nigeria. Access, community, and the satisfaction of keeping civic intelligence free for all Nigerians.</p>
+          <div class="prog-card-status open" onclick="event.stopPropagation();showPage('membership')">Join as a Member →</div>
+        </div>
+
+        <!-- CIVIC LABS — Coming -->
+        <div class="prog-card coming-soon">
+          <div class="prog-card-num">Program 03 · Coming Soon</div>
+          <span class="prog-card-icon">⚗️</span>
+          <h3>Civic Innovation Lab</h3>
+          <p>A structured incubator for civic technology, policy research, and institutional reform projects — where ideas become deployed civic infrastructure.</p>
+          <div class="prog-card-status coming">Launching 2027</div>
+        </div>
+
+        <!-- SCHOOLS PROGRAMME — Coming -->
+        <div class="prog-card coming-soon">
+          <div class="prog-card-num">Program 04 · Coming Soon</div>
+          <span class="prog-card-icon">🏫</span>
+          <h3>Civic Schools Programme</h3>
+          <p>A secondary and tertiary outreach track bringing NITIZEN's political education, civic rights curriculum, and accountability journalism to campuses across Nigeria.</p>
+          <div class="prog-card-status coming">Launching 2027</div>
+        </div>
+
+        <!-- PLACEMENT TRACK — Coming -->
+        <div class="prog-card coming-soon">
+          <div class="prog-card-num">Program 05 · Coming Soon</div>
+          <span class="prog-card-icon">🎯</span>
+          <h3>Civic Placement Track</h3>
+          <p>Connecting NITIZEN alumni and fellows with civil society organisations, government reform units, policy institutes, and international civic bodies as embedded contributors.</p>
+          <div class="prog-card-status coming">Launching 2027</div>
+        </div>
+
+        <!-- PARTNERSHIPS — Coming -->
+        <div class="prog-card coming-soon">
+          <div class="prog-card-num">Program 06 · Coming Soon</div>
+          <span class="prog-card-icon">🌍</span>
+          <h3>Institutional Partnerships</h3>
+          <p>Structured collaboration schemes with universities, CSOs, media institutions, and governance bodies — co-producing civic knowledge and accountability infrastructure at scale.</p>
+          <div class="prog-card-status coming">Launching 2028</div>
+        </div>
+
+      </div><!-- /prog-grid -->
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="wa-banner" style="background:var(--green-deep)">
+    <div class="wa-banner-text">
+      <h2>Start with the Fellowship.</h2>
+      <p>The NITIZEN Leadership Fellowship is now open for interest registration. Thirty seats. Class of 2026. Registration opens 12 June — Democracy Day.</p>
+    </div>
+    <button class="btn-primary" onclick="showPage('fellowship')" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">
+      FELLOWSHIP — JUNE 12 →
+    </button>
+  </div>
+
+</div><!-- end page-programs -->
+
+
+<!-- ═══ PAGE: FELLOWSHIP ═══ -->
+<div id="page-fellowship" class="spa-page" style="display:none">
+
+  <!-- HERO -->
+  <section class="flp-hero">
+    <div class="flp-hero-bg"></div>
+    <div class="flp-hero-grid"></div>
+    <div class="flp-hero-content">
+      <div class="breadcrumb">
+        <a href="#home">Home</a><span>/</span>
+        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <span>Leadership Fellowship</span>
+      </div>
+      <div class="flp-eyebrow">
+        <div class="flp-eyebrow-line"></div>
+        <div class="flp-eyebrow-text">NITIZEN Leadership Fellowship · Class of 2026</div>
+      </div>
+      <div class="flp-reg-badge">
+        <div class="flp-reg-badge-label">Registration Opens</div>
+        <div class="flp-reg-badge-date">12 JUNE 2026 — DEMOCRACY DAY</div>
+      </div>
+      <h1>
+        <em>30 Fellows.</em>
+        <strong>One Mission.</strong>
+        The New Nigeria.
+      </h1>
+      <p class="flp-hero-sub">
+        We are selecting thirty exceptional Nigerians — under 30, intellectually driven, 
+        civic-minded — for Nigeria's most rigorous civic leadership programme. 
+        Six months. Eight tracks. Full membership. Real work.
+      </p>
+      <div class="flp-hero-actions">
+        <button class="btn-gold" onclick="document.getElementById('flp-apply').scrollIntoView({behavior:'smooth',block:'start'})">REGISTER INTEREST — OPENS JUNE 12</button>
+        <button class="btn-ghost" onclick="document.getElementById('flp-about').scrollIntoView({behavior:'smooth',block:'start'})">WHAT IS THE FELLOWSHIP? ↓</button>
+      </div>
+    </div>
+    <div class="flp-stats-float">
+      <div class="flp-stat-item">
+        <div class="flp-stat-num">30<span>.</span></div>
+        <div class="flp-stat-label">Fellows Selected</div>
+      </div>
+      <div class="flp-stat-sep"></div>
+      <div class="flp-stat-item">
+        <div class="flp-stat-num">6<span>mo</span></div>
+        <div class="flp-stat-label">Duration</div>
+      </div>
+      <div class="flp-stat-sep"></div>
+      <div class="flp-stat-item">
+        <div class="flp-stat-num">≤<span>30</span></div>
+        <div class="flp-stat-label">Age Limit</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO BAND -->
+  <div class="flp-manifesto">
+    <div class="flp-manifesto-inner">
+      <p>&ldquo;An awakened citizenry is the only sustainable reform Nigeria has. This fellowship exists to awaken, equip, and deploy the next generation of the country&rsquo;s civic conscience.&rdquo;</p>
+      <cite>— NITIZEN FOUNDING PRINCIPLE &middot; nitizen.ng &middot; @NitizenNG</cite>
+    </div>
+  </div>
+
+  <!-- ABOUT THE FELLOWSHIP -->
+  <section class="flp-section dark" id="flp-about">
+    <div class="section-inner">
+      <div class="flp-sec-label">About the Fellowship</div>
+      <h2 class="flp-sec-title reveal">Not an internship.<br><em>A formation.</em></h2>
+      <p class="flp-sec-body reveal">
+        The NITIZEN Leadership Fellowship is a six-month immersive programme that transforms 
+        talented young Nigerians into formidable civic actors — researchers, writers, advocates, 
+        strategists, and institution-builders working at the intersection of democracy, 
+        governance, and public accountability.
+      </p>
+      <div class="flp-about-grid reveal">
+        <div class="flp-about-item">
+          <div class="flp-about-num">01</div>
+          <div class="flp-about-title">Frontline Civic Leadership</div>
+          <div class="flp-about-body">Fellows don't observe the work — they do it. From day one, you contribute to live research, published reporting, public advocacy, and strategic projects that reach millions of Nigerians.</div>
+        </div>
+        <div class="flp-about-item">
+          <div class="flp-about-num">02</div>
+          <div class="flp-about-title">Political Education at Depth</div>
+          <div class="flp-about-body">Structured learning in constitutional law, Nigerian political economy, democratic theory, electoral systems, and comparative governance — curated for an era demanding intellectual rigour.</div>
+        </div>
+        <div class="flp-about-item">
+          <div class="flp-about-num">03</div>
+          <div class="flp-about-title">Accountability Journalism</div>
+          <div class="flp-about-body">Learn and practise the discipline of verified, evidence-based civic reporting. Fellows contribute to NITIZEN's Conscience Letters, public briefings, and accountability campaigns.</div>
+        </div>
+        <div class="flp-about-item">
+          <div class="flp-about-num">04</div>
+          <div class="flp-about-title">Full Membership Pathway</div>
+          <div class="flp-about-body">Completion of the fellowship leads directly to full NITIZEN membership — placing you within Nigeria's most rigorous civic intelligence network for the rest of your career.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FIVE PILLARS -->
+  <section class="flp-section" style="background:rgba(26,77,46,.06);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="section-inner">
+      <div class="flp-sec-label green">Five Pillars of Work</div>
+      <h2 class="flp-sec-title light reveal">What Fellows <em class="green">actually do.</em></h2>
+      <div class="flp-pillars-grid reveal">
+        <div class="flp-pillar" style="background:var(--off-white)">
+          <span class="flp-pillar-icon">🔎</span>
+          <div class="flp-pillar-title" style="color:var(--green-deep)">Political Education &amp; Research</div>
+          <div class="flp-pillar-body" style="color:var(--muted)">Deep-dive policy analysis, parliamentary tracking, governance research, and fact-based political education for public consumption.</div>
+        </div>
+        <div class="flp-pillar" style="background:var(--off-white)">
+          <span class="flp-pillar-icon">📋</span>
+          <div class="flp-pillar-title" style="color:var(--green-deep)">Accountability Reporting</div>
+          <div class="flp-pillar-body" style="color:var(--muted)">Verified documentation of government performance, public expenditure tracking, institutional audit, and evidence-based critique.</div>
+        </div>
+        <div class="flp-pillar" style="background:var(--off-white)">
+          <span class="flp-pillar-icon">🗳️</span>
+          <div class="flp-pillar-title" style="color:var(--green-deep)">Democratic Participation</div>
+          <div class="flp-pillar-body" style="color:var(--muted)">Voter education, electoral integrity work, civic rights documentation, and engagement with democratic institutions at all levels.</div>
+        </div>
+        <div class="flp-pillar" style="background:var(--off-white)">
+          <span class="flp-pillar-icon">📢</span>
+          <div class="flp-pillar-title" style="color:var(--green-deep)">Civic Advocacy</div>
+          <div class="flp-pillar-body" style="color:var(--muted)">Designing and executing campaigns that shift public consciousness, build coalitions, and demand policy accountability from elected officials.</div>
+        </div>
+        <div class="flp-pillar" style="background:var(--off-white)">
+          <span class="flp-pillar-icon">🌍</span>
+          <div class="flp-pillar-title" style="color:var(--green-deep)">Public Engagement</div>
+          <div class="flp-pillar-body" style="color:var(--muted)">Building and nurturing NITIZEN's stakeholder community — from grassroots outreach to institutional partnerships and media relations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ELIGIBILITY -->
+  <section class="flp-section alt">
+    <div class="section-inner">
+      <div class="flp-sec-label green" style="color:var(--green-mid)">Who Should Apply</div>
+      <h2 class="flp-sec-title light reveal">This fellowship was built<br>for <em class="green">people like you.</em></h2>
+      <div class="flp-elig-wrap">
+        <div class="flp-elig-list reveal">
+          <div class="flp-elig-item">
+            <div class="flp-elig-mark">AGE</div>
+            <div class="flp-elig-text">30 years old or younger. We are investing in Nigeria's next thirty years, and we want the people who will live them.</div>
+          </div>
+          <div class="flp-elig-item">
+            <div class="flp-elig-mark">MIND</div>
+            <div class="flp-elig-text">Intellectually driven. You read widely. You think carefully. You are not satisfied with surface-level narratives about Nigeria's challenges.</div>
+          </div>
+          <div class="flp-elig-item">
+            <div class="flp-elig-mark">ETHOS</div>
+            <div class="flp-elig-text">Civic-minded. You believe governance matters. You're not cynical enough to walk away, and not naive enough to think change comes without organised, informed effort.</div>
+          </div>
+          <div class="flp-elig-item">
+            <div class="flp-elig-mark">FOCUS</div>
+            <div class="flp-elig-text">Deeply interested in governance, democracy, and nation-building — in theory, in practice, and in the uncomfortable gap between the two.</div>
+          </div>
+          <div class="flp-elig-item">
+            <div class="flp-elig-mark">COMMITMENT</div>
+            <div class="flp-elig-text">Able to commit 10&ndash;12 hours per week across a six-month period. Fellows are contributors, not spectators. The work is real.</div>
+          </div>
+          <div class="flp-elig-item">
+            <div class="flp-elig-mark">SKILL</div>
+            <div class="flp-elig-text">You bring at least one competency: research, writing, design, data analysis, video, community organising, strategy, communications, or operations.</div>
+          </div>
+        </div>
+        <div class="flp-elig-panel reveal">
+          <div class="flp-elig-panel-hdr">Fellowship at a Glance</div>
+          <div class="flp-elig-stat">
+            <div class="flp-elig-key">COHORT SIZE</div>
+            <div class="flp-elig-val">30 <span>Fellows</span></div>
+          </div>
+          <div class="flp-elig-stat">
+            <div class="flp-elig-key">DURATION</div>
+            <div class="flp-elig-val">6 <span>Months</span></div>
+          </div>
+          <div class="flp-elig-stat">
+            <div class="flp-elig-key">WEEKLY COMMITMENT</div>
+            <div class="flp-elig-val">10&ndash;12 <span>hrs/wk</span></div>
+          </div>
+          <div class="flp-elig-stat">
+            <div class="flp-elig-key">AGE LIMIT</div>
+            <div class="flp-elig-val">&le;30 <span>years</span></div>
+          </div>
+          <div class="flp-elig-stat">
+            <div class="flp-elig-key">FORMAT</div>
+            <div class="flp-elig-val small">Remote-first, Nigeria-wide</div>
+          </div>
+          <div class="flp-elig-stat">
+            <div class="flp-elig-key">OUTCOME</div>
+            <div class="flp-elig-val small">Full NITIZEN Membership</div>
+          </div>
+          <div class="flp-elig-stat" style="border-bottom:none;padding-bottom:0">
+            <div class="flp-elig-key">REG OPENS</div>
+            <div class="flp-elig-val small" style="color:var(--gold)">12 June 2026</div>
+          </div>
+          <div style="margin-top:1.4rem">
+            <button class="btn-primary" style="width:100%;text-align:center" onclick="document.getElementById('flp-apply').scrollIntoView({behavior:'smooth',block:'start'})">REGISTER INTEREST →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EIGHT TRACKS -->
+  <section class="flp-section dark">
+    <div class="section-inner">
+      <div class="flp-sec-label">Fellowship Tracks</div>
+      <h2 class="flp-sec-title reveal">Eight ways to <em>contribute.</em></h2>
+      <p class="flp-sec-body reveal">Fellows are placed across eight functional tracks aligned with NITIZEN's operational mission. Every track is a discipline. Every fellow is a practitioner.</p>
+      <div class="flp-tracks-grid">
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 01</span>
+          <div class="flp-track-title">Research &amp; Intelligence</div>
+          <div class="flp-track-body">Policy research, data gathering, source verification, and the production of NITIZEN's core analytical content. Rigorous. Evidence-first. Published.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 02</span>
+          <div class="flp-track-title">Writing &amp; Editorial</div>
+          <div class="flp-track-body">Essays, briefings, Conscience Letters, campaign copy, and long-form civic journalism. For those who believe words are instruments of change.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 03</span>
+          <div class="flp-track-title">Design &amp; Visual Communication</div>
+          <div class="flp-track-body">Campaign graphics, infographics, data visualisation, and brand execution that translate complex governance issues into public-facing power.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 04</span>
+          <div class="flp-track-title">Advocacy &amp; Campaigns</div>
+          <div class="flp-track-body">Strategic campaign development, coalition building, petition drives, and the organised public pressure that moves institutions.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 05</span>
+          <div class="flp-track-title">Community Engagement</div>
+          <div class="flp-track-body">Grassroots outreach, stakeholder relations, community listening, and the human infrastructure that makes civic movements real.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 06</span>
+          <div class="flp-track-title">Strategy &amp; Policy</div>
+          <div class="flp-track-body">Organisational strategy, policy positioning, scenario planning, and the systems-level thinking that keeps NITIZEN ahead of the moment.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 07</span>
+          <div class="flp-track-title">Digital &amp; Social Media</div>
+          <div class="flp-track-body">Platform content, audience growth, social intelligence, digital campaigning, and NITIZEN's public digital presence.</div>
+        </div>
+        <div class="flp-track reveal">
+          <span class="flp-track-tag">Track 08</span>
+          <div class="flp-track-title">Operations &amp; Support</div>
+          <div class="flp-track-body">Project coordination, programme execution, administrative excellence, and the operational backbone that makes everything else possible.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPACT NUMBERS -->
+  <section class="flp-section dark" style="border-top:1px solid rgba(255,255,255,.04);padding-top:3rem">
+    <div class="section-inner">
+      <div class="flp-sec-label">The Scale of Work</div>
+      <h2 class="flp-sec-title reveal">Fellows don&rsquo;t practise impact.<br><em>They create it.</em></h2>
+      <div class="flp-impact-grid reveal">
+        <div class="flp-impact-item">
+          <div class="flp-impact-num">5M+</div>
+          <div class="flp-impact-label">Nigerians reached through NITIZEN platforms &amp; campaigns</div>
+        </div>
+        <div class="flp-impact-item">
+          <div class="flp-impact-num">36</div>
+          <div class="flp-impact-label">States represented in NITIZEN coverage and community</div>
+        </div>
+        <div class="flp-impact-item">
+          <div class="flp-impact-num">100%</div>
+          <div class="flp-impact-label">Verified, fact-checked content — no unverified claim published</div>
+        </div>
+        <div class="flp-impact-item">
+          <div class="flp-impact-num">2027</div>
+          <div class="flp-impact-label">Elections cycle: the most consequential civic moment of this decade</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMME TIMELINE -->
+  <section class="flp-section dark" style="border-top:1px solid rgba(255,255,255,.04)">
+    <div class="section-inner">
+      <div class="flp-sec-label">Programme Timeline</div>
+      <h2 class="flp-sec-title reveal">Six months. <em>Structured transformation.</em></h2>
+      <div class="flp-timeline-wrap reveal">
+        <div class="flp-timeline">
+          <div class="flp-tl-item">
+            <div class="flp-tl-dot"></div>
+            <div class="flp-tl-month">June 12, 2026 — Democracy Day</div>
+            <div class="flp-tl-title">Registration Opens</div>
+            <div class="flp-tl-body">Interest registration opens publicly. All eligible candidates may register. Competitive and merit-based. 30 seats available.</div>
+          </div>
+          <div class="flp-tl-item">
+            <div class="flp-tl-dot"></div>
+            <div class="flp-tl-month">July 2026</div>
+            <div class="flp-tl-title">Selection &amp; Track Placement</div>
+            <div class="flp-tl-body">Applications reviewed, interviews conducted. Selected fellows notified and placed across eight functional tracks aligned with their skills and interests.</div>
+          </div>
+          <div class="flp-tl-item">
+            <div class="flp-tl-dot"></div>
+            <div class="flp-tl-month">August 2026</div>
+            <div class="flp-tl-title">Induction &amp; Orientation</div>
+            <div class="flp-tl-body">Fellows receive NITIZEN's foundational political education curriculum. Platform tools, editorial standards, advocacy frameworks, and civic methodology.</div>
+          </div>
+          <div class="flp-tl-item">
+            <div class="flp-tl-dot"></div>
+            <div class="flp-tl-month">Aug–Dec 2026</div>
+            <div class="flp-tl-title">Active Fellowship Period</div>
+            <div class="flp-tl-body">Six months of weekly engagement. Live projects. Published work. Real campaigns. Each fellow contributes 10–12 hours per week to track-specific deliverables.</div>
+          </div>
+          <div class="flp-tl-item" style="padding-bottom:0">
+            <div class="flp-tl-dot" style="background:var(--green-soft)"></div>
+            <div class="flp-tl-month">January 2027</div>
+            <div class="flp-tl-title">Graduation &amp; Full Membership</div>
+            <div class="flp-tl-body">Completing fellows transition to full NITIZEN membership — lifetime access to the network, resources, and community of Nigeria's most serious civic practitioners.</div>
+          </div>
+        </div>
+        <div class="flp-cohort-panel reveal">
+          <div class="flp-cohort-title">Class of 2026 — What You Build</div>
+          <ul class="flp-cohort-list">
+            <li>Published Conscience Letters and civic briefings read by hundreds of thousands</li>
+            <li>RedFlag reports that enter the permanent accountability archive</li>
+            <li>Advocacy campaigns that shift public consciousness on governance issues</li>
+            <li>Electoral education content preparing Nigerians for 2027</li>
+            <li>Policy research and analysis feeding into institutional reform debates</li>
+            <li>Community engagement reaching Nigerians across all 36 states</li>
+            <li>A permanent professional record as a verified NITIZEN civic contributor</li>
+            <li>Lifetime membership in the network that will shape Nigeria's civic future</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLICATION SECTION -->
+  <section class="flp-apply-section" id="flp-apply">
+    <div class="flp-apply-inner">
+      <div class="flp-sec-label" style="justify-content:center;margin-bottom:1rem">Apply</div>
+      <h2 class="flp-apply-title">
+        Register Your<br><em>Interest.</em>
+      </h2>
+      <p class="flp-apply-sub">
+        Full applications open 12 June 2026 — Nigeria's Democracy Day. Register now and 
+        we will notify you the moment registration opens. Thirty seats. One cohort.
+      </p>
+      <div class="flp-june12-badge">
+        <div class="flp-june12-label">Registration Opens</div>
+        <div class="flp-june12-date">12 JUNE 2026</div>
+        <div class="flp-june12-label">&nbsp;Democracy Day</div>
+      </div>
+      <div class="flp-form" id="flp-interest-form">
+        <input type="text" id="flp-name" placeholder="FULL NAME" required/>
+        <input type="email" id="flp-email" placeholder="EMAIL ADDRESS" required/>
+        <select id="flp-track">
+          <option value="" disabled selected>PREFERRED TRACK</option>
+          <option>Research &amp; Intelligence</option>
+          <option>Writing &amp; Editorial</option>
+          <option>Design &amp; Visual Communication</option>
+          <option>Advocacy &amp; Campaigns</option>
+          <option>Community Engagement</option>
+          <option>Strategy &amp; Policy</option>
+          <option>Digital &amp; Social Media</option>
+          <option>Operations &amp; Support</option>
+        </select>
+        <input type="text" id="flp-state" placeholder="STATE OF RESIDENCE"/>
+        <button class="flp-form-btn" onclick="submitFellowshipInterest()">REGISTER INTEREST — NOTIFY ME ON JUNE 12 →</button>
+      </div>
+      <div class="flp-form-success" id="flp-interest-success">
+        <h4>✓ Registered</h4>
+        <p>You&rsquo;re on the list. We&rsquo;ll notify you on 12 June when registration opens. Share this with someone else who should apply.</p>
+        <button class="btn-outline" style="margin-top:1.2rem;font-size:.62rem" onclick="showPage('programs')">← BACK TO PROGRAMS</button>
+      </div>
+      <span class="flp-deadline">APPLICATIONS OPEN · 12 JUNE 2026 · ROLLING ADMISSIONS</span>
+      <p class="flp-note">Full application portal at nitizen.ng/fellowship &nbsp;·&nbsp; Questions: fellowship@nitizen.ng</p>
+    </div>
+  </section>
+
+  <!-- BACK TO PROGRAMS -->
+  <div style="background:var(--off-white);padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
+    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <span style="font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.06em">Programs &rsaquo; Leadership Fellowship &rsaquo; Class of 2026</span>
+  </div>
+
+</div><!-- end page-fellowship -->
+
 
 <!-- ═══ PAGE: PRIVACY ═══ -->
 <div id="page-privacy" class="spa-page" style="display:none">
@@ -7427,6 +8562,8 @@ function handleCRT(e){
   <nav class="footer-links" aria-label="Footer navigation">
     <a href="#home">Home</a>
     <a href="#about">About</a>
+    <a href="#programs">Programs</a>
+    <a href="#fellowship">Fellowship</a>
     <a href="#cl">Conscience Letters</a>
     <a href="#senal">See-gnal</a>
     <a href="#asknaija">AskNaija</a>
@@ -7461,7 +8598,7 @@ var NITIZEN_PAGES = [
   'home','about','initiatives','cl','article-1','article-2','article-3','article-4',
   'membership','cl-pitch','asknaija','asknaija-beta','senal','redflag',
   'ledger-submit','openmic-submit','critika-submit','critika-article',
-  'contact','privacy'
+  'contact','privacy','programs','fellowship'
 ];
 
 // ── NAV ACTIVE STATE helper ──
@@ -11067,7 +12204,37 @@ const ASKNAIJA_CATEGORIES = [
 
 </script>
 <script>
-// ── ASKNAIJA CATEGORY BUTTONS (legacy — now handled by asknaija-beta TOPICS accordion) ──
+// ── FELLOWSHIP INTEREST FORM ──
+function submitFellowshipInterest() {
+  var name  = document.getElementById('flp-name') ? document.getElementById('flp-name').value.trim() : '';
+  var email = document.getElementById('flp-email') ? document.getElementById('flp-email').value.trim() : '';
+  var track = document.getElementById('flp-track') ? document.getElementById('flp-track').value : '';
+  var state = document.getElementById('flp-state') ? document.getElementById('flp-state').value.trim() : '';
+  if (!name) { alert('Please enter your name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
+  var btn = document.querySelector('#flp-interest-form .flp-form-btn');
+  if (btn) { btn.textContent = 'Registering…'; btn.disabled = true; }
+  var fd = new FormData();
+  fd.append('name', name); fd.append('email', email);
+  fd.append('preferred_track', track); fd.append('state', state);
+  fd.append('_subject', '🏛️ Fellowship Interest — ' + name + ' · ' + (track || 'No track selected'));
+  fd.append('form_type', 'NITIZEN Fellowship Interest v25');
+  fetch('https://formspree.io/f/mnjypkbe', {
+    method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+  }).then(function() {
+    var form = document.getElementById('flp-interest-form');
+    var success = document.getElementById('flp-interest-success');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+  }).catch(function() {
+    var form = document.getElementById('flp-interest-form');
+    var success = document.getElementById('flp-interest-success');
+    if (form) form.style.display = 'none';
+    if (success) success.style.display = 'block';
+  });
+}
+
+
 function initAskNaijaCategories() {
   // The asknaija-beta page uses its own expandable TOPICS accordion via buildSidebar().
   // This function is retained for other pages that may reference #catButtons
