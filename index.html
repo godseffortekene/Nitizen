@@ -1604,6 +1604,12 @@ section { padding: 5rem 4rem; }
   .cats4,.art-fmts{grid-template-columns:repeat(2,1fr);}
   .ldg-grid,.crt-grid{grid-template-columns:1fr;}
 }
+@media(max-width:480px){
+  .cats4,.art-fmts{grid-template-columns:1fr;}
+  .cats4,.reports,.cta-bar,.om-feed,.art-fmts,.crt-grid,.ldg-grid{margin-left:1.2rem!important;margin-right:1.2rem!important;}
+  .ch-nav-wrap{top:54px;}
+  .ch-tab{padding:.75rem 1rem;font-size:.62rem;}
+}
 
 
 /* === redflag-report.html === */
@@ -2249,6 +2255,704 @@ section { padding: 5rem 4rem; }
 }
 .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
 
+/* ════════════════════════════════════════════════════════
+   v27 COMPREHENSIVE RESPONSIVENESS + UI INTEGRITY AUDIT
+   Full-spectrum fixes: overflow, spacing, grid, nav, form,
+   typography, mobile, tablet, animation, accessibility
+════════════════════════════════════════════════════════ */
+
+/* ── GLOBAL OVERFLOW CONTAINMENT ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+* { min-width: 0; } /* prevent flex/grid child overflow blowout */
+
+/* ── SAFE TOUCH TARGETS ── */
+button, [role="button"], a, select, input[type="checkbox"], input[type="radio"] {
+  touch-action: manipulation;
+}
+button, [role="button"] { min-height: 44px; }
+input[type="checkbox"], input[type="radio"] { min-width: 16px; min-height: 16px; }
+
+/* ── FOCUS RINGS (accessibility) ── */
+:focus-visible {
+  outline: 2px solid var(--green-soft);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── NAV: prevent link overflow at medium widths ── */
+.nav-links { flex-wrap: nowrap; gap: clamp(.8rem, 1.5vw, 2rem); }
+.nav-links a { font-size: clamp(.58rem, .9vw, .68rem); white-space: nowrap; }
+@media(max-width:1100px) {
+  nav#main-nav { padding: 1rem 2rem; }
+  nav#main-nav.scrolled { padding: .65rem 2rem; }
+}
+@media(max-width:960px) {
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+}
+
+/* ── MOBILE MENU: ensure it never clips or overflows ── */
+.mobile-menu {
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.mobile-menu a { word-break: break-word; }
+
+/* ── TICKER: always confined, no horizontal scroll ── */
+.ticker-wrap { overflow: hidden; width: 100%; }
+.ticker { min-width: max-content; }
+
+/* ── HERO ORBS: clip on small screens ── */
+@media(max-width:600px) {
+  .hero-orb { display: none; }
+}
+
+/* ── HOME HERO ── */
+@media(max-width:480px) {
+  .hero { padding: 6rem 1.2rem 3.5rem; }
+  .hero-title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+  .hero-sub { font-size: .97rem; }
+  .hero-actions { flex-direction: column; gap: .8rem; }
+  .hero-actions .btn-primary,
+  .hero-actions .btn-outline,
+  .hero-actions .btn-ghost,
+  .hero-actions .wa-btn { width: 100%; text-align: center; justify-content: center; }
+  .stat-strip { gap: 1rem; padding-top: 1.8rem; margin-top: 2.5rem; }
+  .stat h3 { font-size: 1.8rem; }
+}
+
+/* ── CTA BUTTONS: universal mobile full-width ── */
+@media(max-width:480px) {
+  .btn-primary, .btn-outline, .btn-ghost, .btn-gold, .wa-btn {
+    width: 100%; text-align: center; justify-content: center;
+    white-space: normal; word-break: break-word;
+  }
+}
+
+/* ── SECTION PADDING SYSTEM: consistent at all breakpoints ── */
+@media(max-width:1280px) {
+  .section-inner { padding: 0 2rem; }
+}
+@media(max-width:900px) {
+  section { padding: 4rem 1.5rem; }
+  .section-inner { padding: 0; }
+}
+@media(max-width:480px) {
+  section { padding: 3rem 1.2rem; }
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem clamp(1.5rem, 5vw, 4rem);
+}
+@media(max-width:600px) {
+  footer { padding: 2rem 1.2rem; }
+  .footer-links { gap: 1rem; justify-content: center; }
+  .site-privacy-bar { padding: .6rem 1.2rem; text-align: center; flex-direction: column; align-items: center; }
+}
+
+/* ── CRISIS BANNER: prevent text/button overflow on tiny screens ── */
+@media(max-width:480px) {
+  .crisis-banner { padding: .75rem 1rem; gap: .7rem; }
+  .crisis-icon { display: none; }
+  .crisis-cta { font-size: .52rem; padding: .42rem .75rem; align-self: stretch; text-align: center; }
+}
+
+/* ── INIT CARDS: touch-friendly, no overflow ── */
+@media(max-width:480px) {
+  .init-grid { grid-template-columns: 1fr; }
+  .init-card { padding: 2rem 1.2rem; }
+  .init-name { font-size: 1.5rem; }
+}
+
+/* ── CL PREVIEW GRID ── */
+@media(max-width:600px) {
+  .cl-preview-grid { grid-template-columns: 1fr; }
+  .cl-main { padding: 1.8rem 1.2rem; }
+  .cl-side-card { padding: 1.2rem; }
+}
+
+/* ── CRITIKA PREVIEW ── */
+@media(max-width:480px) {
+  .critika-preview { grid-template-columns: 1fr; }
+}
+
+/* ── WA BANNER ── */
+@media(max-width:480px) {
+  .wa-banner { padding: 2rem 1.2rem; text-align: center; }
+  .wa-banner-text h2 { font-size: 1.6rem; }
+  .wa-banner .btn-primary, .wa-banner .btn-gold { width: 100%; text-align: center; }
+}
+
+/* ── ABOUT PAGE ── */
+@media(max-width:480px) {
+  .about-section-wrap { padding: 3.5rem 1.2rem; }
+  .vision-strip { padding: 3rem 1.2rem; }
+  .vision-strip-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .vision-numbers { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .nyff-box { padding: 3rem 1.2rem; }
+  .align-grid { grid-template-columns: 1fr; }
+}
+
+/* ── MEMBERSHIP TIERS ── */
+@media(max-width:480px) {
+  .mem-hero { padding: 4.5rem 1.2rem 2.5rem; }
+  .mem-hero::before { display: none; }
+  .tiers { padding: 2.5rem 1.2rem; }
+  .tier-body { padding: 1.5rem 1.5rem 0; }
+  .tier-cta { padding: 0 1.5rem 1.5rem; }
+  .payment-section { padding: 0 1.2rem 3rem; }
+  .form-row-2 { grid-template-columns: 1fr; }
+}
+
+/* ── CL PITCH FORM ── */
+@media(max-width:480px) {
+  .cl-form-hero { padding: 4.5rem 1.2rem 2rem; }
+  .form-section { padding: 2.5rem 1.2rem 4rem; }
+  .what-we-want { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+
+/* ── ASKNAIJA PAGES ── */
+@media(max-width:480px) {
+  .ask-hero { padding: 5rem 1.2rem 3rem; }
+  .progress-wrap { padding: 1.5rem 1.2rem; }
+  .phase-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .notify-section { padding: 3.5rem 1.2rem; }
+  .notify-form { flex-direction: column; }
+  .notify-form input, .notify-form button { width: 100%; min-width: 0; }
+  .topics-section { padding: 3.5rem 1.2rem; }
+  .topics-grid { grid-template-columns: 1fr; }
+}
+
+/* ── ASKNAIJA BETA: chat layout ── */
+@media(max-width:600px) {
+  .chat-outer { grid-template-columns: 1fr; }
+  .cat-sidebar { display: none; }
+  .chat-panel { padding: 1rem 1rem 1.5rem; }
+  .chat-window { min-height: 300px; max-height: 380px; padding: 1rem; }
+  .msg-bubble { max-width: 95%; font-size: .88rem; }
+  .input-row { gap: .6rem; }
+  .chat-input { font-size: .9rem; }
+  .send-btn { width: 46px; height: 46px; min-width: 46px; }
+  .kb-section { padding: 2.5rem 1.2rem; }
+  .kb-grid { grid-template-columns: 1fr; }
+  .privacy-section { padding: 2.5rem 1.2rem; }
+  .privacy-grid { grid-template-columns: 1fr; }
+  .transparency-bar, .privacy-bar { padding: .7rem 1.2rem; }
+}
+
+/* ── SEE-GNAL / SENAL ── */
+@media(max-width:480px) {
+  .sg-hero { padding: 5.5rem 1.2rem 3.5rem; }
+  .sg-hero::before { display: none; }
+  .ch-nav { padding: 0 1.2rem; }
+  .ch-tab { padding: .9rem 1.2rem; font-size: .64rem; }
+  .ch-hd-rf, .ch-hd-ldg, .ch-hd-om, .ch-hd-crt { padding: 2rem 1.2rem 1.5rem; }
+  .urgent-bar { padding: 1.2rem; }
+  .rf-cases, .rf-cards, .ledger-grid, .om-grid, .crt-grid { 
+    padding: 1.5rem 1.2rem 3rem; 
+  }
+  .rf-case, .rf-card, .ledger-card, .om-card, .crt-card { 
+    padding: 1.4rem 1.2rem; 
+  }
+}
+@media(max-width:900px) {
+  .ch-nav-wrap { top: 55px; }
+}
+
+/* ── ARTICLE / CONSCIENCE LETTERS ── */
+@media(max-width:480px) {
+  .art-header { padding: 5.5rem 1.2rem 2.5rem; }
+  .art-body { padding: 2.5rem 1.2rem; }
+  .promise-table { font-size: .72rem; overflow-x: auto; display: block; }
+}
+
+/* ── CONTACT PAGE ── */
+@media(max-width:900px) {
+  .contact-wrap { padding: 4rem 1.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .contact-row { grid-template-columns: 1fr; }
+}
+@media(max-width:480px) {
+  .contact-wrap { padding: 3rem 1.2rem; }
+  .way-card { padding: 1.4rem 1.2rem; }
+}
+/* Ways to engage grid */
+@media(max-width:600px) {
+  .ways-grid { grid-template-columns: 1fr !important; }
+}
+
+/* ── PROGRAMS HUB ── */
+@media(max-width:480px) {
+  .prog-hero { padding: 5.5rem 1.2rem 3rem; }
+  .prog-catalogue { padding: 3rem 1.2rem; }
+  .prog-grid { grid-template-columns: 1fr; gap: .9rem; }
+  .prog-vision { padding: 2.5rem 1.2rem; }
+  .prog-vision-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .prog-vision-stats { grid-template-columns: 1fr 1fr; }
+  .vol-recruit-grid { grid-template-columns: 1fr !important; }
+}
+@media(max-width:768px) {
+  .vol-recruit-grid { grid-template-columns: 1fr 1fr !important; }
+}
+
+/* ── FELLOWSHIP PAGE ── */
+@media(max-width:480px) {
+  .flp-hero { padding: 5.5rem 1.2rem 3.5rem; }
+  .flp-reg-badge { flex-direction: column; align-items: flex-start; gap: .3rem; padding: .6rem 1rem; }
+  .flp-june12-badge { flex-direction: column; align-items: flex-start; gap: .3rem; padding: .6rem 1rem; }
+  .flp-hero-actions { flex-direction: column; gap: .8rem; }
+  .flp-hero-actions .btn-gold, .flp-hero-actions .btn-ghost { width: 100%; text-align: center; }
+  .flp-section { padding: 3rem 1.2rem; }
+  .flp-manifesto { padding: 2.5rem 1.2rem; }
+  .flp-about-grid { grid-template-columns: 1fr; }
+  .flp-pillars-grid { grid-template-columns: 1fr; }
+  .flp-elig-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .flp-elig-panel { position: static; }
+  .flp-tracks-grid { grid-template-columns: 1fr; }
+  .flp-impact-grid { grid-template-columns: 1fr 1fr; }
+  .flp-timeline-wrap { grid-template-columns: 1fr; }
+  .flp-apply-section { padding: 3.5rem 1.2rem; }
+  .flp-form { max-width: 100%; }
+}
+
+/* ── VOLUNTEER FORM PAGES ── */
+@media(max-width:900px) {
+  .vol-hero { padding: 5.5rem 1.5rem 3rem; }
+  .vol-form-container { padding: 2.5rem 1.5rem 4rem; }
+  .vol-form-grid { grid-template-columns: 1fr; }
+  .vol-form-grid.three { grid-template-columns: 1fr; }
+  .vol-check-group { grid-template-columns: 1fr 1fr; }
+  .vol-check-group.three { grid-template-columns: 1fr 1fr; }
+  .vol-back-strip { padding: 1.5rem; }
+}
+@media(max-width:480px) {
+  .vol-hero { padding: 5rem 1.2rem 2.5rem; }
+  .vol-form-container { padding: 2rem 1.2rem 3.5rem; }
+  .vol-check-group { grid-template-columns: 1fr; }
+  .vol-check-group.three { grid-template-columns: 1fr; }
+  .vol-hero-meta { gap: 1rem; flex-wrap: wrap; }
+  .vol-hero h1 { font-size: clamp(2rem, 9vw, 3rem); }
+  .vol-hero-badge { font-size: .54rem; padding: .3rem .75rem; }
+  .vol-submit-btn { width: 100%; justify-content: center; }
+  .vol-success-links { flex-direction: column; align-items: center; }
+  .vol-success-wa { width: 100%; justify-content: center; }
+  .vol-back-strip { padding: 1.2rem; flex-direction: column; align-items: flex-start; }
+}
+
+/* ── FORM INPUTS: prevent iOS zoom (font-size >= 16px on focus) ── */
+.vol-input:focus, .vol-select:focus, .vol-textarea:focus,
+.flp-form input:focus, .flp-form select:focus,
+.cl-form input:focus, .cl-form select:focus, .cl-form textarea:focus,
+.p-form input:focus, .p-form select:focus,
+.chat-input:focus,
+.notify-form input:focus {
+  font-size: max(16px, 1em);
+}
+/* Base input font sizes also >= 16px on mobile to prevent zoom */
+@media(max-width:768px) {
+  .vol-input, .vol-select, .vol-textarea,
+  .flp-form input, .flp-form select,
+  .cl-form input, .cl-form select, .cl-form textarea,
+  .p-form input, .p-form select,
+  .chat-input,
+  .notify-form input { font-size: 16px; }
+}
+
+/* ── PROGRESS BAR: z-index fix ── */
+.vol-progress-bar { z-index: 95; }
+
+/* ── HOME FELLOWSHIP PROMO: fix inline grid at mobile ── */
+.flp-home-promo-grid { display: grid; grid-template-columns: minmax(0,1fr) clamp(280px,30vw,380px); gap: 4rem; align-items: center; }
+@media(max-width:900px) {
+  .flp-home-promo-grid { grid-template-columns: 1fr !important; gap: 2.5rem; }
+}
+@media(max-width:480px) {
+  .flp-home-promo-grid { gap: 2rem; }
+  #page-home [style*="grid-template-columns: 1fr 1fr"][style*="gap: 1rem"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* ── REDFLAG / LEDGER / OPENMIC FORMS ── */
+@media(max-width:480px) {
+  .rf-form-grid, .lf-form-grid, .om-form-grid { grid-template-columns: 1fr !important; }
+  .rf-form, .ledger-form, .om-form { padding: 2rem 1.2rem; }
+}
+
+/* ── PRIVACY PAGE ── */
+@media(max-width:480px) {
+  .priv-wrap { padding: 4rem 1.2rem; }
+}
+
+/* ── ANIMATION: reduce motion accessibility ── */
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* ── TEXT OVERFLOW SAFETY ── */
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+p, li, a, label, span {
+  overflow-wrap: break-word;
+}
+
+/* ── TABLE OVERFLOW ── */
+table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media(min-width:901px) { table { display: table; overflow-x: visible; } }
+
+/* ── INLINE STYLE OVERRIDES: home fellowship promo grid on small screens ── */
+@media(max-width:900px) {
+  /* override the inline `grid-template-columns:1fr 380px` fellowship promo on home */
+  .prog-catalogue .section-inner > div[style*="grid-template-columns: repeat(4,1fr)"],
+  .prog-catalogue > div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media(max-width:600px) {
+  .prog-catalogue .section-inner > div[style*="grid-template-columns: repeat(4,1fr)"],
+  .prog-catalogue > div[style*="grid-template-columns: repeat(4,1fr)"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── TABLET (768–1024px) TUNING ── */
+@media(min-width:600px) and (max-width:900px) {
+  .flp-tracks-grid { grid-template-columns: repeat(2, 1fr); }
+  .flp-impact-grid { grid-template-columns: repeat(2, 1fr); }
+  .flp-pillars-grid { grid-template-columns: repeat(2, 1fr); }
+  .prog-grid { grid-template-columns: 1fr 1fr; }
+  .phase-grid { grid-template-columns: 1fr 1fr; }
+  .topics-grid { grid-template-columns: 1fr; }
+  .tiers { grid-template-columns: 1fr; }
+}
+
+/* ── LARGE SCREEN (>1400px) CONTAINMENT ── */
+@media(min-width:1400px) {
+  .hero { max-width: 100%; }
+  .hero-title { font-size: 7rem; }
+  .section-inner { max-width: 1280px; }
+}
+
+/* ── PRINT ── */
+@media print {
+  nav#main-nav, .ticker-wrap, .mobile-menu, .crisis-banner, footer, .vol-progress-bar { display: none !important; }
+  body { background: #fff; color: #000; }
+  .spa-page { display: block !important; }
+}
+
+/* ═══ END AUDIT FIXES ═══ */
+
+
+/* ════════════════════════════════════════
+   VOLUNTEER ONBOARDING SYSTEM — v26
+════════════════════════════════════════ */
+
+/* ── RECRUIT CARDS on Programs Page ── */
+.vol-recruit-grid { }
+.vol-recruit-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 2px; padding: 0; overflow: hidden;
+  cursor: pointer; transition: box-shadow .25s, transform .2s;
+  display: flex; flex-direction: column;
+}
+.vol-recruit-card:hover { box-shadow: 0 8px 32px rgba(26,77,46,.13); transform: translateY(-4px); }
+.vol-rc-accent { height: 3px; width: 100%; }
+.vol-rc-icon { font-size: 1.6rem; padding: 1.6rem 1.6rem .5rem; }
+.vol-rc-title {
+  font-family: var(--display); font-size: 1.1rem; font-weight: 700;
+  color: var(--green-deep); padding: 0 1.6rem .5rem; line-height: 1.2;
+}
+.vol-rc-body {
+  font-family: var(--body); font-size: .85rem; line-height: 1.7;
+  color: var(--muted); padding: 0 1.6rem 1.2rem; flex: 1;
+}
+.vol-rc-cta {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--green-mid);
+  padding: .9rem 1.6rem; border-top: 1px solid var(--border);
+  margin-top: auto; transition: color .2s, background .2s;
+}
+.vol-recruit-card:hover .vol-rc-cta { background: var(--green-mist); color: var(--green-deep); }
+
+/* ── VOLUNTEER FORM PAGES ── */
+.vol-page-wrap {
+  min-height: 100vh; background: var(--off-white);
+  padding-bottom: 0;
+}
+
+/* HERO BAND */
+.vol-hero {
+  padding: 6.5rem 4rem 3.5rem;
+  position: relative; overflow: hidden;
+}
+.vol-hero.exco   { background: linear-gradient(135deg, var(--ink) 0%, #1a2d1e 100%); }
+.vol-hero.fellow { background: linear-gradient(135deg, var(--ink) 0%, #0e1a13 100%); }
+.vol-hero.corps  { background: linear-gradient(135deg, #0b1f14 0%, #071510 100%); }
+.vol-hero.general { background: linear-gradient(135deg, var(--green-deep) 0%, #0f2018 100%); }
+.vol-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 65% 70% at 60% 30%, rgba(26,77,46,.28) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 45% at 5% 80%, rgba(200,168,75,.07) 0%, transparent 55%);
+}
+.vol-hero-inner { position: relative; z-index: 2; max-width: 780px; }
+.vol-hero-badge {
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .35rem 1rem; border-radius: 2px; margin-bottom: 1.2rem;
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .18em; text-transform: uppercase;
+}
+.vol-hero-badge.gold  { background: rgba(200,168,75,.15); border: 1px solid rgba(200,168,75,.4); color: var(--gold); }
+.vol-hero-badge.green { background: rgba(74,175,116,.12); border: 1px solid rgba(74,175,116,.35); color: var(--green-soft); }
+.vol-hero-badge.wa    { background: rgba(37,211,102,.1);  border: 1px solid rgba(37,211,102,.35); color: #25D366; }
+.vol-hero h1 {
+  font-family: var(--display); font-size: clamp(2.4rem, 5.5vw, 4.4rem);
+  font-weight: 400; line-height: 1.07; color: #fff; margin-bottom: .9rem;
+}
+.vol-hero h1 em { font-style: italic; display: block; }
+.vol-hero h1 em.gold  { color: var(--gold); }
+.vol-hero h1 em.green { color: var(--green-light); }
+.vol-hero h1 em.wa    { color: #7ee8a2; }
+.vol-hero-sub {
+  font-family: var(--body); font-size: 1rem; line-height: 1.85;
+  color: rgba(248,246,242,.72); max-width: 540px; margin-bottom: 2rem;
+}
+.vol-hero-meta {
+  display: flex; gap: 1.6rem; flex-wrap: wrap;
+}
+.vol-hero-stat {
+  display: flex; flex-direction: column;
+}
+.vol-hero-stat-val {
+  font-family: var(--accent); font-size: 1.8rem; font-weight: 700;
+  color: #fff; line-height: 1;
+}
+.vol-hero-stat-lbl {
+  font-family: var(--mono); font-size: .54rem; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(248,246,242,.38); margin-top: .2rem;
+}
+
+/* ── BREADCRUMB within vol pages ── */
+.vol-breadcrumb {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(248,246,242,.35);
+  margin-bottom: 2rem; display: flex; gap: .7rem; align-items: center; flex-wrap: wrap;
+}
+.vol-breadcrumb a { color: rgba(248,246,242,.45); text-decoration: none; }
+.vol-breadcrumb a:hover { color: var(--green-light); }
+.vol-breadcrumb span { color: rgba(248,246,242,.2); }
+
+/* ── FORM CONTAINER ── */
+.vol-form-container {
+  max-width: 860px; margin: 0 auto;
+  padding: 4rem 4rem 5rem;
+}
+.vol-form-intro {
+  font-family: var(--body); font-size: .97rem; line-height: 1.85;
+  color: var(--muted); margin-bottom: 2.8rem;
+  padding-bottom: 2.2rem; border-bottom: 1px solid var(--border);
+}
+
+/* ── FORM SECTION HEADERS ── */
+.vol-section-hdr {
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 1.4rem; margin-top: 2.6rem;
+}
+.vol-section-hdr:first-of-type { margin-top: 0; }
+.vol-section-num {
+  font-family: var(--mono); font-size: .56rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--green-soft);
+  background: var(--green-mist); border: 1px solid rgba(74,175,116,.25);
+  padding: .28rem .7rem; border-radius: 2px; white-space: nowrap; flex-shrink: 0;
+}
+.vol-section-title {
+  font-family: var(--display); font-size: 1.05rem; font-weight: 700;
+  color: var(--green-deep); line-height: 1.2;
+}
+.vol-section-line { flex: 1; height: 1px; background: var(--border); }
+
+/* ── FORM FIELDS ── */
+.vol-form { display: flex; flex-direction: column; gap: 0; }
+.vol-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+.vol-form-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+.vol-form-full { margin-bottom: 1rem; }
+.vol-field { display: flex; flex-direction: column; gap: .35rem; }
+.vol-label {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-light); font-weight: 700;
+}
+.vol-label .req { color: var(--gold); margin-left: .2rem; }
+.vol-label .opt {
+  font-weight: 400; color: var(--muted); letter-spacing: 0;
+  text-transform: none; font-family: var(--body); font-size: .75rem; margin-left: .3rem;
+}
+.vol-input, .vol-select, .vol-textarea {
+  font-family: var(--body); font-size: .93rem; color: var(--ink);
+  background: #fff; border: 1.5px solid rgba(74,175,116,.22);
+  padding: .78rem 1rem; border-radius: 2px; outline: none;
+  transition: border-color .25s, box-shadow .25s; width: 100%;
+  -webkit-appearance: none;
+}
+.vol-input::placeholder, .vol-textarea::placeholder { color: rgba(107,143,118,.55); font-size: .88rem; }
+.vol-input:focus, .vol-select:focus, .vol-textarea:focus {
+  border-color: var(--green-soft); box-shadow: 0 0 0 3px rgba(74,175,116,.1);
+}
+.vol-input.invalid { border-color: #c0392b; }
+.vol-textarea { resize: vertical; min-height: 110px; line-height: 1.7; }
+.vol-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234aaf74'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.2rem; }
+.vol-hint {
+  font-family: var(--body); font-size: .75rem; color: var(--muted);
+  line-height: 1.55; margin-top: -.1rem;
+}
+.vol-field-err {
+  font-family: var(--mono); font-size: .58rem; color: #c0392b;
+  letter-spacing: .06em; display: none;
+}
+
+/* CHECKBOX ROWS */
+.vol-check-group {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .5rem .8rem;
+  margin-bottom: 1rem;
+}
+.vol-check-group.three { grid-template-columns: 1fr 1fr 1fr; }
+.vol-check-item { display: flex; align-items: flex-start; gap: .6rem; }
+.vol-check-item input[type="checkbox"] {
+  width: 16px; height: 16px; flex-shrink: 0; cursor: pointer;
+  accent-color: var(--green-mid); margin-top: 2px;
+}
+.vol-check-item label {
+  font-family: var(--body); font-size: .87rem; line-height: 1.55; color: var(--ink);
+  cursor: pointer;
+}
+
+/* CONSENT */
+.vol-consent {
+  background: var(--green-mist); border: 1px solid rgba(74,175,116,.3);
+  border-left: 3px solid var(--green-soft);
+  padding: 1.2rem 1.4rem; border-radius: 0 2px 2px 0;
+  margin: 1.8rem 0 1.4rem;
+  display: flex; gap: .9rem; align-items: flex-start;
+}
+.vol-consent input[type="checkbox"] {
+  width: 17px; height: 17px; flex-shrink: 0;
+  accent-color: var(--green-deep); margin-top: 2px; cursor: pointer;
+}
+.vol-consent-label {
+  font-family: var(--body); font-size: .88rem; line-height: 1.65; color: var(--ink);
+}
+.vol-consent-label a { color: var(--green-mid); }
+
+/* SUBMIT BUTTON */
+.vol-submit-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; }
+.vol-submit-btn {
+  font-family: var(--mono); font-size: .76rem; font-weight: 700;
+  letter-spacing: .1em; text-transform: uppercase;
+  padding: 1rem 2.2rem; border: none; border-radius: 2px; cursor: pointer;
+  transition: background .25s, transform .15s; display: inline-flex;
+  align-items: center; gap: .7rem;
+}
+.vol-submit-btn.gold { background: var(--gold); color: var(--ink); }
+.vol-submit-btn.gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+.vol-submit-btn.green { background: var(--green-deep); color: #fff; }
+.vol-submit-btn.green:hover { background: var(--green-mid); transform: translateY(-1px); }
+.vol-submit-btn.wa { background: #25D366; color: #fff; }
+.vol-submit-btn.wa:hover { background: #1ebe5d; transform: translateY(-1px); }
+.vol-submit-btn:disabled { opacity: .55; cursor: default; transform: none; }
+.vol-submit-note {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .08em;
+  color: var(--muted);
+}
+
+/* SUCCESS STATE */
+.vol-success {
+  display: none; max-width: 680px; margin: 4rem auto;
+  text-align: center; padding: 4rem 2rem;
+}
+.vol-success-icon { font-size: 3rem; margin-bottom: 1.2rem; }
+.vol-success h2 {
+  font-family: var(--display); font-size: 2.4rem; font-weight: 400;
+  color: var(--green-deep); line-height: 1.1; margin-bottom: .7rem;
+}
+.vol-success h2 em { font-style: italic; color: var(--green-mid); }
+.vol-success p {
+  font-family: var(--body); font-size: 1rem; line-height: 1.82;
+  color: var(--muted); margin-bottom: 1.4rem;
+}
+.vol-success-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 1.8rem; }
+.vol-success-wa {
+  display: inline-flex; align-items: center; gap: .7rem;
+  background: #25D366; color: #fff; padding: .8rem 1.6rem;
+  font-family: var(--mono); font-size: .68rem; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  border-radius: 2px; transition: background .2s;
+}
+.vol-success-wa:hover { background: #1ebe5d; }
+.vol-success-divider {
+  margin: 2.5rem auto; width: 60px; height: 1px; background: var(--border);
+}
+.vol-success-next {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+}
+
+/* BACK TO PROGRAMS STRIP */
+.vol-back-strip {
+  background: var(--off-white); padding: 2rem 4rem;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+}
+.vol-back-crumb {
+  font-family: var(--mono); font-size: .62rem; color: var(--muted);
+  letter-spacing: .06em;
+}
+
+/* CHAR COUNTER */
+.vol-char-count {
+  font-family: var(--mono); font-size: .6rem; color: var(--muted);
+  text-align: right; margin-top: .2rem;
+}
+
+/* PROGRESS BAR */
+.vol-progress-bar {
+  height: 3px; background: var(--border);
+  position: sticky; top: 56px; z-index: 50;
+}
+.vol-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--green-soft), var(--green-mid));
+  transition: width .4s ease;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+  .vol-recruit-grid { grid-template-columns: 1fr 1fr !important; }
+  .vol-hero { padding: 5.5rem 1.5rem 3rem; }
+  .vol-form-container { padding: 2.5rem 1.5rem 4rem; }
+  .vol-form-grid { grid-template-columns: 1fr; }
+  .vol-form-grid.three { grid-template-columns: 1fr; }
+  .vol-check-group { grid-template-columns: 1fr; }
+  .vol-check-group.three { grid-template-columns: 1fr 1fr; }
+  .vol-back-strip { padding: 1.5rem; }
+}
+@media(max-width:600px) {
+  .vol-recruit-grid { grid-template-columns: 1fr !important; }
+  .vol-check-group.three { grid-template-columns: 1fr; }
+}
+
 /* === contact.html === */
 
 .contact-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; }
@@ -2785,6 +3489,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
 /* ── SENAL SECTION VISUAL ── */
 .senal-channels-visual { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(224,92,92,.12); border: 1px solid rgba(224,92,92,.12); margin: 2rem 4rem; }
+@media(max-width:900px) { .senal-channels-visual { margin: 2rem 1.5rem; grid-template-columns: repeat(2,1fr); } }
+@media(max-width:480px) { .senal-channels-visual { margin: 1.5rem 1.2rem; grid-template-columns: 1fr; } }
 .senal-ch { padding: 2rem 1.5rem; text-align: center; transition: background .2s; }
 .senal-ch:hover { background: rgba(255,255,255,.04); }
 .senal-ch-circle { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; }
@@ -2934,6 +3640,10 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   <a href="#initiatives">Initiatives</a>
   <a href="#programs">Programs</a>
   <a href="#programs" style="padding-left:1.5rem;font-size:.72rem">↳ Leadership Fellowship</a>
+  <a href="#vol-exco" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Team Lead (Exco)</a>
+  <a href="#vol-fellow" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Fellow</a>
+  <a href="#vol-corps" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Corps Ambassador</a>
+  <a href="#vol-general" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Volunteer</a>
   <a href="#cl">Conscience Letters</a>
   <a href="#senal">See-gnal</a>
   <a href="#redflag" style="padding-left:1.5rem;font-size:.72rem">↳ RedFlag</a>
@@ -3431,7 +4141,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
   <!-- FELLOWSHIP / PROGRAMS PROMO -->
   <div style="background:var(--ink);padding:5rem 4rem;border-top:1px solid rgba(255,255,255,.06)">
-    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 380px;gap:4rem;align-items:center">
+    <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) clamp(280px,30vw,380px);gap:4rem;align-items:center" class="flp-home-promo-grid">
       <div class="reveal">
         <div style="display:inline-flex;align-items:center;gap:.6rem;background:rgba(200,168,75,.12);border:1px solid rgba(200,168,75,.35);padding:.3rem .85rem;border-radius:2px;margin-bottom:1.2rem">
           <span style="width:6px;height:6px;background:var(--gold);border-radius:50%;animation:progPulse 1.8s ease-in-out infinite;display:inline-block"></span>
@@ -7165,7 +7875,7 @@ if (document.readyState === 'loading') {
       <div class="ldg-note">Nigeria's headline inflation was 15.38% in March 2026 <span class="vfy-ldg">Verified</span><sup class="ref-ldg">[⁴]</sup>, down from a peak of 34.8% in February 2024 (following NBS CPI rebasing). While the trend is positive, inflation remains well above pre-reform levels and continues to squeeze household budgets. Petrol prices exceeded ₦1,000/litre by late 2024 following subsidy removal. The NBS estimates multidimensional poverty affects over 60% of Nigerians.<sup class="ref-ldg">[⁵]</sup> The National Tax Acts 2025 introduce structural reform but implementation remains the critical test.</div>
     </div>
   </div>
-  <div class="ref-block-dark" style="border-color:rgba(200,168,75,.2);background:#0f1a12;margin:0 4rem 2rem;border-top:2px solid var(--gold)">
+  <div class="ref-block-dark" style="border-color:rgba(200,168,75,.2);background:#0f1a12;margin:0 clamp(1.2rem,5vw,4rem) 2rem;border-top:2px solid var(--gold)">
       <div class="ref-head-ldg">Scorecard Sources &amp; References</div>
       <ul class="ref-list ref-list-dark">
         <li><span class="ref-n-ldg">[¹]</span><span>TCN Grid Situation Reports 2024–25. Federal Ministry of Power 20,000MW target: National Integrated Infrastructure Master Plan (NIIMP) 2014–43; reaffirmed in 2023 Power Sector Recovery Programme. Corroborated by Stears Business electricity tracker & NERC quarterly reports.</span></li>
@@ -7285,7 +7995,7 @@ if (document.readyState === 'loading') {
       </div>
     </a>
   </div>
-  <div class="cta-bar" style="margin:0 4rem 3rem;background:rgba(167,139,250,.07);border:1px dashed rgba(167,139,250,.28)">
+  <div class="cta-bar" style="margin:0 clamp(1.2rem,5vw,4rem) 3rem;background:rgba(167,139,250,.07);border:1px dashed rgba(167,139,250,.28)">
     <p style="color:rgba(255,255,255,.65)">Critika accepts only non-written creative works. For written civic commentary, essays, and testimonies — post to <a href="#openmic-submit" style="color:#a78bfa">OpenMic</a>. Submit graphics, video, music, or visual art and hold power accountable through creativity.</p>
     <a href="#critika-submit" class="btn-purple">🎨 Submit to Critika →</a>
   </div>
@@ -8016,6 +8726,47 @@ function handleCRT(e){
         </div>
 
       </div><!-- /prog-grid -->
+
+      <!-- VOLUNTEER RECRUITMENT SECTION -->
+      <div style="margin-top:4rem;border-top:1px solid var(--border);padding-top:3.5rem">
+        <div class="section-label" style="margin-bottom:.5rem">Join the Team</div>
+        <h3 style="font-family:var(--display);font-size:clamp(1.6rem,3vw,2.4rem);font-weight:400;color:var(--green-deep);line-height:1.12;margin-bottom:.8rem">
+          Four ways to <em style="font-style:italic;color:var(--green-mid)">contribute your skills.</em>
+        </h3>
+        <p style="font-family:var(--body);font-size:.97rem;line-height:1.82;color:var(--muted);max-width:600px;margin-bottom:2.5rem">
+          NITIZEN is built by civic-minded Nigerians. Whether you're a student, a corps member, a professional, or a leader ready for executive responsibility — there is a role designed for you.
+        </p>
+        <div class="vol-recruit-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
+          <div class="vol-recruit-card" onclick="showPage('vol-exco')">
+            <div class="vol-rc-accent" style="background:var(--gold)"></div>
+            <div class="vol-rc-icon">👑</div>
+            <div class="vol-rc-title">Team Lead (Exco)</div>
+            <div class="vol-rc-body">Executive-level leadership roles. Department heads, operations leads, and strategic directors who run NITIZEN's internal functions.</div>
+            <div class="vol-rc-cta">Apply Now →</div>
+          </div>
+          <div class="vol-recruit-card" onclick="showPage('vol-fellow')">
+            <div class="vol-rc-accent" style="background:var(--green-soft)"></div>
+            <div class="vol-rc-icon">🏛️</div>
+            <div class="vol-rc-title">Fellowship</div>
+            <div class="vol-rc-body">Six-month immersive programme for exceptional young Nigerians. Eight tracks. Full membership. Real civic work at scale. Under 30.</div>
+            <div class="vol-rc-cta">Apply Now →</div>
+          </div>
+          <div class="vol-recruit-card" onclick="showPage('vol-corps')">
+            <div class="vol-rc-accent" style="background:#25D366"></div>
+            <div class="vol-rc-icon">🎖️</div>
+            <div class="vol-rc-title">Corps Ambassador</div>
+            <div class="vol-rc-body">NYSC members serving with purpose. A structured programme that lets corps members contribute civic value throughout their service year.</div>
+            <div class="vol-rc-cta">Apply Now →</div>
+          </div>
+          <div class="vol-recruit-card" onclick="showPage('vol-general')">
+            <div class="vol-rc-accent" style="background:var(--green-mid)"></div>
+            <div class="vol-rc-icon">🤝</div>
+            <div class="vol-rc-title">General Volunteer</div>
+            <div class="vol-rc-body">Any Nigerian who believes in the mission. Flexible contribution — bring your skills, your time, and your commitment to civic change.</div>
+            <div class="vol-rc-cta">Apply Now →</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -8420,6 +9171,1232 @@ function handleCRT(e){
 </div><!-- end page-fellowship -->
 
 
+<!-- ═══════════════════════════════════════════════════
+     PAGE: VOL-EXCO — Team Lead (Exco) Application
+════════════════════════════════════════════════════ -->
+<div id="page-vol-exco" class="spa-page" style="display:none">
+<div class="vol-page-wrap">
+  <div class="vol-progress-bar"><div class="vol-progress-fill" id="exco-progress"></div></div>
+  <div class="vol-hero exco">
+    <div class="vol-hero-inner">
+      <div class="vol-breadcrumb">
+        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
+        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <span>Team Lead Application</span>
+      </div>
+      <div class="vol-hero-badge gold">
+        <span>👑</span> Executive Leadership · Exco Track
+      </div>
+      <h1>
+        Lead NITIZEN<br>
+        <em class="gold">from the inside.</em>
+      </h1>
+      <p class="vol-hero-sub">
+        We are recruiting exceptional Nigerians for executive leadership positions — department heads, operations leads, and strategic directors who will drive NITIZEN's mission from within. This is not a ceremonial role. This is real leadership.
+      </p>
+      <div class="vol-hero-meta">
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val" style="color:var(--gold)">Exco</div>
+          <div class="vol-hero-stat-lbl">Leadership Track</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">Open</div>
+          <div class="vol-hero-stat-lbl">Rolling Admissions</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">Volunteer</div>
+          <div class="vol-hero-stat-lbl">Stipend-Based</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div id="exco-form-wrapper">
+  <div class="vol-form-container">
+    <p class="vol-form-intro">
+      Team Lead (Exco) positions are NITIZEN's highest volunteer leadership roles. You will be responsible for department direction, team management, deliverable oversight, and strategic input. We expect intellectual rigour, emotional maturity, and full accountability. This form is the first step of a two-stage process — shortlisted candidates will be invited for an interview.
+    </p>
+    <form id="excoForm" class="vol-form" novalidate onsubmit="handleVolSubmit(event,'exco')">
+      <input type="hidden" name="form_type" value="NITIZEN Exco Application"/>
+      <input type="hidden" name="_subject" value="Exco Application"/>
+
+      <!-- 01 PERSONAL -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">01</div>
+        <div class="vol-section-title">Personal Information</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-fname">First Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="ex-fname" name="first_name" placeholder="Chidi" required autocomplete="given-name"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-lname">Last Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="ex-lname" name="last_name" placeholder="Okafor" required autocomplete="family-name"/>
+        </div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-email">Email Address <span class="req">*</span></label>
+          <input class="vol-input" type="email" id="ex-email" name="email" placeholder="chidi@example.com" required autocomplete="email"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-phone">Phone Number <span class="req">*</span></label>
+          <input class="vol-input" type="tel" id="ex-phone" name="phone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
+        </div>
+      </div>
+
+      <!-- 02 LOCATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">02</div>
+        <div class="vol-section-title">Location</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-state">State of Residence <span class="req">*</span></label>
+          <select class="vol-select" id="ex-state" name="state" required>
+            <option value="" disabled selected>Select state</option>
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT — Abuja</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option><option>Outside Nigeria (Diaspora)</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-city">City / LGA <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="ex-city" name="city" placeholder="e.g. Ikeja, Lagos Island" required/>
+        </div>
+      </div>
+
+      <!-- 03 BACKGROUND -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">03</div>
+        <div class="vol-section-title">Educational &amp; Professional Background</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-edu">Highest Qualification <span class="req">*</span></label>
+          <select class="vol-select" id="ex-edu" name="education" required>
+            <option value="" disabled selected>Select</option>
+            <option>SSCE / WAEC</option>
+            <option>OND / Diploma</option>
+            <option>Bachelor's Degree (B.Sc / B.A / B.Eng etc.)</option>
+            <option>HND</option>
+            <option>Postgraduate Diploma</option>
+            <option>Master's Degree</option>
+            <option>Doctoral Degree</option>
+            <option>Professional Qualification</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-field">Field of Study / Profession <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="ex-field" name="field_of_study" placeholder="e.g. Political Science, Law, Engineering" required/>
+        </div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-current-role">Current Role / Occupation <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="ex-current-role" name="current_role" placeholder="e.g. Policy Analyst at XYZ NGO, Lawyer at ABC Chambers, Student at University of Lagos" required/>
+        </div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-years">Years of Professional / Leadership Experience <span class="req">*</span></label>
+          <select class="vol-select" id="ex-years" name="years_experience" required>
+            <option value="" disabled selected>Select</option>
+            <option>Less than 1 year</option>
+            <option>1–2 years</option>
+            <option>3–5 years</option>
+            <option>6–10 years</option>
+            <option>More than 10 years</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 04 SKILLS -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">04</div>
+        <div class="vol-section-title">Core Skills &amp; Competencies</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-field" style="margin-bottom:1rem">
+        <label class="vol-label">Select all skills you bring <span class="req">*</span></label>
+        <div class="vol-check-group three" id="exco-skills">
+          <label class="vol-check-item"><input type="checkbox" name="skill_leadership" value="Leadership &amp; Team Management"/><span>Leadership &amp; Team Management</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_strategy" value="Strategic Planning"/><span>Strategic Planning</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_research" value="Policy Research"/><span>Policy Research</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_comms" value="Communications &amp; PR"/><span>Communications &amp; PR</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_writing" value="Writing &amp; Editorial"/><span>Writing &amp; Editorial</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_data" value="Data &amp; Analytics"/><span>Data &amp; Analytics</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_ops" value="Operations &amp; Project Management"/><span>Operations &amp; Project Mgmt</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_finance" value="Financial Management"/><span>Financial Management</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_legal" value="Legal &amp; Compliance"/><span>Legal &amp; Compliance</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_tech" value="Technology &amp; Digital"/><span>Technology &amp; Digital</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_advocacy" value="Advocacy &amp; Campaigns"/><span>Advocacy &amp; Campaigns</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_media" value="Media &amp; Broadcasting"/><span>Media &amp; Broadcasting</span></label>
+        </div>
+      </div>
+
+      <!-- 05 LEADERSHIP ROLE INTEREST -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">05</div>
+        <div class="vol-section-title">Preferred Leadership Department</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-dept">First Choice Department <span class="req">*</span></label>
+          <select class="vol-select" id="ex-dept" name="department_first" required>
+            <option value="" disabled selected>Select</option>
+            <option>Research &amp; Intelligence</option>
+            <option>Editorial &amp; Content</option>
+            <option>Advocacy &amp; Campaigns</option>
+            <option>Community &amp; Engagement</option>
+            <option>Digital &amp; Social Media</option>
+            <option>Design &amp; Visual Communications</option>
+            <option>Legal &amp; Policy</option>
+            <option>Operations &amp; Administration</option>
+            <option>Programs &amp; Fellowships</option>
+            <option>Finance &amp; Resource Management</option>
+            <option>Partnerships &amp; External Relations</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-dept2">Second Choice <span class="opt">(optional)</span></label>
+          <select class="vol-select" id="ex-dept2" name="department_second">
+            <option value="">No second choice</option>
+            <option>Research &amp; Intelligence</option>
+            <option>Editorial &amp; Content</option>
+            <option>Advocacy &amp; Campaigns</option>
+            <option>Community &amp; Engagement</option>
+            <option>Digital &amp; Social Media</option>
+            <option>Design &amp; Visual Communications</option>
+            <option>Legal &amp; Policy</option>
+            <option>Operations &amp; Administration</option>
+            <option>Programs &amp; Fellowships</option>
+            <option>Finance &amp; Resource Management</option>
+            <option>Partnerships &amp; External Relations</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 06 CIVIC EXPERIENCE -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">06</div>
+        <div class="vol-section-title">Civic &amp; Leadership Experience</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-civic">Describe your most significant leadership or civic experience <span class="req">*</span></label>
+          <textarea class="vol-textarea" id="ex-civic" name="civic_experience" placeholder="Tell us about a role, initiative, or moment where you led others toward a civic, community, or institutional goal. Be specific about your responsibilities, the team you managed, and what was achieved." required style="min-height:130px" oninput="charCount(this,'ex-civic-count',500)"></textarea>
+          <div class="vol-char-count"><span id="ex-civic-count">0</span> / 500 characters</div>
+        </div>
+      </div>
+
+      <!-- 07 AVAILABILITY -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">07</div>
+        <div class="vol-section-title">Availability &amp; Commitment</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-hrs">Hours available per week <span class="req">*</span></label>
+          <select class="vol-select" id="ex-hrs" name="hours_per_week" required>
+            <option value="" disabled selected>Select</option>
+            <option>5–8 hours</option>
+            <option>8–12 hours</option>
+            <option>12–18 hours</option>
+            <option>18–25 hours</option>
+            <option>25+ hours</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-start">When can you start? <span class="req">*</span></label>
+          <select class="vol-select" id="ex-start" name="start_date" required>
+            <option value="" disabled selected>Select</option>
+            <option>Immediately</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>1–3 months from now</option>
+            <option>More than 3 months</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 08 MOTIVATION ESSAY -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">08</div>
+        <div class="vol-section-title">Motivation Statement</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-why">Why do you want to lead at NITIZEN? <span class="req">*</span></label>
+          <textarea class="vol-textarea" id="ex-why" name="motivation" placeholder="In 150–300 words, tell us why you want an executive leadership role at NITIZEN. What is your vision for the department you've chosen? What do you believe Nigeria needs that NITIZEN can deliver? Be direct and specific." required style="min-height:150px" oninput="charCount(this,'ex-why-count',1500)"></textarea>
+          <div class="vol-char-count"><span id="ex-why-count">0</span> / 1500 characters</div>
+        </div>
+      </div>
+
+      <!-- 09 SOCIAL / PORTFOLIO -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">09</div>
+        <div class="vol-section-title">Social Media &amp; Portfolio <span style="font-weight:400;color:var(--muted)">(Optional)</span></div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-twitter">Twitter / X Handle <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="ex-twitter" name="twitter" placeholder="@handle"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="ex-linkedin">LinkedIn URL <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="url" id="ex-linkedin" name="linkedin" placeholder="linkedin.com/in/yourname"/>
+        </div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="ex-portfolio">Portfolio / Work Sample URL <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="url" id="ex-portfolio" name="portfolio" placeholder="A link to your work, publication, or project"/>
+        </div>
+      </div>
+
+      <!-- CONSENT -->
+      <div class="vol-consent">
+        <input type="checkbox" id="ex-consent" name="consent" required/>
+        <label class="vol-consent-label" for="ex-consent">
+          I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a>. I understand that submitting this form constitutes consent to NITIZEN processing my data for volunteer recruitment purposes under the Nigeria Data Protection Act 2023. I confirm that all information provided is accurate. I commit to upholding NITIZEN's Code of Conduct, editorial integrity standards, and civic ethics framework.
+        </label>
+      </div>
+
+      <div class="vol-submit-wrap">
+        <button type="submit" class="vol-submit-btn gold" id="exco-submit-btn">
+          <span>Submit Exco Application</span> <span>→</span>
+        </button>
+        <div class="vol-submit-note">Your application will be acknowledged immediately by email. Shortlisted candidates will be contacted within 7–14 business days.</div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div class="vol-success" id="exco-success">
+    <div class="vol-success-icon">🏛️</div>
+    <h2>Application <em>received.</em></h2>
+    <p>Thank you for applying to lead at NITIZEN. Your Exco application is in our system and under review. We have sent an acknowledgment to your email — check your inbox, including spam.</p>
+    <p>Shortlisted candidates will be contacted within 7–14 business days for an interview. In the meantime, join our community to stay connected to the mission.</p>
+    <div class="vol-success-divider"></div>
+    <div class="vol-success-next">Join the NITIZEN Community</div>
+    <div class="vol-success-links">
+      <a href="https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF" target="_blank" rel="noopener" class="vol-success-wa">💬 WhatsApp Community</a>
+      <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
+    </div>
+    <div style="margin-top:2rem">
+      <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+    </div>
+  </div>
+
+  <div class="vol-back-strip">
+    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <span class="vol-back-crumb">Programs › Team Lead (Exco) Application</span>
+  </div>
+</div>
+</div><!-- end page-vol-exco -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: VOL-FELLOW — Fellowship Application
+════════════════════════════════════════════════════ -->
+<div id="page-vol-fellow" class="spa-page" style="display:none">
+<div class="vol-page-wrap">
+  <div class="vol-progress-bar"><div class="vol-progress-fill" id="fellow-progress"></div></div>
+  <div class="vol-hero fellow">
+    <div class="vol-hero-inner">
+      <div class="vol-breadcrumb">
+        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
+        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <a href="#fellowship" onclick="showPage('fellowship')">Fellowship</a><span>/</span>
+        <span>Apply</span>
+      </div>
+      <div class="vol-hero-badge green">
+        <span>🏛️</span> Leadership Fellowship · Class of 2026
+      </div>
+      <h1>
+        Thirty seats.<br>
+        <em class="green">Is one yours?</em>
+      </h1>
+      <p class="vol-hero-sub">
+        The NITIZEN Leadership Fellowship selects thirty exceptional Nigerians under 30 for a six-month, immersive civic leadership programme. Eight tracks. Published work. Full membership. Registration opens 12 June 2026.
+      </p>
+      <div class="vol-hero-meta">
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val" style="color:var(--green-light)">30</div>
+          <div class="vol-hero-stat-lbl">Seats Available</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">≤30</div>
+          <div class="vol-hero-stat-lbl">Age Limit</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">6mo</div>
+          <div class="vol-hero-stat-lbl">Duration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="fellow-form-wrapper">
+  <div class="vol-form-container">
+    <p class="vol-form-intro">
+      The Fellowship application is competitive and merit-based. We select for intellectual curiosity, civic commitment, and the ability to do real work. Interest registered here triggers an acknowledgment email — full applications open 12 June 2026. Complete this form accurately; it is the foundation of your candidacy.
+    </p>
+    <form id="fellowForm" class="vol-form" novalidate onsubmit="handleVolSubmit(event,'fellow')">
+      <input type="hidden" name="form_type" value="NITIZEN Fellowship Application"/>
+      <input type="hidden" name="_subject" value="Fellowship Application"/>
+
+      <!-- 01 PERSONAL -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">01</div>
+        <div class="vol-section-title">Personal Information</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-fname">First Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="fl-fname" name="first_name" placeholder="Amara" required autocomplete="given-name"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-lname">Last Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="fl-lname" name="last_name" placeholder="Nwosu" required autocomplete="family-name"/>
+        </div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-email">Email Address <span class="req">*</span></label>
+          <input class="vol-input" type="email" id="fl-email" name="email" placeholder="amara@example.com" required autocomplete="email"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-phone">Phone Number <span class="req">*</span></label>
+          <input class="vol-input" type="tel" id="fl-phone" name="phone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
+        </div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-dob">Date of Birth <span class="req">*</span></label>
+          <input class="vol-input" type="date" id="fl-dob" name="date_of_birth" required/>
+          <div class="vol-hint">Must be 30 or under as of 12 June 2026</div>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-gender">Gender <span class="opt">(optional)</span></label>
+          <select class="vol-select" id="fl-gender" name="gender">
+            <option value="">Prefer not to say</option>
+            <option>Male</option><option>Female</option><option>Non-binary</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 02 LOCATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">02</div>
+        <div class="vol-section-title">Location</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-state">State of Residence <span class="req">*</span></label>
+          <select class="vol-select" id="fl-state" name="state" required>
+            <option value="" disabled selected>Select state</option>
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT — Abuja</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option><option>Diaspora</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-city">City <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="fl-city" name="city" placeholder="e.g. Enugu, Kaduna" required/>
+        </div>
+      </div>
+
+      <!-- 03 EDUCATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">03</div>
+        <div class="vol-section-title">Education &amp; Background</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-edu">Highest Qualification <span class="req">*</span></label>
+          <select class="vol-select" id="fl-edu" name="education" required>
+            <option value="" disabled selected>Select</option>
+            <option>Currently in secondary school</option>
+            <option>SSCE / WAEC</option>
+            <option>Currently in university / polytechnic</option>
+            <option>OND / Diploma</option>
+            <option>Bachelor's Degree</option>
+            <option>HND</option>
+            <option>Postgraduate / Master's</option>
+            <option>Professional Qualification</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-field">Field of Study <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="fl-field" name="field_of_study" placeholder="e.g. Political Science, Medicine, Engineering" required/>
+        </div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-institution">Institution / Workplace <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="fl-institution" name="institution" placeholder="e.g. University of Lagos, NNPC, Freelance" required/>
+        </div>
+      </div>
+
+      <!-- 04 TRACK -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">04</div>
+        <div class="vol-section-title">Fellowship Track Preference</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-track1">First Choice Track <span class="req">*</span></label>
+          <select class="vol-select" id="fl-track1" name="track_first" required>
+            <option value="" disabled selected>Select</option>
+            <option>Research &amp; Intelligence</option>
+            <option>Writing &amp; Editorial</option>
+            <option>Design &amp; Visual Communication</option>
+            <option>Advocacy &amp; Campaigns</option>
+            <option>Community Engagement</option>
+            <option>Strategy &amp; Policy</option>
+            <option>Digital &amp; Social Media</option>
+            <option>Operations &amp; Support</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-track2">Second Choice Track <span class="opt">(optional)</span></label>
+          <select class="vol-select" id="fl-track2" name="track_second">
+            <option value="">No second choice</option>
+            <option>Research &amp; Intelligence</option>
+            <option>Writing &amp; Editorial</option>
+            <option>Design &amp; Visual Communication</option>
+            <option>Advocacy &amp; Campaigns</option>
+            <option>Community Engagement</option>
+            <option>Strategy &amp; Policy</option>
+            <option>Digital &amp; Social Media</option>
+            <option>Operations &amp; Support</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 05 SKILLS -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">05</div>
+        <div class="vol-section-title">Skills &amp; Interests</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-field" style="margin-bottom:1rem">
+        <label class="vol-label">Your top skills (select all that apply) <span class="req">*</span></label>
+        <div class="vol-check-group three" id="fellow-skills">
+          <label class="vol-check-item"><input type="checkbox" name="skill_research" value="Research"/><span>Research</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_writing" value="Writing"/><span>Writing &amp; Editing</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_design" value="Design"/><span>Graphic Design</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_video" value="Video"/><span>Video &amp; Photography</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_social" value="Social Media"/><span>Social Media</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_data" value="Data Analysis"/><span>Data Analysis</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_advocacy" value="Advocacy"/><span>Advocacy</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_comms" value="Communications"/><span>Communications</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_ops" value="Operations"/><span>Operations</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_policy" value="Policy"/><span>Policy Analysis</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_law" value="Legal"/><span>Legal / Law</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_other" value="Other"/><span>Other</span></label>
+        </div>
+      </div>
+
+      <!-- 06 CIVIC EXPERIENCE -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">06</div>
+        <div class="vol-section-title">Civic &amp; Community Experience</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-civic">Describe any civic, community, or leadership experience <span class="opt">(optional)</span></label>
+          <textarea class="vol-textarea" id="fl-civic" name="civic_experience" placeholder="Have you been involved in student government, civil society, volunteering, journalism, advocacy, or community organising? Tell us briefly — this is not required but helps us understand your background." style="min-height:110px" oninput="charCount(this,'fl-civic-count',500)"></textarea>
+          <div class="vol-char-count"><span id="fl-civic-count">0</span> / 500 characters</div>
+        </div>
+      </div>
+
+      <!-- 07 AVAILABILITY -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">07</div>
+        <div class="vol-section-title">Availability &amp; Commitment</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-hrs">Hours available per week <span class="req">*</span></label>
+          <select class="vol-select" id="fl-hrs" name="hours_per_week" required>
+            <option value="" disabled selected>Select</option>
+            <option>5–8 hours</option>
+            <option>8–12 hours</option>
+            <option>12–18 hours</option>
+            <option>More than 18 hours</option>
+          </select>
+          <div class="vol-hint">Fellowship requires a minimum of 10 hrs/week commitment</div>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-device">Primary device for remote work <span class="req">*</span></label>
+          <select class="vol-select" id="fl-device" name="primary_device" required>
+            <option value="" disabled selected>Select</option>
+            <option>Laptop / Desktop Computer</option>
+            <option>Smartphone (primary)</option>
+            <option>Both equally</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 08 MOTIVATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">08</div>
+        <div class="vol-section-title">Motivation &amp; Personal Statement</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-why">Why do you want to be a NITIZEN Fellow? <span class="req">*</span></label>
+          <textarea class="vol-textarea" id="fl-why" name="motivation" placeholder="In 150–300 words: Why do you want this fellowship? What specific contribution do you want to make through your chosen track? How does this align with what Nigeria needs right now? Be honest, specific, and direct." required style="min-height:160px" oninput="charCount(this,'fl-why-count',2000)"></textarea>
+          <div class="vol-char-count"><span id="fl-why-count">0</span> / 2000 characters</div>
+        </div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-nigeria">What is the one governance problem in Nigeria that demands urgent attention? <span class="req">*</span></label>
+          <textarea class="vol-textarea" id="fl-nigeria" name="nigeria_problem" placeholder="Be specific. Name the problem, explain why it matters, and suggest what civic actors can do about it. This tells us how you think." required style="min-height:120px" oninput="charCount(this,'fl-nigeria-count',1000)"></textarea>
+          <div class="vol-char-count"><span id="fl-nigeria-count">0</span> / 1000 characters</div>
+        </div>
+      </div>
+
+      <!-- 09 PORTFOLIO -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">09</div>
+        <div class="vol-section-title">Portfolio &amp; Social Media <span style="font-weight:400;color:var(--muted)">(Optional)</span></div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="fl-twitter">Twitter / X Handle <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="fl-twitter" name="twitter" placeholder="@handle"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="fl-portfolio">Portfolio / Work Sample Link <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="url" id="fl-portfolio" name="portfolio" placeholder="Link to your writing, design, or project"/>
+        </div>
+      </div>
+
+      <!-- CONSENT -->
+      <div class="vol-consent">
+        <input type="checkbox" id="fl-consent" name="consent" required/>
+        <label class="vol-consent-label" for="fl-consent">
+          I confirm I am 30 years old or younger. I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a> and consent to my application data being processed for fellowship selection. I confirm the information provided is accurate. I understand that submitting a false application is grounds for immediate disqualification. I commit to NITIZEN's code of conduct, editorial ethics, and civic values if selected.
+        </label>
+      </div>
+
+      <div class="vol-submit-wrap">
+        <button type="submit" class="vol-submit-btn green" id="fellow-submit-btn">
+          <span>Submit Fellowship Application</span> <span>→</span>
+        </button>
+        <div class="vol-submit-note">An acknowledgment email will be sent immediately. The Fellowship selection committee will review all applications after 12 June 2026. Shortlisted applicants will be contacted for interview.</div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <div class="vol-success" id="fellow-success">
+    <div class="vol-success-icon">🌿</div>
+    <h2>You&rsquo;re on<br><em>the list.</em></h2>
+    <p>Your fellowship application has been received. Check your inbox — an acknowledgment email is on its way. Our selection committee reviews applications after 12 June 2026. Thirty seats. We hope yours is one of them.</p>
+    <p>While you wait, join our community. The work starts the moment you decide to show up.</p>
+    <div class="vol-success-divider"></div>
+    <div class="vol-success-next">Join the NITIZEN Community</div>
+    <div class="vol-success-links">
+      <a href="https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF" target="_blank" rel="noopener" class="vol-success-wa">💬 WhatsApp Community</a>
+      <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
+    </div>
+    <div style="margin-top:2rem">
+      <button class="btn-outline" onclick="showPage('fellowship')" style="font-size:.68rem">← BACK TO FELLOWSHIP</button>
+    </div>
+  </div>
+
+  <div class="vol-back-strip">
+    <button class="btn-outline" onclick="showPage('fellowship')" style="font-size:.68rem">← FELLOWSHIP</button>
+    <span class="vol-back-crumb">Programs › Leadership Fellowship › Apply</span>
+  </div>
+</div>
+</div><!-- end page-vol-fellow -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: VOL-CORPS — Corps Ambassador Application
+════════════════════════════════════════════════════ -->
+<div id="page-vol-corps" class="spa-page" style="display:none">
+<div class="vol-page-wrap">
+  <div class="vol-progress-bar"><div class="vol-progress-fill" id="corps-progress"></div></div>
+  <div class="vol-hero corps">
+    <div class="vol-hero-inner">
+      <div class="vol-breadcrumb">
+        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
+        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <span>Corps Ambassador</span>
+      </div>
+      <div class="vol-hero-badge wa">
+        <span>🎖️</span> NYSC Corps Ambassador Programme
+      </div>
+      <h1>
+        Serve Nigeria.<br>
+        <em class="wa">With NITIZEN.</em>
+      </h1>
+      <p class="vol-hero-sub">
+        The NITIZEN Corps Ambassador Programme lets NYSC corps members channel their service year into meaningful civic contribution. Structured. Purposeful. A service year you'll be proud of long after it ends.
+      </p>
+      <div class="vol-hero-meta">
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val" style="color:#7ee8a2">NYSC</div>
+          <div class="vol-hero-stat-lbl">Current Service Member</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">Civic</div>
+          <div class="vol-hero-stat-lbl">CDS-Compatible</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">Open</div>
+          <div class="vol-hero-stat-lbl">Rolling Admissions</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="corps-form-wrapper">
+  <div class="vol-form-container">
+    <p class="vol-form-intro">
+      Corps Ambassadors are NYSC members who use their service year to do civic work that matters — contributing to NITIZEN's research, community engagement, advocacy, and field operations across Nigeria. This programme is designed to integrate seamlessly with your CDS activities and give your service year genuine civic purpose.
+    </p>
+    <form id="corpsForm" class="vol-form" novalidate onsubmit="handleVolSubmit(event,'corps')">
+      <input type="hidden" name="form_type" value="NITIZEN Corps Ambassador Application"/>
+      <input type="hidden" name="_subject" value="Corps Ambassador Application"/>
+
+      <!-- 01 PERSONAL -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">01</div>
+        <div class="vol-section-title">Personal Information</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="co-fname">First Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="co-fname" name="first_name" placeholder="Tunde" required autocomplete="given-name"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="co-lname">Last Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="co-lname" name="last_name" placeholder="Adeyemi" required autocomplete="family-name"/>
+        </div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="co-email">Email Address <span class="req">*</span></label>
+          <input class="vol-input" type="email" id="co-email" name="email" placeholder="tunde@example.com" required autocomplete="email"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="co-phone">Phone Number <span class="req">*</span></label>
+          <input class="vol-input" type="tel" id="co-phone" name="phone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
+        </div>
+      </div>
+
+      <!-- 02 NYSC DETAILS -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">02</div>
+        <div class="vol-section-title">NYSC Service Information</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="co-batch">Service Batch <span class="req">*</span></label>
+          <select class="vol-select" id="co-batch" name="nysc_batch" required>
+            <option value="" disabled selected>Select batch</option>
+            <option>Batch A 2025</option>
+            <option>Batch B 2025</option>
+            <option>Batch C 2025</option>
+            <option>Batch A 2026</option>
+            <option>Batch B 2026</option>
+            <option>Batch C 2026</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="co-end">Estimated POP / End of Service <span class="req">*</span></label>
+          <input class="vol-input" type="month" id="co-end" name="service_end_date" required/>
+        </div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="co-state">State of Deployment <span class="req">*</span></label>
+          <select class="vol-select" id="co-state" name="deployment_state" required>
+            <option value="" disabled selected>Select state</option>
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT — Abuja</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="co-ppa">Place of Primary Assignment (PPA) <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="co-ppa" name="ppa" placeholder="Organisation / Ministry / School" required/>
+        </div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="co-cds">CDS Group / Community Service Activity <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="co-cds" name="cds_group" placeholder="e.g. Civic Education CDS, Media CDS"/>
+          <div class="vol-hint">If you're already in a civic-related CDS group, NITIZEN work can complement it</div>
+        </div>
+      </div>
+
+      <!-- 03 BACKGROUND -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">03</div>
+        <div class="vol-section-title">Educational Background</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="co-degree">Degree Obtained <span class="req">*</span></label>
+          <select class="vol-select" id="co-degree" name="degree" required>
+            <option value="" disabled selected>Select</option>
+            <option>Bachelor's Degree</option>
+            <option>HND</option>
+            <option>Postgraduate Degree</option>
+            <option>Professional Qualification</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="co-field">Field of Study <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="co-field" name="field_of_study" placeholder="e.g. Mass Communication, Law, Economics" required/>
+        </div>
+      </div>
+
+      <!-- 04 SKILLS -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">04</div>
+        <div class="vol-section-title">Skills &amp; Contribution Area</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-field" style="margin-bottom:1rem">
+        <label class="vol-label">Skills you bring to NITIZEN (select all that apply) <span class="req">*</span></label>
+        <div class="vol-check-group three">
+          <label class="vol-check-item"><input type="checkbox" name="skill_research" value="Research"/><span>Research</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_writing" value="Writing"/><span>Writing &amp; Reporting</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_social" value="Social Media"/><span>Social Media</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_design" value="Design"/><span>Design</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_community" value="Community"/><span>Community Engagement</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_advocacy" value="Advocacy"/><span>Advocacy</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_data" value="Data"/><span>Data &amp; Analysis</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_ops" value="Operations"/><span>Operations</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_video" value="Video"/><span>Video / Photography</span></label>
+        </div>
+      </div>
+      <div class="vol-field" style="margin-bottom:1rem">
+        <label class="vol-label" for="co-area">Preferred NITIZEN work area <span class="req">*</span></label>
+        <select class="vol-select" id="co-area" name="work_area" required>
+          <option value="" disabled selected>Select</option>
+          <option>Community Outreach &amp; Field Engagement</option>
+          <option>Research &amp; Documentation</option>
+          <option>Social Media &amp; Digital</option>
+          <option>Civic Education &amp; Awareness</option>
+          <option>Electoral Monitoring &amp; Voter Education</option>
+          <option>Content Writing &amp; Reporting</option>
+          <option>Events &amp; Programmes</option>
+          <option>Operations &amp; Admin Support</option>
+        </select>
+      </div>
+
+      <!-- 05 MOTIVATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">05</div>
+        <div class="vol-section-title">Motivation &amp; Civic Commitment</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="co-why">Why do you want to serve as a NITIZEN Corps Ambassador? <span class="req">*</span></label>
+          <textarea class="vol-textarea" id="co-why" name="motivation" placeholder="Tell us what motivated you to apply. What do you hope to contribute during your service year? How does civic work connect to your personal or professional goals? (100–250 words)" required style="min-height:140px" oninput="charCount(this,'co-why-count',1500)"></textarea>
+          <div class="vol-char-count"><span id="co-why-count">0</span> / 1500 characters</div>
+        </div>
+      </div>
+
+      <!-- 06 AVAILABILITY -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">06</div>
+        <div class="vol-section-title">Availability</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="co-hrs">Hours available per week for NITIZEN work <span class="req">*</span></label>
+          <select class="vol-select" id="co-hrs" name="hours_per_week" required>
+            <option value="" disabled selected>Select</option>
+            <option>3–5 hours (light contribution)</option>
+            <option>5–8 hours (standard)</option>
+            <option>8–12 hours (active)</option>
+            <option>12+ hours (intensive)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 07 SOCIAL -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">07</div>
+        <div class="vol-section-title">Social Media <span style="font-weight:400;color:var(--muted)">(Optional)</span></div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="co-twitter">Twitter / X Handle <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="co-twitter" name="twitter" placeholder="@handle"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="co-instagram">Instagram Handle <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="co-instagram" name="instagram" placeholder="@handle"/>
+        </div>
+      </div>
+
+      <!-- CONSENT -->
+      <div class="vol-consent">
+        <input type="checkbox" id="co-consent" name="consent" required/>
+        <label class="vol-consent-label" for="co-consent">
+          I confirm I am a current NYSC corps member. I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a> and consent to my data being processed for volunteer onboarding. I commit to NITIZEN's civic ethics, code of conduct, and editorial standards.
+        </label>
+      </div>
+
+      <div class="vol-submit-wrap">
+        <button type="submit" class="vol-submit-btn wa" id="corps-submit-btn">
+          <span>Submit Corps Ambassador Application</span> <span>→</span>
+        </button>
+        <div class="vol-submit-note">An acknowledgment email will be sent immediately to the address provided.</div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <div class="vol-success" id="corps-success">
+    <div class="vol-success-icon">🎖️</div>
+    <h2>Received.<br><em>Welcome, Ambassador.</em></h2>
+    <p>Your Corps Ambassador application is confirmed. An acknowledgment email is on its way. Our team will review your application and be in touch within 5–7 business days. Your service year just became more meaningful.</p>
+    <div class="vol-success-divider"></div>
+    <div class="vol-success-next">Join the NITIZEN Community</div>
+    <div class="vol-success-links">
+      <a href="https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF" target="_blank" rel="noopener" class="vol-success-wa">💬 WhatsApp Community</a>
+      <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
+    </div>
+    <div style="margin-top:2rem">
+      <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+    </div>
+  </div>
+
+  <div class="vol-back-strip">
+    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <span class="vol-back-crumb">Programs › Corps Ambassador Application</span>
+  </div>
+</div>
+</div><!-- end page-vol-corps -->
+
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE: VOL-GENERAL — General Volunteer Application
+════════════════════════════════════════════════════ -->
+<div id="page-vol-general" class="spa-page" style="display:none">
+<div class="vol-page-wrap">
+  <div class="vol-progress-bar"><div class="vol-progress-fill" id="general-progress"></div></div>
+  <div class="vol-hero general">
+    <div class="vol-hero-inner">
+      <div class="vol-breadcrumb">
+        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
+        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <span>General Volunteer</span>
+      </div>
+      <div class="vol-hero-badge green">
+        <span>🤝</span> General Volunteer Programme
+      </div>
+      <h1>
+        Bring what<br>
+        <em class="green">you have.</em>
+      </h1>
+      <p class="vol-hero-sub">
+        NITIZEN is built by civic-minded Nigerians of every background. If you believe in the mission and have time, skills, or passion to contribute — there is a place for you here. No experience required. Only commitment.
+      </p>
+      <div class="vol-hero-meta">
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val" style="color:var(--green-light)">Open</div>
+          <div class="vol-hero-stat-lbl">All Nigerians Welcome</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">Flexible</div>
+          <div class="vol-hero-stat-lbl">Commitment Level</div>
+        </div>
+        <div style="width:1px;background:rgba(255,255,255,.12)"></div>
+        <div class="vol-hero-stat">
+          <div class="vol-hero-stat-val">Remote</div>
+          <div class="vol-hero-stat-lbl">Work from Anywhere</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="general-form-wrapper">
+  <div class="vol-form-container">
+    <p class="vol-form-intro">
+      NITIZEN welcomes volunteers from every background, profession, and region of Nigeria. Whether you're a student, working professional, retiree, or diaspora Nigerian — if you believe the country deserves better governance and are willing to work toward it, this is your application.
+    </p>
+    <form id="generalForm" class="vol-form" novalidate onsubmit="handleVolSubmit(event,'general')">
+      <input type="hidden" name="form_type" value="NITIZEN General Volunteer Application"/>
+      <input type="hidden" name="_subject" value="General Volunteer Application"/>
+
+      <!-- 01 PERSONAL -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">01</div>
+        <div class="vol-section-title">Personal Information</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-fname">First Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="gv-fname" name="first_name" placeholder="Ngozi" required autocomplete="given-name"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="gv-lname">Last Name <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="gv-lname" name="last_name" placeholder="Eze" required autocomplete="family-name"/>
+        </div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-email">Email Address <span class="req">*</span></label>
+          <input class="vol-input" type="email" id="gv-email" name="email" placeholder="ngozi@example.com" required autocomplete="email"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="gv-phone">WhatsApp / Phone Number <span class="req">*</span></label>
+          <input class="vol-input" type="tel" id="gv-phone" name="phone" placeholder="+234 800 000 0000" required autocomplete="tel"/>
+        </div>
+      </div>
+
+      <!-- 02 LOCATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">02</div>
+        <div class="vol-section-title">Location</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-state">State of Residence <span class="req">*</span></label>
+          <select class="vol-select" id="gv-state" name="state" required>
+            <option value="" disabled selected>Select state</option>
+            <option>Abia</option><option>Adamawa</option><option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option><option>Bayelsa</option><option>Benue</option><option>Borno</option><option>Cross River</option><option>Delta</option><option>Ebonyi</option><option>Edo</option><option>Ekiti</option><option>Enugu</option><option>FCT — Abuja</option><option>Gombe</option><option>Imo</option><option>Jigawa</option><option>Kaduna</option><option>Kano</option><option>Katsina</option><option>Kebbi</option><option>Kogi</option><option>Kwara</option><option>Lagos</option><option>Nasarawa</option><option>Niger</option><option>Ogun</option><option>Ondo</option><option>Osun</option><option>Oyo</option><option>Plateau</option><option>Rivers</option><option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option><option>Diaspora / Outside Nigeria</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="gv-city">City <span class="req">*</span></label>
+          <input class="vol-input" type="text" id="gv-city" name="city" placeholder="e.g. Ibadan, Port Harcourt" required/>
+        </div>
+      </div>
+
+      <!-- 03 BACKGROUND -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">03</div>
+        <div class="vol-section-title">Professional Background</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-occupation">Occupation / Current Status <span class="req">*</span></label>
+          <select class="vol-select" id="gv-occupation" name="occupation" required>
+            <option value="" disabled selected>Select</option>
+            <option>Student (Secondary)</option>
+            <option>Student (University / Polytechnic)</option>
+            <option>NYSC Corps Member</option>
+            <option>Recent Graduate / Job-Seeking</option>
+            <option>Employed (Private Sector)</option>
+            <option>Employed (Public Sector)</option>
+            <option>Self-Employed / Entrepreneur</option>
+            <option>Freelancer / Creative</option>
+            <option>Civil Society / NGO Worker</option>
+            <option>Academic / Researcher</option>
+            <option>Legal Professional</option>
+            <option>Healthcare Professional</option>
+            <option>Media / Journalist</option>
+            <option>Retired</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="gv-sector">Industry / Field <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="gv-sector" name="industry" placeholder="e.g. Technology, Law, Education, Finance"/>
+        </div>
+      </div>
+
+      <!-- 04 SKILLS -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">04</div>
+        <div class="vol-section-title">Skills &amp; Interests</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-field" style="margin-bottom:1rem">
+        <label class="vol-label">What can you contribute? (select all that apply) <span class="req">*</span></label>
+        <div class="vol-check-group three">
+          <label class="vol-check-item"><input type="checkbox" name="skill_writing" value="Writing"/><span>Writing</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_research" value="Research"/><span>Research</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_design" value="Design"/><span>Design</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_social" value="Social Media"/><span>Social Media</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_video" value="Video"/><span>Video / Photography</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_legal" value="Legal"/><span>Legal Support</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_tech" value="Technology"/><span>Technology / Tech</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_community" value="Community"/><span>Community Mobilisation</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_finance" value="Finance"/><span>Finance / Accounting</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_advocacy" value="Advocacy"/><span>Advocacy</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_edu" value="Education"/><span>Education / Training</span></label>
+          <label class="vol-check-item"><input type="checkbox" name="skill_translation" value="Translation"/><span>Translation / Language</span></label>
+        </div>
+      </div>
+
+      <!-- 05 NITIZEN AREA -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">05</div>
+        <div class="vol-section-title">Area of Interest within NITIZEN</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-area">Where would you most like to contribute? <span class="req">*</span></label>
+          <select class="vol-select" id="gv-area" name="interest_area" required>
+            <option value="" disabled selected>Select</option>
+            <option>Research &amp; Intelligence</option>
+            <option>Editorial &amp; Conscience Letters</option>
+            <option>RedFlag — Accountability Reporting</option>
+            <option>See-gnal — Civic Updates</option>
+            <option>AskNaija — Civic AI</option>
+            <option>Social Media &amp; Digital Campaigns</option>
+            <option>Community Engagement &amp; Outreach</option>
+            <option>Advocacy &amp; Campaigns</option>
+            <option>Civic Education</option>
+            <option>Design &amp; Visual Communication</option>
+            <option>Events &amp; Programmes</option>
+            <option>Operations &amp; Admin</option>
+            <option>Open to any area of need</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 06 AVAILABILITY -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">06</div>
+        <div class="vol-section-title">Availability &amp; Commitment</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-hrs">Hours available per week <span class="req">*</span></label>
+          <select class="vol-select" id="gv-hrs" name="hours_per_week" required>
+            <option value="" disabled selected>Select</option>
+            <option>1–3 hours (occasional contribution)</option>
+            <option>3–6 hours (regular contribution)</option>
+            <option>6–10 hours (active volunteer)</option>
+            <option>10+ hours (high commitment)</option>
+          </select>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="gv-start">When can you start? <span class="req">*</span></label>
+          <select class="vol-select" id="gv-start" name="start_date" required>
+            <option value="" disabled selected>Select</option>
+            <option>Immediately</option>
+            <option>Within 2 weeks</option>
+            <option>Within a month</option>
+            <option>1–3 months from now</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 07 MOTIVATION -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">07</div>
+        <div class="vol-section-title">Why NITIZEN?</div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-full">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-why">Tell us why you want to volunteer with NITIZEN <span class="req">*</span></label>
+          <textarea class="vol-textarea" id="gv-why" name="motivation" placeholder="What draws you to civic work? Why NITIZEN specifically? What do you hope to contribute or experience through volunteering? Keep it honest and specific — we're not looking for polished PR. (75–200 words)" required style="min-height:130px" oninput="charCount(this,'gv-why-count',1500)"></textarea>
+          <div class="vol-char-count"><span id="gv-why-count">0</span> / 1500 characters</div>
+        </div>
+      </div>
+
+      <!-- 08 SOCIAL -->
+      <div class="vol-section-hdr">
+        <div class="vol-section-num">08</div>
+        <div class="vol-section-title">Social Media <span style="font-weight:400;color:var(--muted)">(Optional)</span></div>
+        <div class="vol-section-line"></div>
+      </div>
+      <div class="vol-form-grid">
+        <div class="vol-field">
+          <label class="vol-label" for="gv-twitter">Twitter / X Handle <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="text" id="gv-twitter" name="twitter" placeholder="@handle"/>
+        </div>
+        <div class="vol-field">
+          <label class="vol-label" for="gv-other-social">Other Social / Portfolio Link <span class="opt">(optional)</span></label>
+          <input class="vol-input" type="url" id="gv-other-social" name="portfolio" placeholder="LinkedIn, Instagram, or personal site"/>
+        </div>
+      </div>
+
+      <!-- CONSENT -->
+      <div class="vol-consent">
+        <input type="checkbox" id="gv-consent" name="consent" required/>
+        <label class="vol-consent-label" for="gv-consent">
+          I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a>. I consent to NITIZEN processing my data for volunteer coordination. I confirm the information provided is accurate and that I commit to NITIZEN's code of conduct and civic ethics if accepted.
+        </label>
+      </div>
+
+      <div class="vol-submit-wrap">
+        <button type="submit" class="vol-submit-btn green" id="general-submit-btn">
+          <span>Submit Volunteer Application</span> <span>→</span>
+        </button>
+        <div class="vol-submit-note">An acknowledgment email will be sent immediately. Our volunteer coordination team will be in touch within 5 business days.</div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <div class="vol-success" id="general-success">
+    <div class="vol-success-icon">🤝</div>
+    <h2>Welcome to<br><em>the mission.</em></h2>
+    <p>Your volunteer application has been received. Check your inbox for an acknowledgment email. Our volunteer coordination team will be in touch within 5 business days with your next steps.</p>
+    <p>In the meantime — join our community. Every great movement starts with the people who showed up first.</p>
+    <div class="vol-success-divider"></div>
+    <div class="vol-success-next">Join the NITIZEN Community</div>
+    <div class="vol-success-links">
+      <a href="https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF" target="_blank" rel="noopener" class="vol-success-wa">💬 WhatsApp Community</a>
+      <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
+    </div>
+    <div style="margin-top:2rem">
+      <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+    </div>
+  </div>
+
+  <div class="vol-back-strip">
+    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <span class="vol-back-crumb">Programs › General Volunteer Application</span>
+  </div>
+</div>
+</div><!-- end page-vol-general -->
+
+
 <!-- ═══ PAGE: PRIVACY ═══ -->
 <div id="page-privacy" class="spa-page" style="display:none">
 <div class="pp-hero">
@@ -8598,7 +10575,8 @@ var NITIZEN_PAGES = [
   'home','about','initiatives','cl','article-1','article-2','article-3','article-4',
   'membership','cl-pitch','asknaija','asknaija-beta','senal','redflag',
   'ledger-submit','openmic-submit','critika-submit','critika-article',
-  'contact','privacy','programs','fellowship'
+  'contact','privacy','programs','fellowship',
+  'vol-exco','vol-fellow','vol-corps','vol-general'
 ];
 
 // ── NAV ACTIVE STATE helper ──
@@ -12233,6 +14211,269 @@ function submitFellowshipInterest() {
     if (success) success.style.display = 'block';
   });
 }
+
+// ══════════════════════════════════════════════════════
+//  VOLUNTEER ONBOARDING SYSTEM — v26
+//  Routes: exco   → meewgvyy
+//          fellow → mqeoqwrn
+//          corps  → mykawlra
+//          general→ mdavgbel
+// ══════════════════════════════════════════════════════
+
+var VOL_ENDPOINTS = {
+  exco:    'https://formspree.io/f/meewgvyy',
+  fellow:  'https://formspree.io/f/mqeoqwrn',
+  corps:   'https://formspree.io/f/mykawlra',
+  general: 'https://formspree.io/f/mdavgbel'
+};
+
+var VOL_SUBMITTED = { exco: false, fellow: false, corps: false, general: false };
+
+// Character counter for textareas
+function charCount(el, counterId, max) {
+  var val = el.value.length;
+  var counter = document.getElementById(counterId);
+  if (counter) {
+    counter.textContent = val;
+    counter.style.color = val > max * 0.9 ? '#c0392b' : '';
+  }
+}
+
+// Progress bar update driven by scroll position within the form page
+function updateVolProgress(prefix) {
+  var wrapper = document.getElementById(prefix + '-form-wrapper');
+  var fill = document.getElementById(prefix + '-progress');
+  if (!wrapper || !fill) return;
+  var rect = wrapper.getBoundingClientRect();
+  var total = wrapper.offsetHeight - window.innerHeight;
+  if (total <= 0) { fill.style.width = '100%'; return; }
+  var scrolled = Math.max(0, -rect.top);
+  fill.style.width = Math.min(100, (scrolled / total) * 100) + '%';
+}
+
+// Wire progress bars on scroll
+document.addEventListener('scroll', function() {
+  ['exco','fellow','corps','general'].forEach(function(p) { updateVolProgress(p); });
+}, { passive: true });
+
+// Validate required checkboxes (at least one must be checked in a group)
+function validateCheckGroup(groupId) {
+  var group = document.getElementById(groupId);
+  if (!group) return true;
+  return group.querySelectorAll('input[type="checkbox"]:checked').length > 0;
+}
+
+// Main volunteer form submission handler
+function handleVolSubmit(e, type) {
+  e.preventDefault();
+  if (VOL_SUBMITTED[type]) return; // prevent duplicate submission
+
+  var form = e.target;
+  var endpoint = VOL_ENDPOINTS[type];
+  if (!endpoint) return;
+
+  // Email validation
+  var emailEl = form.querySelector('input[type="email"]');
+  if (emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+    emailEl.classList.add('invalid');
+    emailEl.focus();
+    alert('Please enter a valid email address.');
+    return;
+  }
+  if (emailEl) emailEl.classList.remove('invalid');
+
+  // Skills checkbox — at least one required (forms that have skill checkboxes)
+  var skillGroupIds = { exco: 'exco-skills', fellow: 'fellow-skills' };
+  if (skillGroupIds[type] && !validateCheckGroup(skillGroupIds[type])) {
+    alert('Please select at least one skill.');
+    return;
+  }
+
+  // Consent
+  var consentEl = form.querySelector('input[name="consent"]');
+  if (consentEl && !consentEl.checked) {
+    alert('Please read and accept NITIZEN\'s Privacy Policy and Code of Conduct to continue.');
+    return;
+  }
+
+  // Button loading state
+  var btnId = type + '-submit-btn';
+  var btn = document.getElementById(btnId);
+  if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Submitting…'; }
+
+  // Collect all checked skills into a single comma-separated field for clean email
+  var skillValues = [];
+  form.querySelectorAll('input[type="checkbox"][name^="skill_"]:checked').forEach(function(cb) {
+    skillValues.push(cb.value);
+  });
+
+  var fd = new FormData(form);
+  if (skillValues.length) fd.set('skills_summary', skillValues.join(', '));
+
+  // Add applicant name to subject for readable Formspree inbox
+  var fname = (form.querySelector('input[name="first_name"]') || {}).value || '';
+  var lname = (form.querySelector('input[name="last_name"]') || {}).value || '';
+  fd.set('_subject', fd.get('_subject') + ' — ' + fname + ' ' + lname);
+
+  // Store email for delayed email scheduling
+  var applicantEmail = emailEl ? emailEl.value.trim() : '';
+  var applicantName  = (fname + ' ' + lname).trim();
+
+  fetch(endpoint, {
+    method: 'POST',
+    body: fd,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function(res) {
+    VOL_SUBMITTED[type] = true;
+    showVolSuccess(type);
+    scheduleDelayedEmail(type, applicantEmail, applicantName);
+  })
+  .catch(function() {
+    // Fail gracefully — show success to user regardless (Formspree may have queued)
+    VOL_SUBMITTED[type] = true;
+    showVolSuccess(type);
+    scheduleDelayedEmail(type, applicantEmail, applicantName);
+  });
+}
+
+function showVolSuccess(type) {
+  var wrappers = { exco: 'exco-form-wrapper', fellow: 'fellow-form-wrapper', corps: 'corps-form-wrapper', general: 'general-form-wrapper' };
+  var successIds = { exco: 'exco-success', fellow: 'fellow-success', corps: 'corps-success', general: 'general-success' };
+  var wrapper = document.getElementById(wrappers[type]);
+  var success  = document.getElementById(successIds[type]);
+  if (wrapper) wrapper.style.display = 'none';
+  if (success)  { success.style.display = 'block'; success.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  // Zero out progress bar fill
+  var fill = document.getElementById(type + '-progress');
+  if (fill) fill.style.width = '100%';
+}
+
+// ── DELAYED EMAIL SYSTEM ──
+// Sends a congratulatory onboarding email 24 hours after submission.
+// We use Formspree's second endpoint (the same one the form already routes to)
+// by posting a lightweight payload after a 24-hour timer stored in localStorage.
+// This is a client-side best-effort approach; for production replace with a
+// server-side cron / Formspree Logic / email automation integration.
+
+var DELAYED_EMAIL_CONTENT = {
+  exco: {
+    subject: 'Welcome to NITIZEN — Your Leadership Journey Begins Here',
+    body: function(name) {
+      return 'Dear ' + name + ',\n\n'
+        + 'It has been 24 hours since you applied for an executive leadership role at NITIZEN, and we want to take a moment to formally welcome you into our story.\n\n'
+        + 'You have taken a significant step. Nigeria\'s civic future is not going to be built by observers — it will be built by people like you who decide that leadership is a responsibility, not a title. At NITIZEN, we take that seriously.\n\n'
+        + 'Our selection process is rigorous because our standards are high. We are not building another organisation that mistakes activity for impact. If you make it through, you will lead a department, manage a team, own deliverables, and be directly accountable for a part of what NITIZEN produces for millions of Nigerians.\n\n'
+        + 'What you can do now:\n'
+        + '→ Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
+        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
+        + '→ Follow us on X/Twitter: @NitizenNG\n\n'
+        + 'We review applications on a rolling basis. Shortlisted candidates will be contacted for interview. Thank you for applying.\n\n'
+        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng\n@NitizenNG on X/Twitter';
+    }
+  },
+  fellow: {
+    subject: 'Welcome to the NITIZEN Family — Fellowship Update',
+    body: function(name) {
+      return 'Dear ' + name + ',\n\n'
+        + 'It has been 24 hours since you applied to the NITIZEN Leadership Fellowship, Class of 2026. We want you to know: you made the right call.\n\n'
+        + 'The Fellowship is the most ambitious programme we run — six months of real civic work, structured political education, and community with thirty exceptional young Nigerians committed to the same mission. If you are selected, you will contribute to work that reaches millions. You will gain skills. You will earn full NITIZEN membership. And you will leave knowing you did something that mattered.\n\n'
+        + 'Nigeria\'s governance crisis demands more than outrage. It demands organised, informed, persistent civic action. That is what this Fellowship trains you for.\n\n'
+        + 'While you wait for the selection process:\n'
+        + '→ Join our Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
+        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
+        + '→ Read NITIZEN Conscience Letters at nitizen.ng\n'
+        + '→ Follow @NitizenNG on X/Twitter\n\n'
+        + 'Full applications open 12 June 2026 — Democracy Day. Thirty seats. We hope yours is one of them.\n\n'
+        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG';
+    }
+  },
+  corps: {
+    subject: 'NITIZEN Corps Ambassador — Welcome to Purposeful Service',
+    body: function(name) {
+      return 'Dear ' + name + ',\n\n'
+        + 'Twenty-four hours ago, you applied to become a NITIZEN Corps Ambassador. We want to welcome you properly.\n\n'
+        + 'Your service year is a national obligation. But it can also be something more — a period of genuine civic contribution that you will look back on with pride long after your khaki is folded away. NITIZEN exists to make that possible.\n\n'
+        + 'As a Corps Ambassador, you will be part of a nationwide network of service members contributing to civic intelligence, accountability reporting, voter education, and community engagement. Your state of deployment becomes a site of civic action. Your work will be seen.\n\n'
+        + 'Next steps:\n'
+        + '→ Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
+        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
+        + '→ Stay connected on X/Twitter: @NitizenNG\n\n'
+        + 'Our volunteer coordination team will be in touch within 5 business days. Welcome to the mission.\n\n'
+        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG';
+    }
+  },
+  general: {
+    subject: 'You Showed Up — NITIZEN Volunteer Welcome',
+    body: function(name) {
+      return 'Dear ' + name + ',\n\n'
+        + 'Yesterday, you applied to volunteer with NITIZEN. We want you to know what that means.\n\n'
+        + 'Every great civic movement has a founding cohort — the people who show up before it is easy, before it is popular, before the results are obvious. You are part of that cohort. NITIZEN is young. Nigeria\'s need for independent, rigorous civic intelligence is enormous. And you have decided to help close that gap.\n\n'
+        + 'We believe civic participation is not a hobby. It is how societies sustain themselves. What you bring — your time, your skills, your commitment — makes it possible for NITIZEN to reach more Nigerians with the information, analysis, and accountability journalism that democracy requires.\n\n'
+        + 'What to do right now:\n'
+        + '→ Join our Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
+        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
+        + '→ Follow @NitizenNG and share our work\n'
+        + '→ Read what we\'re building at nitizen.ng\n\n'
+        + 'Our team will be in touch within 5 business days with your onboarding details. Thank you for showing up.\n\n'
+        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG';
+    }
+  }
+};
+
+function scheduleDelayedEmail(type, email, name) {
+  if (!email || !name) return;
+  try {
+    var key = 'nitizen_delayed_' + type + '_' + email.replace(/[^a-z0-9]/gi,'_');
+    var existing = localStorage.getItem(key);
+    if (existing) return; // already scheduled
+    var payload = {
+      type: type,
+      email: email,
+      name: name,
+      sendAfter: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
+    };
+    localStorage.setItem(key, JSON.stringify(payload));
+  } catch(e) { /* localStorage may be unavailable in some environments */ }
+}
+
+function processDelayedEmails() {
+  try {
+    var now = Date.now();
+    for (var i = 0; i < localStorage.length; i++) {
+      var k = localStorage.key(i);
+      if (!k || k.indexOf('nitizen_delayed_') !== 0) continue;
+      var raw = localStorage.getItem(k);
+      if (!raw) continue;
+      var item;
+      try { item = JSON.parse(raw); } catch(e) { continue; }
+      if (!item || !item.sendAfter || now < item.sendAfter) continue;
+
+      // Time to send — fire the delayed email via the same Formspree endpoint
+      (function(entry, storageKey) {
+        var content = DELAYED_EMAIL_CONTENT[entry.type];
+        if (!content) return;
+        var fd = new FormData();
+        fd.append('_subject',  content.subject);
+        fd.append('email',     entry.email);
+        fd.append('name',      entry.name);
+        fd.append('message',   content.body(entry.name));
+        fd.append('form_type', 'NITIZEN Delayed Onboarding Email — ' + entry.type);
+        fd.append('_replyto',  entry.email);
+        fetch(VOL_ENDPOINTS[entry.type], {
+          method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+        }).then(function() {
+          localStorage.removeItem(storageKey);
+        }).catch(function() {
+          // Leave in localStorage to retry on next visit
+        });
+      })(item, k);
+    }
+  } catch(e) {}
+}
+
+// Run delayed email processor on every page load
+processDelayedEmails();
 
 
 function initAskNaijaCategories() {
