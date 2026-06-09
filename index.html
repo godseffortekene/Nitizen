@@ -3060,16 +3060,95 @@ table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrollin
 /* ── SPA UTILITY ── */
 .spa-page { display: none; }
 
-/* ── PAGE TRANSITION — smooth fade-in on navigation ── */
-@keyframes pageEnter {
-  from { opacity: 0; transform: translateY(6px); }
+/* ═══════════════════════════════════════════════
+   NITIZEN — PAGE TRANSITION SYSTEM
+   Loader bar + fade-slide with deceleration curve
+═══════════════════════════════════════════════ */
+
+/* ── Global page-load progress bar ── */
+#ntz-loader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--green-soft) 0%, #a8f5c8 60%, var(--green-soft) 100%);
+  background-size: 200% 100%;
+  z-index: 99999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .15s ease;
+  box-shadow: 0 0 10px rgba(74,175,116,.6);
+  animation: ntzShimmer 1.4s linear infinite;
+  will-change: width, opacity;
+}
+#ntz-loader.active {
+  opacity: 1;
+}
+@keyframes ntzShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Page screen-wipe overlay (brief flash between pages) ── */
+#ntz-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--green-deep);
+  z-index: 99998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s cubic-bezier(.4,0,.2,1);
+}
+#ntz-overlay.entering { opacity: .08; pointer-events: none; }
+
+/* ── SPA page enter animations ── */
+@keyframes ntzFadeSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-.spa-page.page-entering {
-  animation: pageEnter .22s ease forwards;
+@keyframes ntzFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
-@media(prefers-reduced-motion: reduce) {
+.spa-page.page-entering {
+  animation: ntzFadeSlideUp .34s cubic-bezier(.16,1,.3,1) both;
+}
+/* Faster/simpler for mobile — less GPU pressure */
+@media (max-width: 600px) {
+  .spa-page.page-entering {
+    animation: ntzFadeIn .22s ease both;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
   .spa-page.page-entering { animation: none; }
+  #ntz-loader { display: none; }
+  #ntz-overlay { display: none; }
+}
+
+/* ── Nav link active hover telegraph ── */
+nav a[data-navpage], .mobile-nav a {
+  transition: color .18s ease, opacity .18s ease;
+}
+nav a[data-navpage]:active, .mobile-nav a:active {
+  opacity: .6;
+}
+
+/* ── Card / button press micro-interaction ── */
+.btn-primary, .btn-secondary, .btn-gold, .btn-ghost, .btn-outline,
+.prog-card, .way-card, .vol-recruit-card, .initiative-card {
+  transition: transform .12s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .18s ease,
+              background .18s ease,
+              color .18s ease,
+              border-color .18s ease;
+}
+.btn-primary:active, .btn-secondary:active, .btn-gold:active,
+.btn-ghost:active, .btn-outline:active {
+  transform: scale(.96) translateY(1px) !important;
+}
+.prog-card:active, .way-card:active,
+.vol-recruit-card:active, .initiative-card:active {
+  transform: scale(.985) !important;
 }
 
 /* ── LAUNCH CELEBRATION ── */
@@ -3708,6 +3787,10 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
 <main id="main">
 <!-- ═══ PAGE: HOME ═══ -->
+<!-- NITIZEN Page-Transition Loader Bar + Overlay -->
+<div id="ntz-loader"></div>
+<div id="ntz-overlay"></div>
+
 <div id="page-home" class="spa-page" style="display:block">
 <section class="hero">
     <div class="hero-bg">
@@ -10678,39 +10761,109 @@ function setNavActive(pageId) {
 }
 
 // ── CORE PAGE SWITCHER ──
+// ── NITIZEN Page Transition Engine ──────────────────────────────────────
+// Drives the loader bar, screen overlay, and fade-slide animation for
+// every SPA page change. Preserves scroll, history, SEO, and reveal hooks.
+
+var _ntzLoaderTimer  = null;
+var _ntzTransitionBusy = false;
+
+function ntzLoaderStart() {
+  var bar = document.getElementById('ntz-loader');
+  if (!bar) return;
+  clearTimeout(_ntzLoaderTimer);
+  bar.style.transition = 'width .08s ease, opacity .15s ease';
+  bar.style.width = '0%';
+  bar.classList.add('active');
+  // ramp to 72% quickly, then stall — gives perception of progress
+  requestAnimationFrame(function() {
+    bar.style.transition = 'width .35s cubic-bezier(.4,0,.6,1), opacity .15s ease';
+    bar.style.width = '72%';
+  });
+}
+
+function ntzLoaderFinish() {
+  var bar = document.getElementById('ntz-loader');
+  if (!bar) return;
+  bar.style.transition = 'width .15s ease, opacity .3s ease .1s';
+  bar.style.width = '100%';
+  _ntzLoaderTimer = setTimeout(function() {
+    bar.classList.remove('active');
+    bar.style.transition = 'width .05s ease, opacity .2s ease';
+    bar.style.width = '0%';
+  }, 320);
+}
+
+function ntzOverlayFlash(cb) {
+  var ov = document.getElementById('ntz-overlay');
+  if (!ov || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    cb(); return;
+  }
+  ov.classList.add('entering');
+  setTimeout(function() {
+    cb();
+    setTimeout(function() { ov.classList.remove('entering'); }, 80);
+  }, 60);
+}
+
 function showPage(pageId, pushState) {
   if (!pageId || NITIZEN_PAGES.indexOf(pageId) === -1) pageId = 'home';
 
-  // Hide all pages
-  NITIZEN_PAGES.forEach(function(id) {
-    var el = document.getElementById('page-' + id);
-    if (el) el.style.display = 'none';
-  });
+  // Throttle rapid-fire navigation
+  if (_ntzTransitionBusy) return;
+  _ntzTransitionBusy = true;
 
-  // Show target
-  var target = document.getElementById('page-' + pageId);
-  if (target) {
-    target.style.display = 'block';
-    // Trigger page-enter transition
-    target.classList.remove('page-entering');
-    void target.offsetWidth; // force reflow
-    target.classList.add('page-entering');
-    target.addEventListener('animationend', function onEnd() {
-      target.classList.remove('page-entering');
-      target.removeEventListener('animationend', onEnd);
+  // Fire the loader bar
+  ntzLoaderStart();
+
+  // Brief overlay flash, then swap pages
+  ntzOverlayFlash(function() {
+
+    // Hide all pages
+    NITIZEN_PAGES.forEach(function(id) {
+      var el = document.getElementById('page-' + id);
+      if (el) { el.style.display = 'none'; el.classList.remove('page-entering'); }
     });
-    window.scrollTo({ top: 0, behavior: 'instant' });
-    // Trigger reveal animations
-    setTimeout(function() {
-      if (!revealObs) return;
-      target.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
-        revealObs.observe(el);
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-          el.classList.add('visible');
-        }
+
+    // Show target
+    var target = document.getElementById('page-' + pageId);
+    if (target) {
+      target.style.display = 'block';
+      // Reflow then animate
+      void target.offsetWidth;
+      target.classList.add('page-entering');
+      target.addEventListener('animationend', function onEnd() {
+        target.classList.remove('page-entering');
+        target.removeEventListener('animationend', onEnd);
+        _ntzTransitionBusy = false;
+        ntzLoaderFinish();
       });
-    }, 60);
-  }
+      // Failsafe — in case animationend never fires (reduced-motion, etc.)
+      setTimeout(function() {
+        if (_ntzTransitionBusy) {
+          _ntzTransitionBusy = false;
+          target.classList.remove('page-entering');
+          ntzLoaderFinish();
+        }
+      }, 700);
+
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Reveal animations
+      setTimeout(function() {
+        if (!revealObs) return;
+        target.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
+          revealObs.observe(el);
+          if (el.getBoundingClientRect().top < window.innerHeight) {
+            el.classList.add('visible');
+          }
+        });
+      }, 80);
+    } else {
+      _ntzTransitionBusy = false;
+      ntzLoaderFinish();
+    }
+  });
 
   setNavActive(pageId);
 
@@ -10739,7 +10892,7 @@ function showPage(pageId, pushState) {
     setTimeout(function() {
       if (typeof buildSidebar === 'function') buildSidebar();
       if (typeof buildMobileChips === 'function') buildMobileChips();
-    }, 80);
+    }, 120);
   }
 }
 
@@ -14433,7 +14586,7 @@ var VOL_ENDPOINTS = {
 
 var VOL_SUBMITTED = { exco: false, fellow: false, corps: false, general: false };
 
-// Character counter for textareas
+// ── Character counter for textareas ──────────────────────────────────────
 function charCount(el, counterId, max) {
   var val = el.value.length;
   var counter = document.getElementById(counterId);
@@ -14443,41 +14596,43 @@ function charCount(el, counterId, max) {
   }
 }
 
-// Progress bar update driven by scroll position within the form page
+// ── Progress bar driven by scroll within form wrapper ────────────────────
 function updateVolProgress(prefix) {
   var wrapper = document.getElementById(prefix + '-form-wrapper');
-  var fill = document.getElementById(prefix + '-progress');
+  var fill    = document.getElementById(prefix + '-progress');
   if (!wrapper || !fill) return;
-  var rect = wrapper.getBoundingClientRect();
+  var rect  = wrapper.getBoundingClientRect();
   var total = wrapper.offsetHeight - window.innerHeight;
   if (total <= 0) { fill.style.width = '100%'; return; }
   var scrolled = Math.max(0, -rect.top);
   fill.style.width = Math.min(100, (scrolled / total) * 100) + '%';
 }
-
-// Wire progress bars on scroll
 document.addEventListener('scroll', function() {
   ['exco','fellow','corps','general'].forEach(function(p) { updateVolProgress(p); });
 }, { passive: true });
 
-// Validate required checkboxes (at least one must be checked in a group)
+// ── Validate at-least-one checkbox group ─────────────────────────────────
 function validateCheckGroup(groupId) {
   var group = document.getElementById(groupId);
   if (!group) return true;
   return group.querySelectorAll('input[type="checkbox"]:checked').length > 0;
 }
 
-// Main volunteer form submission handler
+// ═══════════════════════════════════════════════════════════════════════════
+//  NITIZEN VOLUNTEER FORM — UNIFIED SUBMISSION HANDLER
+//  Validates → posts to Formspree → shows success → schedules welcome email
+// ═══════════════════════════════════════════════════════════════════════════
+
 function handleVolSubmit(e, type) {
   e.preventDefault();
-  if (VOL_SUBMITTED[type]) return; // prevent duplicate submission
+  if (VOL_SUBMITTED[type]) return;
 
-  var form = e.target;
+  var form     = e.target;
   var endpoint = VOL_ENDPOINTS[type];
-  if (!endpoint) return;
+  if (!endpoint) { console.error('No Formspree endpoint for type:', type); return; }
 
-  // Email validation
-  var emailEl = form.querySelector('input[type="email"]');
+  // ── Validation: email ──────────────────────────────────────────────────
+  var emailEl        = form.querySelector('input[type="email"]');
   var applicantEmail = emailEl ? emailEl.value.trim() : '';
   if (!applicantEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(applicantEmail)) {
     if (emailEl) { emailEl.classList.add('invalid'); emailEl.focus(); }
@@ -14486,236 +14641,671 @@ function handleVolSubmit(e, type) {
   }
   if (emailEl) emailEl.classList.remove('invalid');
 
-  // Skills checkbox — at least one required
+  // ── Validation: required fields ────────────────────────────────────────
+  var missing = [];
+  form.querySelectorAll('[required]').forEach(function(field) {
+    if (field.type === 'checkbox') {
+      if (!field.checked) missing.push(field);
+    } else if (!field.value.trim()) {
+      missing.push(field);
+    }
+  });
+  if (missing.length) {
+    missing[0].focus();
+    missing[0].classList.add('invalid');
+    alert('Please fill in all required fields.');
+    return;
+  }
+
+  // ── Validation: at-least-one skill checkboxes ──────────────────────────
   var skillGroupIds = { exco: 'exco-skills', fellow: 'fellow-skills' };
   if (skillGroupIds[type] && !validateCheckGroup(skillGroupIds[type])) {
     alert('Please select at least one skill.');
     return;
   }
 
-  // Consent
+  // ── Validation: consent ────────────────────────────────────────────────
   var consentEl = form.querySelector('input[name="consent"]');
   if (consentEl && !consentEl.checked) {
-    alert('Please read and accept NITIZEN\'s Privacy Policy and Code of Conduct to continue.');
+    alert("Please read and accept NITIZEN's Privacy Policy and Code of Conduct to continue.");
     return;
   }
 
-  // Button loading state
-  var btnId = type + '-submit-btn';
-  var btn = document.getElementById(btnId);
-  if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Submitting…'; }
+  // ── Button loading state ───────────────────────────────────────────────
+  var btn = document.getElementById(type + '-submit-btn');
+  if (btn) {
+    btn.disabled = true;
+    var spanEl = btn.querySelector('span');
+    if (spanEl) spanEl.textContent = 'Submitting…';
+  }
 
-  // Build FormData — use plain object approach to guarantee field names
+  // ── Build applicant name ───────────────────────────────────────────────
   var fname = (form.querySelector('input[name="first_name"]') || {}).value || '';
-  var lname = (form.querySelector('input[name="last_name"]') || {}).value || '';
-  var applicantName = (fname + ' ' + lname).trim();
+  var lname = (form.querySelector('input[name="last_name"]')  || {}).value || '';
+  var applicantName = (fname + ' ' + lname).trim() || applicantEmail.split('@')[0];
 
-  // Collect checked skills
+  // ── Collect skills ─────────────────────────────────────────────────────
   var skillValues = [];
   form.querySelectorAll('input[type="checkbox"][name^="skill_"]:checked').forEach(function(cb) {
     skillValues.push(cb.value);
   });
 
-  // Build subject lines per type
+  // ── Subject lines ──────────────────────────────────────────────────────
   var subjectMap = {
-    exco:    'Exco Application',
-    fellow:  'Fellowship Application',
-    corps:   'Corps Ambassador Application',
-    general: 'General Volunteer Application'
+    exco:    'New Exco Application — NITIZEN',
+    fellow:  'New Fellowship Application — NITIZEN',
+    corps:   'New Corps Ambassador Application — NITIZEN',
+    general: 'New General Volunteer Application — NITIZEN'
   };
-  var subject = subjectMap[type] + ' — ' + applicantName;
 
-  // Collect full form data
+  // ── Build FormData ─────────────────────────────────────────────────────
   var fd = new FormData(form);
-
-  // ── CRITICAL FIXES ──
-  // 1. Ensure email is named exactly "email" (Formspree requires this)
-  fd.set('email', applicantEmail);
-
-  // 2. Set _replyto so Formspree knows where to send the acknowledgment
-  fd.set('_replyto', applicantEmail);
-
-  // 3. Override _subject with the full named subject
-  fd.set('_subject', subject);
-
-  // 4. Rename consent field so it doesn't trip Formspree spam filters
+  fd.set('email',               applicantEmail);
+  fd.set('_replyto',            applicantEmail);
+  fd.set('_subject',            subjectMap[type] + ' — ' + applicantName);
+  fd.set('full_name',           applicantName);
+  fd.set('application_type',    type.toUpperCase());
+  fd.set('submission_time',     new Date().toISOString());
   fd.delete('consent');
   fd.set('code_of_conduct_agreed', 'Yes');
-
-  // 5. Add skills summary
   if (skillValues.length) fd.set('skills_summary', skillValues.join(', '));
+  // Formspree honeypot (block bots)
+  fd.set('_gotcha', '');
 
-  // 6. Add applicant full name as a clean top-level field
-  fd.set('full_name', applicantName);
-
+  // ── POST to Formspree ──────────────────────────────────────────────────
   fetch(endpoint, {
-    method: 'POST',
-    body: fd,
+    method:  'POST',
+    body:    fd,
     headers: { 'Accept': 'application/json' }
   })
   .then(function(res) {
     if (res.ok) {
-      VOL_SUBMITTED[type] = true;
-      showVolSuccess(type);
-      scheduleDelayedEmail(type, applicantEmail, applicantName);
+      volOnSuccess(type, applicantEmail, applicantName);
     } else {
-      res.json().then(function(data) {
-        var msg = (data && data.errors && data.errors[0] && data.errors[0].message) || 'Submission failed. Please try again or email us at hello@nitizen.ng';
-        if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Try Again'; }
+      return res.json().then(function(data) {
+        var msg = (data && data.errors && data.errors[0] && data.errors[0].message)
+          || 'Submission failed. Please try again or email hello@nitizen.ng';
+        if (btn) { btn.disabled = false; if (btn.querySelector('span')) btn.querySelector('span').textContent = 'Try Again'; }
         alert(msg);
-      }).catch(function() {
-        // Still show success — Formspree may have accepted despite non-200
-        VOL_SUBMITTED[type] = true;
-        showVolSuccess(type);
-        scheduleDelayedEmail(type, applicantEmail, applicantName);
       });
     }
   })
-  .catch(function() {
-    // Network error — show success but note possible issue
-    VOL_SUBMITTED[type] = true;
-    showVolSuccess(type);
-    scheduleDelayedEmail(type, applicantEmail, applicantName);
+  .catch(function(err) {
+    // Network error — still acknowledge the user; Formspree may have received it
+    console.warn('NITIZEN: Formspree network error', err);
+    volOnSuccess(type, applicantEmail, applicantName);
   });
 }
 
+function volOnSuccess(type, email, name) {
+  VOL_SUBMITTED[type] = true;
+  showVolSuccess(type);
+  // Schedule both emails
+  scheduleAcknowledgmentEmail(type, email, name);
+  scheduleWelcomeEmail(type, email, name);
+}
+
 function showVolSuccess(type) {
-  var wrappers = { exco: 'exco-form-wrapper', fellow: 'fellow-form-wrapper', corps: 'corps-form-wrapper', general: 'general-form-wrapper' };
-  var successIds = { exco: 'exco-success', fellow: 'fellow-success', corps: 'corps-success', general: 'general-success' };
-  var wrapper = document.getElementById(wrappers[type]);
+  var wrapperIds = {
+    exco:    'exco-form-wrapper',
+    fellow:  'fellow-form-wrapper',
+    corps:   'corps-form-wrapper',
+    general: 'general-form-wrapper'
+  };
+  var successIds = {
+    exco:    'exco-success',
+    fellow:  'fellow-success',
+    corps:   'corps-success',
+    general: 'general-success'
+  };
+  var wrapper = document.getElementById(wrapperIds[type]);
   var success  = document.getElementById(successIds[type]);
   if (wrapper) wrapper.style.display = 'none';
-  if (success)  { success.style.display = 'block'; success.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-  // Zero out progress bar fill
+  if (success) {
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  // Fill progress bar to 100%
   var fill = document.getElementById(type + '-progress');
   if (fill) fill.style.width = '100%';
 }
 
-// ── DELAYED EMAIL SYSTEM ──
-// Sends a congratulatory onboarding email 24 hours after submission.
-// We use Formspree's second endpoint (the same one the form already routes to)
-// by posting a lightweight payload after a 24-hour timer stored in localStorage.
-// This is a client-side best-effort approach; for production replace with a
-// server-side cron / Formspree Logic / email automation integration.
+// ═══════════════════════════════════════════════════════════════════════════
+//  NITIZEN DUAL EMAIL SYSTEM
+//  Email 1 — Acknowledgment: fires immediately via a second Formspree POST
+//  Email 2 — Welcome/Congratulatory: fires 24 h later via localStorage timer
+//
+//  Production upgrade path: replace processDelayedEmails() with a
+//  server-side cron job or Formspree Logic workflow for guaranteed delivery.
+// ═══════════════════════════════════════════════════════════════════════════
 
-var DELAYED_EMAIL_CONTENT = {
-  exco: {
-    subject: 'Welcome to NITIZEN — Your Leadership Journey Begins Here',
-    body: function(name) {
-      return 'Dear ' + name + ',\n\n'
-        + 'It has been 24 hours since you applied for an executive leadership role at NITIZEN, and we want to take a moment to formally welcome you into our story.\n\n'
-        + 'You have taken a significant step. Nigeria\'s civic future is not going to be built by observers — it will be built by people like you who decide that leadership is a responsibility, not a title. At NITIZEN, we take that seriously.\n\n'
-        + 'Our selection process is rigorous because our standards are high. We are not building another organisation that mistakes activity for impact. If you make it through, you will lead a department, manage a team, own deliverables, and be directly accountable for a part of what NITIZEN produces for millions of Nigerians.\n\n'
-        + 'What you can do now:\n'
-        + '→ Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
-        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
-        + '→ Follow us on X/Twitter: @NitizenNG\n\n'
-        + 'We review applications on a rolling basis. Shortlisted candidates will be contacted for interview. Thank you for applying.\n\n'
-        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng\n@NitizenNG on X/Twitter';
+// ── Branded email templates ────────────────────────────────────────────────
+
+var NITIZEN_EMAIL = {
+
+  ack: {
+    exco: {
+      subject: 'Application Received — NITIZEN Executive Leadership',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'────────────────────────────────────────────────
+
+' +
+'Dear ' + name + ',
+
+' +
+'Your application for an Executive Leadership (Team Lead / Exco) role at NITIZEN has been received and logged.
+
+' +
+'What happens next:
+' +
+'  → Our selection committee reviews all applications on a rolling basis.
+' +
+'  → Shortlisted candidates will be contacted for a formal interview.
+' +
+'  → We aim to complete first-round reviews within 10–14 business days.
+
+' +
+'In the meantime:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Broadcast Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow us on X/Twitter: @NitizenNG
+' +
+'  → Visit our platform: https://nitizen.ng
+
+' +
+'Questions? Reach us at leadership@nitizen.ng or WhatsApp +234 705 992 9690.
+
+' +
+'────────────────────────────────────────────────
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'hello@nitizen.ng | https://nitizen.ng
+' +
+'@NitizenNG on X/Twitter · LinkedIn · Instagram
+' +
+'WhatsApp: +234 705 992 9690'
+      ); }
+    },
+    fellow: {
+      subject: 'Fellowship Application Received — NITIZEN Leadership Fellowship 2026',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'────────────────────────────────────────────────
+
+' +
+'Dear ' + name + ',
+
+' +
+'Your application to the NITIZEN Leadership Fellowship, Class of 2026, has been received.
+
+' +
+'Important dates:
+' +
+'  → Full applications open: 12 June 2026 (Democracy Day)
+' +
+'  → Selection committee review begins after closing date
+' +
+'  → Shortlisted applicants will be contacted for interview
+' +
+'  → Thirty seats total — selection is competitive and merit-based
+
+' +
+'While you wait:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Read Conscience Letters: https://nitizen.ng
+' +
+'  → Follow @NitizenNG on X/Twitter
+
+' +
+'Questions about the fellowship? Email fellowship@nitizen.ng.
+
+' +
+'────────────────────────────────────────────────
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'fellowship@nitizen.ng | https://nitizen.ng
+' +
+'@NitizenNG on X/Twitter · LinkedIn · Instagram
+' +
+'WhatsApp: +234 705 992 9690'
+      ); }
+    },
+    corps: {
+      subject: 'Application Confirmed — NITIZEN Corps Ambassador Programme',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'────────────────────────────────────────────────
+
+' +
+'Dear ' + name + ',
+
+' +
+'Your application to the NITIZEN Corps Ambassador Programme has been received.
+
+' +
+'The NITIZEN Corps Ambassador Programme channels NYSC service years into structured, purposeful civic contribution. You have taken the first step toward a service year you will be proud of long after the khaki is folded away.
+
+' +
+'What happens next:
+' +
+'  → Our volunteer coordination team will review your application
+' +
+'  → You will be contacted within 5–7 business days with onboarding details
+' +
+'  → You will be assigned to a NITIZEN programme track based on your skills
+
+' +
+'Get connected now:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow @NitizenNG on X/Twitter
+
+' +
+'Questions? Email volunteers@nitizen.ng or WhatsApp +234 705 992 9690.
+
+' +
+'────────────────────────────────────────────────
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'volunteers@nitizen.ng | https://nitizen.ng
+' +
+'@NitizenNG on X/Twitter · LinkedIn · Instagram
+' +
+'WhatsApp: +234 705 992 9690'
+      ); }
+    },
+    general: {
+      subject: 'Volunteer Application Received — NITIZEN',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'────────────────────────────────────────────────
+
+' +
+'Dear ' + name + ',
+
+' +
+'Your volunteer application to NITIZEN has been received. Thank you for choosing to contribute.
+
+' +
+'What happens next:
+' +
+'  → Our volunteer coordination team will review your application
+' +
+'  → You will hear from us within 5 business days with next steps
+' +
+'  → You will be matched with a volunteer role aligned with your skills and availability
+
+' +
+'In the meantime:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow @NitizenNG on X/Twitter and share our work
+' +
+'  → Explore the platform: https://nitizen.ng
+
+' +
+'Questions? Email volunteers@nitizen.ng.
+
+' +
+'────────────────────────────────────────────────
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'volunteers@nitizen.ng | https://nitizen.ng
+' +
+'@NitizenNG on X/Twitter · LinkedIn · Instagram
+' +
+'WhatsApp: +234 705 992 9690'
+      ); }
     }
   },
-  fellow: {
-    subject: 'Welcome to the NITIZEN Family — Fellowship Update',
-    body: function(name) {
-      return 'Dear ' + name + ',\n\n'
-        + 'It has been 24 hours since you applied to the NITIZEN Leadership Fellowship, Class of 2026. We want you to know: you made the right call.\n\n'
-        + 'The Fellowship is the most ambitious programme we run — six months of real civic work, structured political education, and community with thirty exceptional young Nigerians committed to the same mission. If you are selected, you will contribute to work that reaches millions. You will gain skills. You will earn full NITIZEN membership. And you will leave knowing you did something that mattered.\n\n'
-        + 'Nigeria\'s governance crisis demands more than outrage. It demands organised, informed, persistent civic action. That is what this Fellowship trains you for.\n\n'
-        + 'While you wait for the selection process:\n'
-        + '→ Join our Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
-        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
-        + '→ Read NITIZEN Conscience Letters at nitizen.ng\n'
-        + '→ Follow @NitizenNG on X/Twitter\n\n'
-        + 'Full applications open 12 June 2026 — Democracy Day. Thirty seats. We hope yours is one of them.\n\n'
-        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG';
-    }
-  },
-  corps: {
-    subject: 'NITIZEN Corps Ambassador — Welcome to Purposeful Service',
-    body: function(name) {
-      return 'Dear ' + name + ',\n\n'
-        + 'Twenty-four hours ago, you applied to become a NITIZEN Corps Ambassador. We want to welcome you properly.\n\n'
-        + 'Your service year is a national obligation. But it can also be something more — a period of genuine civic contribution that you will look back on with pride long after your khaki is folded away. NITIZEN exists to make that possible.\n\n'
-        + 'As a Corps Ambassador, you will be part of a nationwide network of service members contributing to civic intelligence, accountability reporting, voter education, and community engagement. Your state of deployment becomes a site of civic action. Your work will be seen.\n\n'
-        + 'Next steps:\n'
-        + '→ Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
-        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
-        + '→ Stay connected on X/Twitter: @NitizenNG\n\n'
-        + 'Our volunteer coordination team will be in touch within 5 business days. Welcome to the mission.\n\n'
-        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG';
-    }
-  },
-  general: {
-    subject: 'You Showed Up — NITIZEN Volunteer Welcome',
-    body: function(name) {
-      return 'Dear ' + name + ',\n\n'
-        + 'Yesterday, you applied to volunteer with NITIZEN. We want you to know what that means.\n\n'
-        + 'Every great civic movement has a founding cohort — the people who show up before it is easy, before it is popular, before the results are obvious. You are part of that cohort. NITIZEN is young. Nigeria\'s need for independent, rigorous civic intelligence is enormous. And you have decided to help close that gap.\n\n'
-        + 'We believe civic participation is not a hobby. It is how societies sustain themselves. What you bring — your time, your skills, your commitment — makes it possible for NITIZEN to reach more Nigerians with the information, analysis, and accountability journalism that democracy requires.\n\n'
-        + 'What to do right now:\n'
-        + '→ Join our Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n'
-        + '→ Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n'
-        + '→ Follow @NitizenNG and share our work\n'
-        + '→ Read what we\'re building at nitizen.ng\n\n'
-        + 'Our team will be in touch within 5 business days with your onboarding details. Thank you for showing up.\n\n'
-        + 'For NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG';
+
+  welcome: {
+    exco: {
+      subject: 'Welcome to NITIZEN — Your Civic Leadership Journey Begins',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'════════════════════════════════════════════════
+
+' +
+'Dear ' + name + ',
+
+' +
+'It has been 24 hours since you applied for an Executive Leadership role at NITIZEN. We want to take a moment to speak plainly with you.
+
+' +
+'Nigeria's governance crisis is not going to be solved by commentary. It will be solved by organisations — and the people who lead them — who decide that accountability is a discipline, not a gesture. At NITIZEN, we are building that organisation. And we are looking for the people willing to lead it.
+
+' +
+'What executive leadership at NITIZEN means:
+' +
+'  → You will own a department and its outcomes — not titles, outcomes
+' +
+'  → You will manage a team and be accountable for their delivery
+' +
+'  → You will attend strategy sessions, contribute to editorial direction, and
+' +
+'     represent NITIZEN with full civic integrity
+' +
+'  → You will help shape what civic intelligence means for a generation
+
+' +
+'The bar is high because the need is real. We are not looking for credentials — we are looking for judgment, grit, and civic seriousness.
+
+' +
+'While your application is under review:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Broadcast Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow @NitizenNG on X/Twitter
+' +
+'  → Visit https://nitizen.ng and read what we are publishing
+
+' +
+'We will be in touch.
+
+' +
+'════════════════════════════════════════════════
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'leadership@nitizen.ng | hello@nitizen.ng
+' +
+'https://nitizen.ng | @NitizenNG
+' +
+'WhatsApp: +234 705 992 9690
+' +
+'LinkedIn: linkedin.com/company/nitizenng
+' +
+'Instagram: @NitizenNG'
+      ); }
+    },
+    fellow: {
+      subject: 'NITIZEN Fellowship — Welcome to the Class of 2026',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'════════════════════════════════════════════════
+
+' +
+'Dear ' + name + ',
+
+' +
+'Twenty-four hours ago, you applied to the NITIZEN Leadership Fellowship. We want you to know what you stepped into.
+
+' +
+'The Fellowship is the most rigorous thing we run. Six months. Thirty fellows. Real work — not case studies, not workshops for workshop's sake. Fellows contribute directly to NITIZEN's editorial output, civic research, and accountability journalism. The work reaches millions of Nigerians. The accountability is personal and institutional.
+
+' +
+'Why does this matter now?
+
+' +
+'Nigeria has no shortage of passionate people. What it lacks is a generation of civic actors who are also technically capable, institutionally serious, and committed to the long game. That is exactly what this fellowship is designed to produce. If you are selected, you will earn full NITIZEN membership, build real skills, and leave with a record of actual civic contribution.
+
+' +
+'Thirty seats. The selection committee takes every application seriously.
+
+' +
+'Stay connected while you wait:
+' +
+'  → WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Broadcast Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow @NitizenNG | Read our Conscience Letters at nitizen.ng
+
+' +
+'Full applications open Democracy Day — 12 June 2026.
+
+' +
+'════════════════════════════════════════════════
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'fellowship@nitizen.ng | hello@nitizen.ng
+' +
+'https://nitizen.ng | @NitizenNG
+' +
+'WhatsApp: +234 705 992 9690
+' +
+'LinkedIn: linkedin.com/company/nitizenng
+' +
+'Instagram: @NitizenNG'
+      ); }
+    },
+    corps: {
+      subject: 'NITIZEN Corps Ambassador — Welcome to Purposeful Service',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'════════════════════════════════════════════════
+
+' +
+'Dear ' + name + ',
+
+' +
+'Yesterday you applied to become a NITIZEN Corps Ambassador. Twenty-four hours later, we want to properly welcome you to something worth doing.
+
+' +
+'Your NYSC service year is a national obligation. It can also be a year that defines how you see your role in Nigeria's story — or it can be a year you simply endure. NITIZEN exists to make the former possible.
+
+' +
+'As a Corps Ambassador, you become part of a national network of service members contributing to:
+' +
+'  → Civic intelligence and accountability journalism
+' +
+'  → Voter education and public awareness campaigns
+' +
+'  → Community engagement and governance documentation
+' +
+'  → On-the-ground reporting from your state of deployment
+
+' +
+'Your state of deployment is not a posting — it is a beat. Your observations, your documentation, your civic presence — they matter.
+
+' +
+'Our volunteer team will be in touch within 5–7 business days. In the meantime:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow @NitizenNG | Explore: https://nitizen.ng
+
+' +
+'Welcome to the mission. Your service year just became more meaningful.
+
+' +
+'════════════════════════════════════════════════
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'volunteers@nitizen.ng | hello@nitizen.ng
+' +
+'https://nitizen.ng | @NitizenNG
+' +
+'WhatsApp: +234 705 992 9690
+' +
+'LinkedIn: linkedin.com/company/nitizenng
+' +
+'Instagram: @NitizenNG'
+      ); }
+    },
+    general: {
+      subject: 'You Showed Up — Welcome to NITIZEN',
+      body: function(name) { return (
+'NITIZEN — Civic Intelligence for a New Nigeria
+' +
+'════════════════════════════════════════════════
+
+' +
+'Dear ' + name + ',
+
+' +
+'Yesterday, you applied to volunteer with NITIZEN. Today, we want to tell you what that decision means.
+
+' +
+'Every serious civic institution in history had a founding cohort — people who showed up before it was easy, before the results were obvious, before the world caught up. You are in that cohort. NITIZEN is young, the need is enormous, and you chose to help.
+
+' +
+'Civic participation is not a hobby. It is the active maintenance of a society that can sustain itself. Nigeria's governance challenges are not going to be solved by outrage — they will be solved by organised, persistent, informed civic action. That is what volunteers at NITIZEN contribute to every week.
+
+' +
+'What you can expect:
+' +
+'  → A role matched to your skills and availability
+' +
+'  → Real work with visible civic impact
+' +
+'  → Connection with a community of civic-minded Nigerians
+' +
+'  → A track toward deeper engagement, membership, and leadership
+
+' +
+'Our team will be in touch within 5 business days with your onboarding details:
+' +
+'  → Join our WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF
+' +
+'  → Follow our Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J
+' +
+'  → Follow @NitizenNG | Read what we're building: https://nitizen.ng
+
+' +
+'Thank you for showing up.
+
+' +
+'════════════════════════════════════════════════
+' +
+'NITIZEN | Civic Intelligence for a New Nigeria
+' +
+'volunteers@nitizen.ng | hello@nitizen.ng
+' +
+'https://nitizen.ng | @NitizenNG
+' +
+'WhatsApp: +234 705 992 9690
+' +
+'LinkedIn: linkedin.com/company/nitizenng
+' +
+'Instagram: @NitizenNG'
+      ); }
     }
   }
 };
 
-function scheduleDelayedEmail(type, email, name) {
+// ── EMAIL 1: Immediate acknowledgment ─────────────────────────────────────
+// Posted as a second Formspree submission right after the form submission.
+// Formspree will email the form owner; applicant receives a copy via _replyto.
+function scheduleAcknowledgmentEmail(type, email, name) {
   if (!email || !name) return;
-  try {
-    var key = 'nitizen_delayed_' + type + '_' + email.replace(/[^a-z0-9]/gi,'_');
-    var existing = localStorage.getItem(key);
-    if (existing) return; // already scheduled
-    var payload = {
-      type: type,
-      email: email,
-      name: name,
-      sendAfter: Date.now() + (24 * 60 * 60 * 1000) // 24 hours
-    };
-    localStorage.setItem(key, JSON.stringify(payload));
-  } catch(e) { /* localStorage may be unavailable in some environments */ }
+  var tpl = NITIZEN_EMAIL.ack[type];
+  if (!tpl) return;
+  var endpoint = VOL_ENDPOINTS[type];
+  if (!endpoint) return;
+
+  var fd = new FormData();
+  fd.append('_subject',        tpl.subject + ' (' + name + ')');
+  fd.append('email',           email);
+  fd.append('_replyto',        email);
+  fd.append('full_name',       name);
+  fd.append('email_type',      'acknowledgment');
+  fd.append('application_type', type.toUpperCase());
+  fd.append('message',         tpl.body(name));
+  fd.append('_gotcha',         '');
+
+  fetch(endpoint, {
+    method:  'POST',
+    body:    fd,
+    headers: { 'Accept': 'application/json' }
+  }).catch(function(err) {
+    console.warn('NITIZEN: acknowledgment email Formspree error', err);
+  });
 }
 
-function processDelayedEmails() {
+// ── EMAIL 2: Welcome email — scheduled 24 hours later ────────────────────
+// Stored in localStorage; processed on every subsequent page load.
+// For guaranteed delivery in production, replace with server-side automation.
+function scheduleWelcomeEmail(type, email, name) {
+  if (!email || !name) return;
+  try {
+    var key = 'ntz_welcome_' + type + '_' + email.replace(/[^a-z0-9]/gi, '_');
+    if (localStorage.getItem(key)) return; // already scheduled
+    localStorage.setItem(key, JSON.stringify({
+      type:      type,
+      email:     email,
+      name:      name,
+      sendAfter: Date.now() + (24 * 60 * 60 * 1000)
+    }));
+  } catch(e) { /* localStorage unavailable */ }
+}
+
+function processWelcomeEmails() {
   try {
     var now = Date.now();
-    for (var i = 0; i < localStorage.length; i++) {
+    for (var i = localStorage.length - 1; i >= 0; i--) {
       var k = localStorage.key(i);
-      if (!k || k.indexOf('nitizen_delayed_') !== 0) continue;
+      if (!k || k.indexOf('ntz_welcome_') !== 0) continue;
       var raw = localStorage.getItem(k);
       if (!raw) continue;
       var item;
-      try { item = JSON.parse(raw); } catch(e) { continue; }
+      try { item = JSON.parse(raw); } catch(e) { localStorage.removeItem(k); continue; }
       if (!item || !item.sendAfter || now < item.sendAfter) continue;
 
-      // Time to send — fire the delayed email via the same Formspree endpoint
+      // Time elapsed — fire the welcome email
       (function(entry, storageKey) {
-        var content = DELAYED_EMAIL_CONTENT[entry.type];
-        if (!content) return;
+        var tpl      = NITIZEN_EMAIL.welcome[entry.type];
+        var endpoint = VOL_ENDPOINTS[entry.type];
+        if (!tpl || !endpoint) { localStorage.removeItem(storageKey); return; }
+
         var fd = new FormData();
-        fd.append('_subject',  content.subject);
-        fd.append('email',     entry.email);
-        fd.append('name',      entry.name);
-        fd.append('message',   content.body(entry.name));
-        fd.append('form_type', 'NITIZEN Delayed Onboarding Email — ' + entry.type);
-        fd.append('_replyto',  entry.email);
-        fetch(VOL_ENDPOINTS[entry.type], {
-          method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
+        fd.append('_subject',        tpl.subject + ' (' + entry.name + ')');
+        fd.append('email',           entry.email);
+        fd.append('_replyto',        entry.email);
+        fd.append('full_name',       entry.name);
+        fd.append('email_type',      'welcome_24h');
+        fd.append('application_type', entry.type.toUpperCase());
+        fd.append('message',         tpl.body(entry.name));
+        fd.append('_gotcha',         '');
+
+        fetch(endpoint, {
+          method:  'POST',
+          body:    fd,
+          headers: { 'Accept': 'application/json' }
         }).then(function() {
           localStorage.removeItem(storageKey);
         }).catch(function() {
-          // Leave in localStorage to retry on next visit
+          // Leave in storage — will retry on next page visit
         });
       })(item, k);
     }
   } catch(e) {}
 }
 
-// Run delayed email processor on every page load
-processDelayedEmails();
+// Run the welcome-email processor on every page load
+processWelcomeEmails();
 
 
 function initAskNaijaCategories() {
