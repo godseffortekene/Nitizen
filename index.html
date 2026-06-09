@@ -3060,6 +3060,18 @@ table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrollin
 /* ── SPA UTILITY ── */
 .spa-page { display: none; }
 
+/* ── PAGE TRANSITION — smooth fade-in on navigation ── */
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.spa-page.page-entering {
+  animation: pageEnter .22s ease forwards;
+}
+@media(prefers-reduced-motion: reduce) {
+  .spa-page.page-entering { animation: none; }
+}
+
 /* ── LAUNCH CELEBRATION ── */
 .launch-banner {
   background: linear-gradient(135deg, var(--green-deep) 0%, #0f3320 100%);
@@ -3620,38 +3632,38 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" type="button">
       <span></span><span></span><span></span>
     </button>
-    <a href="#home" class="nav-logo">NI<span>T</span>IZEN</a>
+    <a href="/" class="nav-logo">NI<span>T</span>IZEN</a>
   </div>
   <ul class="nav-links" id="mainNavLinks">
-    <li><a href="#home"         data-navpage="home">Home</a></li>
-    <li><a href="#about"        data-navpage="about">About</a></li>
-    <li><a href="#initiatives"  data-navpage="initiatives">Initiatives</a></li>
-    <li><a href="#programs"     data-navpage="programs">Programs</a></li>
-    <li><a href="#cl"           data-navpage="cl">Conscience Letters</a></li>
-    <li><a href="#senal"        data-navpage="senal">See-gnal</a></li>
-    <li><a href="#asknaija"     data-navpage="asknaija">AskNaija</a></li>
-    <li><a href="#contact"      data-navpage="contact" class="nav-cta">Get Involved</a></li>
+    <li><a href="/"                    data-navpage="home">Home</a></li>
+    <li><a href="/about"               data-navpage="about">About</a></li>
+    <li><a href="/initiatives"         data-navpage="initiatives">Initiatives</a></li>
+    <li><a href="/programs"            data-navpage="programs">Programs</a></li>
+    <li><a href="/conscience-letters"  data-navpage="cl">Conscience Letters</a></li>
+    <li><a href="/see-gnal"            data-navpage="senal">See-gnal</a></li>
+    <li><a href="/asknaija"            data-navpage="asknaija">AskNaija</a></li>
+    <li><a href="/contact"             data-navpage="contact" class="nav-cta">Get Involved</a></li>
   </ul>
 </nav>
 <!-- Mobile menu — hidden by default, toggled by hamburger button -->
 <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#initiatives">Initiatives</a>
-  <a href="#programs">Programs</a>
-  <a href="#programs" style="padding-left:1.5rem;font-size:.72rem">↳ Leadership Fellowship</a>
-  <a href="#vol-exco" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Team Lead (Exco)</a>
-  <a href="#vol-fellow" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Fellow</a>
-  <a href="#vol-corps" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Corps Ambassador</a>
-  <a href="#vol-general" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Volunteer</a>
-  <a href="#cl">Conscience Letters</a>
-  <a href="#senal">See-gnal</a>
-  <a href="#redflag" style="padding-left:1.5rem;font-size:.72rem">↳ RedFlag</a>
-  <a href="#ledger-submit" style="padding-left:1.5rem;font-size:.72rem">↳ The Ledger</a>
-  <a href="#openmic-submit" style="padding-left:1.5rem;font-size:.72rem">↳ OpenMic</a>
-  <a href="#critika-submit" style="padding-left:1.5rem;font-size:.72rem">↳ Critika</a>
-  <a href="#asknaija">AskNaija</a>
-  <a href="#contact">Get Involved</a>
+  <a href="/">Home</a>
+  <a href="/about">About</a>
+  <a href="/initiatives">Initiatives</a>
+  <a href="/programs">Programs</a>
+  <a href="/programs/fellowship" style="padding-left:1.5rem;font-size:.72rem">↳ Leadership Fellowship</a>
+  <a href="/programs/apply/team-lead" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Team Lead (Exco)</a>
+  <a href="/programs/apply/fellowship" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Fellow</a>
+  <a href="/programs/apply/corps-ambassador" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Corps Ambassador</a>
+  <a href="/programs/apply/volunteer" style="padding-left:1.5rem;font-size:.72rem">↳ Apply: Volunteer</a>
+  <a href="/conscience-letters">Conscience Letters</a>
+  <a href="/see-gnal">See-gnal</a>
+  <a href="/see-gnal/redflag" style="padding-left:1.5rem;font-size:.72rem">↳ RedFlag</a>
+  <a href="/see-gnal/ledger" style="padding-left:1.5rem;font-size:.72rem">↳ The Ledger</a>
+  <a href="/see-gnal/openmic" style="padding-left:1.5rem;font-size:.72rem">↳ OpenMic</a>
+  <a href="/see-gnal/critika" style="padding-left:1.5rem;font-size:.72rem">↳ Critika</a>
+  <a href="/asknaija">AskNaija</a>
+  <a href="/contact">Get Involved</a>
 </div>
 
 <!-- ═══ ACTIVE CRISIS BANNER ═══ -->
@@ -3674,7 +3686,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
   </div>
   <!-- CTA -->
-  <a href="#senal" class="crisis-cta" onclick="if(typeof showPage==='function'){showPage('senal');setTimeout(function(){var el=document.getElementById('case-rf004');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}},400);}">Read RedFlag Report &rarr;</a>
+  <a href="/see-gnal/redflag" class="crisis-cta" onclick="e=event;e.preventDefault();navigate('/see-gnal/redflag');setTimeout(function(){var el=document.getElementById('case-rf004');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},400)">Read RedFlag Report &rarr;</a>
   <!-- Dismiss -->
   <button class="crisis-close" id="crisisClose" aria-label="Dismiss alert">&times;</button>
 </div>
@@ -3707,8 +3719,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <h1 class="hero-title">Awakening the <em>Active</em><br>Nigerian Citizen</h1>
     <p class="hero-sub">NITIZEN equips Nigerians with the knowledge, tools, and voice to engage meaningfully with governance — built for the long term, starting now.</p>
     <div class="hero-actions">
-      <a href="#initiatives" class="btn-primary">Explore the Platform</a>
-      <a href="#contact" class="btn-outline">Join the Movement</a>
+      <a href="/initiatives" class="btn-primary">Explore the Platform</a>
+      <a href="/contact" class="btn-outline">Join the Movement</a>
     </div>
     <div class="stat-strip">
       <div class="stat"><h3>3</h3><p>Core Initiatives</p></div>
@@ -3911,21 +3923,21 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <div class="init-badge"><span class="init-badge-icon">⚖️</span>Civic Rights</div>
     </div>
     <div class="init-grid reveal">
-      <a href="#cl" class="init-card">
+      <a href="/conscience-letters" class="init-card">
         <div class="init-num">01 — Initiative</div>
         <div class="init-name">Conscience Letters</div>
         <div class="init-tag">Policy · History · Analysis</div>
         <p class="init-desc">Rigorous long-form civic writing holding Nigeria's leaders to account — situating every governance decision within the arc of history and promise.</p>
         <div class="init-arrow">Read Articles →</div>
       </a>
-      <a href="#asknaija-beta" class="init-card">
+      <a href="/asknaija/beta" class="init-card">
         <div class="init-num">02 — Initiative</div>
         <div class="init-name">AskNaija</div>
         <div class="init-tag">AI · Civic Tech · Research</div>
         <p class="init-desc">An AI-powered civic intelligence tool providing evidence-based answers on governance, policy, economy, and your democratic rights.</p>
         <div class="init-arrow">Ask a Question →</div>
       </a>
-      <a href="#senal" class="init-card">
+      <a href="/see-gnal" class="init-card">
         <div class="init-num">03 — Initiative</div>
         <div class="init-name">See-gnal</div>
         <div class="init-tag">Report · Track · Critique</div>
@@ -3939,27 +3951,27 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   <section style="background:var(--off-white);padding:5rem 4rem;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
       <div><div class="section-label">Latest from</div><h2 class="section-title">Conscience <em>Letters</em></h2></div>
-      <div style="display:flex;gap:.8rem;flex-wrap:wrap"><a href="#cl" class="btn-outline">All Articles →</a><a href="#membership" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">Support Us →</a></div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap"><a href="/conscience-letters" class="btn-outline">All Articles →</a><a href="/membership" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">Support Us →</a></div>
     </div>
     <div class="cl-preview-grid reveal">
-      <a href="#article-2" class="cl-main">
+      <a href="/conscience-letters/the-budget-lie" class="cl-main">
         <div class="article-cat">Electoral Democracy · History</div>
         <div class="art-title" style="font-size:1.65rem">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</div>
         <p class="art-excerpt">Nigeria's electoral story is not simply a chronicle of fraud. It is a sixty-year negotiation between power and the citizen — with moments of genuine democratic hope punctuated by devastating betrayal. Understanding that arc is not nostalgia. It is preparation...</p>
         <div class="art-meta">Conscience Letters No. 004 · June 2026 · 12 min read</div>
       </a>
       <div class="cl-side">
-        <a href="#article-4" class="cl-side-card">
+        <a href="/conscience-letters/the-broken-machine" class="cl-side-card">
           <div class="article-cat">Electoral Democracy · Institutional Failure</div>
           <div class="art-title" style="font-size:1.05rem">The Broken Machine: INEC, Institutional Failure, and the Risk of Repeating 2023 in 2027</div>
           <div class="art-meta">No. 003 · June 2026 · 16 min read</div>
         </a>
-        <a href="#article-3" class="cl-side-card">
+        <a href="/conscience-letters/democracy-day-reckoning" class="cl-side-card">
           <div class="article-cat">Legislature · Accountability</div>
           <div class="art-title" style="font-size:1.05rem">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</div>
           <div class="art-meta">No. 002 · May 2026 · 5 min read</div>
         </a>
-        <a href="#article-1" class="cl-side-card">
+        <a href="/conscience-letters/the-silence-of-the-senate" class="cl-side-card">
           <div class="article-cat">Governance · Economy</div>
           <div class="art-title" style="font-size:1.05rem">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</div>
           <div class="art-meta">No. 001 · May 2026 · 8 min read</div>
@@ -4057,20 +4069,20 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
   <section style="background:var(--ink);padding:5rem 4rem;">
     <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem">
       <div><div class="section-label" style="color:#e05c5c">Latest from</div><h2 class="section-title" style="color:#fff">See-gnal</h2></div>
-      <a href="#senal" class="btn-ghost">View All →</a>
+      <a href="/see-gnal" class="btn-ghost">View All →</a>
     </div>
     <div class="critika-preview reveal">
-      <a href="#redflag" class="c-card" style="border-color:rgba(224,92,92,.25)">
+      <a href="/see-gnal/redflag" class="c-card" style="border-color:rgba(224,92,92,.25)">
         <div class="c-type" style="color:#e05c5c">🚨 RedFlag · Rivers State</div>
         <div class="c-title">Extrajudicial Killing of Mene Ogidi — May 2026</div>
         <div class="c-author" style="color:rgba(255,255,255,.35)">Case #RF-001 · Tracking</div>
       </a>
-      <a href="#senal" class="c-card" style="border-color:rgba(200,168,75,.25)">
+      <a href="/see-gnal" class="c-card" style="border-color:rgba(200,168,75,.25)">
         <div class="c-type" style="color:var(--gold)">📊 The Ledger · Power Sector</div>
         <div class="c-title">Nigeria Power Sector Score: 18/100 — Critical Failure</div>
         <div class="c-author" style="color:rgba(255,255,255,.35)">Q1 2025 Scorecard</div>
       </a>
-      <a href="#senal" class="c-card" style="border-style:dashed;border-color:rgba(224,92,92,.28);background:rgba(224,92,92,.03)">
+      <a href="/see-gnal" class="c-card" style="border-style:dashed;border-color:rgba(224,92,92,.28);background:rgba(224,92,92,.03)">
         <div class="c-type" style="color:#e05c5c">➕ Report · Track · Post · Create</div>
         <div class="c-title" style="color:rgba(255,255,255,.7)">Add Your Signal to See-gnal</div>
         <div class="c-author" style="color:rgba(255,255,255,.3)">RedFlag · The Ledger · OpenMic · Critika →</div>
@@ -4156,8 +4168,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
           Full membership. Registration opens 12 June — Democracy Day.
         </p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-          <button class="btn-gold" onclick="showPage('fellowship')">VIEW THE FELLOWSHIP →</button>
-          <button class="btn-ghost" onclick="showPage('programs')">ALL PROGRAMS</button>
+          <button class="btn-gold" onclick="navigate('/programs/fellowship')">VIEW THE FELLOWSHIP →</button>
+          <button class="btn-ghost" onclick="navigate('/programs')">ALL PROGRAMS</button>
         </div>
       </div>
       <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.2);border-top:3px solid var(--gold);padding:2rem;border-radius:2px">
@@ -4180,7 +4192,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
             <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,246,242,.35);margin-top:.25rem">Age Limit</div>
           </div>
         </div>
-        <button class="btn-gold" style="width:100%;text-align:center" onclick="showPage('fellowship')">REGISTER INTEREST →</button>
+        <button class="btn-gold" style="width:100%;text-align:center" onclick="navigate('/programs/fellowship')">REGISTER INTEREST →</button>
       </div>
     </div>
   </div>
@@ -4191,7 +4203,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <h2>AskNaija — AI Civic Intelligence</h2>
       <p>Nigeria's AI-powered civic intelligence tool is currently being built and trained. Ask anything about governance, policy, elections, or your democratic rights — evidence-based answers, coming soon.</p>
     </div>
-    <a href="#asknaija" class="btn-primary" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">See What's Coming →</a>
+    <a href="/asknaija" class="btn-primary" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">See What's Coming →</a>
   </div>
 
 
@@ -4202,7 +4214,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 <!-- ── PAGE HEADER ── -->
   <div class="page-header-dark">
     <div class="breadcrumb">
-      <a href="#home">Home</a><span>/</span><span>About</span>
+      <a href="/">Home</a><span>/</span><span>About</span>
     </div>
     <div class="section-label" style="color:var(--green-light)">About NITIZEN</div>
     <h1 style="font-family:var(--display);font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.05;max-width:700px;margin-top:.5rem">
@@ -4663,7 +4675,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <span class="funder-badge">MacArthur Foundation</span>
         <span class="funder-badge">Ford Foundation</span>
         <span class="funder-badge">Luminate</span>
-        <a href="#privacy" class="ndpc-badge" style="margin-left:.5rem">NDPC Data Protected</a>
+        <a href="/privacy" class="ndpc-badge" style="margin-left:.5rem">NDPC Data Protected</a>
       </div>
     </div>
   </div>
@@ -4799,8 +4811,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <h3>Join the Civic <em style="font-style:italic;color:var(--green-light)">Movement</em></h3>
     <p>Whether you&rsquo;re a writer, researcher, activist, student, or simply a Nigerian who cares — NITIZEN has a place for you.</p>
     <div class="about-cta-actions">
-      <a href="#contact" class="btn-primary" style="background:#fff;color:var(--green-deep)">Get Involved →</a>
-      <a href="#initiatives" class="btn-ghost">Explore the Platform</a>
+      <a href="/contact" class="btn-primary" style="background:#fff;color:var(--green-deep)">Get Involved →</a>
+      <a href="/initiatives" class="btn-ghost">Explore the Platform</a>
     </div>
   </div>
 
@@ -4816,7 +4828,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <div class="init-full reveal" style="align-items:start">
 
       <!-- INITIATIVE 01: CONSCIENCE LETTERS -->
-      <a href="#cl" class="init-full-card">
+      <a href="/conscience-letters" class="init-full-card">
         <div style="margin-bottom:1.2rem" aria-hidden="true">
           <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="6" y="4" width="36" height="44" rx="4" fill="rgba(74,175,116,.1)" stroke="#4aaf74" stroke-width="1.5"/>
@@ -4847,7 +4859,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </a>
 
       <!-- INITIATIVE 02: ASKNAIJA -->
-      <a href="#asknaija" class="init-full-card" style="border-color:rgba(200,168,75,.25)">
+      <a href="/asknaija" class="init-full-card" style="border-color:rgba(200,168,75,.25)">
         <div style="margin-bottom:1.2rem" aria-hidden="true">
           <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="12" y="12" width="28" height="28" rx="6" fill="rgba(200,168,75,.1)" stroke="#c8a84b" stroke-width="1.5"/>
@@ -4877,7 +4889,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </a>
 
       <!-- INITIATIVE 03: SEE-GNAL -->
-      <a href="#senal" class="init-full-card" style="border-color:rgba(224,92,92,.3)">
+      <a href="/see-gnal" class="init-full-card" style="border-color:rgba(224,92,92,.3)">
         <div style="margin-bottom:1.2rem" aria-hidden="true">
           <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M14,20 L28,14 L28,38 L14,32 Z" fill="rgba(224,92,92,.15)" stroke="#e05c5c" stroke-width="1.5" stroke-linejoin="round"/>
@@ -5007,8 +5019,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <p style="font-family:var(--body);font-size:.95rem;color:var(--green-light);max-width:460px;line-height:1.75">Whether you want to read, create, ask, or collaborate — there is a place for you in the NITIZEN ecosystem.</p>
       </div>
       <div style="display:flex;gap:1rem;flex-wrap:wrap">
-        <a href="#cl" class="btn-primary">Read Articles</a>
-        <a href="#contact" class="btn-ghost">Get Involved</a>
+        <a href="/conscience-letters" class="btn-primary">Read Articles</a>
+        <a href="/contact" class="btn-ghost">Get Involved</a>
       </div>
     </div>
   </section>
@@ -5042,7 +5054,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <rect x="186" y="192" width="74" height="80" rx="2" fill="#fff" opacity=".1"/>
       </svg>
     </div>
-    <div class="breadcrumb breadcrumb-dark"><a href="#home">Home</a><span>/</span><a href="#initiatives">Initiatives</a><span>/</span>Conscience Letters</div>
+    <div class="breadcrumb breadcrumb-dark"><a href="/">Home</a><span>/</span><a href="/initiatives">Initiatives</a><span>/</span>Conscience Letters</div>
     <span class="ntz-id">NTZ·CL — Initiative 01 · Editorial Analysis · Conscience Letters</span>
     <div class="section-label">Initiative 01</div>
     <h1 style="font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:var(--green-deep);line-height:1.05"><em style="font-style:italic;color:var(--green-mid)">Conscience</em> Letters</h1>
@@ -5053,7 +5065,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     <div class="section-inner">
     <div class="section-label">Published Articles</div>
 
-    <a href="#article-2" class="archive-row">
+    <a href="/conscience-letters/the-budget-lie" class="archive-row">
       <div>
         <div class="art-num">No. 004 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·004 · Electoral Democracy · History</span></div>
         <div class="art-title">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</div>
@@ -5067,7 +5079,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </div>
     </a>
 
-    <a href="#article-4" class="archive-row">
+    <a href="/conscience-letters/the-broken-machine" class="archive-row">
       <div>
         <div class="art-num">No. 003 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·003 · Electoral Democracy · Institutional Failure</span></div>
         <div class="art-title">The Broken Machine: INEC, Institutional Failure, and the Risk of Repeating 2023 in 2027</div>
@@ -5081,7 +5093,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </div>
     </a>
 
-    <a href="#article-3" class="archive-row">
+    <a href="/conscience-letters/democracy-day-reckoning" class="archive-row">
       <div>
         <div class="art-num">No. 002 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·002 · Legislature · Accountability</span></div>
         <div class="art-title">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</div>
@@ -5095,7 +5107,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </div>
     </a>
 
-    <a href="#article-1" class="archive-row">
+    <a href="/conscience-letters/the-silence-of-the-senate" class="archive-row">
       <div>
         <div class="art-num">No. 001 <span class="ntz-id" style="margin:0 0 0 .5rem;vertical-align:middle">NTZ·CL·001 · Governance · Economy</span></div>
         <div class="art-title">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</div>
@@ -5118,7 +5130,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <p>Write for Conscience Letters</p>
       <small>We welcome rigorous civic writing from Nigerians across all backgrounds and geographies. Pitch your idea.</small>
     </div>
-    <a href="#cl-pitch" class="btn-primary">Submit a Pitch →</a>
+    <a href="/contribute" class="btn-primary">Submit a Pitch →</a>
   </div>
 
 
@@ -5127,7 +5139,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 <!-- ═══ PAGE: ARTICLE-1 ═══ -->
 <div id="page-article-1" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 001</div>
+    <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>No. 001</div>
     <span class="ntz-id-dark">NTZ·CL·001 — Conscience Letters · Governance · Economy · NITIZEN Editorial · May 2026</span>
     <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Governance · Economy · Conscience Letters No. 001</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Promise and the Price: What Tinubu's Subsidy Removal Means for the Nigerian Poor</h1>
@@ -5215,9 +5227,9 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
     <p class="art-footer-note">This piece represents the editorial position of NITIZEN's Conscience Letters initiative. We welcome responses and counter-arguments at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>. Conscience Letters is committed to evidence-based civic analysis and welcomes diverse perspectives.</p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
-      <a href="#cl" class="btn-outline">← All Articles</a>
-      <a href="#article-3" class="btn-primary">Next Article →</a>
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="/membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
+      <a href="/conscience-letters" class="btn-outline">← All Articles</a>
+      <a href="/conscience-letters/democracy-day-reckoning" class="btn-primary">Next Article →</a>
     </div>
   </div>
 
@@ -5227,7 +5239,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 <!-- ═══ PAGE: ARTICLE-2 ═══ -->
 <div id="page-article-2" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 004</div>
+    <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>No. 004</div>
     <span class="ntz-id-dark">NTZ·CL·004 — Conscience Letters · Electoral Democracy · NITIZEN Editorial · June 2026</span>
     <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy · Conscience Letters No. 004</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Ballot and the Broken Promise: Nigeria's Electoral History and What 2027 Must Learn From It</h1>
@@ -5366,9 +5378,9 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
     <p class="art-footer-note">This piece represents the editorial position of NITIZEN's Conscience Letters initiative. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
-      <a href="#article-4" class="btn-outline">← Previous Article</a>
-      <a href="#cl" class="btn-primary">All Articles →</a>
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="/membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
+      <a href="/conscience-letters/the-broken-machine" class="btn-outline">← Previous Article</a>
+      <a href="/conscience-letters" class="btn-primary">All Articles →</a>
     </div>
   </div>
 
@@ -5378,7 +5390,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 <!-- ═══ PAGE: ARTICLE-3 ═══ -->
 <div id="page-article-3" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 002</div>
+    <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>No. 002</div>
     <span class="ntz-id-dark">NTZ·CL·002 — Conscience Letters · Legislature · Accountability · NITIZEN Editorial · May 2026</span>
     <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Legislature · Accountability · Conscience Letters No. 002</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Legislature We Deserve: On Nigeria's National Assembly Budget and Its Accountability Deficit</h1>
@@ -5439,9 +5451,9 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
     </div>
     <p class="art-footer-note">Conscience Letters No. 002. NITIZEN Editorial, May 2026. Contact: <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a></p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
-      <a href="#article-1" class="btn-outline">← Previous Article</a>
-      <a href="#article-4" class="btn-primary">Next Article →</a>
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="/membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from ₦2,500/mo →</a></div><div class="art-nav">
+      <a href="/conscience-letters/the-silence-of-the-senate" class="btn-outline">← Previous Article</a>
+      <a href="/conscience-letters/the-broken-machine" class="btn-primary">Next Article →</a>
     </div>
   </div>
 
@@ -5466,7 +5478,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       <text x="114" y="48" fill="#c8a84b" font-size="12" opacity=".6">✦</text>
     </svg>
   </div>
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>Support</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>Support</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.9rem">Conscience Letters — Reader Support</div>
   <h1>Sustain Independent <em>Civic Journalism</em></h1>
   <p>Conscience Letters is free to read. Sustaining it — the research, the editorial rigour, the writers who give their time to document Nigeria's governance — requires support. Become a founding reader and keep civic journalism alive.</p>
@@ -5487,7 +5499,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
       </ul>
     </div>
     <div class="tier-cta">
-      <a href="#cl" class="btn-tier btn-tier-outline" style="display:block;text-align:center;text-decoration:none;padding:.9rem">Read Free →</a>
+      <a href="/conscience-letters" class="btn-tier btn-tier-outline" style="display:block;text-align:center;text-decoration:none;padding:.9rem">Read Free →</a>
     </div>
   </div>
 
@@ -5606,7 +5618,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 
         <div class="consent-row" style="margin-top:.5rem">
           <input type="checkbox" id="pay_consent" name="consent" required/>
-          <label for="pay_consent">I agree to NITIZEN's <a href="#privacy">Privacy Policy</a> and understand my membership is a voluntary contribution to independent civic journalism.</label>
+          <label for="pay_consent">I agree to NITIZEN's <a href="/privacy">Privacy Policy</a> and understand my membership is a voluntary contribution to independent civic journalism.</label>
         </div>
       </form>
       <div class="pay-success" id="paySuccess" style="display:none;padding:2rem;background:var(--green-mist);border:1px solid var(--green-light);border-radius:2px">
@@ -5843,7 +5855,7 @@ function notifyBankIntent() {
 <!-- ═══ PAGE: CL-PITCH ═══ -->
 <div id="page-cl-pitch" class="spa-page" style="display:none">
 <div class="cl-form-hero">
-  <div class="breadcrumb breadcrumb-dark"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>Write for Us</div>
+  <div class="breadcrumb breadcrumb-dark"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>Write for Us</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green-soft);margin-bottom:.8rem">Initiative 01 — Conscience Letters</div>
   <h1>Write for <em>Conscience Letters</em></h1>
   <p>We publish rigorous, evidence-based civic writing on Nigerian governance, policy, democracy, and accountability from Nigerians across all backgrounds and geographies. Submit your pitch or full draft below.</p>
@@ -5903,7 +5915,7 @@ function notifyBankIntent() {
     <div class="note">Conscience Letters publishes 800–2,500 word pieces. All claims must be evidence-based and properly sourced. We edit for clarity and style. Response time: 5–7 working days. Articles accepted for publication will be edited collaboratively with the author.</div>
             <div class="consent-row">
           <input type="checkbox" id="consent_cl" name="consent" required/>
-          <label for="consent_cl">I agree to NITIZEN's <a href="#privacy">Privacy Policy</a> and consent to my submitted data being processed for the stated purpose under the Nigeria Data Protection Act 2023. I understand I may withdraw consent at any time.</label>
+          <label for="consent_cl">I agree to NITIZEN's <a href="/privacy">Privacy Policy</a> and consent to my submitted data being processed for the stated purpose under the Nigeria Data Protection Act 2023. I understand I may withdraw consent at any time.</label>
         </div>
     <button type="submit" id="clBtn" class="btn-cl">✍️ Submit Pitch</button>
   </form>
@@ -5928,7 +5940,7 @@ function handleCL(e){
 <!-- &#x2554;&#x2550;&#x2550;&#x2550; PAGE: ARTICLE-4 &#x2550;&#x2550;&#x2550;&#x2557; -->
 <div id="page-article-4" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#cl">Conscience Letters</a><span>/</span>No. 003</div>
+    <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>No. 003</div>
     <span class="ntz-id-dark">NTZ·CL·003 — Conscience Letters · Electoral Democracy · NITIZEN Editorial · June 2026</span>
     <div class="article-cat" style="color:var(--green-light);margin-bottom:1rem">Electoral Democracy · Institutional Failure · Conscience Letters No. 003</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">The Broken Machine: INEC, Institutional Failure, and the Risk of Repeating 2023 in 2027</h1>
@@ -6218,10 +6230,10 @@ function handleCL(e){
     </div>
     <p class="art-footer-note">This piece represents the editorial position of NITIZEN&#x2019;s Conscience Letters initiative. It was revised and substantially expanded in June 2026 as a standalone analytical piece. Reach us at <a href="mailto:hello@nitizen.ng" style="color:var(--green-mid)">hello@nitizen.ng</a>.</p>
 
-    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="#membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from &#x20A6;2,500/mo &#x2192;</a></div>
+    <div style="background:var(--green-mist);border:1px solid var(--green-light);padding:1.2rem 1.5rem;border-radius:2px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-bottom:2rem"><p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--green-deep);margin:0">This piece is free. Support Conscience Letters to sustain it.</p><a href="/membership" class="btn-primary" style="font-size:.72rem;padding:.6rem 1.2rem">Support from &#x20A6;2,500/mo &#x2192;</a></div>
     <div class="art-nav">
-      <a href="#article-3" class="btn-outline">← Previous Article</a>
-      <a href="#article-2" class="btn-primary">Next Article →</a>
+      <a href="/conscience-letters/democracy-day-reckoning" class="btn-outline">← Previous Article</a>
+      <a href="/conscience-letters/the-budget-lie" class="btn-primary">Next Article →</a>
     </div>
   </div>
 
@@ -6230,7 +6242,7 @@ function handleCL(e){
 <!-- ═══ PAGE: ASKNAIJA ═══ -->
 <div id="page-asknaija" class="spa-page" style="display:none">
 <div class="ask-hero">
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#initiatives">Initiatives</a><span>/</span>AskNaija</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/initiatives">Initiatives</a><span>/</span>AskNaija</div>
   <div class="beta-badge">AI Build in Progress</div>
   <span class="ntz-id-dark" style="margin-bottom:.5rem">NTZ·AQ — Initiative 02 · AI Civic Intelligence · AskNaija</span>
   <div class="section-label" style="color:var(--green-light)">Initiative 02 — NITIZEN</div>
@@ -6241,7 +6253,7 @@ function handleCL(e){
     <p style="font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--green-light)">Build Progress</p>
     <div class="progress-bar-bg"><div class="progress-bar-fill" style="width:45%"></div></div>
     <div class="progress-pct">45% — Knowledge base curation underway</div>
-    <p style="font-family:var(--body);font-size:.88rem;color:rgba(168,213,181,.7);line-height:1.7;margin-top:1rem">AskNaija Phase 2 is now live — powered by a large language model operating under NITIZEN's civic-only system prompt. Ask any question about Nigerian governance, rights, elections, history, or policy and receive a detailed, contextual, sourced response. Phase 3 brings multilingual support and offline mobile access.</p><div style="margin-top:1.5rem"><a href="#asknaija-beta" class="btn-primary" style="background:var(--gold);color:var(--ink);display:inline-flex;align-items:center;gap:.5rem">🤖 Try AskNaija Phase 2 — Live AI →</a></div>
+    <p style="font-family:var(--body);font-size:.88rem;color:rgba(168,213,181,.7);line-height:1.7;margin-top:1rem">AskNaija Phase 2 is now live — powered by a large language model operating under NITIZEN's civic-only system prompt. Ask any question about Nigerian governance, rights, elections, history, or policy and receive a detailed, contextual, sourced response. Phase 3 brings multilingual support and offline mobile access.</p><div style="margin-top:1.5rem"><a href="/asknaija/beta" class="btn-primary" style="background:var(--gold);color:var(--ink);display:inline-flex;align-items:center;gap:.5rem">🤖 Try AskNaija Phase 2 — Live AI →</a></div>
   </div>
 </div>
 
@@ -6373,7 +6385,7 @@ function handleNotify(e) {
       <circle cx="228" cy="228" r="4" fill="#4aaf74"/>
     </svg>
   </div>
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span>AskNaija</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span>AskNaija</div>
   <div class="ank-pill">
     <span class="ank-pill-dot"></span>
     KB + AI · Live
@@ -6392,7 +6404,7 @@ function handleNotify(e) {
 <div class="ank-trans-bar">
   <div class="ank-trans-inner">
     <span class="ank-trans-icon">⚙</span>
-    <p><strong>How AskNaija works:</strong> Questions matching our 66-entry civic knowledge base return <span class="ank-badge-kb">VERIFIED KB</span> responses instantly — no API call, no hallucination. Broader questions route to Claude AI under a strict civic-only prompt. <a href="#privacy" class="ank-trans-link">Data Policy →</a></p>
+    <p><strong>How AskNaija works:</strong> Questions matching our 66-entry civic knowledge base return <span class="ank-badge-kb">VERIFIED KB</span> responses instantly — no API call, no hallucination. Broader questions route to Claude AI under a strict civic-only prompt. <a href="/privacy" class="ank-trans-link">Data Policy →</a></p>
   </div>
 </div>
 
@@ -7158,11 +7170,11 @@ function addMsg(text, role, source) {
     sourceNote = document.createElement('div');
     sourceNote.className = 'ank-msg-source';
     if (source === 'kb') {
-      sourceNote.innerHTML = '&#9432; Verified knowledge base · Fact-checked by NITIZEN editorial · <a href="#privacy">Data Policy</a>';
+      sourceNote.innerHTML = '&#9432; Verified knowledge base · Fact-checked by NITIZEN editorial · <a href="/privacy">Data Policy</a>';
     } else if (source === 'ai') {
-      sourceNote.innerHTML = '&#9432; AI-generated response · Verify critical facts at official sources · <a href="#privacy">Data Policy</a>';
+      sourceNote.innerHTML = '&#9432; AI-generated response · Verify critical facts at official sources · <a href="/privacy">Data Policy</a>';
     } else {
-      sourceNote.innerHTML = '&#9432; AskNaija · <a href="#privacy">Data Policy</a>';
+      sourceNote.innerHTML = '&#9432; AskNaija · <a href="/privacy">Data Policy</a>';
     }
   }
 
@@ -7666,18 +7678,18 @@ if (document.readyState === 'loading') {
   init();
 }
 
-// Re-init when the SPA shows this page
-(function patchShowPage() {
+// Re-init when the router shows this page
+(function patchNavigate() {
   var orig = window.showPage;
   if (typeof orig === 'function') {
-    window.showPage = function(id) {
-      orig(id);
+    window.showPage = function(id, push) {
+      orig(id, push);
       if (id === 'asknaija-beta') {
         setTimeout(function() { buildNav(); buildChips(); }, 100);
       }
     };
   } else {
-    setTimeout(patchShowPage, 200);
+    setTimeout(patchNavigate, 200);
   }
 })();
 
@@ -7693,10 +7705,10 @@ if (document.readyState === 'loading') {
   <h1>See-gnal.<br><em>Signal Everything.</em></h1>
   <p>Nigeria's civic accountability and reporting platform. Four channels — one mission: nothing that happens in our national life goes unreported, untracked, unaccountable, or unchallenged.</p>
   <div style="display:flex;gap:1rem;margin-top:2.5rem;flex-wrap:wrap">
-    <a href="#redflag" class="btn-red">🚨 RedFlag</a>
-    <a href="#ledger-submit" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">📊 The Ledger</a>
-    <a href="#openmic-submit" class="btn-outline" style="border-color:var(--green-soft);color:var(--green-soft)">🎙️ OpenMic</a>
-    <a href="#critika-submit" class="btn-outline" style="border-color:#a78bfa;color:#a78bfa">🎨 Critika</a>
+    <a href="/see-gnal/redflag" class="btn-red">🚨 RedFlag</a>
+    <a href="/see-gnal/ledger" class="btn-outline" style="border-color:var(--gold);color:var(--gold)">📊 The Ledger</a>
+    <a href="/see-gnal/openmic" class="btn-outline" style="border-color:var(--green-soft);color:var(--green-soft)">🎙️ OpenMic</a>
+    <a href="/see-gnal/critika" class="btn-outline" style="border-color:#a78bfa;color:#a78bfa">🎨 Critika</a>
   </div>
 </div>
 
@@ -7728,16 +7740,16 @@ if (document.readyState === 'loading') {
 </div>
 <div class="ch-nav-wrap">
   <div class="ch-nav">
-    <a href="#redflag" class="ch-tab tab-rf">🚨 RedFlag</a>
-    <a href="#ledger-submit" class="ch-tab tab-ldg">📊 The Ledger</a>
-    <a href="#openmic-submit" class="ch-tab tab-om">🎙️ OpenMic</a>
-    <a href="#critika-submit" class="ch-tab tab-crt">🎨 Critika</a>
+    <a href="/see-gnal/redflag" class="ch-tab tab-rf">🚨 RedFlag</a>
+    <a href="/see-gnal/ledger" class="ch-tab tab-ldg">📊 The Ledger</a>
+    <a href="/see-gnal/openmic" class="ch-tab tab-om">🎙️ OpenMic</a>
+    <a href="/see-gnal/critika" class="ch-tab tab-crt">🎨 Critika</a>
   </div>
 </div>
 
 <div class="urgent-bar">
   <div class="u-dot"></div>
-  <div class="u-text"><strong>Active Case — Mene Ogidi, 28, Effurun, Delta State — April 26, 2026:</strong> Shot at close range by ASP Nuhu Usman, hands bound, in a video that shocked Nigeria. Officer dismissed. Criminal prosecution pending. The case is open. <a href="#redflag" onclick="event.preventDefault();var el=document.getElementById('case-rf001');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}">Read the full RedFlag report →</a></div>
+  <div class="u-text"><strong>Active Case — Mene Ogidi, 28, Effurun, Delta State — April 26, 2026:</strong> Shot at close range by ASP Nuhu Usman, hands bound, in a video that shocked Nigeria. Officer dismissed. Criminal prosecution pending. The case is open. <a href="/see-gnal/redflag" onclick="event.preventDefault();var el=document.getElementById('case-rf001');if(el){el.scrollIntoView({behavior:'smooth',block:'start'});}">Read the full RedFlag report →</a></div>
 </div>
 
 <!-- ══ REDFLAG ══ -->
@@ -7805,7 +7817,7 @@ if (document.readyState === 'loading') {
     </div>
   <div class="cta-bar" style="background:rgba(224,92,92,.07);border:1px dashed rgba(224,92,92,.32)">
     <p style="color:rgba(255,255,255,.68)">Witnessed police brutality, corruption, or injustice in Nigeria? File a report. Your account becomes part of a permanent, public civic record — documented, timestamped, and impossible to erase.</p>
-    <a href="#redflag" class="btn-red">🚨 File a RedFlag Report →</a>
+    <a href="/see-gnal/redflag" class="btn-red">🚨 File a RedFlag Report →</a>
   </div>
 </div>
 
@@ -7819,7 +7831,7 @@ if (document.readyState === 'loading') {
       <div class="ttl-ldg">The <em>Ledger</em></div></div><div style="text-align:right;flex-shrink:0"><span class="ntz-id-ldg">NTZ·SG·LDG — Ch.02</span><div class="ntz-desc">Sector scorecards · Citizen-powered institutional data · Q1 2026 baseline. Sources: NBS, WHO, UNICEF, Budget Office, verified submissions.</div></div></div>
       <p class="dsc" style="color:var(--muted)">Tracking institutional performance across Nigeria's key sectors — scored against government targets, budget allocations, and verifiable outcomes. Inspired by BudgIT's Tracka and similar civic data tools, but broader in scope and citizen-powered. Anyone can submit verified data.</p>
     </div>
-    <a href="#ledger-submit" class="btn-primary" style="background:var(--gold);color:var(--ink);align-self:flex-start">+ Submit Data</a>
+    <a href="/see-gnal/ledger" class="btn-primary" style="background:var(--gold);color:var(--ink);align-self:flex-start">+ Submit Data</a>
   </div>
   <div style="padding:2rem 4rem 1.5rem;background:var(--off-white)">
     <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">Sector Scorecards — Q1 2026</div>
@@ -7888,7 +7900,7 @@ if (document.readyState === 'loading') {
   <div style="padding:0 4rem 3rem">
     <div style="background:#fff;border:1px solid var(--border);padding:1.8rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
       <p style="font-family:var(--body);font-size:.95rem;color:var(--ink-light);line-height:1.72;max-width:500px">The Ledger is citizen-powered. If you have verified data, official documents, or first-hand evidence of institutional performance or failure in any sector, submit it. Every data point strengthens the public record.</p>
-      <a href="#ledger-submit" class="btn-primary">Submit Sector Data →</a>
+      <a href="/see-gnal/ledger" class="btn-primary">Submit Sector Data →</a>
     </div>
   </div>
 </div>
@@ -7903,7 +7915,7 @@ if (document.readyState === 'loading') {
       <div class="ttl-om">Open<em>Mic</em></div></div><div style="text-align:right;flex-shrink:0"><span class="ntz-id-dark">NTZ·SG·OM — Ch.03</span><div class="ntz-desc">Open citizen writing · Essays · Testimonies · Community reports · Policy analysis. Written word only — art and graphics: NTZ·SG·CRT.</div></div></div>
       <p class="dsc" style="color:rgba(255,255,255,.55)">Anyone posts anything about Nigerian national life — in words. Observations, testimonies, civic essays, policy analysis, personal accounts of governance failure, community reports, investigative accounts. If it is true and the public should know, OpenMic is where you write it. Writing lives here; art lives in Critika.</p>
     </div>
-    <a href="#openmic-submit" class="btn-primary" style="background:var(--green-soft);color:var(--ink);align-self:flex-start">+ Post to OpenMic</a>
+    <a href="/see-gnal/openmic" class="btn-primary" style="background:var(--green-soft);color:var(--ink);align-self:flex-start">+ Post to OpenMic</a>
   </div>
   <div class="om-feed">
     <div class="om-post">
@@ -7939,7 +7951,7 @@ if (document.readyState === 'loading') {
   </div>
   <div class="cta-bar" style="margin:2rem 4rem;background:rgba(74,175,116,.06);border:1px dashed rgba(74,175,116,.28)">
     <p style="color:rgba(255,255,255,.65)">OpenMic is for every Nigerian with something true to say. No credentials required — only honesty and a commitment to the facts of what you have witnessed, experienced, or analysed. Your words are civic data.</p>
-    <a href="#openmic-submit" class="btn-primary" style="background:var(--green-soft);color:var(--ink)">🎙️ Write for OpenMic →</a>
+    <a href="/see-gnal/openmic" class="btn-primary" style="background:var(--green-soft);color:var(--ink)">🎙️ Write for OpenMic →</a>
   </div>
 </div>
 
@@ -7953,13 +7965,13 @@ if (document.readyState === 'loading') {
       <div class="ttl-crt">Cri<em>tika</em></div></div><div style="text-align:right;flex-shrink:0"><span class="ntz-id-crt">NTZ·SG·CRT — Ch.04</span><div class="ntz-desc">Creative accountability · Graphics · Video · Music · Visual art. No written text — writing belongs at NTZ·SG·OM.</div></div></div>
       <p class="dsc" style="color:rgba(255,255,255,.55)">The creative accountability arm of See-gnal. Graphics, cartoons, illustrations, video, music, spoken word, and visual art — critiquing government performance against its declared promises and proposing solutions. Art as the most irreducible form of civic pressure. No writing here — that lives on OpenMic. This is the canvas, the stage, and the studio.</p>
     </div>
-    <a href="#critika-submit" class="btn-purple" style="align-self:flex-start">+ Submit Your Art</a>
+    <a href="/see-gnal/critika" class="btn-purple" style="align-self:flex-start">+ Submit Your Art</a>
   </div>
   <div class="art-fmts">
-    <a href="#critika-submit" class="art-fmt"><div class="art-fmt-icon">🎨</div><div class="art-fmt-name">Graphics & Illustration</div><p class="art-fmt-desc">Infographics, political cartoons, data visualisations, editorial illustration</p></a>
-    <a href="#critika-submit" class="art-fmt"><div class="art-fmt-icon">🎬</div><div class="art-fmt-name">Video & Film</div><p class="art-fmt-desc">Short films, documentary clips, satire, motion graphics, visual commentary</p></a>
-    <a href="#critika-submit" class="art-fmt"><div class="art-fmt-icon">🎵</div><div class="art-fmt-name">Music & Spoken Word</div><p class="art-fmt-desc">Protest music, civic spoken word poetry, audio commentary</p></a>
-    <a href="#critika-submit" class="art-fmt"><div class="art-fmt-icon">🖼️</div><div class="art-fmt-name">Visual Art</div><p class="art-fmt-desc">Photography, murals, digital art, conceptual visual works</p></a>
+    <a href="/see-gnal/critika" class="art-fmt"><div class="art-fmt-icon">🎨</div><div class="art-fmt-name">Graphics & Illustration</div><p class="art-fmt-desc">Infographics, political cartoons, data visualisations, editorial illustration</p></a>
+    <a href="/see-gnal/critika" class="art-fmt"><div class="art-fmt-icon">🎬</div><div class="art-fmt-name">Video & Film</div><p class="art-fmt-desc">Short films, documentary clips, satire, motion graphics, visual commentary</p></a>
+    <a href="/see-gnal/critika" class="art-fmt"><div class="art-fmt-icon">🎵</div><div class="art-fmt-name">Music & Spoken Word</div><p class="art-fmt-desc">Protest music, civic spoken word poetry, audio commentary</p></a>
+    <a href="/see-gnal/critika" class="art-fmt"><div class="art-fmt-icon">🖼️</div><div class="art-fmt-name">Visual Art</div><p class="art-fmt-desc">Photography, murals, digital art, conceptual visual works</p></a>
   </div>
   <div class="crt-grid">
     <div class="crt-card" style="cursor:default">
@@ -7970,7 +7982,7 @@ if (document.readyState === 'loading') {
         <div class="crt-meta">@NAIJAVISUALS · MAY 2026</div>
       </div>
     </div>
-    <a href="#critika-submit" class="crt-card" style="border-style:dashed;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.03)">
+    <a href="/see-gnal/critika" class="crt-card" style="border-style:dashed;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.03)">
       <div class="crt-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px">
         <div style="font-size:2.2rem;margin-bottom:1rem">🎬</div>
         <div class="crt-ttl" style="color:#c4b5fd">Submit a Video Critique</div>
@@ -7978,7 +7990,7 @@ if (document.readyState === 'loading') {
         <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#a78bfa;margin-top:.5rem">Submit →</div>
       </div>
     </a>
-    <a href="#critika-submit" class="crt-card" style="border-style:dashed;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.03)">
+    <a href="/see-gnal/critika" class="crt-card" style="border-style:dashed;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.03)">
       <div class="crt-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px">
         <div style="font-size:2.2rem;margin-bottom:1rem">🎵</div>
         <div class="crt-ttl" style="color:#c4b5fd">Submit Music or Spoken Word</div>
@@ -7986,7 +7998,7 @@ if (document.readyState === 'loading') {
         <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#a78bfa;margin-top:.5rem">Submit →</div>
       </div>
     </a>
-    <a href="#critika-submit" class="crt-card" style="border-style:dashed;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.03)">
+    <a href="/see-gnal/critika" class="crt-card" style="border-style:dashed;border-color:rgba(167,139,250,.2);background:rgba(167,139,250,.03)">
       <div class="crt-body" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px">
         <div style="font-size:2.2rem;margin-bottom:1rem">🖼️</div>
         <div class="crt-ttl" style="color:#c4b5fd">Submit Visual Art</div>
@@ -7996,8 +8008,8 @@ if (document.readyState === 'loading') {
     </a>
   </div>
   <div class="cta-bar" style="margin:0 clamp(1.2rem,5vw,4rem) 3rem;background:rgba(167,139,250,.07);border:1px dashed rgba(167,139,250,.28)">
-    <p style="color:rgba(255,255,255,.65)">Critika accepts only non-written creative works. For written civic commentary, essays, and testimonies — post to <a href="#openmic-submit" style="color:#a78bfa">OpenMic</a>. Submit graphics, video, music, or visual art and hold power accountable through creativity.</p>
-    <a href="#critika-submit" class="btn-purple">🎨 Submit to Critika →</a>
+    <p style="color:rgba(255,255,255,.65)">Critika accepts only non-written creative works. For written civic commentary, essays, and testimonies — post to <a href="/see-gnal/openmic" style="color:#a78bfa">OpenMic</a>. Submit graphics, video, music, or visual art and hold power accountable through creativity.</p>
+    <a href="/see-gnal/critika" class="btn-purple">🎨 Submit to Critika →</a>
   </div>
 </div>
 
@@ -8007,7 +8019,7 @@ if (document.readyState === 'loading') {
 <!-- ═══ PAGE: REDFLAG ═══ -->
 <div id="page-redflag" class="spa-page" style="display:none">
 <div class="rf-form-hero">
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#senal">See-gnal</a><span>/</span><a href="#senal">RedFlag</a><span>/</span>File a Report</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/see-gnal">See-gnal</a><span>/</span><a href="/see-gnal">RedFlag</a><span>/</span>File a Report</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#e05c5c;margin-bottom:.8rem">🚨 RedFlag — See-gnal</div>
   <h1>File a <em>RedFlag</em> Report</h1>
   <p>Use this form to report an act of police brutality, corruption, bad governance, or injustice in Nigeria. Your report becomes part of the permanent civic record — documented, timestamped, and publicly accessible. You may submit anonymously.</p>
@@ -8062,7 +8074,7 @@ if (document.readyState === 'loading') {
     <div class="note">Your submission is confidential. If you choose to remain anonymous, no identifying information will be published. NITIZEN may follow up by email if you provide one. By submitting, you confirm that your account is truthful to the best of your knowledge.</div>
             <div class="consent-row consent-row-dark">
           <input type="checkbox" id="consent_rf" name="consent" required/>
-          <label for="consent_rf">I agree to NITIZEN's <a href="#privacy" style="color:var(--green-soft)">Privacy Policy</a> and consent to my submitted data being processed under the Nigeria Data Protection Act 2023. I may withdraw consent at any time.</label>
+          <label for="consent_rf">I agree to NITIZEN's <a href="/privacy" style="color:var(--green-soft)">Privacy Policy</a> and consent to my submitted data being processed under the Nigeria Data Protection Act 2023. I may withdraw consent at any time.</label>
         </div>
     <button type="submit" id="rfBtn" class="btn-red">🚨 Submit RedFlag Report</button>
   </form>
@@ -8085,7 +8097,7 @@ function handleRF(e){
 <!-- ═══ PAGE: LEDGER-SUBMIT ═══ -->
 <div id="page-ledger-submit" class="spa-page" style="display:none">
 <div class="ldg-form-hero">
-  <div class="breadcrumb breadcrumb-dark"><a href="#home">Home</a><span>/</span><a href="#senal">See-gnal</a><span>/</span><a href="#senal">The Ledger</a><span>/</span>Submit Data</div>
+  <div class="breadcrumb breadcrumb-dark"><a href="/">Home</a><span>/</span><a href="/see-gnal">See-gnal</a><span>/</span><a href="/see-gnal">The Ledger</a><span>/</span>Submit Data</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem">📊 The Ledger — See-gnal</div>
   <h1>Submit to <em>The Ledger</em></h1>
   <p>Contribute verified data, official documents, or first-hand evidence of institutional performance or failure in any sector. The Ledger is citizen-powered — every data point strengthens the public record.</p>
@@ -8145,7 +8157,7 @@ function handleRF(e){
     <div class="note">The Ledger only publishes verified data. Submissions are reviewed against cited sources before being added to sector scorecards. NITIZEN may contact you to verify claims or request additional documentation.</div>
             <div class="consent-row">
           <input type="checkbox" id="consent_ldg" name="consent" required/>
-          <label for="consent_ldg">I agre to NITIZEN's <a href="#privacy">Privacy Policy</a> and consent to my submitted data being processed for the stated purpose under the Nigeria Data Protection Act 2023. I understand I may withdraw consent at any time.</label>
+          <label for="consent_ldg">I agre to NITIZEN's <a href="/privacy">Privacy Policy</a> and consent to my submitted data being processed for the stated purpose under the Nigeria Data Protection Act 2023. I understand I may withdraw consent at any time.</label>
         </div>
     <button type="submit" id="ldgBtn" class="btn-ldg">📊 Submit to The Ledger</button>
   </form>
@@ -8169,7 +8181,7 @@ function handleLDG(e){
 <!-- ═══ PAGE: OPENMIC-SUBMIT ═══ -->
 <div id="page-openmic-submit" class="spa-page" style="display:none">
 <div class="om-form-hero">
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#senal">See-gnal</a><span>/</span><a href="#senal">OpenMic</a><span>/</span>Post</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/see-gnal">See-gnal</a><span>/</span><a href="/see-gnal">OpenMic</a><span>/</span>Post</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green-soft);margin-bottom:.8rem">🎙️ OpenMic — See-gnal</div>
   <h1>Post to <em>OpenMic</em></h1>
   <p>Share your civic essay, community report, personal testimony, policy analysis, or any truthful observation about Nigerian national life. No credentials required — only accuracy and courage.</p>
@@ -8226,7 +8238,7 @@ function handleLDG(e){
     <div class="note">OpenMic publishes truthful, factual content about Nigerian national life. NITIZEN reserves the right to edit for clarity and may follow up before publication. By submitting, you confirm that all statements are truthful to the best of your knowledge.</div>
             <div class="consent-row consent-row-dark">
           <input type="checkbox" id="consent_om" name="consent" required/>
-          <label for="consent_om">I agree to NITIZEN's <a href="#privacy" style="color:var(--green-soft)">Privacy Policy</a> and consent to my submitted data being processed under the Nigeria Data Protection Act 2023. I may withdraw consent at any time.</label>
+          <label for="consent_om">I agree to NITIZEN's <a href="/privacy" style="color:var(--green-soft)">Privacy Policy</a> and consent to my submitted data being processed under the Nigeria Data Protection Act 2023. I may withdraw consent at any time.</label>
         </div>
     <button type="submit" id="omBtn" class="btn-om">🎙️ Submit to OpenMic</button>
   </form>
@@ -8250,10 +8262,10 @@ function handleOM(e){
 <!-- ═══ PAGE: CRITIKA-SUBMIT ═══ -->
 <div id="page-critika-submit" class="spa-page" style="display:none">
 <div class="crt-form-hero">
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#senal">See-gnal</a><span>/</span><a href="#senal">Critika</a><span>/</span>Submit</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/see-gnal">See-gnal</a><span>/</span><a href="/see-gnal">Critika</a><span>/</span>Submit</div>
   <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#a78bfa;margin-bottom:.8rem">🎨 Critika — See-gnal</div>
   <h1>Submit to <em>Critika</em></h1>
-  <p>Submit your graphic, video, music, spoken word, or visual art that critiques Nigerian government performance against its declared promises. Art is your contribution to accountability. Critika does not accept written text — for essays and testimonies, use <a href="#openmic-submit" style="color:#a78bfa">OpenMic</a>.</p>
+  <p>Submit your graphic, video, music, spoken word, or visual art that critiques Nigerian government performance against its declared promises. Art is your contribution to accountability. Critika does not accept written text — for essays and testimonies, use <a href="/see-gnal/openmic" style="color:#a78bfa">OpenMic</a>.</p>
 </div>
 <div class="form-section">
   <div style="margin-bottom:2rem">
@@ -8313,7 +8325,7 @@ function handleOM(e){
     <div class="note">Critika publishes original works only. Submissions must critique governance or public institutions — not private individuals' personal lives. All works must be the original creation of the submitter. NITIZEN will credit artists by their chosen name or handle.</div>
             <div class="consent-row consent-row-dark">
           <input type="checkbox" id="consent_crt" name="consent" required/>
-          <label for="consent_crt">I agree to NITIZEN's <a href="#privacy" style="color:var(--green-soft)">Privacy Policy</a> and consent to my submitted data being processed under the Nigeria Data Protection Act 2023. I may withdraw consent at any time.</label>
+          <label for="consent_crt">I agree to NITIZEN's <a href="/privacy" style="color:var(--green-soft)">Privacy Policy</a> and consent to my submitted data being processed under the Nigeria Data Protection Act 2023. I may withdraw consent at any time.</label>
         </div>
     <button type="submit" id="crtBtn" class="btn-purple">🎨 Submit to Critika</button>
   </form>
@@ -8337,7 +8349,7 @@ function handleCRT(e){
 <!-- ═══ PAGE: CRITIKA-ARTICLE ═══ -->
 <div id="page-critika-article" class="spa-page" style="display:none">
 <div class="art-header">
-    <div class="breadcrumb"><a href="#home">Home</a><span>/</span><a href="#senal">Critika</a><span>/</span>Featured Critique</div>
+    <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/see-gnal">Critika</a><span>/</span>Featured Critique</div>
     <div class="article-cat" style="color:var(--green-soft);margin-bottom:1rem">✍️ Written Critique · Critika Featured Piece</div>
     <h1 style="font-family:var(--display);font-size:clamp(2rem,4.5vw,3.4rem);font-weight:800;color:#fff;line-height:1.1;max-width:720px">Buhari Promised Security.<br>Here Is the Record.</h1>
     <p style="font-family:var(--mono);font-size:.68rem;color:rgba(255,255,255,.4);margin-top:1.8rem;letter-spacing:.06em">NITIZEN EDITORIAL · MAY 2026 · 10 MIN READ</p>
@@ -8395,11 +8407,11 @@ function handleCRT(e){
     <p>That is the work of Critika. Not rage — rigour. Not complaint — evidence. Not silence — art, data, and the refusal to forget what was said. Every government makes promises. Every promise leaves a record. And every citizen has both the right and the responsibility to read that record clearly.</p>
     <p>This is civic accountability. This is Critika.</p>
 
-    <p class="art-footer-note">This critique is open-source. Share it, build on it, respond to it. Submit your own critique at <a href="#senal" style="color:var(--green-soft)">nitizen/senal#critika</a> or email <a href="mailto:hello@nitizen.ng" style="color:var(--green-soft)">hello@nitizen.ng</a>. We welcome counter-analyses grounded in evidence.</p>
+    <p class="art-footer-note">This critique is open-source. Share it, build on it, respond to it. Submit your own critique at <a href="/see-gnal" style="color:var(--green-soft)">nitizen/senal#critika</a> or email <a href="mailto:hello@nitizen.ng" style="color:var(--green-soft)">hello@nitizen.ng</a>. We welcome counter-analyses grounded in evidence.</p>
 
     <div class="art-nav">
-      <a href="#senal" class="btn-ghost">← All Critika</a>
-      <a href="#openmic-submit" class="btn-primary">Submit Your Writing →</a>
+      <a href="/see-gnal" class="btn-ghost">← All Critika</a>
+      <a href="/see-gnal/openmic" class="btn-primary">Submit Your Writing →</a>
     </div>
   </div>
 
@@ -8410,7 +8422,7 @@ function handleCRT(e){
 <div id="page-contact" class="spa-page" style="display:none">
 <div class="page-header-dark">
     <div class="breadcrumb">
-      <a href="#home">Home</a><span>/</span><span>Get Involved</span>
+      <a href="/">Home</a><span>/</span><span>Get Involved</span>
     </div>
     <div class="section-label" style="color:var(--green-light)">Get Involved</div>
     <h1 style="font-family:var(--display);font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.05">
@@ -8427,27 +8439,27 @@ function handleCRT(e){
       <div class="section-label">Ways to Engage</div>
       <h2 class="section-title reveal">Six Ways to Be <em>Part of This</em></h2>
       <div class="ways-grid reveal">
-        <a href="#fellowship" class="way-card" style="border-color:rgba(200,168,75,.3)" onclick="showPage('fellowship')">
+        <a href="/programs/fellowship" class="way-card" style="border-color:rgba(200,168,75,.3)">
           <span class="way-icon">🏛️</span>
           <div class="way-title">Apply to the Leadership Fellowship</div>
           <p class="way-desc">Thirty seats. Class of 2026. Six months of rigorous civic formation with full NITIZEN membership on completion. Registration opens 12 June 2026 — Democracy Day.</p>
         </a>
-        <a href="#programs" class="way-card" onclick="showPage('programs')">
+        <a href="/programs" class="way-card">
           <span class="way-icon">📋</span>
           <div class="way-title">Explore NITIZEN Programs</div>
           <p class="way-desc">Fellowships, memberships, civic labs, leadership tracks and institutional partnerships — every structured path to meaningful civic contribution in Nigeria.</p>
         </a>
-        <a href="#cl-pitch" class="way-card">
+        <a href="/contribute" class="way-card">
           <span class="way-icon">✍️</span>
           <div class="way-title">Write for Conscience Letters</div>
           <p class="way-desc">Pitch a civic editorial piece. We publish rigorous, evidence-based writing on Nigerian governance from citizens across all backgrounds and geographies.</p>
         </a>
-        <a href="#senal" class="way-card" style="border-color:rgba(224,92,92,.25)">
+        <a href="/see-gnal" class="way-card" style="border-color:rgba(224,92,92,.25)">
           <span class="way-icon">🚨</span>
           <div class="way-title">Report on See-gnal</div>
           <p class="way-desc">File a RedFlag report, submit sector data to The Ledger, post your testimony on OpenMic, or share creative critique on Critika.</p>
         </a>
-        <a href="#asknaija" class="way-card">
+        <a href="/asknaija" class="way-card">
           <span class="way-icon">🤖</span>
           <div class="way-title">Use AskNaija</div>
           <p class="way-desc">Nigeria's AI-powered civic intelligence tool — ask anything about governance, elections, or your democratic rights. Launching late 2026.</p>
@@ -8462,7 +8474,7 @@ function handleCRT(e){
           <div class="way-title">Press &amp; Research</div>
           <p class="way-desc">Journalists and researchers are welcome to engage with our content, cite our work, or request data and background for civic reporting projects.</p>
         </div>
-        <a href="#membership" class="way-card" style="border-color:rgba(200,168,75,.3)">
+        <a href="/membership" class="way-card" style="border-color:rgba(200,168,75,.3)">
           <span class="way-icon">💛</span>
           <div class="way-title">Support the Mission</div>
           <p class="way-desc">NITIZEN is independent civic infrastructure. Support us financially or in-kind to keep civic knowledge free and accessible for every Nigerian.</p>
@@ -8504,7 +8516,7 @@ function handleCRT(e){
             <textarea name="message" placeholder="Tell us more about how you'd like to engage, or leave us a message..." aria-label="Message"></textarea>
             <div class="consent-row">
               <input type="checkbox" id="consent_contact" name="consent" required/>
-              <label for="consent_contact">I agree to NITIZEN's <a href="#privacy">Privacy Policy</a> and consent to my submitted data being processed for the stated purpose under the Nigeria Data Protection Act 2023.</label>
+              <label for="consent_contact">I agree to NITIZEN's <a href="/privacy">Privacy Policy</a> and consent to my submitted data being processed for the stated purpose under the Nigeria Data Protection Act 2023.</label>
             </div>
             <button type="submit" id="submitBtn">Send Message →</button>
           </form>
@@ -8595,7 +8607,7 @@ function handleCRT(e){
     <div class="prog-hero-grid"></div>
     <div class="prog-hero-content">
       <div class="breadcrumb">
-        <a href="#home">Home</a><span>/</span><span>Programs</span>
+        <a href="/">Home</a><span>/</span><span>Programs</span>
       </div>
       <div class="prog-eyebrow">
         <div class="prog-eyebrow-line"></div>
@@ -8611,7 +8623,7 @@ function handleCRT(e){
         partnerships that transform engaged Nigerians into formidable civic actors.
       </p>
       <div style="display:flex;gap:1rem;flex-wrap:wrap">
-        <a href="#fellowship" class="btn-gold" onclick="showPage('fellowship')">LEADERSHIP FELLOWSHIP →</a>
+        <a href="/programs/fellowship" class="btn-gold">LEADERSHIP FELLOWSHIP →</a>
         <button class="btn-ghost" onclick="document.getElementById('prog-catalogue-anchor').scrollIntoView({behavior:'smooth',block:'start'})">VIEW ALL PROGRAMS ↓</button>
       </div>
     </div>
@@ -8669,7 +8681,7 @@ function handleCRT(e){
       <div class="prog-grid reveal">
 
         <!-- FELLOWSHIP — Active -->
-        <div class="prog-card active-program" onclick="showPage('fellowship')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')showPage('fellowship')">
+        <div class="prog-card active-program" onclick="navigate('/programs/fellowship')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('/programs/fellowship')">
           <div class="prog-card-num">Program 01 · Active</div>
           <span class="prog-card-icon">🏛️</span>
           <h3>Leadership Fellowship</h3>
@@ -8681,12 +8693,12 @@ function handleCRT(e){
         </div>
 
         <!-- MEMBERSHIP — Coming -->
-        <div class="prog-card coming-soon" onclick="showPage('membership')">
+        <div class="prog-card coming-soon" onclick="navigate('/membership')">
           <div class="prog-card-num">Program 02 · Open</div>
           <span class="prog-card-icon">🤝</span>
           <h3>NITIZEN Membership</h3>
           <p>Sustaining members who believe in independent civic infrastructure for Nigeria. Access, community, and the satisfaction of keeping civic intelligence free for all Nigerians.</p>
-          <div class="prog-card-status open" onclick="event.stopPropagation();showPage('membership')">Join as a Member →</div>
+          <a href="/membership" class="prog-card-status open" onclick="event.stopPropagation()">Join as a Member →</a>
         </div>
 
         <!-- CIVIC LABS — Coming -->
@@ -8737,28 +8749,28 @@ function handleCRT(e){
           NITIZEN is built by civic-minded Nigerians. Whether you're a student, a corps member, a professional, or a leader ready for executive responsibility — there is a role designed for you.
         </p>
         <div class="vol-recruit-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
-          <div class="vol-recruit-card" onclick="showPage('vol-exco')">
+          <div class="vol-recruit-card" onclick="navigate('/programs/apply/team-lead')">
             <div class="vol-rc-accent" style="background:var(--gold)"></div>
             <div class="vol-rc-icon">👑</div>
             <div class="vol-rc-title">Team Lead (Exco)</div>
             <div class="vol-rc-body">Executive-level leadership roles. Department heads, operations leads, and strategic directors who run NITIZEN's internal functions.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </div>
-          <div class="vol-recruit-card" onclick="showPage('vol-fellow')">
+          <div class="vol-recruit-card" onclick="navigate('/programs/apply/fellowship')">
             <div class="vol-rc-accent" style="background:var(--green-soft)"></div>
             <div class="vol-rc-icon">🏛️</div>
             <div class="vol-rc-title">Fellowship</div>
             <div class="vol-rc-body">Six-month immersive programme for exceptional young Nigerians. Eight tracks. Full membership. Real civic work at scale. Under 30.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </div>
-          <div class="vol-recruit-card" onclick="showPage('vol-corps')">
+          <div class="vol-recruit-card" onclick="navigate('/programs/apply/corps-ambassador')">
             <div class="vol-rc-accent" style="background:#25D366"></div>
             <div class="vol-rc-icon">🎖️</div>
             <div class="vol-rc-title">Corps Ambassador</div>
             <div class="vol-rc-body">NYSC members serving with purpose. A structured programme that lets corps members contribute civic value throughout their service year.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </div>
-          <div class="vol-recruit-card" onclick="showPage('vol-general')">
+          <div class="vol-recruit-card" onclick="navigate('/programs/apply/volunteer')">
             <div class="vol-rc-accent" style="background:var(--green-mid)"></div>
             <div class="vol-rc-icon">🤝</div>
             <div class="vol-rc-title">General Volunteer</div>
@@ -8776,7 +8788,7 @@ function handleCRT(e){
       <h2>Start with the Fellowship.</h2>
       <p>The NITIZEN Leadership Fellowship is now open for interest registration. Thirty seats. Class of 2026. Registration opens 12 June — Democracy Day.</p>
     </div>
-    <button class="btn-primary" onclick="showPage('fellowship')" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">
+    <button class="btn-primary" onclick="navigate('/programs/fellowship')" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">
       FELLOWSHIP — JUNE 12 →
     </button>
   </div>
@@ -8793,8 +8805,8 @@ function handleCRT(e){
     <div class="flp-hero-grid"></div>
     <div class="flp-hero-content">
       <div class="breadcrumb">
-        <a href="#home">Home</a><span>/</span>
-        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <a href="/">Home</a><span>/</span>
+        <a href="/programs">Programs</a><span>/</span>
         <span>Leadership Fellowship</span>
       </div>
       <div class="flp-eyebrow">
@@ -9155,7 +9167,7 @@ function handleCRT(e){
       <div class="flp-form-success" id="flp-interest-success">
         <h4>✓ Registered</h4>
         <p>You&rsquo;re on the list. We&rsquo;ll notify you on 12 June when registration opens. Share this with someone else who should apply.</p>
-        <button class="btn-outline" style="margin-top:1.2rem;font-size:.62rem" onclick="showPage('programs')">← BACK TO PROGRAMS</button>
+        <button class="btn-outline" style="margin-top:1.2rem;font-size:.62rem" onclick="navigate('/programs')">← BACK TO PROGRAMS</button>
       </div>
       <span class="flp-deadline">APPLICATIONS OPEN · 12 JUNE 2026 · ROLLING ADMISSIONS</span>
       <p class="flp-note">Full application portal at nitizen.ng/fellowship &nbsp;·&nbsp; Questions: fellowship@nitizen.ng</p>
@@ -9164,7 +9176,7 @@ function handleCRT(e){
 
   <!-- BACK TO PROGRAMS -->
   <div style="background:var(--off-white);padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
-    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
     <span style="font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.06em">Programs &rsaquo; Leadership Fellowship &rsaquo; Class of 2026</span>
   </div>
 
@@ -9180,8 +9192,8 @@ function handleCRT(e){
   <div class="vol-hero exco">
     <div class="vol-hero-inner">
       <div class="vol-breadcrumb">
-        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
-        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <a href="/">Home</a><span>/</span>
+        <a href="/programs">Programs</a><span>/</span>
         <span>Team Lead Application</span>
       </div>
       <div class="vol-hero-badge gold">
@@ -9469,7 +9481,7 @@ function handleCRT(e){
       <div class="vol-consent">
         <input type="checkbox" id="ex-consent" name="consent" required/>
         <label class="vol-consent-label" for="ex-consent">
-          I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a>. I understand that submitting this form constitutes consent to NITIZEN processing my data for volunteer recruitment purposes under the Nigeria Data Protection Act 2023. I confirm that all information provided is accurate. I commit to upholding NITIZEN's Code of Conduct, editorial integrity standards, and civic ethics framework.
+          I have read and agree to NITIZEN's <a href="/privacy">Privacy Policy</a>. I understand that submitting this form constitutes consent to NITIZEN processing my data for volunteer recruitment purposes under the Nigeria Data Protection Act 2023. I confirm that all information provided is accurate. I commit to upholding NITIZEN's Code of Conduct, editorial integrity standards, and civic ethics framework.
         </label>
       </div>
 
@@ -9496,12 +9508,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+      <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
     <span class="vol-back-crumb">Programs › Team Lead (Exco) Application</span>
   </div>
 </div>
@@ -9517,9 +9529,9 @@ function handleCRT(e){
   <div class="vol-hero fellow">
     <div class="vol-hero-inner">
       <div class="vol-breadcrumb">
-        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
-        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
-        <a href="#fellowship" onclick="showPage('fellowship')">Fellowship</a><span>/</span>
+        <a href="/">Home</a><span>/</span>
+        <a href="/programs">Programs</a><span>/</span>
+        <a href="/programs/fellowship">Fellowship</a><span>/</span>
         <span>Apply</span>
       </div>
       <div class="vol-hero-badge green">
@@ -9800,7 +9812,7 @@ function handleCRT(e){
       <div class="vol-consent">
         <input type="checkbox" id="fl-consent" name="consent" required/>
         <label class="vol-consent-label" for="fl-consent">
-          I confirm I am 30 years old or younger. I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a> and consent to my application data being processed for fellowship selection. I confirm the information provided is accurate. I understand that submitting a false application is grounds for immediate disqualification. I commit to NITIZEN's code of conduct, editorial ethics, and civic values if selected.
+          I confirm I am 30 years old or younger. I have read and agree to NITIZEN's <a href="/privacy">Privacy Policy</a> and consent to my application data being processed for fellowship selection. I confirm the information provided is accurate. I understand that submitting a false application is grounds for immediate disqualification. I commit to NITIZEN's code of conduct, editorial ethics, and civic values if selected.
         </label>
       </div>
 
@@ -9826,12 +9838,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="showPage('fellowship')" style="font-size:.68rem">← BACK TO FELLOWSHIP</button>
+      <button class="btn-outline" onclick="navigate('/programs/fellowship')" style="font-size:.68rem">← BACK TO FELLOWSHIP</button>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="showPage('fellowship')" style="font-size:.68rem">← FELLOWSHIP</button>
+    <button class="btn-outline" onclick="navigate('/programs/fellowship')" style="font-size:.68rem">← FELLOWSHIP</button>
     <span class="vol-back-crumb">Programs › Leadership Fellowship › Apply</span>
   </div>
 </div>
@@ -9847,8 +9859,8 @@ function handleCRT(e){
   <div class="vol-hero corps">
     <div class="vol-hero-inner">
       <div class="vol-breadcrumb">
-        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
-        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <a href="/">Home</a><span>/</span>
+        <a href="/programs">Programs</a><span>/</span>
         <span>Corps Ambassador</span>
       </div>
       <div class="vol-hero-badge wa">
@@ -10074,7 +10086,7 @@ function handleCRT(e){
       <div class="vol-consent">
         <input type="checkbox" id="co-consent" name="consent" required/>
         <label class="vol-consent-label" for="co-consent">
-          I confirm I am a current NYSC corps member. I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a> and consent to my data being processed for volunteer onboarding. I commit to NITIZEN's civic ethics, code of conduct, and editorial standards.
+          I confirm I am a current NYSC corps member. I have read and agree to NITIZEN's <a href="/privacy">Privacy Policy</a> and consent to my data being processed for volunteer onboarding. I commit to NITIZEN's civic ethics, code of conduct, and editorial standards.
         </label>
       </div>
 
@@ -10099,12 +10111,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+      <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
     <span class="vol-back-crumb">Programs › Corps Ambassador Application</span>
   </div>
 </div>
@@ -10120,8 +10132,8 @@ function handleCRT(e){
   <div class="vol-hero general">
     <div class="vol-hero-inner">
       <div class="vol-breadcrumb">
-        <a href="#home" onclick="showPage('home')">Home</a><span>/</span>
-        <a href="#programs" onclick="showPage('programs')">Programs</a><span>/</span>
+        <a href="/">Home</a><span>/</span>
+        <a href="/programs">Programs</a><span>/</span>
         <span>General Volunteer</span>
       </div>
       <div class="vol-hero-badge green">
@@ -10359,7 +10371,7 @@ function handleCRT(e){
       <div class="vol-consent">
         <input type="checkbox" id="gv-consent" name="consent" required/>
         <label class="vol-consent-label" for="gv-consent">
-          I have read and agree to NITIZEN's <a href="#privacy" onclick="showPage('privacy')">Privacy Policy</a>. I consent to NITIZEN processing my data for volunteer coordination. I confirm the information provided is accurate and that I commit to NITIZEN's code of conduct and civic ethics if accepted.
+          I have read and agree to NITIZEN's <a href="/privacy">Privacy Policy</a>. I consent to NITIZEN processing my data for volunteer coordination. I confirm the information provided is accurate and that I commit to NITIZEN's code of conduct and civic ethics if accepted.
         </label>
       </div>
 
@@ -10385,12 +10397,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+      <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="showPage('programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
     <span class="vol-back-crumb">Programs › General Volunteer Application</span>
   </div>
 </div>
@@ -10400,7 +10412,7 @@ function handleCRT(e){
 <!-- ═══ PAGE: PRIVACY ═══ -->
 <div id="page-privacy" class="spa-page" style="display:none">
 <div class="pp-hero">
-  <div class="breadcrumb"><a href="#home">Home</a><span>/</span>Privacy Policy</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span>Privacy Policy</div>
   <h1>Privacy <em>Policy</em></h1>
   <p>NITIZEN's full data privacy policy — how we collect, use, store, and protect your personal data in compliance with the Nigeria Data Protection Act 2023 and NDPC regulations.</p>
 </div>
@@ -10537,25 +10549,25 @@ function handleCRT(e){
     </div>
   </div>
   <nav class="footer-links" aria-label="Footer navigation">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#programs">Programs</a>
-    <a href="#fellowship">Fellowship</a>
-    <a href="#cl">Conscience Letters</a>
-    <a href="#senal">See-gnal</a>
-    <a href="#asknaija">AskNaija</a>
-    <a href="#contact">Contact</a>
-    <a href="#privacy">Privacy Policy</a>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/programs">Programs</a>
+    <a href="/programs/fellowship">Fellowship</a>
+    <a href="/conscience-letters">Conscience Letters</a>
+    <a href="/see-gnal">See-gnal</a>
+    <a href="/asknaija">AskNaija</a>
+    <a href="/contact">Contact</a>
+    <a href="/privacy">Privacy Policy</a>
   </nav>
   <div class="footer-right">
     <p>&copy; <span id="footerYear"></span> NITIZEN. All rights reserved.</p>
-    <p style="margin-top:.3rem"><a href="#privacy" style="color:rgba(255,255,255,.35);text-decoration:none">Privacy Policy</a> &nbsp;|&nbsp; <a href="#asknaija-beta" style="color:rgba(255,255,255,.35);text-decoration:none">AskNaija Beta</a></p>
+    <p style="margin-top:.3rem"><a href="/privacy" style="color:rgba(255,255,255,.35);text-decoration:none">Privacy Policy</a> &nbsp;|&nbsp; <a href="/asknaija/beta" style="color:rgba(255,255,255,.35);text-decoration:none">AskNaija Beta</a></p>
     <p style="margin-top:.5rem;font-size:.62rem;color:rgba(255,255,255,.22)">nitizen.ng &mdash; Civic Intelligence for a New Nigeria</p>
   </div>
 </footer>
 <div class="site-privacy-bar">
-  <p>🛡️ NITIZEN collects only data you voluntarily submit. AskNaija stores nothing. &nbsp;|&nbsp; <a href="#privacy">Full Privacy Policy</a> &nbsp;|&nbsp; Regulated under <a href="#privacy">Nigeria Data Protection Act 2023</a> &nbsp;|&nbsp; NDPC Compliant</p>
-  <a href="#privacy" class="ndpc-badge">NDPC — Data Protected</a>
+  <p>🛡️ NITIZEN collects only data you voluntarily submit. AskNaija stores nothing. &nbsp;|&nbsp; <a href="/privacy">Full Privacy Policy</a> &nbsp;|&nbsp; Regulated under <a href="/privacy">Nigeria Data Protection Act 2023</a> &nbsp;|&nbsp; NDPC Compliant</p>
+  <a href="/privacy" class="ndpc-badge">NDPC — Data Protected</a>
 </div>
 
 
@@ -10579,16 +10591,94 @@ var NITIZEN_PAGES = [
   'vol-exco','vol-fellow','vol-corps','vol-general'
 ];
 
-// ── NAV ACTIVE STATE helper ──
+// ── PATH ↔ PAGE-ID MAP ──
+// Maps clean URL paths to internal page IDs and vice-versa.
+var ROUTE_MAP = {
+  '/':                  'home',
+  '/about':             'about',
+  '/initiatives':       'initiatives',
+  '/conscience-letters':'cl',
+  '/conscience-letters/the-silence-of-the-senate': 'article-1',
+  '/conscience-letters/the-budget-lie':             'article-2',
+  '/conscience-letters/democracy-day-reckoning':    'article-3',
+  '/conscience-letters/the-broken-machine':         'article-4',
+  '/membership':        'membership',
+  '/contribute':        'cl-pitch',
+  '/asknaija':          'asknaija',
+  '/asknaija/beta':     'asknaija-beta',
+  '/see-gnal':          'senal',
+  '/see-gnal/redflag':  'redflag',
+  '/see-gnal/ledger':   'ledger-submit',
+  '/see-gnal/openmic':  'openmic-submit',
+  '/see-gnal/critika':  'critika-submit',
+  '/see-gnal/critika/article': 'critika-article',
+  '/contact':           'contact',
+  '/privacy':           'privacy',
+  '/programs':          'programs',
+  '/programs/fellowship':         'fellowship',
+  '/programs/apply/team-lead':    'vol-exco',
+  '/programs/apply/fellowship':   'vol-fellow',
+  '/programs/apply/corps-ambassador': 'vol-corps',
+  '/programs/apply/volunteer':    'vol-general'
+};
+
+// Reverse map: pageId → path
+var PAGE_TO_PATH = {};
+(function() {
+  Object.keys(ROUTE_MAP).forEach(function(path) {
+    PAGE_TO_PATH[ROUTE_MAP[path]] = path;
+  });
+})();
+
+// Page meta: title and description per route
+var PAGE_META = {
+  'home':          { title: 'NITIZEN — Civic Intelligence for a New Nigeria', desc: 'Equipping Nigerians with the knowledge, tools and voice to engage meaningfully with governance.' },
+  'about':         { title: 'About — NITIZEN', desc: 'Who we are, what we stand for, and why civic intelligence matters for Nigeria\'s democracy.' },
+  'initiatives':   { title: 'Initiatives — NITIZEN', desc: 'NITIZEN\'s civic initiatives: Conscience Letters, AskNaija, See-gnal, and more.' },
+  'cl':            { title: 'Conscience Letters — NITIZEN', desc: 'Nigeria\'s civic accountability newsletter. Evidence-based, uncompromising, free.' },
+  'article-1':     { title: 'The Silence of the Senate — Conscience Letters · NITIZEN', desc: '' },
+  'article-2':     { title: 'The Budget Lie — Conscience Letters · NITIZEN', desc: '' },
+  'article-3':     { title: 'Democracy Day Reckoning — Conscience Letters · NITIZEN', desc: '' },
+  'article-4':     { title: 'The Broken Machine — Conscience Letters · NITIZEN', desc: '' },
+  'membership':    { title: 'Membership — NITIZEN', desc: 'Sustain independent civic intelligence. Become a NITIZEN member.' },
+  'cl-pitch':      { title: 'Submit a Pitch — Conscience Letters · NITIZEN', desc: 'Contribute analysis, critique, and civic writing to NITIZEN\'s Conscience Letters.' },
+  'asknaija':      { title: 'AskNaija — NITIZEN', desc: 'Nigeria\'s AI-powered civic intelligence tool. Ask anything about governance, policy, and your rights.' },
+  'asknaija-beta': { title: 'AskNaija Beta — NITIZEN', desc: 'Early access to AskNaija, NITIZEN\'s civic AI assistant.' },
+  'senal':         { title: 'See-gnal — NITIZEN', desc: 'Nigeria\'s civic signal hub: RedFlag, The Ledger, OpenMic, and Critika.' },
+  'redflag':       { title: 'RedFlag — See-gnal · NITIZEN', desc: 'File and track accountability reports on governance failures across Nigeria.' },
+  'ledger-submit': { title: 'The Ledger — See-gnal · NITIZEN', desc: 'Submit verified data on government performance, spending, and policy outcomes.' },
+  'openmic-submit':{ title: 'OpenMic — See-gnal · NITIZEN', desc: 'Your voice on Nigerian governance. Submit opinions, eyewitness reports, and civic testimony.' },
+  'critika-submit':{ title: 'Critika — See-gnal · NITIZEN', desc: 'Civic critique through art, design, and visual commentary on Nigeria.' },
+  'critika-article':{ title: 'Critika Feature — See-gnal · NITIZEN', desc: '' },
+  'contact':       { title: 'Contact — NITIZEN', desc: 'Get in touch with the NITIZEN team. Pitch, partner, volunteer, or ask.' },
+  'privacy':       { title: 'Privacy Policy — NITIZEN', desc: 'How NITIZEN handles your data under the Nigeria Data Protection Act 2023.' },
+  'programs':      { title: 'Programs — NITIZEN', desc: 'NITIZEN\'s civic formation programmes: fellowships, memberships, labs, and leadership tracks.' },
+  'fellowship':    { title: 'Leadership Fellowship — NITIZEN Programs', desc: 'The NITIZEN Leadership Fellowship: 30 fellows, 6 months, 8 tracks. Class of 2026.' },
+  'vol-exco':      { title: 'Apply — Team Lead (Exco) · NITIZEN Programs', desc: 'Apply for an executive leadership role at NITIZEN.' },
+  'vol-fellow':    { title: 'Apply — Leadership Fellowship · NITIZEN Programs', desc: 'Apply for the NITIZEN Leadership Fellowship, Class of 2026.' },
+  'vol-corps':     { title: 'Apply — Corps Ambassador · NITIZEN Programs', desc: 'NYSC members: apply for the NITIZEN Corps Ambassador Programme.' },
+  'vol-general':   { title: 'Apply — General Volunteer · NITIZEN Programs', desc: 'Apply to volunteer with NITIZEN across any department.' }
+};
+
+// ── NAV ACTIVE STATE ──
 function setNavActive(pageId) {
+  // Map sub-pages to their parent nav item
+  var navMap = {
+    'article-1':'cl','article-2':'cl','article-3':'cl','article-4':'cl','cl-pitch':'cl',
+    'redflag':'senal','ledger-submit':'senal','openmic-submit':'senal',
+    'critika-submit':'senal','critika-article':'senal',
+    'asknaija-beta':'asknaija',
+    'fellowship':'programs','vol-exco':'programs','vol-fellow':'programs',
+    'vol-corps':'programs','vol-general':'programs'
+  };
+  var activeId = navMap[pageId] || pageId;
   document.querySelectorAll('[data-navpage]').forEach(function(a) {
-    a.classList.toggle('active', a.dataset.navpage === pageId);
+    a.classList.toggle('active', a.dataset.navpage === activeId);
   });
 }
 
-// ── SHOW PAGE ──
-function showPage(pageId) {
-  // Default to home if unknown
+// ── CORE PAGE SWITCHER ──
+function showPage(pageId, pushState) {
   if (!pageId || NITIZEN_PAGES.indexOf(pageId) === -1) pageId = 'home';
 
   // Hide all pages
@@ -10597,16 +10687,24 @@ function showPage(pageId) {
     if (el) el.style.display = 'none';
   });
 
-  // Show the target page
+  // Show target
   var target = document.getElementById('page-' + pageId);
   if (target) {
     target.style.display = 'block';
-    // Scroll to top — instant (browser already handles smooth via CSS)
-    window.scrollTo(0, 0);
-    // Trigger reveal animations on the newly-visible page
+    // Trigger page-enter transition
+    target.classList.remove('page-entering');
+    void target.offsetWidth; // force reflow
+    target.classList.add('page-entering');
+    target.addEventListener('animationend', function onEnd() {
+      target.classList.remove('page-entering');
+      target.removeEventListener('animationend', onEnd);
+    });
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Trigger reveal animations
     setTimeout(function() {
+      if (!revealObs) return;
       target.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
-        revealObs && revealObs.observe(el);
+        revealObs.observe(el);
         if (el.getBoundingClientRect().top < window.innerHeight) {
           el.classList.add('visible');
         }
@@ -10616,7 +10714,27 @@ function showPage(pageId) {
 
   setNavActive(pageId);
 
-  // AskNaija category buttons — init accordion sidebar on first visit
+  // Update document title and meta description
+  var meta = PAGE_META[pageId] || PAGE_META['home'];
+  document.title = meta.title;
+  var descEl = document.querySelector('meta[name="description"]');
+  if (descEl && meta.desc) descEl.setAttribute('content', meta.desc);
+
+  // Update canonical URL
+  var canonical = document.querySelector('link[rel="canonical"]');
+  var path = PAGE_TO_PATH[pageId] || '/';
+  var fullUrl = 'https://nitizen.ng' + path;
+  if (canonical) canonical.setAttribute('href', fullUrl);
+
+  // Push to browser history (true by default, false when restoring from popstate)
+  if (pushState !== false) {
+    var currentPath = window.location.pathname;
+    if (currentPath !== path) {
+      history.pushState({ pageId: pageId }, meta.title, path);
+    }
+  }
+
+  // AskNaija sidebar init
   if (pageId === 'asknaija-beta') {
     setTimeout(function() {
       if (typeof buildSidebar === 'function') buildSidebar();
@@ -10625,17 +10743,62 @@ function showPage(pageId) {
   }
 }
 
-// ── HASH ROUTER — fires on every URL hash change ──
-function routeFromHash() {
-  // window.location.hash is e.g. "#about" → strip the "#"
-  var hash = window.location.hash.replace('#', '').trim();
-  showPage(hash || 'home');
-  // Close mobile menu whenever a new page loads
+// ── NAVIGATE helper — called by all links/buttons instead of showPage directly ──
+function navigate(path) {
+  // Accept either a path ("/about") or a legacy pageId ("about")
+  var pageId;
+  if (path && path.charAt(0) === '/') {
+    pageId = ROUTE_MAP[path] || 'home';
+  } else {
+    // Legacy pageId passed directly — still supported
+    pageId = (path && NITIZEN_PAGES.indexOf(path) > -1) ? path : 'home';
+  }
+  showPage(pageId, true);
   closeMobileMenu();
 }
 
-// Listen to hash changes (browser Back / Forward / any <a href="#…">)
-window.addEventListener('hashchange', routeFromHash);
+// ── POPSTATE — browser back/forward ──
+window.addEventListener('popstate', function(e) {
+  var pageId = (e.state && e.state.pageId) ? e.state.pageId : resolvePathToPageId(window.location.pathname);
+  showPage(pageId, false);
+  closeMobileMenu();
+});
+
+// ── PATH RESOLVER ──
+function resolvePathToPageId(pathname) {
+  // Exact match
+  if (ROUTE_MAP[pathname]) return ROUTE_MAP[pathname];
+  // Strip trailing slash
+  var clean = pathname.replace(/\/$/, '') || '/';
+  if (ROUTE_MAP[clean]) return ROUTE_MAP[clean];
+  return 'home';
+}
+
+// ── INTERCEPT all internal <a> clicks ──
+// This makes standard <a href="/about"> work without full page reload
+document.addEventListener('click', function(e) {
+  var a = e.target.closest('a[href]');
+  if (!a) return;
+  var href = a.getAttribute('href');
+  if (!href) return;
+
+  // Ignore: external links, mailto, tel, anchors-within-page (#id not a route),
+  // and links with explicit target="_blank"
+  if (href.startsWith('http') || href.startsWith('mailto:') ||
+      href.startsWith('tel:') || href.startsWith('javascript:') ||
+      a.target === '_blank') return;
+
+  // Ignore in-page section anchors (single # with no path component)
+  if (href.startsWith('#') && !ROUTE_MAP['/' + href.slice(1)] && NITIZEN_PAGES.indexOf(href.slice(1)) === -1) return;
+
+  // Resolve the path
+  var path = href.startsWith('/') ? href : ('/' + href.replace(/^#/, ''));
+  var pageId = resolvePathToPageId(path);
+  if (NITIZEN_PAGES.indexOf(pageId) === -1) return; // let browser handle unknown paths
+
+  e.preventDefault();
+  navigate(path);
+}, true); // capture phase so it fires before any onclick
 
 // ── MOBILE HAMBURGER ──
 function closeMobileMenu() {
@@ -10759,8 +10922,28 @@ document.addEventListener('DOMContentLoaded', function() {
     }).catch(function() { prompt('Copy this:', text); });
   };
 
-  // ── Initial page load: read hash and show correct page ──
-  routeFromHash();
+  // ── Initial page load: resolve current path and show correct page ──
+  // Supports both clean paths (/about) and legacy hash URLs (#about)
+  (function() {
+    var pageId;
+    var path = window.location.pathname;
+    // If the path is just '/' but there's a hash (legacy bookmark), resolve from hash
+    if ((path === '/' || path === '') && window.location.hash) {
+      var hashId = window.location.hash.replace('#', '').trim();
+      if (NITIZEN_PAGES.indexOf(hashId) > -1) {
+        pageId = hashId;
+        // Upgrade the URL from hash to clean path
+        var cleanPath = PAGE_TO_PATH[pageId] || '/';
+        history.replaceState({ pageId: pageId }, document.title, cleanPath);
+      }
+    }
+    if (!pageId) {
+      pageId = resolvePathToPageId(path);
+    }
+    showPage(pageId, false); // false = don't push another history entry on first load
+    // Seed the initial history state so popstate works on first Back press
+    history.replaceState({ pageId: pageId }, document.title, PAGE_TO_PATH[pageId] || '/');
+  })();
 
   // ── CRISIS BANNER: dismiss on ×, persist via sessionStorage ──
   (function() {
