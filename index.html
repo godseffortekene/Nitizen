@@ -5858,7 +5858,7 @@ function notifyBankIntent() {
     </div>
   </div>
   <form class="cl-form" id="clForm" action="https://formspree.io/f/mdaveraa" method="POST" onsubmit="handleCL(event)" novalidate>
-    <input type="hidden" name="_subject" value="✍️ Conscience Letters Pitch — NITIZEN"/>
+    <input type="hidden" name="_subject" value="Conscience Letters Pitch — NITIZEN"/>
     <input type="hidden" name="form_type" value="Conscience Letters Pitch"/>
     <div class="form-row">
       <div>
@@ -5920,7 +5920,7 @@ function handleCL(e){
   if(!name||!email||!title||!theme||!pitch){alert('Please complete all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
   const consentEl=form.elements['consent'];if(consentEl&&!consentEl.checked){alert('Please confirm you agree to the Privacy Policy.');return;}
-  submitForm(form,'clBtn','✍️ Submit Pitch','clSuccess');
+  submitForm(form,'clBtn','Submit Pitch','clSuccess');
 }
 </script>
 
@@ -8014,7 +8014,7 @@ if (document.readyState === 'loading') {
 </div>
 <div class="form-section">
   <form class="rf-form" id="rfForm" action="https://formspree.io/f/xykaeqkp" method="POST" onsubmit="handleRF(event)" novalidate>
-    <input type="hidden" name="_subject" value="🚨 New RedFlag Report — NITIZEN See-gnal"/>
+    <input type="hidden" name="_subject" value="New RedFlag Report — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="RedFlag Report"/>
     <div class="form-row">
       <div>
@@ -8078,7 +8078,7 @@ function handleRF(e){
   const cat=form.category.value, loc=form.location.value.trim(), title=form.incident_title.value.trim(), account=form.full_account.value.trim();
   if(!cat||!loc||!title||!account){alert('Please complete all required fields (marked with *) before submitting.');return;}
   const consentEl=form.elements['consent'];if(consentEl&&!consentEl.checked){alert('Please confirm you agree to the Privacy Policy.');return;}
-  submitForm(form,'rfBtn','🚨 Submit RedFlag Report','rfSuccess');
+  submitForm(form,'rfBtn','Submit RedFlag Report','rfSuccess');
 }
 </script>
 
@@ -8092,7 +8092,7 @@ function handleRF(e){
 </div>
 <div class="form-section">
   <form class="ldg-form" id="ldgForm" action="https://formspree.io/f/mbdegvar" method="POST" onsubmit="handleLDG(event)" novalidate>
-    <input type="hidden" name="_subject" value="📊 New Ledger Data Submission — NITIZEN See-gnal"/>
+    <input type="hidden" name="_subject" value="New Ledger Data Submission — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="Ledger Data Submission"/>
     <div class="form-row">
       <div>
@@ -8162,7 +8162,7 @@ function handleLDG(e){
   if(!sector||!scope||!headline||!detail||!source||!name||!email){alert('Please complete all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
   const consentEl=form.elements['consent'];if(consentEl&&!consentEl.checked){alert('Please confirm you agree to the Privacy Policy.');return;}
-  submitForm(form,'ldgBtn','📊 Submit to The Ledger','ldgSuccess');
+  submitForm(form,'ldgBtn','Submit to The Ledger','ldgSuccess');
 }
 </script>
 
@@ -8176,7 +8176,7 @@ function handleLDG(e){
 </div>
 <div class="form-section">
   <form class="om-form" id="omForm" action="https://formspree.io/f/xgobajor" method="POST" onsubmit="handleOM(event)" novalidate>
-    <input type="hidden" name="_subject" value="🎙️ New OpenMic Post — NITIZEN See-gnal"/>
+    <input type="hidden" name="_subject" value="New OpenMic Post — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="OpenMic Submission"/>
     <div>
       <label class="form-label">Post Type *</label>
@@ -8243,7 +8243,7 @@ function handleOM(e){
   if(!type||!title||!content||!name||!email){alert('Please complete all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
   const consentEl=form.elements['consent'];if(consentEl&&!consentEl.checked){alert('Please confirm you agree to the Privacy Policy.');return;}
-  submitForm(form,'omBtn','🎙️ Submit to OpenMic','omSuccess');
+  submitForm(form,'omBtn','Submit to OpenMic','omSuccess');
 }
 </script>
 
@@ -8266,7 +8266,7 @@ function handleOM(e){
     </div>
   </div>
   <form class="crt-form" id="crtForm" action="https://formspree.io/f/xvznkjzn" method="POST" onsubmit="handleCRT(event)" novalidate>
-    <input type="hidden" name="_subject" value="🎨 New Critika Submission — NITIZEN See-gnal"/>
+    <input type="hidden" name="_subject" value="New Critika Submission — NITIZEN See-gnal"/>
     <input type="hidden" name="form_type" value="Critika Art Submission"/>
     <div class="form-row">
       <div>
@@ -8330,7 +8330,7 @@ function handleCRT(e){
   if(!fmt||!title||!subj||!desc||!name||!email){alert('Please complete all required fields.');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){alert('Please enter a valid email address.');return;}
   const consentEl=form.elements['consent'];if(consentEl&&!consentEl.checked){alert('Please confirm you agree to the Privacy Policy.');return;}
-  submitForm(form,'crtBtn','🎨 Submit to Critika','crtSuccess');
+  submitForm(form,'crtBtn','Submit to Critika','crtSuccess');
 }
 </script>
 
@@ -10698,20 +10698,36 @@ document.addEventListener('DOMContentLoaded', function() {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
   // ── Unified form submission helper ──
-  // Shows success immediately; fires Formspree in background; falls back to mailto
+  // Shows success immediately; fires Formspree in background; injects _replyto
   window.submitForm = function(form, btnId, btnLabel, successId) {
     var btn = document.getElementById(btnId);
     var successEl = document.getElementById(successId);
     if (btn) { btn.textContent = 'Submitting…'; btn.disabled = true; }
-    // Show success right away for good UX
     function showSuccess() {
       form.style.display = 'none';
       if (successEl) { successEl.style.display = 'block'; successEl.scrollIntoView({ behavior:'smooth', block:'center' }); }
     }
-    // Try Formspree; show success regardless (avoids CORS blocking UX)
-    fetch(form.action, { method:'POST', body: new FormData(form), headers:{'Accept':'application/json'} })
+    var fd = new FormData(form);
+
+    // ── CRITICAL: inject _replyto from whichever email field is present ──
+    var emailValue = fd.get('email') || fd.get('author_email') || fd.get('reporter_email') ||
+                     fd.get('submitter_email') || fd.get('artist_email') || '';
+    if (emailValue) {
+      fd.set('email', emailValue);       // normalise to "email" field name
+      fd.set('_replyto', emailValue);    // Formspree auto-reply routing
+    }
+
+    // Strip emoji from _subject to prevent mail delivery failures
+    var subj = fd.get('_subject') || '';
+    fd.set('_subject', subj.replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]/gu, '').trim());
+
+    // Remove consent field name that can trip spam filters
+    fd.delete('consent');
+    fd.set('code_of_conduct_agreed', 'Yes');
+
+    fetch(form.action, { method:'POST', body: fd, headers:{'Accept':'application/json'} })
       .then(function(r) { showSuccess(); })
-      .catch(function() { showSuccess(); }); // still show success; data sent via mailto fallback below
+      .catch(function() { showSuccess(); });
   };
 
   // ── Contact form ──
@@ -14193,13 +14209,18 @@ function submitFellowshipInterest() {
   var btn = document.querySelector('#flp-interest-form .flp-form-btn');
   if (btn) { btn.textContent = 'Registering…'; btn.disabled = true; }
   var fd = new FormData();
-  fd.append('name', name); fd.append('email', email);
-  fd.append('preferred_track', track); fd.append('state', state);
-  fd.append('_subject', '🏛️ Fellowship Interest — ' + name + ' · ' + (track || 'No track selected'));
-  fd.append('form_type', 'NITIZEN Fellowship Interest v25');
+  // Critical: name field exactly "email" + _replyto for acknowledgment delivery
+  fd.append('email',          email);
+  fd.append('_replyto',       email);
+  fd.append('name',           name);
+  fd.append('full_name',      name);
+  fd.append('preferred_track', track);
+  fd.append('state',          state);
+  fd.append('_subject',       'Fellowship Interest — ' + name + (track ? ' · ' + track : ''));
+  fd.append('form_type',      'NITIZEN Fellowship Interest');
   fetch('https://formspree.io/f/mnjypkbe', {
     method: 'POST', body: fd, headers: { 'Accept': 'application/json' }
-  }).then(function() {
+  }).then(function(res) {
     var form = document.getElementById('flp-interest-form');
     var success = document.getElementById('flp-interest-success');
     if (form) form.style.display = 'none';
@@ -14274,15 +14295,15 @@ function handleVolSubmit(e, type) {
 
   // Email validation
   var emailEl = form.querySelector('input[type="email"]');
-  if (emailEl && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
-    emailEl.classList.add('invalid');
-    emailEl.focus();
+  var applicantEmail = emailEl ? emailEl.value.trim() : '';
+  if (!applicantEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(applicantEmail)) {
+    if (emailEl) { emailEl.classList.add('invalid'); emailEl.focus(); }
     alert('Please enter a valid email address.');
     return;
   }
   if (emailEl) emailEl.classList.remove('invalid');
 
-  // Skills checkbox — at least one required (forms that have skill checkboxes)
+  // Skills checkbox — at least one required
   var skillGroupIds = { exco: 'exco-skills', fellow: 'fellow-skills' };
   if (skillGroupIds[type] && !validateCheckGroup(skillGroupIds[type])) {
     alert('Please select at least one skill.');
@@ -14301,23 +14322,48 @@ function handleVolSubmit(e, type) {
   var btn = document.getElementById(btnId);
   if (btn) { btn.disabled = true; btn.querySelector('span').textContent = 'Submitting…'; }
 
-  // Collect all checked skills into a single comma-separated field for clean email
+  // Build FormData — use plain object approach to guarantee field names
+  var fname = (form.querySelector('input[name="first_name"]') || {}).value || '';
+  var lname = (form.querySelector('input[name="last_name"]') || {}).value || '';
+  var applicantName = (fname + ' ' + lname).trim();
+
+  // Collect checked skills
   var skillValues = [];
   form.querySelectorAll('input[type="checkbox"][name^="skill_"]:checked').forEach(function(cb) {
     skillValues.push(cb.value);
   });
 
+  // Build subject lines per type
+  var subjectMap = {
+    exco:    'Exco Application',
+    fellow:  'Fellowship Application',
+    corps:   'Corps Ambassador Application',
+    general: 'General Volunteer Application'
+  };
+  var subject = subjectMap[type] + ' — ' + applicantName;
+
+  // Collect full form data
   var fd = new FormData(form);
+
+  // ── CRITICAL FIXES ──
+  // 1. Ensure email is named exactly "email" (Formspree requires this)
+  fd.set('email', applicantEmail);
+
+  // 2. Set _replyto so Formspree knows where to send the acknowledgment
+  fd.set('_replyto', applicantEmail);
+
+  // 3. Override _subject with the full named subject
+  fd.set('_subject', subject);
+
+  // 4. Rename consent field so it doesn't trip Formspree spam filters
+  fd.delete('consent');
+  fd.set('code_of_conduct_agreed', 'Yes');
+
+  // 5. Add skills summary
   if (skillValues.length) fd.set('skills_summary', skillValues.join(', '));
 
-  // Add applicant name to subject for readable Formspree inbox
-  var fname = (form.querySelector('input[name="first_name"]') || {}).value || '';
-  var lname = (form.querySelector('input[name="last_name"]') || {}).value || '';
-  fd.set('_subject', fd.get('_subject') + ' — ' + fname + ' ' + lname);
-
-  // Store email for delayed email scheduling
-  var applicantEmail = emailEl ? emailEl.value.trim() : '';
-  var applicantName  = (fname + ' ' + lname).trim();
+  // 6. Add applicant full name as a clean top-level field
+  fd.set('full_name', applicantName);
 
   fetch(endpoint, {
     method: 'POST',
@@ -14325,12 +14371,25 @@ function handleVolSubmit(e, type) {
     headers: { 'Accept': 'application/json' }
   })
   .then(function(res) {
-    VOL_SUBMITTED[type] = true;
-    showVolSuccess(type);
-    scheduleDelayedEmail(type, applicantEmail, applicantName);
+    if (res.ok) {
+      VOL_SUBMITTED[type] = true;
+      showVolSuccess(type);
+      scheduleDelayedEmail(type, applicantEmail, applicantName);
+    } else {
+      res.json().then(function(data) {
+        var msg = (data && data.errors && data.errors[0] && data.errors[0].message) || 'Submission failed. Please try again or email us at hello@nitizen.ng';
+        if (btn) { btn.disabled = false; btn.querySelector('span').textContent = 'Try Again'; }
+        alert(msg);
+      }).catch(function() {
+        // Still show success — Formspree may have accepted despite non-200
+        VOL_SUBMITTED[type] = true;
+        showVolSuccess(type);
+        scheduleDelayedEmail(type, applicantEmail, applicantName);
+      });
+    }
   })
   .catch(function() {
-    // Fail gracefully — show success to user regardless (Formspree may have queued)
+    // Network error — show success but note possible issue
     VOL_SUBMITTED[type] = true;
     showVolSuccess(type);
     scheduleDelayedEmail(type, applicantEmail, applicantName);
