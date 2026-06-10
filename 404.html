@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NITIZEN — Redirecting…</title>
+<meta name="robots" content="noindex"/>
+<style>
+  body { margin: 0; background: #f7faf8; display: flex; align-items: center;
+         justify-content: center; min-height: 100vh;
+         font-family: 'Space Mono', monospace; color: #1a4d2e; }
+  p { font-size: .8rem; letter-spacing: .06em; opacity: .7; }
+</style>
+<script>
+/**
+ * NITIZEN 404 redirect — for GitHub Pages / static hosts without URL rewrites.
+ * On Vercel (with vercel.json) this file is never served; skip deployment.
+ *
+ * Stores the full original path + query + hash in ?_r= and bounces to /?_r=…
+ * The index.html head script reads ?_r= and restores the clean path before
+ * the SPA router boots.
+ */
+(function() {
+  var path   = window.location.pathname;
+  var search = window.location.search;
+  var hash   = window.location.hash;
+
+  // Don't redirect if we're already at root (avoids loops)
+  if (path === '/' || path === '') {
+    window.location.replace('/');
+    return;
+  }
+
+  var qs = '?_r=' + encodeURIComponent(path);
+  if (search) qs += '&' + search.slice(1);   // append original query params
+  var target = '/' + qs + hash;
+  window.location.replace(target);
+})();
+</script>
+</head>
+<body><p>Redirecting…</p></body>
+</html>

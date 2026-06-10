@@ -1,0 +1,4 @@
+# NITIZEN — Netlify SPA redirect
+# All unmatched paths serve index.html with 200 (not a redirect)
+# Static assets are matched by Netlify before this rule fires.
+/*  /index.html  200
