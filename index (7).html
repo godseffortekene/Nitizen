@@ -5003,6 +5003,7 @@ window.location.replace(redirect);
 <!-- ═══ PAGE: INITIATIVES ═══ -->
 <div id="page-initiatives" class="spa-page" style="display:none">
 <div class="page-header-ink">
+    <div class="breadcrumb breadcrumb-dark"><a href="/">Home</a><span>/</span>Initiatives</div>
     <div class="section-label" style="color:var(--green-soft)">Platform Initiatives</div>
     <h1 style="font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:800;color:#fff;line-height:1.05">Three Pillars. <br><em style="font-style:italic;color:var(--green-soft)">One Civic Mission.</em></h1>
     <p style="font-family:var(--body);font-size:1.05rem;line-height:1.82;color:rgba(255,255,255,.6);max-width:540px;margin-top:1.2rem">NITIZEN is structured around three interlocking initiatives — each targeting a different dimension of the civic education gap, designed to scale through technology, community, and creativity.</p>
@@ -5659,8 +5660,8 @@ window.location.replace(redirect);
       <text x="114" y="48" fill="#c8a84b" font-size="12" opacity=".6">✦</text>
     </svg>
   </div>
-  <div class="breadcrumb"><a href="/">Home</a><span>/</span><a href="/conscience-letters">Conscience Letters</a><span>/</span>Support</div>
-  <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.9rem">Conscience Letters — Reader Support</div>
+  <div class="breadcrumb"><a href="/">Home</a><span>/</span>Membership</div>
+  <div style="font-family:var(--mono);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--green-light);margin-bottom:.9rem">NITIZEN — Membership &amp; Support</div>
   <h1>Sustain Independent <em>Civic Journalism</em></h1>
   <p>Conscience Letters is free to read. Sustaining it — the research, the editorial rigour, the writers who give their time to document Nigeria's governance — requires support. Become a founding reader and keep civic journalism alive.</p>
 </div>
@@ -6508,6 +6509,7 @@ function handleCL(e){
   <h2>Be the First to Use AskNaija</h2>
   <p>Leave your email and we will notify you the moment AskNaija goes live. No spam — one notification, when it matters.</p>
   <form class="notify-form" id="notifyForm" action="https://formspree.io/f/xbdegvjl" method="POST" onsubmit="handleNotify(event)" novalidate>
+    <input type="hidden" name="_subject" value="AskNaija Launch Notification — NITIZEN"/>
     <input type="hidden" name="type" value="AskNaija Launch Notification"/>
     <input type="email" name="email" placeholder="Your email address" required autocomplete="email"/>
     <button type="submit" id="notifyBtn">Notify Me →</button>
@@ -6567,6 +6569,7 @@ function handleNotify(e) {
     </svg>
   </div>
   <div class="breadcrumb"><a href="/">Home</a><span>/</span>AskNaija</div>
+  <div class="breadcrumb breadcrumb-dark" style="margin-bottom:1.5rem"><a href="/">Home</a><span>/</span><a href="/asknaija">AskNaija</a><span>/</span>Beta</div>
   <div class="ank-pill">
     <span class="ank-pill-dot"></span>
     KB + AI · Live
@@ -8592,7 +8595,7 @@ function handleCRT(e){
 
     <div class="art-nav">
       <a href="/see-gnal" class="btn-ghost">← All Critika</a>
-      <a href="/see-gnal/openmic" class="btn-primary">Submit Your Writing →</a>
+      <a href="/see-gnal/critika" class="btn-primary">Submit to Critika →</a>
     </div>
   </div>
 
@@ -8603,7 +8606,7 @@ function handleCRT(e){
 <div id="page-contact" class="spa-page" style="display:none">
 <div class="page-header-dark">
     <div class="breadcrumb">
-      <a href="/">Home</a><span>/</span><span>Get Involved</span>
+      <a href="/">Home</a><span>/</span><span>Contact</span>
     </div>
     <div class="section-label" style="color:var(--green-light)">Get Involved</div>
     <h1 style="font-family:var(--display);font-size:clamp(2.5rem,6vw,5rem);font-weight:800;color:#fff;line-height:1.05">
@@ -8674,6 +8677,8 @@ function handleCRT(e){
           <div class="section-label">Send a Message</div>
           <h2 class="section-title" style="margin-bottom:2rem">Let&rsquo;s <em>Connect</em></h2>
           <form class="contact-form" id="contactForm" action="https://formspree.io/f/mojyjgvz" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="Contact Message — NITIZEN"/>
+            <input type="hidden" name="form_type" value="Contact Form"/>
             <div class="contact-row">
               <input type="text" name="name" placeholder="Your Full Name" required autocomplete="name" aria-label="Full name"/>
               <input type="email" name="email" placeholder="Email Address" required autocomplete="email" aria-label="Email"/>
@@ -14868,7 +14873,9 @@ function validateCheckGroup(groupId) {
 // ── Shared notification endpoint (configure auto-reply in Formspree dashboard) ──
 // Uses the existing general endpoint as fallback; replace with a dedicated
 // "notifications" form on Formspree for cleanest separation.
-var NOTIFY_ENDPOINT = 'https://formspree.io/f/mdavgbel';
+// NOTE: NOTIFY_ENDPOINT currently shares the general-volunteer endpoint.
+// Replace with a dedicated Formspree form for cleanest inbox separation.
+var NOTIFY_ENDPOINT = 'https://formspree.io/f/mdavgbel'; // same as vol-general — intentional fallback
 
 // ── Labels for error/success messaging ───────────────────────────────────
 var VOL_LABELS = {
