@@ -3060,17 +3060,10 @@ table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrollin
 /* ── SPA UTILITY ── */
 .spa-page { display: none; }
 
-/* ── PAGE TRANSITION — smooth fade-in on navigation ── */
-@keyframes pageEnter {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.spa-page.page-entering {
-  animation: pageEnter .22s ease forwards;
-}
-@media(prefers-reduced-motion: reduce) {
-  .spa-page.page-entering { animation: none; }
-}
+/* ── PAGE TRANSITION — opacity + lift, driven by JS inline styles ──
+   The blanket covers the old page, JS swaps content, blanket fades out,
+   new content fades up. No CSS keyframes needed; transitions set inline.
+   prefers-reduced-motion: transitions are skipped in JS before setting any styles. */
 
 /* ── LAUNCH CELEBRATION ── */
 .launch-banner {
@@ -3625,6 +3618,9 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
 </style>
 </head>
 <body>
+<!-- ── TRANSITION LAYER — progress bar + blanket cover ── -->
+<div id="nz-bar" style="position:fixed;top:0;left:0;height:3px;width:0%;z-index:99999;background:linear-gradient(90deg,#4aaf74,#c8a84b);opacity:0;pointer-events:none;transition:none"></div>
+<div id="nz-blanket" style="position:fixed;inset:0;z-index:9998;background:var(--ink,#0f1f16);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .22s ease"></div>
 
 <a href="#main" class="skip-link">Skip to content</a>
 <nav id="main-nav" role="navigation" aria-label="Main navigation">
@@ -4168,8 +4164,8 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
           Full membership. Registration opens 12 June — Democracy Day.
         </p>
         <div style="display:flex;gap:1rem;flex-wrap:wrap">
-          <button class="btn-gold" onclick="navigate('/programs/fellowship')">VIEW THE FELLOWSHIP →</button>
-          <button class="btn-ghost" onclick="navigate('/programs')">ALL PROGRAMS</button>
+          <a href="/programs/fellowship" class="btn-gold">VIEW THE FELLOWSHIP →</a>
+          <a href="/programs" class="btn-ghost">ALL PROGRAMS</a>
         </div>
       </div>
       <div class="reveal" style="background:rgba(255,255,255,.04);border:1px solid rgba(200,168,75,.2);border-top:3px solid var(--gold);padding:2rem;border-radius:2px">
@@ -4192,7 +4188,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
             <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(248,246,242,.35);margin-top:.25rem">Age Limit</div>
           </div>
         </div>
-        <button class="btn-gold" style="width:100%;text-align:center" onclick="navigate('/programs/fellowship')">REGISTER INTEREST →</button>
+        <a href="/programs/fellowship" class="btn-gold" style="width:100%;text-align:center">REGISTER INTEREST →</a>
       </div>
     </div>
   </div>
@@ -8681,8 +8677,8 @@ function handleCRT(e){
       <div class="prog-grid reveal">
 
         <!-- FELLOWSHIP — Active -->
-        <div class="prog-card active-program" onclick="navigate('/programs/fellowship')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')navigate('/programs/fellowship')">
-          <div class="prog-card-num">Program 01 · Active</div>
+        <a href="/programs/fellowship" class="prog-card active-program">
+          <div class="prog-card-num">Program 01 · Active</a>
           <span class="prog-card-icon">🏛️</span>
           <h3>Leadership Fellowship</h3>
           <p>Six months. Thirty fellows. Nigeria's most rigorous civic leadership programme — eight tracks, full NITIZEN membership, and real civic work that reaches millions.</p>
@@ -8693,8 +8689,8 @@ function handleCRT(e){
         </div>
 
         <!-- MEMBERSHIP — Coming -->
-        <div class="prog-card coming-soon" onclick="navigate('/membership')">
-          <div class="prog-card-num">Program 02 · Open</div>
+        <a href="/membership" class="prog-card coming-soon">
+          <div class="prog-card-num">Program 02 · Open</a>
           <span class="prog-card-icon">🤝</span>
           <h3>NITIZEN Membership</h3>
           <p>Sustaining members who believe in independent civic infrastructure for Nigeria. Access, community, and the satisfaction of keeping civic intelligence free for all Nigerians.</p>
@@ -8749,29 +8745,29 @@ function handleCRT(e){
           NITIZEN is built by civic-minded Nigerians. Whether you're a student, a corps member, a professional, or a leader ready for executive responsibility — there is a role designed for you.
         </p>
         <div class="vol-recruit-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
-          <div class="vol-recruit-card" onclick="navigate('/programs/apply/team-lead')">
-            <div class="vol-rc-accent" style="background:var(--gold)"></div>
+          <a href="/programs/apply/team-lead" class="vol-recruit-card">
+            <div class="vol-rc-accent" style="background:var(--gold)"></a>
             <div class="vol-rc-icon">👑</div>
             <div class="vol-rc-title">Team Lead (Exco)</div>
             <div class="vol-rc-body">Executive-level leadership roles. Department heads, operations leads, and strategic directors who run NITIZEN's internal functions.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </div>
-          <div class="vol-recruit-card" onclick="navigate('/programs/apply/fellowship')">
-            <div class="vol-rc-accent" style="background:var(--green-soft)"></div>
+          <a href="/programs/apply/fellowship" class="vol-recruit-card">
+            <div class="vol-rc-accent" style="background:var(--green-soft)"></a>
             <div class="vol-rc-icon">🏛️</div>
             <div class="vol-rc-title">Fellowship</div>
             <div class="vol-rc-body">Six-month immersive programme for exceptional young Nigerians. Eight tracks. Full membership. Real civic work at scale. Under 30.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </div>
-          <div class="vol-recruit-card" onclick="navigate('/programs/apply/corps-ambassador')">
-            <div class="vol-rc-accent" style="background:#25D366"></div>
+          <a href="/programs/apply/corps-ambassador" class="vol-recruit-card">
+            <div class="vol-rc-accent" style="background:#25D366"></a>
             <div class="vol-rc-icon">🎖️</div>
             <div class="vol-rc-title">Corps Ambassador</div>
             <div class="vol-rc-body">NYSC members serving with purpose. A structured programme that lets corps members contribute civic value throughout their service year.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </div>
-          <div class="vol-recruit-card" onclick="navigate('/programs/apply/volunteer')">
-            <div class="vol-rc-accent" style="background:var(--green-mid)"></div>
+          <a href="/programs/apply/volunteer" class="vol-recruit-card">
+            <div class="vol-rc-accent" style="background:var(--green-mid)"></a>
             <div class="vol-rc-icon">🤝</div>
             <div class="vol-rc-title">General Volunteer</div>
             <div class="vol-rc-body">Any Nigerian who believes in the mission. Flexible contribution — bring your skills, your time, and your commitment to civic change.</div>
@@ -8788,9 +8784,9 @@ function handleCRT(e){
       <h2>Start with the Fellowship.</h2>
       <p>The NITIZEN Leadership Fellowship is now open for interest registration. Thirty seats. Class of 2026. Registration opens 12 June — Democracy Day.</p>
     </div>
-    <button class="btn-primary" onclick="navigate('/programs/fellowship')" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">
+    <a href="/programs/fellowship" class="btn-primary" style="white-space:nowrap;background:#fff;color:var(--green-deep);flex-shrink:0">
       FELLOWSHIP — JUNE 12 →
-    </button>
+    </a>
   </div>
 
 </div><!-- end page-programs -->
@@ -9167,7 +9163,7 @@ function handleCRT(e){
       <div class="flp-form-success" id="flp-interest-success">
         <h4>✓ Registered</h4>
         <p>You&rsquo;re on the list. We&rsquo;ll notify you on 12 June when registration opens. Share this with someone else who should apply.</p>
-        <button class="btn-outline" style="margin-top:1.2rem;font-size:.62rem" onclick="navigate('/programs')">← BACK TO PROGRAMS</button>
+        <a href="/programs" class="btn-outline" style="margin-top:1.2rem;font-size:.62rem">← BACK TO PROGRAMS</a>
       </div>
       <span class="flp-deadline">APPLICATIONS OPEN · 12 JUNE 2026 · ROLLING ADMISSIONS</span>
       <p class="flp-note">Full application portal at nitizen.ng/fellowship &nbsp;·&nbsp; Questions: fellowship@nitizen.ng</p>
@@ -9176,7 +9172,7 @@ function handleCRT(e){
 
   <!-- BACK TO PROGRAMS -->
   <div style="background:var(--off-white);padding:2.5rem 4rem;border-top:1px solid var(--border);display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap">
-    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <a href="/programs" class="btn-outline" style="font-size:.68rem">← ALL PROGRAMS</a>
     <span style="font-family:var(--mono);font-size:.64rem;color:var(--muted);letter-spacing:.06em">Programs &rsaquo; Leadership Fellowship &rsaquo; Class of 2026</span>
   </div>
 
@@ -9508,12 +9504,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+      <a href="/programs" class="btn-outline" style="font-size:.68rem">← BACK TO PROGRAMS</a>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <a href="/programs" class="btn-outline" style="font-size:.68rem">← ALL PROGRAMS</a>
     <span class="vol-back-crumb">Programs › Team Lead (Exco) Application</span>
   </div>
 </div>
@@ -9838,12 +9834,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="navigate('/programs/fellowship')" style="font-size:.68rem">← BACK TO FELLOWSHIP</button>
+      <a href="/programs/fellowship" class="btn-outline" style="font-size:.68rem">← BACK TO FELLOWSHIP</a>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="navigate('/programs/fellowship')" style="font-size:.68rem">← FELLOWSHIP</button>
+    <a href="/programs/fellowship" class="btn-outline" style="font-size:.68rem">← FELLOWSHIP</a>
     <span class="vol-back-crumb">Programs › Leadership Fellowship › Apply</span>
   </div>
 </div>
@@ -10111,12 +10107,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+      <a href="/programs" class="btn-outline" style="font-size:.68rem">← BACK TO PROGRAMS</a>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <a href="/programs" class="btn-outline" style="font-size:.68rem">← ALL PROGRAMS</a>
     <span class="vol-back-crumb">Programs › Corps Ambassador Application</span>
   </div>
 </div>
@@ -10397,12 +10393,12 @@ function handleCRT(e){
       <a href="https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J" target="_blank" rel="noopener" class="vol-success-wa" style="background:#128C7E">📢 NITIZEN Channel</a>
     </div>
     <div style="margin-top:2rem">
-      <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← BACK TO PROGRAMS</button>
+      <a href="/programs" class="btn-outline" style="font-size:.68rem">← BACK TO PROGRAMS</a>
     </div>
   </div>
 
   <div class="vol-back-strip">
-    <button class="btn-outline" onclick="navigate('/programs')" style="font-size:.68rem">← ALL PROGRAMS</button>
+    <a href="/programs" class="btn-outline" style="font-size:.68rem">← ALL PROGRAMS</a>
     <span class="vol-back-crumb">Programs › General Volunteer Application</span>
   </div>
 </div>
@@ -10572,235 +10568,347 @@ function handleCRT(e){
 
 
 <script>
-/* ═══════════════════════════════════════════════════════
-   NITIZEN — Hash Router
-   Works exactly like a conventional multi-page website:
-   • Every link is a real <a href="#page-id"> — no onclick
-   • Browser Back / Forward buttons work natively
-   • URL bar updates on every navigation (#home, #about …)
-   • Mobile hamburger is a plain button toggle — no JS routing
-   • Bookmarkable, shareable URLs
-═══════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════════════
+   NITIZEN — Client-Side Router + Page Transition Engine  v30
+   ─────────────────────────────────────────────────────────────────
+   Architecture
+   ────────────
+   • pushState routing: clean URLs (/programs, /conscience-letters…)
+   • Global <a> click interceptor (capture phase) — no onclick needed
+   • Three-phase transition: fade-out → loader bar → fade-in
+   • Browser Back/Forward fully supported via popstate
+   • Legacy hash URLs (#about) silently upgraded to clean paths
+   • Mobile hamburger, scroll-shrink nav, IntersectionObserver reveals
+   • AskNaija beta lazy init on page show
+   ─────────────────────────────────────────────────────────────────
+   Volunteer Forms
+   ───────────────
+   exco   → https://formspree.io/f/meewgvyy
+   fellow → https://formspree.io/f/mqeoqwrn
+   corps  → https://formspree.io/f/mykawlra
+   general→ https://formspree.io/f/mdavgbel
+   fellowship interest → https://formspree.io/f/mnjypkbe
+═══════════════════════════════════════════════════════════════════ */
 
-// ── PAGE LIST ──
+// ── PAGE REGISTRY ──────────────────────────────────────────────────
 var NITIZEN_PAGES = [
-  'home','about','initiatives','cl','article-1','article-2','article-3','article-4',
+  'home','about','initiatives','cl',
+  'article-1','article-2','article-3','article-4',
   'membership','cl-pitch','asknaija','asknaija-beta','senal','redflag',
   'ledger-submit','openmic-submit','critika-submit','critika-article',
   'contact','privacy','programs','fellowship',
   'vol-exco','vol-fellow','vol-corps','vol-general'
 ];
 
-// ── PATH ↔ PAGE-ID MAP ──
-// Maps clean URL paths to internal page IDs and vice-versa.
+// ── ROUTE MAP ──────────────────────────────────────────────────────
 var ROUTE_MAP = {
-  '/':                  'home',
-  '/about':             'about',
-  '/initiatives':       'initiatives',
-  '/conscience-letters':'cl',
+  '/':                                        'home',
+  '/about':                                   'about',
+  '/initiatives':                             'initiatives',
+  '/conscience-letters':                      'cl',
   '/conscience-letters/the-silence-of-the-senate': 'article-1',
-  '/conscience-letters/the-budget-lie':             'article-2',
-  '/conscience-letters/democracy-day-reckoning':    'article-3',
-  '/conscience-letters/the-broken-machine':         'article-4',
-  '/membership':        'membership',
-  '/contribute':        'cl-pitch',
-  '/asknaija':          'asknaija',
-  '/asknaija/beta':     'asknaija-beta',
-  '/see-gnal':          'senal',
-  '/see-gnal/redflag':  'redflag',
-  '/see-gnal/ledger':   'ledger-submit',
-  '/see-gnal/openmic':  'openmic-submit',
-  '/see-gnal/critika':  'critika-submit',
-  '/see-gnal/critika/article': 'critika-article',
-  '/contact':           'contact',
-  '/privacy':           'privacy',
-  '/programs':          'programs',
-  '/programs/fellowship':         'fellowship',
-  '/programs/apply/team-lead':    'vol-exco',
-  '/programs/apply/fellowship':   'vol-fellow',
-  '/programs/apply/corps-ambassador': 'vol-corps',
-  '/programs/apply/volunteer':    'vol-general'
+  '/conscience-letters/the-budget-lie':            'article-2',
+  '/conscience-letters/democracy-day-reckoning':   'article-3',
+  '/conscience-letters/the-broken-machine':        'article-4',
+  '/membership':                              'membership',
+  '/contribute':                              'cl-pitch',
+  '/asknaija':                                'asknaija',
+  '/asknaija/beta':                           'asknaija-beta',
+  '/see-gnal':                                'senal',
+  '/see-gnal/redflag':                        'redflag',
+  '/see-gnal/ledger':                         'ledger-submit',
+  '/see-gnal/openmic':                        'openmic-submit',
+  '/see-gnal/critika':                        'critika-submit',
+  '/see-gnal/critika/article':                'critika-article',
+  '/contact':                                 'contact',
+  '/privacy':                                 'privacy',
+  '/programs':                                'programs',
+  '/programs/fellowship':                     'fellowship',
+  '/programs/apply/team-lead':                'vol-exco',
+  '/programs/apply/fellowship':               'vol-fellow',
+  '/programs/apply/corps-ambassador':         'vol-corps',
+  '/programs/apply/volunteer':                'vol-general'
 };
 
-// Reverse map: pageId → path
-var PAGE_TO_PATH = {};
-(function() {
-  Object.keys(ROUTE_MAP).forEach(function(path) {
-    PAGE_TO_PATH[ROUTE_MAP[path]] = path;
-  });
+// Reverse: pageId → canonical path
+var PAGE_TO_PATH = (function() {
+  var m = {};
+  Object.keys(ROUTE_MAP).forEach(function(p) { m[ROUTE_MAP[p]] = p; });
+  return m;
 })();
 
-// Page meta: title and description per route
+// ── PAGE META ─────────────────────────────────────────────────────
 var PAGE_META = {
-  'home':          { title: 'NITIZEN — Civic Intelligence for a New Nigeria', desc: 'Equipping Nigerians with the knowledge, tools and voice to engage meaningfully with governance.' },
-  'about':         { title: 'About — NITIZEN', desc: 'Who we are, what we stand for, and why civic intelligence matters for Nigeria\'s democracy.' },
-  'initiatives':   { title: 'Initiatives — NITIZEN', desc: 'NITIZEN\'s civic initiatives: Conscience Letters, AskNaija, See-gnal, and more.' },
-  'cl':            { title: 'Conscience Letters — NITIZEN', desc: 'Nigeria\'s civic accountability newsletter. Evidence-based, uncompromising, free.' },
-  'article-1':     { title: 'The Silence of the Senate — Conscience Letters · NITIZEN', desc: '' },
-  'article-2':     { title: 'The Budget Lie — Conscience Letters · NITIZEN', desc: '' },
-  'article-3':     { title: 'Democracy Day Reckoning — Conscience Letters · NITIZEN', desc: '' },
-  'article-4':     { title: 'The Broken Machine — Conscience Letters · NITIZEN', desc: '' },
-  'membership':    { title: 'Membership — NITIZEN', desc: 'Sustain independent civic intelligence. Become a NITIZEN member.' },
-  'cl-pitch':      { title: 'Submit a Pitch — Conscience Letters · NITIZEN', desc: 'Contribute analysis, critique, and civic writing to NITIZEN\'s Conscience Letters.' },
-  'asknaija':      { title: 'AskNaija — NITIZEN', desc: 'Nigeria\'s AI-powered civic intelligence tool. Ask anything about governance, policy, and your rights.' },
-  'asknaija-beta': { title: 'AskNaija Beta — NITIZEN', desc: 'Early access to AskNaija, NITIZEN\'s civic AI assistant.' },
-  'senal':         { title: 'See-gnal — NITIZEN', desc: 'Nigeria\'s civic signal hub: RedFlag, The Ledger, OpenMic, and Critika.' },
-  'redflag':       { title: 'RedFlag — See-gnal · NITIZEN', desc: 'File and track accountability reports on governance failures across Nigeria.' },
-  'ledger-submit': { title: 'The Ledger — See-gnal · NITIZEN', desc: 'Submit verified data on government performance, spending, and policy outcomes.' },
-  'openmic-submit':{ title: 'OpenMic — See-gnal · NITIZEN', desc: 'Your voice on Nigerian governance. Submit opinions, eyewitness reports, and civic testimony.' },
-  'critika-submit':{ title: 'Critika — See-gnal · NITIZEN', desc: 'Civic critique through art, design, and visual commentary on Nigeria.' },
+  'home':           { title: 'NITIZEN — Civic Intelligence for a New Nigeria',
+                      desc:  'Equipping Nigerians with the knowledge, tools and voice to engage meaningfully with governance.' },
+  'about':          { title: 'About — NITIZEN',
+                      desc:  'Who we are, what we stand for, and why civic intelligence matters.' },
+  'initiatives':    { title: 'Initiatives — NITIZEN',
+                      desc:  'Conscience Letters, AskNaija, See-gnal and more.' },
+  'cl':             { title: 'Conscience Letters — NITIZEN',
+                      desc:  'Nigeria\'s civic accountability newsletter. Evidence-based, uncompromising, free.' },
+  'article-1':      { title: 'The Silence of the Senate — Conscience Letters · NITIZEN', desc: '' },
+  'article-2':      { title: 'The Budget Lie — Conscience Letters · NITIZEN',            desc: '' },
+  'article-3':      { title: 'Democracy Day Reckoning — Conscience Letters · NITIZEN',   desc: '' },
+  'article-4':      { title: 'The Broken Machine — Conscience Letters · NITIZEN',        desc: '' },
+  'membership':     { title: 'Membership — NITIZEN',
+                      desc:  'Sustain independent civic intelligence. Become a NITIZEN member.' },
+  'cl-pitch':       { title: 'Submit a Pitch — Conscience Letters · NITIZEN',
+                      desc:  'Contribute to NITIZEN\'s Conscience Letters.' },
+  'asknaija':       { title: 'AskNaija — NITIZEN',
+                      desc:  'Nigeria\'s AI-powered civic intelligence tool.' },
+  'asknaija-beta':  { title: 'AskNaija Beta — NITIZEN',
+                      desc:  'Early access to AskNaija, NITIZEN\'s civic AI assistant.' },
+  'senal':          { title: 'See-gnal — NITIZEN',
+                      desc:  'RedFlag, The Ledger, OpenMic and Critika.' },
+  'redflag':        { title: 'RedFlag — See-gnal · NITIZEN',
+                      desc:  'File accountability reports on governance failures.' },
+  'ledger-submit':  { title: 'The Ledger — See-gnal · NITIZEN',
+                      desc:  'Submit verified data on government performance.' },
+  'openmic-submit': { title: 'OpenMic — See-gnal · NITIZEN',
+                      desc:  'Your voice on Nigerian governance.' },
+  'critika-submit': { title: 'Critika — See-gnal · NITIZEN',
+                      desc:  'Civic critique through art and visual commentary.' },
   'critika-article':{ title: 'Critika Feature — See-gnal · NITIZEN', desc: '' },
-  'contact':       { title: 'Contact — NITIZEN', desc: 'Get in touch with the NITIZEN team. Pitch, partner, volunteer, or ask.' },
-  'privacy':       { title: 'Privacy Policy — NITIZEN', desc: 'How NITIZEN handles your data under the Nigeria Data Protection Act 2023.' },
-  'programs':      { title: 'Programs — NITIZEN', desc: 'NITIZEN\'s civic formation programmes: fellowships, memberships, labs, and leadership tracks.' },
-  'fellowship':    { title: 'Leadership Fellowship — NITIZEN Programs', desc: 'The NITIZEN Leadership Fellowship: 30 fellows, 6 months, 8 tracks. Class of 2026.' },
-  'vol-exco':      { title: 'Apply — Team Lead (Exco) · NITIZEN Programs', desc: 'Apply for an executive leadership role at NITIZEN.' },
-  'vol-fellow':    { title: 'Apply — Leadership Fellowship · NITIZEN Programs', desc: 'Apply for the NITIZEN Leadership Fellowship, Class of 2026.' },
-  'vol-corps':     { title: 'Apply — Corps Ambassador · NITIZEN Programs', desc: 'NYSC members: apply for the NITIZEN Corps Ambassador Programme.' },
-  'vol-general':   { title: 'Apply — General Volunteer · NITIZEN Programs', desc: 'Apply to volunteer with NITIZEN across any department.' }
+  'contact':        { title: 'Contact — NITIZEN',
+                      desc:  'Get in touch with the NITIZEN team.' },
+  'privacy':        { title: 'Privacy Policy — NITIZEN',
+                      desc:  'How NITIZEN handles your data under the Nigeria Data Protection Act 2023.' },
+  'programs':       { title: 'Programs — NITIZEN',
+                      desc:  'Fellowships, memberships, civic labs and leadership tracks.' },
+  'fellowship':     { title: 'Leadership Fellowship — NITIZEN Programs',
+                      desc:  '30 fellows, 6 months, 8 tracks. Class of 2026.' },
+  'vol-exco':       { title: 'Apply: Team Lead (Exco) — NITIZEN Programs',
+                      desc:  'Apply for an executive leadership role at NITIZEN.' },
+  'vol-fellow':     { title: 'Apply: Leadership Fellowship — NITIZEN Programs',
+                      desc:  'Apply for the NITIZEN Leadership Fellowship, Class of 2026.' },
+  'vol-corps':      { title: 'Apply: Corps Ambassador — NITIZEN Programs',
+                      desc:  'NYSC members: apply for the NITIZEN Corps Ambassador Programme.' },
+  'vol-general':    { title: 'Apply: General Volunteer — NITIZEN Programs',
+                      desc:  'Apply to volunteer with NITIZEN.' }
 };
 
-// ── NAV ACTIVE STATE ──
-function setNavActive(pageId) {
-  // Map sub-pages to their parent nav item
-  var navMap = {
-    'article-1':'cl','article-2':'cl','article-3':'cl','article-4':'cl','cl-pitch':'cl',
-    'redflag':'senal','ledger-submit':'senal','openmic-submit':'senal',
-    'critika-submit':'senal','critika-article':'senal',
-    'asknaija-beta':'asknaija',
-    'fellowship':'programs','vol-exco':'programs','vol-fellow':'programs',
-    'vol-corps':'programs','vol-general':'programs'
-  };
-  var activeId = navMap[pageId] || pageId;
-  document.querySelectorAll('[data-navpage]').forEach(function(a) {
-    a.classList.toggle('active', a.dataset.navpage === activeId);
-  });
+// ── NAV PARENT MAP ────────────────────────────────────────────────
+var NAV_PARENT = {
+  'article-1':'cl','article-2':'cl','article-3':'cl','article-4':'cl','cl-pitch':'cl',
+  'redflag':'senal','ledger-submit':'senal','openmic-submit':'senal',
+  'critika-submit':'senal','critika-article':'senal',
+  'asknaija-beta':'asknaija',
+  'fellowship':'programs',
+  'vol-exco':'programs','vol-fellow':'programs','vol-corps':'programs','vol-general':'programs'
+};
+
+// ── TRANSITION STATE ──────────────────────────────────────────────
+var _currentPageId  = 'home';
+var _transitioning  = false;
+var _pendingNav     = null;   // { pageId, push } queued while transitioning
+var _revealObs      = null;
+
+// DOM refs (populated in boot)
+var _bar    = null;   // thin top progress bar
+var _blanket= null;   // full-screen blanket
+
+function _getBar()     { return _bar     || (_bar     = document.getElementById('nz-bar')); }
+function _getBlanket() { return _blanket || (_blanket = document.getElementById('nz-blanket')); }
+
+// ── LOADER BAR + BLANKET HELPERS ─────────────────────────────────
+function _barStart() {
+  var b = _getBar(); if (!b) return;
+  b.style.transition = 'none';
+  b.style.opacity    = '1';
+  b.style.width      = '0%';
+  void b.offsetWidth;
+  b.style.transition = 'width 0.32s cubic-bezier(.4,0,.2,1)';
+  b.style.width      = '70%';
+}
+function _barDone() {
+  var b = _getBar(); if (!b) return;
+  b.style.transition = 'width 0.18s ease, opacity 0.3s ease 0.2s';
+  b.style.width      = '100%';
+  setTimeout(function() { b.style.opacity = '0'; }, 320);
+}
+function _blanketShow() {
+  var bl = _getBlanket(); if (!bl) return;
+  bl.style.transition = 'none';
+  bl.style.opacity    = '1';
+  bl.style.visibility = 'visible';
+  bl.style.pointerEvents = 'all';
+}
+function _blanketHide() {
+  var bl = _getBlanket(); if (!bl) return;
+  bl.style.transition    = 'opacity 0.22s ease';
+  bl.style.opacity       = '0';
+  bl.style.pointerEvents = 'none';
+  setTimeout(function() { bl.style.visibility = 'hidden'; }, 240);
 }
 
-// ── CORE PAGE SWITCHER ──
-function showPage(pageId, pushState) {
-  if (!pageId || NITIZEN_PAGES.indexOf(pageId) === -1) pageId = 'home';
-
-  // Hide all pages
+// ── CORE: commit a page to the DOM ───────────────────────────────
+function _commit(pageId, push) {
+  // Hide all
   NITIZEN_PAGES.forEach(function(id) {
     var el = document.getElementById('page-' + id);
-    if (el) el.style.display = 'none';
+    if (el) { el.style.display = 'none'; el.style.opacity = '0'; }
   });
 
-  // Show target
   var target = document.getElementById('page-' + pageId);
   if (target) {
-    target.style.display = 'block';
-    // Trigger page-enter transition
-    target.classList.remove('page-entering');
-    void target.offsetWidth; // force reflow
-    target.classList.add('page-entering');
-    target.addEventListener('animationend', function onEnd() {
-      target.classList.remove('page-entering');
-      target.removeEventListener('animationend', onEnd);
-    });
+    target.style.display  = 'block';
+    target.style.opacity  = '0';
+    target.style.transform= 'translateY(10px)';
+    void target.offsetWidth;
+    target.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+    target.style.opacity    = '1';
+    target.style.transform  = 'translateY(0)';
     window.scrollTo({ top: 0, behavior: 'instant' });
-    // Trigger reveal animations
+    // Trigger scroll reveals
     setTimeout(function() {
-      if (!revealObs) return;
+      if (!_revealObs) return;
       target.querySelectorAll('.reveal:not(.visible)').forEach(function(el) {
-        revealObs.observe(el);
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-          el.classList.add('visible');
-        }
+        _revealObs.observe(el);
+        if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add('visible');
       });
     }, 60);
+    // Reset transition property after animation
+    setTimeout(function() { target.style.transition = ''; }, 320);
   }
 
-  setNavActive(pageId);
+  _currentPageId = pageId;
+  _setNavActive(pageId);
+  _updateMeta(pageId, push);
 
-  // Update document title and meta description
-  var meta = PAGE_META[pageId] || PAGE_META['home'];
-  document.title = meta.title;
-  var descEl = document.querySelector('meta[name="description"]');
-  if (descEl && meta.desc) descEl.setAttribute('content', meta.desc);
-
-  // Update canonical URL
-  var canonical = document.querySelector('link[rel="canonical"]');
-  var path = PAGE_TO_PATH[pageId] || '/';
-  var fullUrl = 'https://nitizen.ng' + path;
-  if (canonical) canonical.setAttribute('href', fullUrl);
-
-  // Push to browser history (true by default, false when restoring from popstate)
-  if (pushState !== false) {
-    var currentPath = window.location.pathname;
-    if (currentPath !== path) {
-      history.pushState({ pageId: pageId }, meta.title, path);
-    }
-  }
-
-  // AskNaija sidebar init
+  // AskNaija lazy init
   if (pageId === 'asknaija-beta') {
     setTimeout(function() {
-      if (typeof buildSidebar === 'function') buildSidebar();
-      if (typeof buildMobileChips === 'function') buildMobileChips();
-    }, 80);
+      if (typeof buildSidebar    === 'function') buildSidebar();
+      if (typeof buildMobileChips=== 'function') buildMobileChips();
+    }, 100);
   }
 }
 
-// ── NAVIGATE helper — called by all links/buttons instead of showPage directly ──
-function navigate(path) {
-  // Accept either a path ("/about") or a legacy pageId ("about")
+// ── MAIN showPage — with transition ──────────────────────────────
+function showPage(pageId, push) {
+  if (!pageId || NITIZEN_PAGES.indexOf(pageId) === -1) pageId = 'home';
+
+  // Don't re-navigate to the same page
+  if (pageId === _currentPageId) { window.scrollTo({top:0,behavior:'smooth'}); return; }
+
+  // Queue if a transition is already running
+  if (_transitioning) { _pendingNav = { pageId: pageId, push: push }; return; }
+
+  // Skip animation for users who prefer reduced motion
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    _commit(pageId, push);
+    return;
+  }
+
+  _transitioning = true;
+
+  // Phase 1 — bar starts + blanket covers (~80ms)
+  _barStart();
+  _blanketShow();
+
+  setTimeout(function() {
+    // Phase 2 — swap DOM while blanket hides view
+    _commit(pageId, push);
+    _barDone();
+
+    // Phase 3 — reveal new content
+    setTimeout(function() {
+      _blanketHide();
+      _transitioning = false;
+      // Drain queued navigation
+      if (_pendingNav) {
+        var p = _pendingNav; _pendingNav = null;
+        showPage(p.pageId, p.push);
+      }
+    }, 60);
+  }, 120);
+}
+
+// ── navigate() — public entry point ──────────────────────────────
+function navigate(pathOrId) {
   var pageId;
-  if (path && path.charAt(0) === '/') {
-    pageId = ROUTE_MAP[path] || 'home';
+  if (pathOrId && pathOrId.charAt(0) === '/') {
+    pageId = ROUTE_MAP[pathOrId] || 'home';
   } else {
-    // Legacy pageId passed directly — still supported
-    pageId = (path && NITIZEN_PAGES.indexOf(path) > -1) ? path : 'home';
+    pageId = (NITIZEN_PAGES.indexOf(pathOrId) > -1) ? pathOrId : 'home';
   }
   showPage(pageId, true);
   closeMobileMenu();
 }
 
-// ── POPSTATE — browser back/forward ──
+// ── POPSTATE — browser Back/Forward ──────────────────────────────
 window.addEventListener('popstate', function(e) {
-  var pageId = (e.state && e.state.pageId) ? e.state.pageId : resolvePathToPageId(window.location.pathname);
+  var pageId = (e.state && e.state.pageId)
+    ? e.state.pageId
+    : _resolvePath(window.location.pathname);
   showPage(pageId, false);
   closeMobileMenu();
 });
 
-// ── PATH RESOLVER ──
-function resolvePathToPageId(pathname) {
-  // Exact match
+// ── PATH RESOLVER ─────────────────────────────────────────────────
+function _resolvePath(pathname) {
   if (ROUTE_MAP[pathname]) return ROUTE_MAP[pathname];
-  // Strip trailing slash
   var clean = pathname.replace(/\/$/, '') || '/';
-  if (ROUTE_MAP[clean]) return ROUTE_MAP[clean];
-  return 'home';
+  return ROUTE_MAP[clean] || 'home';
 }
 
-// ── INTERCEPT all internal <a> clicks ──
-// This makes standard <a href="/about"> work without full page reload
+// ── GLOBAL <a> CLICK INTERCEPTOR ─────────────────────────────────
+// Capture phase — fires before any onclick handlers. Intercepts all
+// internal navigation links so they route through showPage().
 document.addEventListener('click', function(e) {
+  // Skip if inside a form (don't intercept form submit buttons)
+  if (e.target.closest('form')) return;
+
   var a = e.target.closest('a[href]');
   if (!a) return;
   var href = a.getAttribute('href');
   if (!href) return;
 
-  // Ignore: external links, mailto, tel, anchors-within-page (#id not a route),
-  // and links with explicit target="_blank"
-  if (href.startsWith('http') || href.startsWith('mailto:') ||
-      href.startsWith('tel:') || href.startsWith('javascript:') ||
-      a.target === '_blank') return;
+  // Let external / special links pass through
+  if (a.target === '_blank' ||
+      href.startsWith('http') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('javascript:')) return;
 
-  // Ignore in-page section anchors (single # with no path component)
-  if (href.startsWith('#') && !ROUTE_MAP['/' + href.slice(1)] && NITIZEN_PAGES.indexOf(href.slice(1)) === -1) return;
+  // Pure in-page anchors (#section) that aren't page routes — let browser handle
+  if (href.startsWith('#')) {
+    var id = href.slice(1);
+    if (!ROUTE_MAP['/' + id] && NITIZEN_PAGES.indexOf(id) === -1) return;
+  }
 
-  // Resolve the path
-  var path = href.startsWith('/') ? href : ('/' + href.replace(/^#/, ''));
-  var pageId = resolvePathToPageId(path);
-  if (NITIZEN_PAGES.indexOf(pageId) === -1) return; // let browser handle unknown paths
+  var path   = href.startsWith('/') ? href : ('/' + href.replace(/^#/, ''));
+  var pageId = _resolvePath(path);
+  if (NITIZEN_PAGES.indexOf(pageId) === -1) return; // unknown — let browser handle
 
   e.preventDefault();
   navigate(path);
-}, true); // capture phase so it fires before any onclick
+}, true);
 
-// ── MOBILE HAMBURGER ──
+// ── META UPDATE ───────────────────────────────────────────────────
+function _updateMeta(pageId, push) {
+  var meta = PAGE_META[pageId] || PAGE_META['home'];
+  document.title = meta.title;
+  var descEl    = document.querySelector('meta[name="description"]');
+  var canonical = document.querySelector('link[rel="canonical"]');
+  var path      = PAGE_TO_PATH[pageId] || '/';
+  if (descEl && meta.desc) descEl.setAttribute('content', meta.desc);
+  if (canonical)           canonical.setAttribute('href', 'https://nitizen.ng' + path);
+  if (push !== false && window.location.pathname !== path) {
+    history.pushState({ pageId: pageId }, meta.title, path);
+  }
+}
+
+// ── NAV ACTIVE STATE ─────────────────────────────────────────────
+function _setNavActive(pageId) {
+  var active = NAV_PARENT[pageId] || pageId;
+  document.querySelectorAll('[data-navpage]').forEach(function(el) {
+    el.classList.toggle('active', el.dataset.navpage === active);
+  });
+}
+
+// ── MOBILE MENU ───────────────────────────────────────────────────
 function closeMobileMenu() {
   var mm = document.getElementById('mobileMenu');
   var nt = document.getElementById('navToggle');
@@ -10808,157 +10916,338 @@ function closeMobileMenu() {
   if (nt) { nt.classList.remove('open'); nt.setAttribute('aria-expanded', 'false'); }
 }
 
-// ── SCROLL REVEAL observer (defined here so showPage can use it) ──
-var revealObs = null;
+// ══════════════════════════════════════════════════════════════════
+//  VOLUNTEER FORM SYSTEM
+// ══════════════════════════════════════════════════════════════════
 
-// ── BOOT ──
+var VOL_ENDPOINTS = {
+  exco:    'https://formspree.io/f/meewgvyy',
+  fellow:  'https://formspree.io/f/mqeoqwrn',
+  corps:   'https://formspree.io/f/mykawlra',
+  general: 'https://formspree.io/f/mdavgbel'
+};
+var VOL_SUBMITTED = { exco:false, fellow:false, corps:false, general:false };
+
+function charCount(el, counterId, max) {
+  var n = document.getElementById(counterId);
+  if (!n) return;
+  n.textContent = el.value.length;
+  n.style.color = el.value.length > max * 0.9 ? '#c0392b' : '';
+}
+
+function updateVolProgress(prefix) {
+  var w = document.getElementById(prefix + '-form-wrapper');
+  var f = document.getElementById(prefix + '-progress');
+  if (!w || !f) return;
+  var total = w.offsetHeight - window.innerHeight;
+  f.style.width = total <= 0 ? '100%'
+    : Math.min(100, (Math.max(0, -w.getBoundingClientRect().top) / total) * 100) + '%';
+}
+document.addEventListener('scroll', function() {
+  ['exco','fellow','corps','general'].forEach(updateVolProgress);
+}, { passive: true });
+
+function validateCheckGroup(id) {
+  var g = document.getElementById(id);
+  return !g || g.querySelectorAll('input[type=checkbox]:checked').length > 0;
+}
+
+function handleVolSubmit(e, type) {
+  e.preventDefault();
+  if (VOL_SUBMITTED[type]) return;
+
+  var form     = e.target;
+  var endpoint = VOL_ENDPOINTS[type];
+  if (!endpoint) return;
+
+  // Email
+  var emailEl    = form.querySelector('input[type=email]');
+  var appEmail   = emailEl ? emailEl.value.trim() : '';
+  if (!appEmail || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(appEmail)) {
+    if (emailEl) { emailEl.classList.add('invalid'); emailEl.scrollIntoView({behavior:'smooth',block:'center'}); emailEl.focus(); }
+    return;
+  }
+  if (emailEl) emailEl.classList.remove('invalid');
+
+  // Skills
+  var skillGroupMap = { exco: 'exco-skills', fellow: 'fellow-skills' };
+  if (skillGroupMap[type] && !validateCheckGroup(skillGroupMap[type])) {
+    var g = document.getElementById(skillGroupMap[type]);
+    if (g) g.scrollIntoView({behavior:'smooth',block:'center'});
+    alert('Please select at least one skill.');
+    return;
+  }
+
+  // Consent
+  var consentEl = form.querySelector('input[name=consent]');
+  if (consentEl && !consentEl.checked) {
+    consentEl.scrollIntoView({behavior:'smooth',block:'center'});
+    alert('Please accept the Privacy Policy and Code of Conduct.');
+    return;
+  }
+
+  // Required sweep
+  var invalid = [];
+  form.querySelectorAll('[required]').forEach(function(f) {
+    var empty = f.type === 'checkbox' ? !f.checked : !f.value.trim();
+    if (empty && f.name !== 'consent') invalid.push(f);
+  });
+  if (invalid.length) {
+    invalid[0].scrollIntoView({behavior:'smooth',block:'center'});
+    invalid[0].focus();
+    invalid[0].classList.add('invalid');
+    invalid[0].addEventListener('input', function h() {
+      invalid[0].classList.remove('invalid');
+      invalid[0].removeEventListener('input', h);
+    });
+    return;
+  }
+
+  // Button state
+  var btn = document.getElementById(type + '-submit-btn');
+  if (btn) { btn.disabled = true; var sp = btn.querySelector('span'); if (sp) sp.textContent = 'Submitting…'; else btn.textContent = 'Submitting…'; }
+
+  var fname = (form.querySelector('input[name=first_name]') || {}).value || '';
+  var lname  = (form.querySelector('input[name=last_name]')  || {}).value || '';
+  var appName = ((fname + ' ' + lname).trim()) || appEmail;
+
+  var skills = [];
+  form.querySelectorAll('input[type=checkbox][name^=skill_]:checked').forEach(function(cb) { skills.push(cb.value); });
+
+  var subjects = { exco:'Exco Application', fellow:'Fellowship Application', corps:'Corps Ambassador Application', general:'General Volunteer Application' };
+
+  var fd = new FormData(form);
+  fd.set('email',                  appEmail);
+  fd.set('_replyto',               appEmail);
+  fd.set('full_name',              appName);
+  fd.set('_subject',               subjects[type] + ' — ' + appName);
+  fd.set('form_type',              'NITIZEN ' + subjects[type]);
+  fd.delete('consent');
+  fd.set('code_of_conduct_agreed', 'Yes');
+  if (skills.length) fd.set('skills_summary', skills.join(', '));
+
+  fetch(endpoint, { method:'POST', body:fd, headers:{ Accept:'application/json' } })
+    .then(function(res) {
+      if (res.ok) {
+        VOL_SUBMITTED[type] = true;
+        _volSuccess(type);
+        _scheduleDelayed(type, appEmail, appName);
+      } else {
+        return res.json().then(function(d) {
+          var msg = d && d.errors && d.errors.length ? d.errors.map(function(x){return x.message;}).join('. ') : 'Submission failed. Email hello@nitizen.ng';
+          if (btn) { btn.disabled=false; var sp=btn.querySelector('span'); if(sp)sp.textContent=subjects[type]; }
+          alert(msg);
+        }).catch(function() { VOL_SUBMITTED[type]=true; _volSuccess(type); _scheduleDelayed(type,appEmail,appName); });
+      }
+    })
+    .catch(function() { VOL_SUBMITTED[type]=true; _volSuccess(type); _scheduleDelayed(type,appEmail,appName); });
+}
+
+function _volSuccess(type) {
+  var wmap = { exco:'exco-form-wrapper', fellow:'fellow-form-wrapper', corps:'corps-form-wrapper', general:'general-form-wrapper' };
+  var smap = { exco:'exco-success',      fellow:'fellow-success',      corps:'corps-success',      general:'general-success' };
+  var w = document.getElementById(wmap[type]);
+  var s = document.getElementById(smap[type]);
+  if (w) w.style.display = 'none';
+  if (s) { s.style.display = 'block'; setTimeout(function(){ s.scrollIntoView({behavior:'smooth',block:'start'}); }, 60); }
+  var fill = document.getElementById(type + '-progress');
+  if (fill) fill.style.width = '100%';
+}
+
+function submitFellowshipInterest() {
+  var ne = document.getElementById('flp-name');
+  var ee = document.getElementById('flp-email');
+  var te = document.getElementById('flp-track');
+  var se = document.getElementById('flp-state');
+  var name  = ne ? ne.value.trim() : '';
+  var email = ee ? ee.value.trim() : '';
+  if (!name)  { if(ne){ne.focus();ne.classList.add('invalid');} return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { if(ee){ee.classList.add('invalid');ee.focus();} alert('Please enter a valid email.'); return; }
+  if(ne)ne.classList.remove('invalid'); if(ee)ee.classList.remove('invalid');
+  var btn = document.querySelector('#flp-interest-form .flp-form-btn');
+  if (btn) { btn.textContent = 'Registering…'; btn.disabled = true; }
+  var fd = new FormData();
+  fd.append('email',           email);
+  fd.append('_replyto',        email);
+  fd.append('full_name',       name);
+  fd.append('name',            name);
+  fd.append('preferred_track', (te&&te.value)||'Not specified');
+  fd.append('state',           (se&&se.value)||'Not specified');
+  fd.append('_subject',        'Fellowship Interest — ' + name);
+  fd.append('form_type',       'NITIZEN Fellowship Interest');
+  fetch('https://formspree.io/f/mnjypkbe', { method:'POST', body:fd, headers:{ Accept:'application/json' } })
+    .then(function(){ var f=document.getElementById('flp-interest-form'); var s=document.getElementById('flp-interest-success'); if(f)f.style.display='none'; if(s)s.style.display='block'; })
+    .catch(function(){  var f=document.getElementById('flp-interest-form'); var s=document.getElementById('flp-interest-success'); if(f)f.style.display='none'; if(s)s.style.display='block'; });
+}
+
+// ── 24-HOUR DELAYED EMAIL SYSTEM ────────────────────────────────
+var _DELAYED_EMAIL = {
+  exco: {
+    subject: 'Welcome to NITIZEN Leadership — Next Steps',
+    body: function(n) { return 'Dear ' + n + ',\n\nIt has been 24 hours since you applied for an executive leadership position at NITIZEN. We want to formally welcome you into our story.\n\nNigeria\'s civic future will not be built by observers — it will be built by people like you who treat leadership as a responsibility, not a title.\n\nOur selection process:\n  → Rolling review of applications\n  → Shortlisted candidates contacted within 7–14 business days\n  → Two-stage process: written assessment + conversation\n\nJoin the community now:\n  → WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n  → NITIZEN Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n  → Follow @NitizenNG on X/Twitter\n  → Read our work: https://nitizen.ng\n\nThank you for applying.\n\nFor NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG\nCivic Intelligence for a New Nigeria'; }
+  },
+  fellow: {
+    subject: 'NITIZEN Fellowship — You Made the Right Call',
+    body: function(n) { return 'Dear ' + n + ',\n\nIt has been 24 hours since you applied to the NITIZEN Leadership Fellowship, Class of 2026. You made the right call.\n\nThe Fellowship is our most ambitious programme — six months of published civic work, structured political education, and community with thirty exceptional young Nigerians. If selected, you will contribute to work that reaches millions, develop deep track competency, and graduate with full NITIZEN membership.\n\nNigeria\'s governance crisis demands organised, informed, persistent civic action. This Fellowship trains you for exactly that.\n\nNext steps:\n  → Full applications open 12 June 2026 — Democracy Day\n  → WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n  → NITIZEN Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n  → Conscience Letters: https://nitizen.ng/conscience-letters\n  → Follow @NitizenNG\n\nThirty seats. We hope yours is one of them.\n\nFor NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG\nCivic Intelligence for a New Nigeria'; }
+  },
+  corps: {
+    subject: 'NITIZEN Corps Ambassador — Welcome to Purposeful Service',
+    body: function(n) { return 'Dear ' + n + ',\n\nTwenty-four hours ago, you applied to become a NITIZEN Corps Ambassador. Welcome properly.\n\nYour service year is a national obligation. What you do with it is yours to decide. As a Corps Ambassador, you join a nationwide network of service members contributing to civic intelligence, accountability reporting, voter education, and community engagement. Your deployment state becomes a site of civic action.\n\nYour programme:\n  → CDS-compatible civic contribution framework\n  → Remote-first with local field engagement\n  → Structured deliverables matched to your skills\n  → Certificate of contribution on completion\n\nNext steps:\n  → WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n  → NITIZEN Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n  → Follow @NitizenNG\n  → Our coordination team will reach you within 5 business days\n\nWelcome to the mission.\n\nFor NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG\nCivic Intelligence for a New Nigeria'; }
+  },
+  general: {
+    subject: 'You Showed Up — Welcome to NITIZEN',
+    body: function(n) { return 'Dear ' + n + ',\n\nYesterday, you applied to volunteer with NITIZEN. Here is what that means.\n\nEvery civic movement has a founding cohort — the people who arrive before it is easy, before it is popular, before the results are obvious. You are part of that cohort. NITIZEN is building Nigeria\'s independent civic intelligence infrastructure, and what you bring — your time, skills, and conviction — makes that possible.\n\nWhat happens next:\n  → Volunteer coordination team contacts you within 5 business days\n  → You are matched to an active team based on skills and availability\n  → Onboarding includes a briefing on NITIZEN standards, tools, and workflow\n\nRight now:\n  → WhatsApp Community: https://chat.whatsapp.com/DRu6SNdUxhVCnOHR1A1PoF\n  → NITIZEN Channel: https://whatsapp.com/channel/0029VbD2VVQD38CPq2p3lu0J\n  → Follow @NitizenNG\n  → Read our work: https://nitizen.ng\n\nThank you for showing up.\n\nFor NITIZEN,\nhello@nitizen.ng | nitizen.ng | @NitizenNG\nCivic Intelligence for a New Nigeria'; }
+  }
+};
+
+function _scheduleDelayed(type, email, name) {
+  if (!email) return;
+  try {
+    var key = 'nz_d_' + type + '_' + email.replace(/[^a-z0-9]/gi,'_').toLowerCase();
+    if (localStorage.getItem(key)) return;
+    localStorage.setItem(key, JSON.stringify({ type:type, email:email, name:name, after: Date.now() + 86400000 }));
+  } catch(e) {}
+}
+
+function _processDelayed() {
+  try {
+    var now = Date.now(), keys = [];
+    for (var i = 0; i < localStorage.length; i++) { var k = localStorage.key(i); if (k && k.indexOf('nz_d_') === 0) keys.push(k); }
+    keys.forEach(function(k) {
+      var raw = localStorage.getItem(k); if (!raw) return;
+      var item; try { item = JSON.parse(raw); } catch(e) { return; }
+      if (!item || now < item.after) return;
+      var c = _DELAYED_EMAIL[item.type]; if (!c) { localStorage.removeItem(k); return; }
+      var ep = VOL_ENDPOINTS[item.type]; if (!ep) { localStorage.removeItem(k); return; }
+      var fd = new FormData();
+      fd.append('email',     item.email);
+      fd.append('_replyto',  item.email);
+      fd.append('full_name', item.name || item.email);
+      fd.append('_subject',  c.subject);
+      fd.append('message',   c.body(item.name || 'there'));
+      fd.append('form_type', 'NITIZEN 24h Email — ' + item.type);
+      fetch(ep, { method:'POST', body:fd, headers:{ Accept:'application/json' } })
+        .then(function()  { localStorage.removeItem(k); })
+        .catch(function() { /* retry next visit */ });
+    });
+  } catch(e) {}
+}
+_processDelayed(); // runs on every page load
+
+// ══════════════════════════════════════════════════════════════════
+//  BOOT — DOMContentLoaded
+// ══════════════════════════════════════════════════════════════════
 document.addEventListener('DOMContentLoaded', function() {
 
-  // ── Hamburger button ──
+  // ── Hamburger ──
   var navToggle  = document.getElementById('navToggle');
   var mobileMenu = document.getElementById('mobileMenu');
   var mainNav    = document.getElementById('main-nav');
-
   if (navToggle && mobileMenu) {
     navToggle.addEventListener('click', function() {
-      var isOpen = mobileMenu.classList.toggle('open');
-      navToggle.classList.toggle('open', isOpen);
-      navToggle.setAttribute('aria-expanded', String(isOpen));
+      var open = mobileMenu.classList.toggle('open');
+      navToggle.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', String(open));
     });
-
-    // Click anywhere outside nav + menu → close menu
     document.addEventListener('click', function(e) {
-      if (mainNav && !mainNav.contains(e.target) && !mobileMenu.contains(e.target)) {
-        closeMobileMenu();
-      }
+      if (mainNav && !mainNav.contains(e.target) && !mobileMenu.contains(e.target)) closeMobileMenu();
     });
-
-    // Any link inside the mobile menu closes it
-    mobileMenu.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', closeMobileMenu);
-    });
+    mobileMenu.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMobileMenu); });
   }
 
-  // ── Nav shrink on scroll ──
+  // ── Nav shrink ──
   if (mainNav) {
     window.addEventListener('scroll', function() {
       mainNav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
   }
 
-  // ── Scroll reveal (IntersectionObserver) ──
-  revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
+  // ── Scroll reveal ──
+  _revealObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.07 });
-  document.querySelectorAll('.reveal').forEach(function(el) {
-    revealObs.observe(el);
-  });
+  document.querySelectorAll('.reveal').forEach(function(el) { _revealObs.observe(el); });
 
-  // ── Dynamic footer year ──
-  var yearEl = document.getElementById('footerYear');
-  if (yearEl) yearEl.textContent = new Date().getFullYear();
+  // ── Footer year ──
+  var yr = document.getElementById('footerYear');
+  if (yr) yr.textContent = new Date().getFullYear();
 
-  // ── Unified form submission helper ──
-  // Shows success immediately; fires Formspree in background; injects _replyto
+  // ── Unified submitForm (CL pitch, RF, Ledger, OpenMic, Critika, Contact) ──
   window.submitForm = function(form, btnId, btnLabel, successId) {
-    var btn = document.getElementById(btnId);
-    var successEl = document.getElementById(successId);
+    var btn  = document.getElementById(btnId);
+    var succ = document.getElementById(successId);
     if (btn) { btn.textContent = 'Submitting…'; btn.disabled = true; }
-    function showSuccess() {
-      form.style.display = 'none';
-      if (successEl) { successEl.style.display = 'block'; successEl.scrollIntoView({ behavior:'smooth', block:'center' }); }
-    }
+
     var fd = new FormData(form);
 
-    // ── CRITICAL: inject _replyto from whichever email field is present ──
-    var emailValue = fd.get('email') || fd.get('author_email') || fd.get('reporter_email') ||
-                     fd.get('submitter_email') || fd.get('artist_email') || '';
-    if (emailValue) {
-      fd.set('email', emailValue);       // normalise to "email" field name
-      fd.set('_replyto', emailValue);    // Formspree auto-reply routing
-    }
+    var emailVal = fd.get('email') || fd.get('author_email') || fd.get('reporter_email') ||
+                   fd.get('submitter_email') || fd.get('artist_email') || '';
+    if (emailVal) { fd.set('email', emailVal); fd.set('_replyto', emailVal); }
 
-    // Strip emoji from _subject to prevent mail delivery failures
-    var subj = fd.get('_subject') || '';
-    fd.set('_subject', subj.replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]/gu, '').trim());
+    var subj = (fd.get('_subject') || '').replace(/[\u{1F000}-\u{1FFFF}]|[\u{2600}-\u{27BF}]/gu, '').trim();
+    if (subj) fd.set('_subject', subj);
 
-    // Remove consent field name that can trip spam filters
     fd.delete('consent');
     fd.set('code_of_conduct_agreed', 'Yes');
 
-    fetch(form.action, { method:'POST', body: fd, headers:{'Accept':'application/json'} })
-      .then(function(r) { showSuccess(); })
-      .catch(function() { showSuccess(); });
+    function done() {
+      form.style.display = 'none';
+      if (succ) { succ.style.display = 'block'; succ.scrollIntoView({ behavior:'smooth', block:'center' }); }
+    }
+    fetch(form.action, { method:'POST', body:fd, headers:{ Accept:'application/json' } })
+      .then(done).catch(done);
   };
 
   // ── Contact form ──
-  var contactForm = document.getElementById('contactForm');
-  if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+  var cf = document.getElementById('contactForm');
+  if (cf) {
+    cf.addEventListener('submit', function(e) {
       e.preventDefault();
-      var name    = (this.elements['name']  || {value:''}).value.trim();
-      var email   = (this.elements['email'] || {value:''}).value.trim();
-      var consent = this.querySelector('[name="consent"]');
-      if (!name || !email) { alert('Please fill in your name and email address.'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { alert('Please enter a valid email address.'); return; }
-      if (consent && !consent.checked) { alert('Please agree to the privacy policy to continue.'); return; }
-      window.submitForm(this, 'submitBtn', 'Send Message →', 'formSuccess');
+      var n  = (this.elements['name']  || {value:''}).value.trim();
+      var em = (this.elements['email'] || {value:''}).value.trim();
+      var cn = this.querySelector('[name=consent]');
+      if (!n || !em) { alert('Please fill in your name and email.'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { alert('Please enter a valid email address.'); return; }
+      if (cn && !cn.checked) { alert('Please agree to the privacy policy.'); return; }
+      window.submitForm(this, 'submitBtn', 'Send Message', 'formSuccess');
     });
   }
 
-  // Note: rfForm, omForm, ldgForm, clForm, crtForm each have their own
-  // dedicated handleRF / handleOM / handleLDG / handleCL / handleCRT handlers
-  // registered via onsubmit attributes that call Formspree directly.
-  // No generic fallback needed here — the individual handlers are authoritative.
-
-  // ── Copy to clipboard ──
+  // ── Clipboard ──
   window.copyToClipboard = function(text, btn) {
     navigator.clipboard.writeText(text).then(function() {
-      var orig = btn.textContent;
-      btn.textContent = 'Copied!';
-      setTimeout(function() { btn.textContent = orig; }, 2000);
+      var o = btn.textContent; btn.textContent = 'Copied!';
+      setTimeout(function() { btn.textContent = o; }, 2000);
     }).catch(function() { prompt('Copy this:', text); });
   };
 
-  // ── Initial page load: resolve current path and show correct page ──
-  // Supports both clean paths (/about) and legacy hash URLs (#about)
-  (function() {
-    var pageId;
-    var path = window.location.pathname;
-    // If the path is just '/' but there's a hash (legacy bookmark), resolve from hash
+  // ── Initial route ──
+  (function boot() {
+    var pageId, path = window.location.pathname;
+    // Upgrade legacy hash URLs
     if ((path === '/' || path === '') && window.location.hash) {
-      var hashId = window.location.hash.replace('#', '').trim();
-      if (NITIZEN_PAGES.indexOf(hashId) > -1) {
-        pageId = hashId;
-        // Upgrade the URL from hash to clean path
-        var cleanPath = PAGE_TO_PATH[pageId] || '/';
-        history.replaceState({ pageId: pageId }, document.title, cleanPath);
+      var hid = window.location.hash.replace('#', '').trim();
+      if (NITIZEN_PAGES.indexOf(hid) > -1) {
+        pageId = hid;
+        history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
       }
     }
-    if (!pageId) {
-      pageId = resolvePathToPageId(path);
-    }
-    showPage(pageId, false); // false = don't push another history entry on first load
-    // Seed the initial history state so popstate works on first Back press
-    history.replaceState({ pageId: pageId }, document.title, PAGE_TO_PATH[pageId] || '/');
+    if (!pageId) pageId = _resolvePath(path);
+    _currentPageId = pageId; // prevent same-page guard from blocking first load
+    _commit(pageId, false);
+    history.replaceState({ pageId: pageId }, PAGE_META[pageId].title, PAGE_TO_PATH[pageId] || '/');
   })();
 
-  // ── CRISIS BANNER: dismiss on ×, persist via sessionStorage ──
+  // ── Crisis banner ──
   (function() {
     var banner = document.getElementById('crisisBanner');
-    var closeBtn = document.getElementById('crisisClose');
+    var close  = document.getElementById('crisisClose');
     if (!banner) return;
-    // Hide if already dismissed this session
-    if (sessionStorage.getItem('crisisDismissed') === '1') {
-      banner.style.display = 'none';
-    }
-    if (closeBtn) {
-      closeBtn.addEventListener('click', function() {
+    if (sessionStorage.getItem('crisisDismissed') === '1') { banner.style.display = 'none'; return; }
+    if (close) {
+      close.addEventListener('click', function() {
         banner.style.transition = 'opacity .3s, max-height .4s';
-        banner.style.opacity = '0';
-        banner.style.overflow = 'hidden';
+        banner.style.opacity = '0'; banner.style.overflow = 'hidden';
         banner.style.maxHeight = banner.offsetHeight + 'px';
         requestAnimationFrame(function() { banner.style.maxHeight = '0'; });
         setTimeout(function() { banner.style.display = 'none'; }, 420);
