@@ -1787,6 +1787,8 @@ section { padding: 5rem 4rem; }
 .prog-card.active-program { border-top-color: var(--gold); }
 .prog-card.coming-soon { opacity: .72; cursor: default; }
 .prog-card.coming-soon:hover { transform: none; box-shadow: none; }
+a.prog-card.coming-soon[style*="opacity:1"] { cursor: pointer; }
+a.prog-card.coming-soon[style*="opacity:1"]:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(26,77,46,.11); }
 .prog-card-num {
   font-family: var(--mono); font-size: .58rem; letter-spacing: .18em;
   color: var(--green-soft); text-transform: uppercase; margin-bottom: 1rem;
@@ -2669,6 +2671,7 @@ table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrollin
   border-radius: 2px; padding: 0; overflow: hidden;
   cursor: pointer; transition: box-shadow .25s, transform .2s;
   display: flex; flex-direction: column;
+  text-decoration: none; color: inherit;
 }
 .vol-recruit-card:hover { box-shadow: 0 8px 32px rgba(26,77,46,.13); transform: translateY(-4px); }
 .vol-rc-accent { height: 3px; width: 100%; }
@@ -2676,16 +2679,19 @@ table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrollin
 .vol-rc-title {
   font-family: var(--display); font-size: 1.1rem; font-weight: 700;
   color: var(--green-deep); padding: 0 1.6rem .5rem; line-height: 1.2;
+  text-decoration: none;
 }
 .vol-rc-body {
   font-family: var(--body); font-size: .85rem; line-height: 1.7;
   color: var(--muted); padding: 0 1.6rem 1.2rem; flex: 1;
+  text-decoration: none;
 }
 .vol-rc-cta {
   font-family: var(--mono); font-size: .62rem; letter-spacing: .12em;
   text-transform: uppercase; color: var(--green-mid);
   padding: .9rem 1.6rem; border-top: 1px solid var(--border);
   margin-top: auto; transition: color .2s, background .2s;
+  text-decoration: underline;
 }
 .vol-recruit-card:hover .vol-rc-cta { background: var(--green-mist); color: var(--green-deep); }
 
@@ -2854,7 +2860,13 @@ table { width: 100%; display: block; overflow-x: auto; -webkit-overflow-scrollin
 .vol-consent-label {
   font-family: var(--body); font-size: .88rem; line-height: 1.65; color: var(--ink);
 }
-.vol-consent-label a { color: var(--green-mid); }
+.vol-consent-label a {
+  color: var(--green-mid);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(74,175,116,.35);
+  transition: color .2s, border-color .2s;
+}
+.vol-consent-label a:hover { color: var(--green-deep); border-bottom-color: var(--green-mid); }
 
 /* SUBMIT BUTTON */
 .vol-submit-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: .7rem; }
@@ -4874,7 +4886,7 @@ sup.ref-ldg { font-family:var(--mono);font-size:.58rem;font-weight:600;color:var
         <div class="init-num" style="color:var(--gold)">INITIATIVE 02</div>
         <div class="init-name" style="color:var(--gold)">AskNaija</div>
         <p style="font-family:var(--display);font-style:italic;font-size:.95rem;color:var(--gold-light);margin-bottom:1.2rem;line-height:1.5">"Every Nigerian deserves a clear answer."</p>
-        <p class="init-desc" style="margin-bottom:1.5rem">Nigeria's AI-powered civic intelligence tool — now live in Phase 2 Beta. AskNaija answers any question about governance, elections, policy, rights, and the law with detailed, contextual responses. Powered by a large language model under NITIZEN's strict civic-only system prompt, it handles multi-turn conversation, follows up on context, and always flags where it is uncertain and where you should verify. It bridges the information gap that makes civic participation difficult for ordinary citizens.
+        <p class="init-desc" style="margin-bottom:1.5rem">Nigeria's AI-powered civic intelligence tool — now live in Phase 2 Beta. AskNaija answers any question about governance, elections, policy, rights, and the law with detailed, contextual responses. Powered by a large language model under NITIZEN's strict civic-only system prompt, it handles multi-turn conversation, follows up on context, and always flags where it is uncertain and where you should verify. It bridges the information gap that makes civic participation difficult for ordinary citizens.</p>
         <div style="background:rgba(200,168,75,.1);border-left:3px solid var(--gold);padding:1rem 1.2rem;margin-bottom:1.4rem;border-radius:0 2px 2px 0;">
           <p style="font-family:var(--mono);font-size:.7rem;line-height:1.75;color:var(--gold-light)"><strong style="color:var(--gold)">Flagship Objective:</strong> Make civic knowledge radically accessible — a verified, AI-powered answer to any governance question, available to every Nigerian with a smartphone, regardless of education level or location. Phase 2 is live. Phase 3 brings Pidgin, Yoruba, Igbo, and Hausa.</p>
         </div>
@@ -8678,7 +8690,7 @@ function handleCRT(e){
 
         <!-- FELLOWSHIP — Active -->
         <a href="/programs/fellowship" class="prog-card active-program">
-          <div class="prog-card-num">Program 01 · Active</a>
+          <div class="prog-card-num">Program 01 · Active</div>
           <span class="prog-card-icon">🏛️</span>
           <h3>Leadership Fellowship</h3>
           <p>Six months. Thirty fellows. Nigeria's most rigorous civic leadership programme — eight tracks, full NITIZEN membership, and real civic work that reaches millions.</p>
@@ -8686,16 +8698,16 @@ function handleCRT(e){
             <div class="prog-card-status open">Registration 12 June 2026</div>
             <span style="font-family:var(--mono);font-size:.62rem;color:var(--green-mid);letter-spacing:.06em">VIEW →</span>
           </div>
-        </div>
+        </a>
 
         <!-- MEMBERSHIP — Coming -->
-        <a href="/membership" class="prog-card coming-soon">
-          <div class="prog-card-num">Program 02 · Open</a>
+        <a href="/membership" class="prog-card coming-soon" style="opacity:1;cursor:pointer">
+          <div class="prog-card-num">Program 02 · Open</div>
           <span class="prog-card-icon">🤝</span>
           <h3>NITIZEN Membership</h3>
           <p>Sustaining members who believe in independent civic infrastructure for Nigeria. Access, community, and the satisfaction of keeping civic intelligence free for all Nigerians.</p>
-          <a href="/membership" class="prog-card-status open" onclick="event.stopPropagation()">Join as a Member →</a>
-        </div>
+          <div class="prog-card-status open">Join as a Member →</div>
+        </a>
 
         <!-- CIVIC LABS — Coming -->
         <div class="prog-card coming-soon">
@@ -8746,33 +8758,33 @@ function handleCRT(e){
         </p>
         <div class="vol-recruit-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
           <a href="/programs/apply/team-lead" class="vol-recruit-card">
-            <div class="vol-rc-accent" style="background:var(--gold)"></a>
+            <div class="vol-rc-accent" style="background:var(--gold)"></div>
             <div class="vol-rc-icon">👑</div>
             <div class="vol-rc-title">Team Lead (Exco)</div>
             <div class="vol-rc-body">Executive-level leadership roles. Department heads, operations leads, and strategic directors who run NITIZEN's internal functions.</div>
             <div class="vol-rc-cta">Apply Now →</div>
-          </div>
+          </a>
           <a href="/programs/apply/fellowship" class="vol-recruit-card">
-            <div class="vol-rc-accent" style="background:var(--green-soft)"></a>
+            <div class="vol-rc-accent" style="background:var(--green-soft)"></div>
             <div class="vol-rc-icon">🏛️</div>
             <div class="vol-rc-title">Fellowship</div>
             <div class="vol-rc-body">Six-month immersive programme for exceptional young Nigerians. Eight tracks. Full membership. Real civic work at scale. Under 30.</div>
             <div class="vol-rc-cta">Apply Now →</div>
-          </div>
+          </a>
           <a href="/programs/apply/corps-ambassador" class="vol-recruit-card">
-            <div class="vol-rc-accent" style="background:#25D366"></a>
+            <div class="vol-rc-accent" style="background:#25D366"></div>
             <div class="vol-rc-icon">🎖️</div>
             <div class="vol-rc-title">Corps Ambassador</div>
             <div class="vol-rc-body">NYSC members serving with purpose. A structured programme that lets corps members contribute civic value throughout their service year.</div>
             <div class="vol-rc-cta">Apply Now →</div>
-          </div>
+          </a>
           <a href="/programs/apply/volunteer" class="vol-recruit-card">
-            <div class="vol-rc-accent" style="background:var(--green-mid)"></a>
+            <div class="vol-rc-accent" style="background:var(--green-mid)"></div>
             <div class="vol-rc-icon">🤝</div>
             <div class="vol-rc-title">General Volunteer</div>
             <div class="vol-rc-body">Any Nigerian who believes in the mission. Flexible contribution — bring your skills, your time, and your commitment to civic change.</div>
             <div class="vol-rc-cta">Apply Now →</div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
@@ -11225,29 +11237,19 @@ document.addEventListener('DOMContentLoaded', function() {
   (function boot() {
     var pageId, path = window.location.pathname;
     var hash = window.location.hash;
-
     if ((path === '/' || path === '') && hash) {
-      // Case 1: hash-path style — /#/programs or /#/programs/apply/volunteer
-      // Used as shareable fallback when server rewrites aren't in place
       if (hash.charAt(1) === '/') {
-        var hashPath = hash.slice(1); // strip leading #, keep the /
+        var hashPath = hash.slice(1);
         pageId = _resolvePath(hashPath);
-        if (pageId && pageId !== 'home') {
-          history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
-        }
+        if (pageId && pageId !== 'home') history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
       }
-      // Case 2: legacy bare hash — #about, #programs etc.
       if (!pageId) {
         var hid = hash.replace('#', '').trim();
-        if (NITIZEN_PAGES.indexOf(hid) > -1) {
-          pageId = hid;
-          history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
-        }
+        if (NITIZEN_PAGES.indexOf(hid) > -1) { pageId = hid; history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/'); }
       }
     }
-
     if (!pageId) pageId = _resolvePath(path);
-    _currentPageId = pageId; // prevent same-page guard from blocking first load
+    _currentPageId = pageId;
     _commit(pageId, false);
     history.replaceState({ pageId: pageId }, PAGE_META[pageId].title, PAGE_TO_PATH[pageId] || '/');
   })();
