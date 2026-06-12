@@ -2157,6 +2157,38 @@ a.prog-card.coming-soon[style*="opacity:1"]:hover { transform: translateY(-3px);
   background: radial-gradient(ellipse 60% 80% at 50% 0%, rgba(26,77,46,.2) 0%, transparent 60%);
 }
 .flp-apply-inner { position: relative; z-index: 2; max-width: 520px; margin: 0 auto; }
+
+/* ── FELLOWSHIP APPLICATION FORM CARD (fix: dark overlay obscured form text) ──
+   .vol-* form styles (labels, hints, section titles, checkbox text, consent text)
+   are authored for light backgrounds (--off-white / #fff) as used on the
+   vol-exco / vol-fellow / vol-corps / vol-general pages. The fellowship
+   application form sits inside .flp-apply-section, which has a near-black
+   (--ink) background — this card restores the correct light surface for
+   that form only, without altering any shared .vol-* rule used elsewhere. */
+.flp-form-card {
+  background: var(--off-white);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 6px;
+  box-shadow: 0 30px 70px -25px rgba(0,0,0,.55);
+  padding: 3rem 3.25rem 3.25rem;
+  margin-top: 2.5rem;
+  text-align: left;
+  position: relative;
+}
+.vol-success.flp-form-card { text-align: center; margin: 2.5rem auto 0; max-width: 680px; }
+.flp-form-card .vol-section-hdr:first-of-type { margin-top: 0; }
+@media (max-width: 860px) {
+  .flp-form-card { padding: 2.25rem 1.75rem 2.5rem; border-radius: 4px; }
+}
+@media (max-width: 560px) {
+  .flp-form-card { padding: 1.75rem 1.25rem 2rem; margin-top: 2rem; }
+  .flp-form-card .vol-form-grid,
+  .flp-form-card .vol-form-grid.three,
+  .flp-form-card .vol-check-group,
+  .flp-form-card .vol-check-group.three {
+    grid-template-columns: 1fr;
+  }
+}
 .flp-apply-title {
   font-family: var(--display); font-size: clamp(2.4rem, 5vw, 4rem);
   font-weight: 400; line-height: 1.1; color: #fff; margin-bottom: 1rem;
@@ -9159,7 +9191,8 @@ function handleCRT(e){
 
       <!-- REGISTRATION FORM -->
       <div id="flp-reg-form-wrapper">
-      <form id="flpRegForm" class="vol-form" novalidate onsubmit="handleFellowshipReg(event)" style="margin-top:2rem">
+      <div class="flp-form-card">
+      <form id="flpRegForm" class="vol-form" novalidate onsubmit="handleFellowshipReg(event)">
         <input type="hidden" name="form_type" value="NITIZEN Fellowship Registration"/>
         <input type="hidden" name="_subject" value="Fellowship Registration"/>
 
@@ -9397,10 +9430,11 @@ function handleCRT(e){
           <div class="vol-submit-note">An acknowledgment email will be sent to you immediately. Our selection committee reviews applications on a rolling basis. Shortlisted candidates will be contacted for interview.</div>
         </div>
       </form>
+      </div><!-- /flp-form-card -->
       </div><!-- /flp-reg-form-wrapper -->
 
       <!-- SUCCESS STATE -->
-      <div class="vol-success" id="flp-reg-success" style="display:none">
+      <div class="vol-success flp-form-card" id="flp-reg-success" style="display:none">
         <div class="vol-success-icon">🌿</div>
         <h2>Application<br><em>Received.</em></h2>
         <p>Your fellowship application is in. Check your inbox — an acknowledgment is on its way. Our selection committee reviews on a rolling basis. Thirty seats. We hope yours is one of them.</p>
