@@ -11224,14 +11224,28 @@ document.addEventListener('DOMContentLoaded', function() {
   // ── Initial route ──
   (function boot() {
     var pageId, path = window.location.pathname;
-    // Upgrade legacy hash URLs
-    if ((path === '/' || path === '') && window.location.hash) {
-      var hid = window.location.hash.replace('#', '').trim();
-      if (NITIZEN_PAGES.indexOf(hid) > -1) {
-        pageId = hid;
-        history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
+    var hash = window.location.hash;
+
+    if ((path === '/' || path === '') && hash) {
+      // Case 1: hash-path style — /#/programs or /#/programs/apply/volunteer
+      // Used as shareable fallback when server rewrites aren't in place
+      if (hash.charAt(1) === '/') {
+        var hashPath = hash.slice(1); // strip leading #, keep the /
+        pageId = _resolvePath(hashPath);
+        if (pageId && pageId !== 'home') {
+          history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
+        }
+      }
+      // Case 2: legacy bare hash — #about, #programs etc.
+      if (!pageId) {
+        var hid = hash.replace('#', '').trim();
+        if (NITIZEN_PAGES.indexOf(hid) > -1) {
+          pageId = hid;
+          history.replaceState({ pageId: pageId }, '', PAGE_TO_PATH[pageId] || '/');
+        }
       }
     }
+
     if (!pageId) pageId = _resolvePath(path);
     _currentPageId = pageId; // prevent same-page guard from blocking first load
     _commit(pageId, false);
