@@ -1848,6 +1848,165 @@ a.prog-card.coming-soon[style*="opacity:1"]:hover { transform: translateY(-3px);
   text-transform: uppercase; color: rgba(168,213,181,.55); margin-top: .35rem;
 }
 
+/* ── OPEN APPLICATIONS SPOTLIGHT ── */
+.prog-open-spotlight {
+  background: var(--off-white);
+  border-bottom: 1px solid var(--border);
+  padding: 4rem 4rem 4.5rem;
+}
+.prog-open-inner { max-width: 1200px; margin: 0 auto; }
+.prog-open-header { margin-bottom: 2.5rem; }
+.prog-open-eyebrow {
+  display: flex; align-items: center; gap: .65rem;
+  font-family: var(--mono); font-size: .65rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--green-mid); margin-bottom: .9rem;
+}
+.prog-open-pulse {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--green-soft); flex-shrink: 0;
+  animation: progPulse 1.8s ease-in-out infinite;
+}
+.prog-open-sub {
+  font-family: var(--body); font-size: 1rem; line-height: 1.78;
+  color: var(--muted); max-width: 620px;
+}
+.prog-open-sub em { font-style: italic; color: var(--green-deep); }
+
+/* Fellowship spotlight card */
+.prog-open-paths { display: flex; flex-direction: column; gap: 1.5rem; }
+.prog-open-fellowship {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 2rem;
+  background: #fff;
+  border: 1px solid rgba(200,168,75,.35);
+  border-left: 4px solid var(--gold);
+  border-radius: 2px;
+  padding: 2rem 2.2rem;
+  text-decoration: none;
+  transition: box-shadow .22s ease, transform .22s ease;
+}
+.prog-open-fellowship:hover {
+  box-shadow: 0 10px 40px rgba(200,168,75,.16);
+  transform: translateY(-2px);
+}
+.prog-of-left { flex: 1; }
+.prog-of-eyebrow {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .7rem;
+}
+.prog-of-title {
+  font-family: var(--display); font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 700; color: var(--green-deep); line-height: 1.18; margin-bottom: .75rem;
+}
+.prog-of-body {
+  font-family: var(--body); font-size: .95rem; line-height: 1.78;
+  color: var(--muted); max-width: 540px; margin-bottom: 1rem;
+}
+.prog-of-rigor {
+  display: flex; align-items: center; gap: .8rem; flex-wrap: wrap;
+}
+.prog-of-rigor-badge {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold);
+  background: rgba(200,168,75,.12); border: 1px solid rgba(200,168,75,.3);
+  padding: .25rem .7rem; border-radius: 2px;
+}
+.prog-of-rigor-text {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.prog-of-right {
+  flex-shrink: 0; display: flex; flex-direction: column;
+  align-items: flex-end; justify-content: center; gap: .6rem; min-width: 130px;
+}
+.prog-of-status {
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--gold);
+}
+.prog-of-cta {
+  font-family: var(--mono); font-size: .75rem; letter-spacing: .08em;
+  color: var(--green-deep); background: rgba(200,168,75,.14);
+  border: 1px solid rgba(200,168,75,.35); padding: .6rem 1.2rem;
+  border-radius: 2px; white-space: nowrap; transition: background .18s ease;
+}
+.prog-open-fellowship:hover .prog-of-cta { background: rgba(200,168,75,.28); }
+.prog-of-deadline {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .07em;
+  color: var(--muted); text-transform: uppercase;
+}
+
+/* Volunteer fork */
+.prog-open-fork {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 2rem 2.2rem;
+}
+.prog-fork-header {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: .55rem;
+}
+.prog-fork-label {
+  font-family: var(--mono); font-size: .65rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--green-mid); white-space: nowrap;
+}
+.prog-fork-rule { flex: 1; height: 1px; background: var(--border); }
+.prog-fork-note {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted);
+  background: rgba(107,143,118,.08); border: 1px solid var(--border);
+  padding: .2rem .65rem; border-radius: 2px; white-space: nowrap;
+}
+.prog-fork-note-body {
+  font-family: var(--body); font-size: .88rem; line-height: 1.7;
+  color: var(--muted); margin-bottom: 1.6rem; max-width: 680px;
+}
+.prog-fork-cards {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: stretch;
+}
+.prog-fork-card {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--border); border-radius: 2px;
+  overflow: hidden; text-decoration: none;
+  transition: box-shadow .2s ease, transform .2s ease;
+  background: var(--off-white);
+}
+.prog-fork-card:hover { box-shadow: 0 6px 28px rgba(26,77,46,.1); transform: translateY(-2px); }
+.prog-fork-card-accent { height: 3px; width: 100%; }
+.prog-fork-card-icon { font-size: 1.4rem; padding: 1.3rem 1.4rem .3rem; }
+.prog-fork-card-title {
+  font-family: var(--display); font-size: 1.12rem; font-weight: 700;
+  color: var(--green-deep); padding: 0 1.4rem .2rem;
+}
+.prog-fork-card-elig {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--green-mid);
+  padding: .1rem 1.4rem .6rem;
+}
+.prog-fork-card-body {
+  font-family: var(--body); font-size: .88rem; line-height: 1.7;
+  color: var(--muted); padding: 0 1.4rem; flex: 1;
+}
+.prog-fork-card-cta {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .07em;
+  color: var(--green-mid); padding: 1rem 1.4rem;
+  transition: color .18s ease;
+}
+.prog-fork-card:hover .prog-fork-card-cta { color: var(--green-deep); }
+.prog-fork-divider {
+  display: flex; align-items: center; justify-content: center;
+  width: 3.5rem;
+}
+.prog-fork-or {
+  font-family: var(--display); font-size: 1rem; font-style: italic;
+  color: var(--muted); background: var(--off-white);
+  border: 1px solid var(--border); border-radius: 50%;
+  width: 2rem; height: 2rem; display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0;
+}
+
 /* ── PROGRAMS RESPONSIVE ── */
 @media(max-width:900px) {
   .prog-hero { padding: 7rem 1.5rem 4rem; }
@@ -1856,6 +2015,12 @@ a.prog-card.coming-soon[style*="opacity:1"]:hover { transform: translateY(-3px);
   .prog-vision { padding: 3rem 1.5rem; }
   .prog-vision-inner { grid-template-columns: 1fr; gap: 2rem; }
   .prog-vision-stats { grid-template-columns: 1fr 1fr; }
+  .prog-open-spotlight { padding: 3rem 1.5rem; }
+  .prog-open-fellowship { flex-direction: column; gap: 1.5rem; }
+  .prog-of-right { align-items: flex-start; }
+  .prog-fork-cards { grid-template-columns: 1fr; }
+  .prog-fork-divider { width: 100%; height: 2.5rem; }
+  .prog-fork-or { margin: 0 auto; }
 }
 
 /* ════════════════════════════════════════
@@ -8708,6 +8873,86 @@ function handleCRT(e){
     </div>
   </div>
 
+  <!-- OPEN APPLICATIONS SPOTLIGHT -->
+  <div class="prog-open-spotlight">
+    <div class="prog-open-inner">
+
+      <!-- Header -->
+      <div class="prog-open-header">
+        <div class="prog-open-eyebrow">
+          <span class="prog-open-pulse"></span>
+          <span>Applications Open Now</span>
+        </div>
+        <p class="prog-open-sub">Three distinct paths to contribute to Nigeria's civic future. Each role is designed for a different profile — read carefully and choose the one that fits <em>you.</em></p>
+      </div>
+
+      <!-- Three paths -->
+      <div class="prog-open-paths">
+
+        <!-- Fellowship — elevated, full-width treatment -->
+        <a href="/programs/fellowship" class="prog-open-fellowship">
+          <div class="prog-of-left">
+            <div class="prog-of-eyebrow">🏛️ &nbsp;Leadership Fellowship · Class of 2026</div>
+            <h3 class="prog-of-title">The most rigorous civic programme NITIZEN offers.</h3>
+            <p class="prog-of-body">
+              Six months. Eight tracks. Thirty seats. Full NITIZEN membership upon completion. 
+              This is a serious, competitive, and immersive commitment — not a casual activity. 
+              Fellows are expected to produce real work that reaches millions of Nigerians.
+            </p>
+            <div class="prog-of-rigor">
+              <span class="prog-of-rigor-badge">⚠ Intensive Commitment</span>
+              <span class="prog-of-rigor-text">Minimum 10 hrs/week · Competitive selection · Merit-based · Under 30</span>
+            </div>
+          </div>
+          <div class="prog-of-right">
+            <div class="prog-of-status">🟢 Registration Open</div>
+            <div class="prog-of-cta">Apply for Fellowship →</div>
+            <div class="prog-of-deadline">Democracy Day 2026</div>
+          </div>
+        </a>
+
+        <!-- Volunteer fork — mutual exclusivity handled here -->
+        <div class="prog-open-fork">
+          <div class="prog-fork-header">
+            <span class="prog-fork-label">Volunteer Pathways</span>
+            <span class="prog-fork-rule"></span>
+            <span class="prog-fork-note">Choose one — not both</span>
+          </div>
+          <div class="prog-fork-note-body">
+            Corps Ambassador and General Volunteer are separate, distinct roles with different eligibility criteria. 
+            Apply to the one that matches your current status. Concurrent applications are not accepted.
+          </div>
+          <div class="prog-fork-cards">
+
+            <a href="/programs/apply/corps-ambassador" class="prog-fork-card">
+              <div class="prog-fork-card-accent" style="background:#25D366"></div>
+              <div class="prog-fork-card-icon">🎖️</div>
+              <div class="prog-fork-card-title">Corps Ambassador</div>
+              <div class="prog-fork-card-elig">For NYSC members currently serving</div>
+              <div class="prog-fork-card-body">Channel your service year into structured civic contribution across research, community engagement, and field operations.</div>
+              <div class="prog-fork-card-cta">Apply Now →</div>
+            </a>
+
+            <div class="prog-fork-divider">
+              <span class="prog-fork-or">or</span>
+            </div>
+
+            <a href="/programs/apply/volunteer" class="prog-fork-card">
+              <div class="prog-fork-card-accent" style="background:var(--green-mid)"></div>
+              <div class="prog-fork-card-icon">🤝</div>
+              <div class="prog-fork-card-title">General Volunteer</div>
+              <div class="prog-fork-card-elig">For all other Nigerians</div>
+              <div class="prog-fork-card-body">Flexible contribution for students, graduates, and professionals who believe in the mission. Bring your skills and your time.</div>
+              <div class="prog-fork-card-cta">Apply Now →</div>
+            </a>
+
+          </div>
+        </div>
+
+      </div><!-- /prog-open-paths -->
+    </div>
+  </div><!-- /prog-open-spotlight -->
+
   <!-- PROGRAMS CATALOGUE -->
   <div class="prog-catalogue" id="prog-catalogue-anchor">
     <div class="section-inner">
@@ -8786,7 +9031,7 @@ function handleCRT(e){
           Four ways to <em style="font-style:italic;color:var(--green-mid)">contribute your skills.</em>
         </h3>
         <p style="font-family:var(--body);font-size:.97rem;line-height:1.82;color:var(--muted);max-width:600px;margin-bottom:2.5rem">
-          NITIZEN is built by civic-minded Nigerians. Whether you're a student, a corps member, a professional, or a leader ready for executive responsibility — there is a role designed for you.
+          NITIZEN is built by civic-minded Nigerians. Whether you're a student, a corps member, a professional, or a leader ready for executive responsibility — there is a role designed for you. Each path is distinct; choose the one that matches your profile.
         </p>
         <div class="vol-recruit-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem">
           <a href="/programs/apply/team-lead" class="vol-recruit-card">
@@ -8801,23 +9046,29 @@ function handleCRT(e){
             <div class="vol-rc-icon">🏛️</div>
             <div class="vol-rc-title" style="color:var(--gold)">Fellowship <span style="font-family:var(--mono);font-size:.55rem;letter-spacing:.1em;background:rgba(200,168,75,.2);color:var(--gold);padding:.15rem .5rem;border-radius:2px;vertical-align:middle;margin-left:.4rem">OPEN NOW</span></div>
             <div class="vol-rc-body">Six-month immersive programme for exceptional young Nigerians. Eight tracks. Full membership. Real civic work at scale. Under 30. Class of 2026.</div>
+            <div style="font-family:var(--mono);font-size:.56rem;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(200,168,75,.1);border-top:1px solid rgba(200,168,75,.2);padding:.45rem 1.4rem;margin-top:auto">Intensive · 10+ hrs/week · Merit-based</div>
             <div class="vol-rc-cta" style="color:var(--gold)">Register Today →</div>
           </a>
-          <a href="/programs/apply/corps-ambassador" class="vol-recruit-card">
+          <a href="/programs/apply/corps-ambassador" class="vol-recruit-card" style="position:relative">
             <div class="vol-rc-accent" style="background:#25D366"></div>
             <div class="vol-rc-icon">🎖️</div>
             <div class="vol-rc-title">Corps Ambassador</div>
+            <div style="font-family:var(--mono);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-mid);padding:0 1.4rem .55rem;line-height:1.4">For NYSC members currently serving</div>
             <div class="vol-rc-body">NYSC members serving with purpose. A structured programme that lets corps members contribute civic value throughout their service year.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </a>
-          <a href="/programs/apply/volunteer" class="vol-recruit-card">
+          <a href="/programs/apply/volunteer" class="vol-recruit-card" style="position:relative">
             <div class="vol-rc-accent" style="background:var(--green-mid)"></div>
             <div class="vol-rc-icon">🤝</div>
             <div class="vol-rc-title">General Volunteer</div>
+            <div style="font-family:var(--mono);font-size:.57rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green-mid);padding:0 1.4rem .55rem;line-height:1.4">For all other Nigerians</div>
             <div class="vol-rc-body">Any Nigerian who believes in the mission. Flexible contribution — bring your skills, your time, and your commitment to civic change.</div>
             <div class="vol-rc-cta">Apply Now →</div>
           </a>
         </div>
+        <p style="font-family:var(--mono);font-size:.64rem;letter-spacing:.07em;color:var(--muted);margin-top:1.2rem;padding:.75rem 1.1rem;border:1px solid var(--border);border-radius:2px;background:#fff;max-width:560px">
+          ℹ &nbsp;Corps Ambassador and General Volunteer are separate pathways with different eligibility criteria. Apply to one only — concurrent applications are not accepted.
+        </p>
       </div>
     </div>
   </div>
