@@ -1,0 +1,4 @@
+# NITIZEN SPA — Netlify redirect rule
+# Serves index.html for all routes so the JS router handles navigation.
+# Deploy this file in the same directory as index.html (the Nitizen HTML file renamed to index.html).
+/*    /index.html   200
